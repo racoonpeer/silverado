@@ -1,0 +1,67 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Aug 27, 2016, 11:26:19 PM
+    Author     : yyyaaazzz
+*/
+
+@import "core";
+@import "ext/_slidebars";
+@import "ext/_fancybox";
+@import "ext/_remodal";
+@import "ext/_swiper";
+
+#sbIndex {
+    z-index: 0;
+    &.shift,
+    &.overlay {
+        overflow: hidden;
+        .body-overlay {
+            pointer-events: all;
+            display: block;
+        }
+    }
+    .body-overlay {
+        pointer-events: none;
+        display: none;
+        position: sticky;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(244,243,245,0.8);
+        z-index: 900;
+        height: 100%;
+    }
+}
+.container {
+    max-width: 1640px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/*header*/ 
+@import "_header";
+
+/*product grid*/ 
+@import "_product-grid";
+
+/*header*/ 
+@import "_product-rating";
+
+/*basket*/ 
+@import "_basket";
+
+/*flypage*/ 
+@import "_flypage";
+
+/*footer*/ 
+@import "_footer";
+
+/*footer*/ 
+@import "_callback";

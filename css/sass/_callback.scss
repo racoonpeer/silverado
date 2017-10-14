@@ -1,0 +1,43 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 2, 2017, 9:59:17 AM
+    Author     : yyyaaazzz
+*/
+
+.callback-form {
+    text-align: center;
+    max-width: 360px;
+    .hint {
+        font-size: 1.2rem;
+        line-height: 1.4;
+        color: $dark-grey;
+        margin-bottom: 20px;
+    }
+    input[type^="te"]{
+        display: block;
+        width: 100%;
+        margin-bottom: 12px;
+    }
+    button {
+        display: block;
+        width: 100%;
+    }
+    .result {
+        text-align: center;
+        &:before {
+            display: block;
+            width: 33px;
+            height: 33px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 20px;
+            background-image: url("/images/site/smart/phone-contact.gif");
+            background-repeat: no-repeat;
+            content: "";
+        }
+    }
+}

@@ -1,0 +1,35 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 17, 2017, 8:44:08 PM
+    Author     : yyyaaazzz
+*/
+
+.rating {
+    width: 88px;
+    height: 16px;
+    &:before {
+        display: block;
+        width: 0px;
+        height: 16px;
+        background-image: $sprite;
+        background-position: -88px -106px;
+    }
+    &[class*="v-"] {
+        background-image: $sprite;
+        background-position: 0px -106px;
+        &:before {
+            content: "";
+        }
+    }
+    @for $i from 1 through 5 {
+        &.v-#{$i} {
+            &:before {
+                width: 20% * $i;
+            }
+        }
+    }
+}

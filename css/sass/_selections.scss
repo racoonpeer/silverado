@@ -1,0 +1,82 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 9, 2017, 3:42:43 PM
+    Author     : yyyaaazzz
+*/
+
+.selections {
+    text-align: -webkit-center;
+    padding-top: 40px;
+    &:hover {
+        position: relative;
+        .slick-slider {
+            .slick-list {
+                .product-item {
+                    text-align: center;
+                    .img {
+                        img {
+                            display: inline-block !important;
+                        }
+                    }
+                }
+            }
+            .slick-arrow {
+                top: 150px;
+                &:not(.slick-disabled) {
+                    display: block !important;
+                }
+            }
+        }
+    }
+    .slick-slider {
+        .slick-arrow {
+            top: 130px;
+            display: none !important;
+            background-image: $sprite;
+            background-position: -1px -163px;
+            width: 36px;
+            height: 36px;
+            border: 1px solid $dark-peach;
+            background-color: $white;
+            padding: 1px;
+            z-index: 1;
+            left: 0;
+            &:after {
+                display: none;
+                content: "";
+            }
+            &:before {
+                width: 32px;
+                height: 32px;
+                display: block;
+                background-color: $dark-peach;
+                background-image: $sprite;
+                background-position: -36px -162px;
+                @include transform(scale(0, 0));
+                @include transition(all 100ms ease);
+                content: "";
+            }
+            &:hover {
+                &:before {
+                    @include transform(scale(1, 1));
+                }
+            }
+            &.slick-next {
+                left: auto;
+                right: 0;
+                @include transform(translate(0, -50%) rotate(180deg));
+            }
+        }
+    }
+    .h2 {
+        margin-top: 0;
+        margin-bottom: 20px;
+        text-align: center;
+        font-size: $h1;
+        font-weight: 300;
+    }
+}

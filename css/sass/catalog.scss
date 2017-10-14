@@ -1,0 +1,49 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 21, 2016, 8:00:49 PM
+    Author     : yyyaaazzz
+*/
+
+@import "common";
+@import "_breadcrumbs";
+@import "_controlbar";
+@import "_filters";
+@import "_pagination";
+
+.page-container {
+    padding-top: 40px;
+}
+.heading-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 0;
+}
+
+
+.column-left {
+    width: (100% / 5);
+    @include breakpoint(960) {
+        display: none;
+    }
+}
+
+#products {
+    width: (100% * 0.8);
+    @include breakpoint(960) {
+        width: 100%;
+    }
+    .product-item {
+        width: (100% / 4);
+        @include breakpoint(1280){
+            width: (100% / 3);
+        }
+        @include breakpoint(720){
+            width: (100% / 2);
+        }
+    }
+}
+

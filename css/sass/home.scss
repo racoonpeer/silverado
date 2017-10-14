@@ -1,0 +1,154 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Aug 30, 2016, 8:30:07 PM
+    Author     : yyyaaazzz
+*/
+
+@import "common";
+
+.main-menu {
+    
+}
+.header-container {
+    .section-bottom {
+        .main-menu {
+            border-top: 1px solid #e7e7e7;
+            border-bottom: none;
+        }
+    }
+}
+
+/*banners*/
+.banner-container {
+    .container {
+        position: relative;
+    }
+    .item {
+        img {
+            vertical-align: top;
+        }
+    }
+    .left-side {
+        margin-right: 450px;
+        overflow: hidden;
+    }
+    .right-side {
+        position: absolute;
+        right: 20px;
+        top: 0;
+        & + .right-side {
+            top: 180px;
+        }
+    }
+}
+
+/*categories*/
+.categories {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    display: flex;
+    justify-content: space-around;
+    .category {
+        width: 250px;
+        height: 250px;
+        overflow: hidden;
+        position: relative;
+        text-align: center;
+        border: 1px solid #d7dde3;
+        &:hover {
+            .blob {
+                top: 47px;
+            }
+            .btn {
+                display: block;
+            }
+        }
+        img {
+            vertical-align: top;
+            max-width: 100%;
+        }
+        .blob {
+            text-transform: uppercase;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 75px;
+            font-size: 2.8rem;
+            padding-top: 12px;
+            padding-bottom: 15px;
+            background-color: rgba(255,255,255,0.75);
+            @include transition(all 0.15s ease);
+            .hr {
+                height: 1px;
+                width: 100px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 3px;
+                margin-bottom: 7px;
+                background-color: #bbc3cb;
+            }
+            .price {
+                text-transform: lowercase;
+                font-size: 1.8rem;
+                color: $dark-peach;
+            }
+        }
+        .btn {
+            font-size: 1.2rem;
+            display: none;
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            right: 30px;
+            background-color: $white;
+            &:before {
+                display: block;
+                position: absolute;
+                top: 1px;
+                left: 1px;
+                right: 1px;
+                bottom: 1px;
+                background-color: $dark-peach;
+                color: $white;
+                content: "смотреть";
+            }
+            &:after {
+                display: block;
+                position: absolute;
+                top: 1px;
+                left: 1px;
+                right: 1px;
+                bottom: 1px;
+                background-color: $dark-peach;
+                color: $white;
+                content: "смотреть";
+                @include transform(scale(0, 0));
+                @include transition(all 200ms ease);
+            }
+            &:hover {
+                &:before {
+                    background-color: $white;
+                }
+                &:after {
+                    @include transform(scale(1, 1));
+                }
+            }
+            &:active {
+                @include transform(scale(0.95, 0.95));
+            }
+        }
+    }
+}
+
+/*selections*/
+@import "ext/_slick";
+@import "_selections";
+.hr {
+    + .selections {
+        padding-top: 20px;
+    }
+}

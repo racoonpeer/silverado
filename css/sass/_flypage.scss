@@ -1,0 +1,292 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 1, 2017, 10:51:14 AM
+    Author     : yyyaaazzz
+*/
+
+.product-flypage {
+    text-align: initial;
+    display: inline-block;
+    vertical-align: top;
+    width: 30%;
+    padding-left: 40px;
+    .badge {
+        margin-bottom: 10px;
+    }
+    .product-title {
+        font-size: 2rem;
+        margin-top: 0;
+    }
+    .product-descr {
+        color: $dark-grey;
+    }
+    .buttons {
+        padding-top: 20px;
+        padding-bottom: 30px;
+        .price {
+            margin-bottom: 24px;
+            font-size: 3rem;
+            line-height: 4.8rem;
+            &:after {
+                font-size: 2.4rem;
+                content: "грн.";
+            }
+            strong {
+                font-weight: inherit;
+            }
+            &.stock {
+                line-height: 4.2rem;
+            }
+            .strike {
+                font-size: 2.2rem;
+                display: inline-block;
+                vertical-align: middle;
+                position: relative;
+                color: $dark-grey;
+                margin-right: 10px;
+                strong {
+                    position: relative;
+                    &:after {
+                        display: block;
+                        position: absolute;
+                        left: -3px;
+                        right: -3px;
+                        top: 51%;
+                        height: 1px;
+                        background-color: $peach;
+                        content: "";
+                    }
+                }
+                &:after {
+                    font-size: 1.7rem;
+                    content: "грн.";
+                }
+            }
+        }
+        .add-to-cart {
+            padding-left: 0;
+            padding-right: 0;
+            width: 190px;
+            &:before {
+                content: "купить";
+            }
+            &.in-cart {
+                &:before {
+                    content: "уже в корзине";
+                }
+            }
+        }
+        .favorite {
+            margin-top: 12px;
+            vertical-align: middle;
+            width: 29px;
+            height: 24px;
+            border: none;
+            background-color: transparent;
+            background-image: $sprite;
+            background-position: -87px -82px;
+            &:hover,
+            &.liked {
+                background-position: -116px -82px;
+            }
+            &.liked {
+                &:hover {
+                    @include opacity(0.75);
+                }
+            }
+            &:active {
+                @include transform(scale(0.95, 0.95));
+            }
+        }
+    }
+    .options {
+        position: relative;
+        & + .options {
+            padding-top: 20px;
+        }
+        .option-label {
+            font-size: 1.3rem;
+            &:before {
+                content: attr(data-label);
+                margin-right: 4px;
+            }
+        }
+        .optgroup {
+            overflow: hidden;
+            font-size: 0;
+            label {
+                display: inline-block;
+                width: 62px;
+                height: 32px;
+                line-height: 3rem;
+                border: 1px solid #e7e7e7;
+                text-align: center;
+                font-size: 1.3rem;
+                margin-right: 6px;
+                margin-top: 6px;
+                cursor: pointer;
+                &:active {
+                    @include transform(scale(0.95));
+                }
+                &:hover {
+                    border-color: $ground-purple;
+                }
+            }
+            input[type="radio"] {
+                position: absolute;
+                top: -33px;
+                left: -33px;
+                @include opacity(0);
+                &:checked {
+                    & + label {
+                        font-weight: 400;
+                        border-color: $ground-purple;
+                    }
+                }
+            }
+        }
+        .imgroup {
+            overflow: hidden;
+            font-size: 0;
+            label {
+                display: inline-block;
+                vertical-align: top;
+                width: 40px;
+                height: 40px;
+                border: 1px solid #e7e7e7;
+                margin-right: 6px;
+                margin-top: 6px;
+                cursor: pointer;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: contain;
+                &:active {
+                    @include transform(scale(0.95));
+                }
+                &:hover {
+                    border-color: $ground-purple;
+                }
+            }
+            input[type="radio"] {
+                position: absolute;
+                top: -33px;
+                left: -33px;
+                @include opacity(0);
+                &:checked {
+                    & + label {
+                        border-color: $ground-purple;
+                        outline: 3px solid #FFFFFF;
+                        outline-offset: -4px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.product-dialog {
+    .product-title {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        a {
+            color: inherit;
+            text-decoration: none;
+            &:hover {
+                color: $purple;
+            }
+        }
+        .badge {
+            display: block;
+            margin-bottom: 10px;
+            height: 20px;
+            width: 110px;
+            line-height: 1.9rem;
+            font-size: 1.2rem;
+            text-align: center;
+            text-transform: uppercase;
+            border: 1px solid;
+            &.new {
+                background-color: $white;
+                color: $mint;
+                border-color: $mint;
+                &:before {
+                    content: "new";
+                }
+            }
+            &.sale {
+                background-color: $peach;
+                color: $white;
+                border-color: $peach;
+                &:before {
+                    content: "sale";
+                }
+            }
+            &.hit {
+                background-color: $white;
+                color: $dark-peach;
+                border-color: $peach;
+                &:before {
+                    content: "Товар дня";
+                }
+            }
+        }
+    }
+    .reviews {
+        margin-top: 10px;
+        text-align: center;
+        .rating {
+            float: none;
+            display: inline-block;
+            vertical-align: -2px;
+            margin-right: 8px;
+        }
+        a {
+            color: $dark-grey;
+            text-decoration: none;
+            border-bottom: 1px solid #e7e7e7;
+            &:hover {
+                color: $purple;
+            }
+        }
+    }
+    .product-descr {
+        margin-top: 6px;
+        color: $dark-grey;
+        .read-more {
+            text-decoration: none;
+            display: inline-block;
+            border-bottom: 1px dotted;
+            line-height: 1;
+        }
+    }
+    .product-image {
+        float: left;
+        width: 410px;
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 20px;
+        .screen {
+            position: relative;
+            a {
+                display: block;
+            }
+        }
+        img {
+            &:not(.zoomImg) {
+                max-width: 100%;
+            }
+        }
+    }
+    .product-flypage {
+        display: block;
+        padding: 0;
+        width: auto;
+        margin-top: 0;
+        text-align: left;
+        margin-left: 455px;
+    }
+}

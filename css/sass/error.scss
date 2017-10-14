@@ -1,0 +1,27 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 2, 2017, 8:27:41 PM
+    Author     : yyyaaazzz
+*/
+
+@import "common";
+@import "ext/_slick";
+@import "_selections";
+
+.error-page {
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 60px;
+    .code {
+        font-size: 128px;
+        @include opacity(0.3);
+        color: $purple;
+        span {
+            color: $dark-grey;
+        }
+    }
+}

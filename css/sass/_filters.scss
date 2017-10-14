@@ -1,0 +1,172 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 9, 2017, 11:24:20 PM
+    Author     : yyyaaazzz
+*/
+@import "ext/_nouislider";
+
+.filters {
+    max-width: 260px;
+    .section {
+        padding-top: 30px;
+        &:first-of-type {
+            border-top: none;
+        }
+        h4 {
+            font-size: 1.5rem;
+            margin-top: 0;
+            margin-bottom: 14px;
+        }
+        ul {
+            font-size: 0;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            li {
+                font-size: 1.3rem;
+                letter-spacing: 1px;
+                padding-top: 4px;
+                padding-bottom: 4px;
+                display: block;
+                position: relative;
+                overflow: hidden;
+                &.inline {
+                    display: inline-block;
+                    padding: 0;
+                    margin-right: 4px;
+                    margin-bottom: 4px;
+                }
+                .checkbox {
+                    display: block;
+                    .cnt {
+                        padding-left: 4px;
+                        color: $dark-grey;
+                    }
+                }
+                input[type="checkbox"] {
+                    position: absolute;
+                    top: -33px;
+                    left: -33px;
+                    @include opacity(0);
+                }
+                .colorbox {
+                    display: block;
+                    overflow: hidden;
+                    width: 39px;
+                    height: 39px;
+                    padding: 2px;
+                    border-width: 1px;
+                    border-style: solid;
+                    border-color: $lite-grey;
+                    &.disabled {
+                        @include opacity(0.25);
+                        pointer-events: none;
+                        cursor: default;
+                    }
+                    &.checked {
+                        border-width: 2px;
+                        border-color: $purple;
+                    }
+                    &:not(.disabled) {
+                        cursor: pointer;
+                        &:hover {
+                            @include opacity(0.65);
+                        }
+                    }
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        vertical-align: middle;
+                    }
+                }
+            }
+        }
+        .more {
+            font-size: 1.3rem;
+            margin-top: 7px;
+            color: $dark-grey;
+            display: inline-block;
+            font-weight: 300;
+            text-decoration: none;
+            &:hover {
+                text-decoration: none;
+                color: $purple;
+            }
+            &:after {
+                content: "";
+            }
+            span {
+                display: inline-block;
+                vertical-align: middle;
+                border-bottom: 1px solid #e7e7e7;
+            }
+            &.expand {
+                &:after {
+                    
+                }
+            }
+        }
+        .price-slider {
+            .noUi-target {
+                background: #e7e7e7;
+                height: 5px !important;
+                border: none !important;
+                @include box-shadow(none !important);
+                @include border-radius(0px !important);
+                .noUi-base {
+                    @include border-radius(0px);
+                    .noUi-origin {
+                        background-color: #e7e7e7;
+                        @include border-radius(0px);
+                        @include box-shadow(none !important);
+                        .noUi-handle {
+                            margin: 0;
+                            width: 9px;
+                            height: 16px;
+                            padding: 0;
+                            left: -4.5px;
+                            top: -16px;
+                            background-color: transparent;
+                            background-image: $sprite;
+                            background-position: -90px -20px;
+                            cursor: pointer;
+                            border: none;
+                            @include border-radius(0px);
+                            @include box-shadow(none !important);
+                            &:hover {
+                                background-position: -99px -20px;
+                            }
+                            &:active {
+                                @include transform(scale(0.95, 0.95));
+                            }
+                            &:before,
+                            &:after {
+                                display: none;
+                            }
+                        }
+                        &.noUi-connect {
+                            background-color: $lite-purple;
+                            @include border-radius(0px);
+                        }
+                    }
+                }
+            }
+        }
+        &.price-filter {
+            h4 {
+                margin-bottom: 25px;
+            }
+            p {
+                font-size: 1.3rem;
+                text-align: center;
+                margin-top: 10px;
+                margin-bottom: 0;
+                letter-spacing: 1px;
+            }
+        }
+    }
+}

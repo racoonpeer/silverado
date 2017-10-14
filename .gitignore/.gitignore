@@ -3,3 +3,4 @@
 # foo.txt
 # Ignore smarty compiled templates
 *.tpl.php
+*.log

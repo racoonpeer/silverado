@@ -1,0 +1,33 @@
+User-Agent: *
+
+Disallow: /admin/
+Disallow: /backup/
+Disallow: /cgi-bin/
+Disallow: /include/
+Disallow: /module/
+Disallow: /temp/
+Disallow: /tpl/
+Disallow: /seo/
+Disallow: /flash/
+Disallow: /verstka/
+Disallow: /cronjobs/
+
+Disallow: /admin.php
+Disallow: /login.php
+Disallow: /dumper.php
+Disallow: /test.php
+Disallow: /sinfo.php
+
+Disallow: /*filter
+Disallow: /*gclid
+Disallow: /*?utm
+Disallow: /*sort=
+Disallow: /*limit=
+Disallow: /*?ajax
+Disallow: /*&ajax
+Disallow: /*_pages
+
+Host: silverado.com.ua
+
+User-agent: *
+Disallow: /

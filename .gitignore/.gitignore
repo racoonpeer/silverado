@@ -2,4 +2,4 @@
 # Ignore any file named foo.txt.
 # foo.txt
 # Ignore smarty compiled templates
-*.html.php
+*.tpl.php

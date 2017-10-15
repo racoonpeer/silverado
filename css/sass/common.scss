@@ -9,10 +9,10 @@ and open the template in the editor.
 */
 
 @import "core";
-@import "ext/_slidebars";
-@import "ext/_fancybox";
-@import "ext/_remodal";
-@import "ext/_swiper";
+@import "ext/slidebars";
+@import "ext/fancybox";
+@import "ext/remodal";
+@import "ext/swiper";
 
 #sbIndex {
     z-index: 0;
@@ -46,6 +46,10 @@ and open the template in the editor.
     margin-right: auto;
     padding-left: 20px;
     padding-right: 20px;
+    .container {
+        padding-left: 0;
+        padding-right: 0;
+    }
 }
 
 /*header*/ 

@@ -1,0 +1,75 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 15.10.2017, 20:15:22
+    Author     : Alisa
+*/
+
+.mobile-menu {
+    background-color: $black;
+    padding-top: 20px;
+    width: 85%;
+    @include breakpoint(460){
+        width: 83%;
+    }
+    @include breakpoint(390){
+        width: 82%;
+    }
+    @include breakpoint(340){
+        width: 81%;
+        padding-top: 16px;
+    }
+    @include breakpoint(330){
+        width: 80%;
+    }
+    .m-logo {
+        display: block;
+        width: 230px;
+        height: 35px;
+        margin-left: 32px;
+        background-image: $sprite;
+        background-position: 0px -284px;
+        @include breakpoint(360){
+            margin-left: 8px;
+            @include transform(scale(0.8));
+        }
+        &.noclick {
+            cursor: default;
+            pointer-events: none;
+        }
+    }
+    .menu-wrap{
+        overflow: auto;
+        margin-top: 15px;
+        @include breakpoint(340){
+            margin-top: 11px;
+        }
+    }
+    .main-menu {
+        font-size: 1.6rem;
+        list-style: none;
+        padding-left: 32px;
+        padding-right: 15px;
+        li {
+            border-top: 1px solid $deep-grey;
+            &:first-child {
+                border-top: none;
+            }
+            a {
+                text-decoration: none;
+                color: $white;
+                display: block;
+                font-weight: 400;
+                padding-top: 15px;
+                padding-bottom: 15px;
+                padding-right: 20px;
+                &.bold {
+                    color: $purple;
+                }
+            }
+        }
+    }
+}

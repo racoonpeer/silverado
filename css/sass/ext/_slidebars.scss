@@ -103,9 +103,9 @@ html, body, [canvas=container], [off-canvas] {
  */
 
 [canvas], [off-canvas] {
-	-webkit-transform: translate( 0px, 0px );
-	    -ms-transform: translate( 0px, 0px );
-	        transform: translate( 0px, 0px );
+	-webkit-transform: none;
+	    -ms-transform: none;
+	        transform: none;
 	-webkit-transition: -webkit-transform 300ms;
 	        transition:         transform 300ms;
 	-webkit-backface-visibility: hidden; /* Prevents flickering, may be removed if experiencing problems with fixed background images in Chrome. */
@@ -137,9 +137,9 @@ html, body, [canvas=container], [off-canvas] {
 
 @media print {
 	[canvas] {
-		-webkit-transform: translate( 0px, 0px ) !important;
-		    -ms-transform: translate( 0px, 0px ) !important;
-		        transform: translate( 0px, 0px ) !important;
+		-webkit-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
 	}
 
 	[off-canvas] {

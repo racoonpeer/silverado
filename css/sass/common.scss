@@ -16,6 +16,9 @@ and open the template in the editor.
 
 #sbIndex {
     z-index: 0;
+    @include breakpoint(990){
+        padding-top: 60px;
+    }
     &.shift,
     &.overlay {
         overflow: hidden;
@@ -27,7 +30,7 @@ and open the template in the editor.
     .body-overlay {
         pointer-events: none;
         display: none;
-        position: sticky;
+        position: fixed;
         top: 0;
         left: 0;
         right: 0;
@@ -46,22 +49,25 @@ and open the template in the editor.
 }
 
 /*header*/ 
-@import "_header";
+@import "header";
 
 /*product grid*/ 
-@import "_product-grid";
+@import "product-grid";
 
 /*header*/ 
-@import "_product-rating";
+@import "product-rating";
 
 /*basket*/ 
-@import "_basket";
+@import "basket";
 
 /*flypage*/ 
-@import "_flypage";
+@import "flypage";
 
 /*footer*/ 
-@import "_footer";
+@import "footer";
 
 /*footer*/ 
-@import "_callback";
+@import "callback";
+
+/*mobile menu*/ 
+@import "mobile-menu";

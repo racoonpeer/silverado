@@ -109,7 +109,7 @@ and open the template in the editor.
             position: relative;
             letter-spacing: 0.6px;
             font-weight: 500;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             line-height: 1.5;
             text-transform: uppercase;
             margin-bottom: 13px;
@@ -123,12 +123,12 @@ and open the template in the editor.
         }
         .price {
             position: relative;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             &.stock {
                 color: $black;
             }
             &:after {
-                font-size: 1.5rem;
+                font-size: 1.3rem;
                 content: "грн.";
             }
             strong {
@@ -141,7 +141,7 @@ and open the template in the editor.
                 margin-right: 10px;
                 font-weight: 400;
                 &:after {
-                    font-size: 1.5rem;
+                    font-size: 1.3rem;
                     content: "грн.";
                 }
                 strong {

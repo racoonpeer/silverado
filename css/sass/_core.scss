@@ -8,9 +8,9 @@ and open the template in the editor.
     Author     : yyyaaazzz
 */
 
-@import "_fonts";
-@import "_vars";
-@import "_mixin";
+@import "fonts";
+@import "vars";
+@import "mixin";
 
 * {
     outline: none;
@@ -398,7 +398,7 @@ h4,
     }
     &.btn-danger {
         color: $white;
-        background-color: $purple;
+        background-color: $deep-purple;
         text-shadow: 1px 1px $ground-purple;
         border: none;
         @include box-shadow(inset -1px -2px 0 0 $ground-purple);
@@ -407,7 +407,7 @@ h4,
             @include box-shadow(inset -1px -3px 0 0 $ground-purple);
         }
         &:hover {
-            background-color: $lite-purple;
+            background-color: $purple;
             @include box-shadow(inset 0px -1px 0 0 $ground-purple);
         }
     }

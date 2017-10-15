@@ -9,12 +9,23 @@ and open the template in the editor.
 */
 
 .header-container {
+    @include breakpoint(990){
+        background-color: $white;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0px;
+        z-index: 100;
+    }
     .section-top {
         background-color: $deep-grey;
         height: 32px;
         line-height: 3.2rem;
         font-size: 1.2rem;
         color: $white;
+        @include breakpoint(990){
+            display: none;
+        }
         .container {
             position: relative;
         }
@@ -76,6 +87,55 @@ and open the template in the editor.
     .section-middle {
         position: relative;
         height: 154px;
+        @include breakpoint(990){
+            height: 62px;
+            border-bottom: 2px solid $black;
+        }
+        .btn-nav {
+            position: absolute;
+            top: 21px;
+            left: 20px;
+            width: 28px;
+            height: 18px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            @include breakpoint_min(990){
+                display: none;
+            }
+            &.cross {
+                width: 30px;
+                span {
+                    &:nth-child(1) {
+                        top: 8px;
+                        @include transform(rotate(45deg));
+                    }
+                    &:nth-child(2) {
+                        @include opacity(0);
+                    }
+                    &:nth-child(3) {
+                        top: 8px;
+                        @include transform(rotate(-45deg));
+                    }
+                }
+            }
+            span {
+                display: block;
+                width: 100%;
+                height: 2px;
+                left: 0;
+                top: 0;
+                position: absolute;
+                background: $black;
+                @include transition(0.3s);
+                &:nth-child(2) {
+                    top: 8px;
+                }
+                &:nth-child(3) {
+                    top: 16px;
+                }
+            }
+        }
         .logo {
             position: absolute;
             width: 301px;
@@ -84,7 +144,21 @@ and open the template in the editor.
             background-position: 0px -220px;
             left: 50%;
             top: 59px;
-            @include transform(translateX(-50%));
+            margin-left: -150px;
+            @include breakpoint(990){
+                width: 210px;
+                height: 32px;
+                background-position: -74px -186px;
+                margin-left: -105px;
+                top: 19px;
+            }
+            @include breakpoint(480){
+                width: 69px;
+                height: 41px;
+                background-position: -231px -284px;
+                margin-left: -35px;
+                top: 9px;
+            }
             a {
                 display: block;
                 position: absolute;
@@ -98,28 +172,53 @@ and open the template in the editor.
             position: absolute;
             right: 75px;
             top: 64px;
+            @include breakpoint(990){
+                top: 15px;
+                right: 65px;
+            }
+            @include breakpoint(480){
+                right: 60px;
+            }
             .trigger {
                 border: none;
                 padding: 0;
                 width: 24px;
                 height: 30px;
                 background-color: transparent;
-                background-image: $sprite;
-                background-position: -240px -122px;
+                background-image: url("/images/site/smart/icons/cart.svg");
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                font-size: 12px;
+                line-height: 36px;
+                font-weight: 400;
+                &:after {
+                    @include breakpoint(990){
+                        content: attr(data-count);
+                    }
+                }
                 &.active {
-                    background-position: -264px -122px;
+                    @include breakpoint_min(991){
+                        background-image: url("/images/site/smart/icons/cart-h.svg");
+                    }
+                }
+                @include breakpoint(990){
+                    height: 28px;
                 }
             }
             span {
                 display: block;
                 white-space: nowrap;
-                font-size: 1.2rem;
+                font-size: 1.1rem;
+                line-height: 1.4;
                 position: absolute;
-                top: 50%;
+                bottom: 2px;
                 right: 36px;
                 color: $dark-grey;
                 text-align: right;
-                @include transform(translateY(-50%));
+                @include breakpoint(990){
+                    display: none;
+                }
                 br {
                     display: block;
                 }
@@ -127,19 +226,42 @@ and open the template in the editor.
         }
         .search-toggle {
             position: absolute;
-            top: 70px;
+            top: 73px;
             right: 20px;
-            width: 24px;
-            height: 24px;
+            width: 20px;
+            height: 20px;
             background-color: transparent;
-            background-image: $sprite;
-            background-position: -176px -162px;
+            background-image: url("/images/site/smart/icons/search.svg");
+            background-size: contain;
+            background-repeat: no-repeat;
             border: none;
+            &:hover {
+                @include breakpoint_min(991){
+                    background-image: url("/images/site/smart/icons/search-h.svg");
+                }
+            }
             &.toggle-on {
-                background-position: -200px -162px;
+                background-image: url("/images/site/smart/icons/close.svg");
+                @include breakpoint_min(991){
+                    top: 75px;
+                    right: 22px;
+                    width: 16px;
+                    height: 16px;
+                }
+                &:hover {
+                    @include breakpoint_min(991){
+                        background-image: url("/images/site/smart/icons/close-h.svg");
+                    }
+                }
                 + .searchbar {
                     display: block;
                 }
+            }
+            @include breakpoint(990){
+                width: 18px;
+                height: 18px;
+                top: 23px;
+                right: 22px;
             }
         }
         .searchbar {
@@ -148,8 +270,22 @@ and open the template in the editor.
             display: none;
             position: absolute;
             top: 64px;
-            right: 54px;
+            right: 51px;
             background-color: $white;
+            @include breakpoint(1200){
+                top: 99px;
+                right: 20px;
+            }
+            @include breakpoint(990){
+                top: 60px;
+                right: 0;
+                left: 0;
+                padding-top: 12px;
+                padding-bottom: 12px;
+                padding-left: 20px;
+                padding-right: 20px;
+                border-bottom: 2px solid $black;
+            }
             form {
                 display: block;
                 &.loading {
@@ -167,6 +303,10 @@ and open the template in the editor.
                 padding-left: 29px;
                 padding-right: 15px;
                 background-color: #f5f3f3;
+                @include breakpoint(990){
+                    height: 33px;
+                    width: 100%;
+                }
             }
             button {
                 position: absolute;
@@ -178,6 +318,10 @@ and open the template in the editor.
                 background-image: $sprite;
                 background-position: 0px -20px;
                 border: none;
+                @include breakpoint(990){
+                    left: 31px;
+                    top: 21px;
+                }
             }
             .live-search {
                 position: absolute;
@@ -263,6 +407,9 @@ and open the template in the editor.
         .phones {
             position: absolute;
             top: 70px;
+            @include breakpoint(990){
+                display: none;
+            }
             .hint {
                 font-size: 1.2rem;
                 color: #808c99;
@@ -338,6 +485,9 @@ and open the template in the editor.
     }
     .section-bottom {
         z-index: 91;
+        @include breakpoint(990){
+            display: none;
+        }
         @import "main-menu";
     }
 }

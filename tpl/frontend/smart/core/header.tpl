@@ -9,6 +9,11 @@
         </div>
     </div>
     <div class="section-middle container clearfix">
+        <button class="btn-nav">
+            <span class="constituent-1"></span>
+            <span class="constituent-2"></span>
+            <span class="constituent-3"></span>
+        </button>
         <div class="logo">
 <{if $arCategory.module!="home"}>
             <a href="/"></a>

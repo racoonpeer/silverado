@@ -1,6 +1,6 @@
 <?php
 $SES = array (
-  'c03b81c454a883a8a7115658b0053611' => 
+  '608fc0f784f998195db758216fae546e' => 
   array (
     'cfg' => 
     array (
@@ -14,10 +14,10 @@ $SES = array (
       'globstat' => 0,
       'my_host' => 'localhost',
       'my_port' => 3306,
-      'my_user' => 'silverad_dbadmin',
-      'my_pass' => '5god5oi8tz',
+      'my_user' => 'root',
+      'my_pass' => '',
       'my_comp' => 0,
-      'my_db' => 'silverad_db',
+      'my_db' => 'silverado',
       'auth' => 'mysql cfg',
       'user' => '',
       'pass' => '',
@@ -26,7 +26,7 @@ $SES = array (
       'outfile_path' => 'backup/',
       'outfile_size' => '64',
     ),
-    'time' => 1504070124,
+    'time' => 1507973851,
     'lng' => 'ru',
   ),
 );

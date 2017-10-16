@@ -148,14 +148,17 @@ and open the template in the editor.
             @include breakpoint(990){
                 width: 210px;
                 height: 32px;
-                background-position: -74px -186px;
+                background-position: -74px -187px;
                 margin-left: -105px;
                 top: 19px;
             }
             @include breakpoint(480){
-                width: 69px;
-                height: 41px;
-                background-position: -231px -284px;
+                width: 70px;
+                height: 42px;
+                background-image: url("/images/site/smart/icons/logo-m.svg");
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat;
                 margin-left: -35px;
                 top: 9px;
             }

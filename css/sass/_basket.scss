@@ -9,6 +9,7 @@ and open the template in the editor.
 */
 .drop-basket {
     width: 535px;
+    max-width: 82%;
     position: fixed;
     right: 0;
     top: 0;
@@ -19,12 +20,28 @@ and open the template in the editor.
     background-color: $white;
     @include box-shadow(0 0 10px 0 rgba(0,0,0,0.15));
     z-index: 1;
+    @include breakpoint(640){
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+    }
     .heading {
         font-size: 3rem;
         line-height: 2.5rem;
         margin-bottom: 13px;
+        @include breakpoint(480){
+            font-size: 2.4rem;
+            line-height: 2.2rem;
+            margin-bottom: 10px;
+        }
         small {
             font-size: 1.4rem;
+            @include breakpoint(480){
+                font-size: 1.3rem;
+            }
+            @include breakpoint(360){
+                font-size: 1.2rem;
+            }
         }
     }
     .basket-items {
@@ -36,6 +53,17 @@ and open the template in the editor.
             .image {
                 height: 110px;
                 margin-right: 15px;
+                @include breakpoint(640){
+                    height: 90px;
+                }
+                @include breakpoint(480){
+                    height: 70px;
+                    margin-right: 13px;
+                }
+                @include breakpoint(360){
+                    height: 60px;
+                    margin-right: 11px;
+                }
                 img {
                     vertical-align: top;
                     max-height: 100%;
@@ -43,7 +71,13 @@ and open the template in the editor.
             }
             .title {
                 font-size: 1.4rem;
-                text-transform: uppercase;
+                font-weight: 400;
+                @include breakpoint(480){
+                    font-size: 1.3rem;
+                }
+                @include breakpoint(360){
+                    font-size: 1.2rem;
+                }
                 a {
                     color: inherit;
                     text-decoration: none;
@@ -53,10 +87,14 @@ and open the template in the editor.
                 }
             }
             .options {
-                font-size: 1.3rem;
+                font-size: 1.2rem;
                 margin-top: 6px;
                 color: $dark-grey;
                 margin-bottom: 48px;
+                @include breakpoint(480){
+                    margin-top: 5px;
+                    font-size: 1.1rem;
+                }
             }
             .calc {
                 position: absolute;
@@ -155,11 +193,26 @@ and open the template in the editor.
                 bottom: 22px;
                 left: 128px;
                 font-size: 1.6rem;
+                @include breakpoint(640){
+                    left: 105px;
+                }
+                @include breakpoint(480){
+                    left: 85px;
+                }
+                @include breakpoint(460){
+                    left: 0;
+                }
+                @include breakpoint(360){
+                    font-size: 1.4rem;
+                }
                 &:after {
                     content: "грн.";
+                    @include breakpoint(360){
+                        font-size: 1.2rem;
+                    }
                 }
                 strong {
-                    font-weight: 500;
+                    font-weight: 400;
                 }
                 .strike {
                     position: relative;
@@ -190,18 +243,41 @@ and open the template in the editor.
         font-size: 1.8rem;
         line-height: 1.8rem;
         margin-top: 30px;
+        @include breakpoint(400){
+            margin-top: 24px;
+            font-size: 1.5rem;
+            line-height: 1.5rem;
+        }
+        @include breakpoint(360){
+            margin-top: 22px;
+            font-size: 1.4rem;
+            line-height: 1.4rem;
+        }
         strong {
             font-size: 2.2rem;
             font-weight: 400;
+            @include breakpoint(400){
+                font-size: 2rem;
+            }
+            @include breakpoint(360){
+                font-size: 1.8rem;
+            }
             &:after {
                 font-weight: 300;
                 font-size: 1.8rem;
                 content: " грн";
+                @include breakpoint(400){
+                    font-size: 1.5rem;
+                }
+                @include breakpoint(360){
+                    font-size: 1.4rem;
+                }
             }
         }
     }
     .buttons {
         margin-top: 18px;
+        margin-bottom: 20px;
     }
     .close {
         display: block;
@@ -214,8 +290,13 @@ and open the template in the editor.
         line-height: 20px;
         border: none;
         background-color: transparent;
+        @include breakpoint(480){
+            right: 26px;
+            top: 22px;
+        }
         &:before {
             content: "\00d7";
+            font-weight: 300;
         }
         &:hover {
             color: $purple;

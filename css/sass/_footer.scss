@@ -236,6 +236,9 @@ and open the template in the editor.
     background-color: #808c99;
     text-align: center;
     z-index: 10;
+    @include breakpoint(990){
+        bottom: 20px;
+    }
     &:before {
         display: inline-block;
         vertical-align: -9px;

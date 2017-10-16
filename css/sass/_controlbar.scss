@@ -13,6 +13,10 @@ and open the template in the editor.
     padding-top: 14px;
     padding-bottom: 14px;
     font-size: 1.3rem;
+    @include breakpoint(990){
+        position: relative;
+        padding-bottom: 5px;
+    }
     .sort {
         text-align: center;
         select {
@@ -20,9 +24,42 @@ and open the template in the editor.
             min-width: 120px;
             margin-left: 7px;
             height: 24px;
+            @include breakpoint(990){
+                min-width: 100%;
+                margin-left: 0;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 30px;
+                @include opacity(0);
+            }
+        }
+        span {
+            @include breakpoint(990){
+                display: none;
+            }
+        }
+        label {
+            display: inline;
+            cursor: default;
+            @include breakpoint(990){
+                overflow: hidden;
+                display: block;
+                position: relative;
+                width: 62px;
+                height: 30px;
+                background-image: url("/images/site/smart/icons/sort.svg");
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: contain;
+            }
         }
     }
     .limit {
+        @include breakpoint(990){
+            position: relative;
+        }
         button {
             display: inline-block;
             vertical-align: middle;
@@ -46,11 +83,88 @@ and open the template in the editor.
             &:disabled {
                 border-bottom: 2px solid $purple;
             }
+            @include breakpoint(990){
+                display: none;
+            }
+        }
+        span {
+            @include breakpoint(990){
+                display: none;
+            }
+        }
+        label,
+        select {
+            @include breakpoint_min(991){
+                display: none;
+            }
+        }
+        label {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            height: 30px;
+            padding-right: 40px;
+            background: url("/images/site/smart/icons/limit.svg") right no-repeat;
+            background-size: contain;
+            background-repeat: no-repeat;
+            line-height: 30px;
+            @include breakpoint_min(990){
+                display: none;
+            }
+            select {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 30px;
+                @include opacity(0);
+            }
+        }
+    }
+    .control-filter {
+        text-align: center;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 8px;
+        @include breakpoint_min(991){
+            display: none;
+        }
+        button {
+            width: 32px;
+            height: 24px;
+            display: inline-block;
+            border: none;
+            position: relative;
+            vertical-align: middle;
+            background-color: $white;
+            background-image: url("/images/site/smart/icons/filter.svg");
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            .cnt {
+                display: block;
+                position: absolute;
+                width: 15px;
+                height: 15px;
+                background-color: $purple;
+                @include border-radius(50%);
+                color: $white;
+                text-align: center;
+                line-height: 1.6rem;
+                font-size: 8px;
+                right: 0;
+                margin-right: -12px;
+                top: 0;
+            }
         }
     }
     .selected-filters {
         font-size: 1.3rem;
         text-align: center;
+        @include breakpoint(990){
+            display: none;
+        }
         a {
             text-decoration: none;
             display: inline-block;

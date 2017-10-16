@@ -77,6 +77,7 @@
 <{elseif !empty($items)}>
     <h1 class="heading-title"><{$arCategory.title}></h1>
     <div class="controlbar clearfix">
+        <{include file="ajax/control_filter.tpl"}>
         <{include file="ajax/control_limit.tpl"}>
         <{include file="ajax/control_sort.tpl"}>
         <div class="selected-filters" id="selectedFilters">

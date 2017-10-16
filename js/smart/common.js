@@ -77,6 +77,8 @@ $(function(){
     $(".header-container").on("click", ".btn-nav", function(){
         sb_controller.toggle("mobile-menu");
         $(this).toggleClass("cross");
+        if (sb_controller.getActiveSlidebar()) $("html,body").addClass("noscroll");
+        else $("html,body").removeClass("noscroll");
     });
     // Change options
     $(document).on("change", ".product-flypage .options input", function(){

@@ -9,11 +9,13 @@ and open the template in the editor.
 */
 
 .breadcrumbs {
-    /*text-transform: uppercase;*/
     text-align: center;
     font-size: 1.2rem;
     color: #808c99;
     margin-bottom: 30px;
+    @include breakpoint(990){
+        display: none;
+    }
     ul {
         list-style: none;
         padding: 0;

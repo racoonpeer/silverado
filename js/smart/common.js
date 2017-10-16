@@ -45,8 +45,8 @@ $(function(){
         }
     });
     // Init slidebar
-    var controller = new slidebars();
-    controller.init();
+    var sb_controller = new slidebars();
+    sb_controller.init();
     // Init modal
     Modal.construct();
     // Scroll-top button
@@ -73,6 +73,11 @@ $(function(){
     });
     // Init basket
     Basket.construct();
+    // toggle mobile menu
+    $(".header-container").on("click", ".btn-nav", function(){
+        sb_controller.toggle("mobile-menu");
+        $(this).toggleClass("cross");
+    });
     // Change options
     $(document).on("change", ".product-flypage .options input", function(){
         var label = $(this).closest(".options").find(".option-label"),
@@ -89,9 +94,9 @@ $(function(){
                 infinite: false,
                 prevArrow: "<button type=\"button\" class=\"slick-prev slick-arrow slick-disabled\" role=\"button\"></button>",
                 nextArrow: "<button type=\"button\" class=\"slick-next slick-arrow slick-disabled\" role=\"button\"></button>",
-                slidesPerRow: 5,
-                slidesToShow: 5,
-                slidesToScroll: 5,
+                slidesPerRow: 6,
+                slidesToShow: 6,
+                slidesToScroll: 6,
                 responsive: [
                     {
                         breakpoint: 1340,
@@ -102,7 +107,7 @@ $(function(){
                         }
                     },
                     {
-                        breakpoint: 1084,
+                        breakpoint: 990,
                         settings: {
                             slidesPerRow: 3,
                             slidesToShow: 3,
@@ -110,7 +115,7 @@ $(function(){
                         }
                     },
                     {
-                        breakpoint: 822,
+                        breakpoint: 640,
                         settings: {
                             slidesPerRow: 2,
                             slidesToShow: 2,
@@ -407,6 +412,7 @@ function CBasket() {
             if (self.opened) {
                 self.slidebar.toggle("drop-basket");
                 $("html,body").removeClass("noscroll");
+                self.body.removeClass("shift");
                 self.opened = false;
             }
         },

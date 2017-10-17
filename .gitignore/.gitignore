@@ -2,5 +2,7 @@
 # Ignore any file named foo.txt.
 # foo.txt
 # Ignore smarty compiled templates
+temp/cache/*
+temp/tpl_c/*
 *.tpl.php
 *.log

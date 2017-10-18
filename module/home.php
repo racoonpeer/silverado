@@ -1,6 +1,7 @@
 <?php defined('WEBlife') or die( 'Restricted access' ); // no direct access
 
 $arrPageData['headScripts'][] = "/js/libs/slick-carousel/slick.min.js";
+$arrPageData['headScripts'][] = "/js/smart/home.js";
 
 // необходимые переменные
 $selections = PHPHelper::getCache()->get(CacheWL::KEY_HOME_SELECTIONS);

@@ -9,10 +9,10 @@ and open the template in the editor.
 */
 
 @import "common";
-@import "_breadcrumbs";
-@import "ext/_slick";
-@import "_selections";
-@import "_pagination";
+@import "breadcrumbs";
+@import "ext/slick";
+@import "selections";
+@import "pagination";
 
 .page-container {
     padding-top: 40px;

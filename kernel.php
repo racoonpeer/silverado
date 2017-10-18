@@ -11,7 +11,6 @@ defined('WEBlife') or die( 'Restricted access' ); // no direct access
 require_once('include/functions/base.php');         // 1. Include base functions
 require_once('include/functions/image.php');        // 2. Include image functions
 require_once('include/functions/menu.php');         // 3. Include menu functions
-
 require_once('include/classes/Cookie.php');         // 1. Include Cookie class file
 $Cookie     = new CCookie();
 require_once('include/system/SystemComponent.php'); // 2. Include DB configuration file Must be included before other
@@ -40,6 +39,7 @@ $PHPHelper  = new PHPHelper();  //Initialize PHPHelper class with Custom PHP fun
 $HTMLHelper = new HTMLHelper();  //Initialize HTMLHelper class with Custom HTML functions
 $Ulogin     = new Ulogin($DB, $UrlWL);
 $IS_DEV     = getenv("IS_DEV");
+$IS_MAC     = getenv("IS_MAC");
 $IS_AJAX    = UrlWL::isAjaxRequest();
 // /// END INCLUDE LIST SOME REQUIRED FILES AND INITIAL GLOBAL VARS BLOCK \\\\\\
 # ##############################################################################

@@ -17,7 +17,7 @@ class SystemComponent {
         return getenv('IS_DEV') ? array(
             "dbhost"     => "localhost",
             "dbusername" => "root",
-            "dbpassword" => "",
+            "dbpassword" => (getenv("IS_MAC") ? "2c4uk915" : ""),
             "dbname"     => "silverado"
         ) : array(
             "dbhost"     => "localhost",

@@ -9,6 +9,7 @@ and open the template in the editor.
 */
 
 @import "common";
+@import "ext/slick";
 
 .main-menu {
     
@@ -26,22 +27,40 @@ and open the template in the editor.
 .banner-container {
     .container {
         position: relative;
+        @include breakpoint(990){
+            padding-left: 0;
+            padding-right: 0;
+        }
     }
     .item {
         img {
             vertical-align: top;
+            @include breakpoint(990){
+                width: 100%;
+                height: auto;
+            }
         }
     }
     .left-side {
         margin-right: 450px;
         overflow: hidden;
+        @include breakpoint(990){
+            margin-right: 0;
+        }
     }
     .right-side {
         position: absolute;
         right: 20px;
         top: 0;
+        @include breakpoint(990){
+            position: relative;
+            right: 0;
+        }
         & + .right-side {
             top: 180px;
+            @include breakpoint(990){
+                top: 0;
+            }
         }
     }
 }

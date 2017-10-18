@@ -14,6 +14,7 @@ and open the template in the editor.
     background-color: #f9f9f9;
     .subscribe {
         width: 480px;
+        max-width: 100%;
         margin-left: auto;
         margin-right: auto;
         text-align: center;
@@ -24,6 +25,9 @@ and open the template in the editor.
             font-size: 1.8rem;
             text-transform: uppercase;
             color: $black;
+            @include breakpoint(480){
+                font-size: 1.7rem;
+            }
         }
         form {
             margin-top: 20px;
@@ -40,6 +44,10 @@ and open the template in the editor.
                         };
                     }
                 }
+            }
+            @include breakpoint(520){
+                position: relative;
+                text-align: left;
             }
             input[type="email"] {
                 height: 27px;
@@ -59,6 +67,10 @@ and open the template in the editor.
                         color: $white;
                     };
                 }
+                @include breakpoint(520){
+                    width: 100%;
+                    padding-right: 150px;
+                }
             }
             button {
                 height: 27px;
@@ -76,6 +88,19 @@ and open the template in the editor.
                 &:hover {
                     color: $purple;
                 }
+                @include breakpoint(520){
+                    position: absolute;
+                    top: 9px;
+                    right: 11px;
+                    border-left: none;
+                    font-size: 0;
+                    background-image: url("/images/site/smart/icons/send.svg");
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    background-position: right;
+                    height: 17px;
+                    width: 40px;
+                }
             }
         }
         .result {
@@ -90,6 +115,11 @@ and open the template in the editor.
         .nav {
             width: 75%;
             font-size: 0;
+            @include breakpoint(990){
+                float: none !important;
+                width: 100%;
+                text-align: center;
+            }
             ul {
                 width: (100% / 3);
                 list-style: none;
@@ -99,6 +129,15 @@ and open the template in the editor.
                 vertical-align: top;
                 padding-right: 60px;
                 font-size: 1.4rem;
+                &:nth-child(-n+2){
+                    @include breakpoint(990){
+                        display: none;
+                    }
+                }
+                @include breakpoint(990){
+                    width: 100%;
+                    padding-right: 0;
+                }
                 li {
                     padding-top: 5px;
                     padding-bottom: 5px;
@@ -115,6 +154,11 @@ and open the template in the editor.
         .schedule {
             padding-top: 5px;
             width: 25%;
+            @include breakpoint(990){
+                float: none !important;
+                width: auto;
+                text-align: center;
+            }
             strong {
                 font-weight: 400;
             }

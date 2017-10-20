@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-10-17 22:24:27
+<?php /* Smarty version Smarty-3.1.14, created on 2017-10-21 00:34:44
          compiled from "tpl/frontend/smart/core/_option.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:963157159e658eb1a94e1-35147501%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '219d18b0c5520df614dc45c660e7bf2b6c17502a' => 
     array (
       0 => 'tpl/frontend/smart/core/_option.tpl',
-      1 => 1508266895,
+      1 => 1508535280,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_59e658eb336e52_16322873',
   'variables' => 
   array (
     'option' => 0,
@@ -25,11 +27,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'list' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_59e658eb336e52_16322873',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_59e658eb336e52_16322873')) {function content_59e658eb336e52_16322873($_smarty_tpl) {?>
-<?php if (in_array($_smarty_tpl->tpl_vars['option']->value['typename'],$_smarty_tpl->tpl_vars['types']->value)&&!empty($_smarty_tpl->tpl_vars['option']->value['values'])){?>
+<?php if (in_array($_smarty_tpl->tpl_vars['option']->value['typename'],$_smarty_tpl->tpl_vars['types']->value)&&!empty($_smarty_tpl->tpl_vars['option']->value['values'])&&count($_smarty_tpl->tpl_vars['option']->value['values'])>1){?>
 <div class="option-label" data-label="<?php echo $_smarty_tpl->tpl_vars['option']->value['title'];?>
 :">
 <?php  $_smarty_tpl->tpl_vars['value'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['value']->_loop = false;

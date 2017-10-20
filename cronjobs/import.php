@@ -6,7 +6,7 @@ define('WLCMS_ZONE', 'BACKEND'); //Set flag that this is a admin area
 @set_time_limit(0);
 @ini_set('memory_limit', '1G');
 
-define('SRV_NAME', 'silverado.com.ua'); //Set server name in hosting
+define('SRV_NAME', (getenv("IS_DEV") ? 'silverado.loc' : 'silverado.com.ua')); //Set server name in hosting
 // change to current work file dir  [fix for exec, that current work dir is user dir]
 chdir(dirname(__FILE__));
 // change to root WLCMS dir
@@ -183,7 +183,7 @@ foreach ($arSpreadSheets as $spreadID) {
             $PHPExcel->disconnectWorksheets();
             unset($PHPExcel);
         }
-        if (file_exists($fpath)) unlinkFile($spreadID.".xlsx", $files_path);
+//        if (file_exists($fpath)) unlinkFile($spreadID.".xlsx", $files_path);
     }
 }
 // Write data to DB

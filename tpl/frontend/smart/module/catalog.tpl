@@ -2,7 +2,21 @@
     <{include file='core/breadcrumb.tpl' arrBreadCrumb=$arrPageData.arrBreadCrumb}>
 <{* DISPLAY ITEM FIRST IF NOT EMPTY *}>
 <{if !empty($item)}>
+    <h1 class="product-title"><{$item.title}> <{$item.pcode}></h1>
     <div class="product-card clearfix">
+        <{include file="core/product-gallery.tpl"}>
+        <div class="product-flypage details clearfix">
+            <{include file="core/product-sticker.tpl"}>
+            <div class="product-descr"><{$item.descr}></div>
+            <{include file="core/buy_button.tpl" list=false}>
+<{foreach from=$item.options key=optionID item=option}>
+            <div class="options">
+                <form>
+                    <{include file="core/_option.tpl" list=false types=array("select","radio", "image")}>
+                </form>
+            </div>
+<{/foreach}>
+        </div>
         <div class="product-details">
 <{if $item.comments_count>0}>
             <div class="reviews">
@@ -27,20 +41,6 @@
                 <a href="#" class="gp" onclick="Share.vkontakte(location.href, document.title, 'http://<{$smarty.server.HTTP_HOST|cat:$item.image.big_image}>');"></a>
                 <a href="#" class="tw" onclick="Share.twitter(location.href, document.title);"></a>
             </div>
-        </div>
-        <{include file="core/product-gallery.tpl"}>
-        <div class="product-flypage details clearfix">
-            <{include file="core/product-sticker.tpl"}>
-            <h1 class="product-title"><{$item.title}> <{$item.pcode}></h1>
-            <div class="product-descr"><{$item.descr}></div>
-            <{include file="core/buy_button.tpl" list=false}>
-<{foreach from=$item.options key=optionID item=option}>
-            <div class="options">
-                <form>
-                    <{include file="core/_option.tpl" list=false types=array("select","radio", "image")}>
-                </form>
-            </div>
-<{/foreach}>
         </div>
     </div>
 <{if !empty($item.kits)}>

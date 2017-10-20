@@ -17,23 +17,80 @@ and open the template in the editor.
 .page-container {
     padding-top: 40px;
     padding-bottom: 60px;
+    > .product-title {
+        font-size: 2.6rem;
+        margin-top: 0;
+        margin-bottom: 30px;
+        text-align: center;
+        @include breakpoint(480){
+            font-size: 2rem;
+        }
+    }
 }
 .breadcrumbs {
-    margin-bottom: 36px;
+    margin-bottom: 30px;
 }
 .product-card {
-    display: flex;
-    justify-content: space-between;
+    position: relative;
     + .hr {
         margin-top: 70px;
     }
+    .product-flypage {
+        float: right;
+        @include breakpoint(990){
+            float: none;
+            margin-left: 440px;
+            max-width: 480px;
+            width: auto;
+            padding-left: 0;
+        }
+        @include breakpoint(820){
+            margin-left: 400px;
+        }
+        @include breakpoint(720){
+            margin-left: 340px;
+        }
+        @include breakpoint(640){
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+        .buttons {
+            padding-top: 0;
+            @include breakpoint(990){
+                padding-top: 20px;
+            }
+            @include breakpoint(640){
+                padding-top: 0;
+                text-align: center;
+            }
+        }
+    }
 }
 .product-details {
+    float: left;
     text-align: initial;
     width: 30%;
-    display: inline-block;
-    vertical-align: top;
     padding-right: 40px;
+    @include breakpoint(990){
+        float: none;
+        width: auto;
+        max-width: 480px;
+        margin-left: 440px;
+        padding-right: 0;
+        margin-top: 20px;
+    }
+    @include breakpoint(820){
+        margin-left: 400px;
+    }
+    @include breakpoint(720){
+        margin-left: 340px;
+    }
+    @include breakpoint(640){
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
     .attributes {
         font-size: 1.4rem;
         list-style: none;
@@ -107,6 +164,32 @@ and open the template in the editor.
     display: inline-block;
     text-align: center;
     width: 40%;
+    @include breakpoint(1200){
+        padding-left: 0;
+        padding-right: 0;
+    }
+    @include breakpoint(990){
+        width: 100%;
+        max-width: 400px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    @include breakpoint(820){
+        max-width: 360px;
+    }
+    @include breakpoint(720){
+        max-width: 300px;
+    }
+    @include breakpoint(640){
+        position: relative;
+        left: auto;
+        margin-left: auto;
+        margin-right: auto;
+    }
     .screen {
         text-align: center;
         img {

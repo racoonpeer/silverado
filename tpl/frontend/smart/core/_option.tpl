@@ -1,5 +1,5 @@
 <{*WIEW ON PRODUCT FLYPAGE*}>
-<{if in_array($option.typename, $types) AND !empty($option.values)}>
+<{if in_array($option.typename, $types) AND !empty($option.values) AND count($option.values)>1}>
 <div class="option-label" data-label="<{$option.title}>:">
 <{foreach name=i from=$option.values key=valueID item=value}>
 <{if $value.selected > 0}><{$value.title}><{/if}>

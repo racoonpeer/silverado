@@ -50,9 +50,9 @@ and open the template in the editor.
                 width: 62px;
                 height: 30px;
                 background-image: url("/images/site/smart/icons/sort.svg");
-                background-position: center;
+                background-position: left;
                 background-repeat: no-repeat;
-                background-size: contain;
+                background-size: auto 20px;
             }
         }
     }
@@ -105,7 +105,7 @@ and open the template in the editor.
             height: 30px;
             padding-right: 40px;
             background: url("/images/site/smart/icons/limit.svg") right no-repeat;
-            background-size: contain;
+            background-size: auto 15px;
             background-repeat: no-repeat;
             line-height: 30px;
             @include breakpoint_min(990){

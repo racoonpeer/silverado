@@ -1,65 +1,22 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   id="svg3686"
-   enable-background="new 0 0 44 44"
-   viewBox="0 0 44 44"
-   version="1.1"
-   sodipodi:docname="cart-active.svg"
-   inkscape:version="0.92.1 r15371">
-  <sodipodi:namedview
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:window-width="1366"
-     inkscape:window-height="715"
-     id="namedview4621"
-     showgrid="false"
-     inkscape:zoom="12.477273"
-     inkscape:cx="22"
-     inkscape:cy="30.896175"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="svg3686" />
-  <metadata
-     id="metadata3692">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <defs
-     id="defs3690" />
-  <g
-     id="g3684">
-    <g
-       id="g3682">
-      <path
-         style="fill:#a46497;fill-opacity:1"
-         id="path3680"
-         d="M 35,8 H 28 V 5 C 28,2.239 25.761,0 23,0 H 21 C 18.239,0 16,2.239 16,5 V 8 H 9 L 4,44 H 40 Z M 18,5 c 0,-1.657 1.343,-3 3,-3 h 2 c 1.657,0 3,1.343 3,3 v 3 h -8 z" />
-    </g>
-  </g>
-  <path
-     style="fill:none;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
-     d="m 13.464481,26.688525 6.73224,6.17122 10.418944,-11.380692"
-     id="path4623"
-     inkscape:connector-curvature="0" />
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="36.25px" height="41.875px" viewBox="0 0 36.25 41.875" enable-background="new 0 0 36.25 41.875" xml:space="preserve">
+<path d="M36.148,41.48c0.022-0.04,0.041-0.081,0.056-0.126c0.016-0.049,0.024-0.098,0.03-0.15c0.003-0.027,0.016-0.051,0.016-0.078
+	c0-0.023-0.011-0.043-0.013-0.064c-0.002-0.024,0.005-0.047,0.001-0.07l-6-32.875c-0.005-0.029-0.023-0.051-0.031-0.079
+	c-0.015-0.047-0.03-0.091-0.054-0.134c-0.023-0.044-0.05-0.083-0.081-0.121c-0.03-0.036-0.061-0.068-0.097-0.099
+	c-0.037-0.031-0.075-0.056-0.118-0.08c-0.042-0.023-0.085-0.042-0.132-0.057c-0.046-0.015-0.093-0.023-0.142-0.029
+	C29.555,7.514,29.529,7.5,29.5,7.5h-5.875V4.75c0-2.619-2.131-4.75-4.75-4.75H16.75C14.131,0,12,2.131,12,4.75V7.5H6.75
+	c-0.03,0-0.057,0.014-0.086,0.017C6.617,7.523,6.572,7.531,6.527,7.545C6.478,7.561,6.434,7.58,6.39,7.605
+	C6.35,7.627,6.312,7.651,6.277,7.681c-0.038,0.032-0.07,0.065-0.101,0.103C6.146,7.821,6.12,7.858,6.098,7.901
+	c-0.023,0.043-0.04,0.088-0.055,0.136C6.034,8.064,6.017,8.086,6.012,8.115l-6,32.875c-0.004,0.023,0.003,0.046,0.001,0.07
+	C0.011,41.083,0,41.102,0,41.125c0,0.027,0.013,0.051,0.016,0.078c0.006,0.053,0.015,0.102,0.03,0.15
+	c0.015,0.045,0.033,0.086,0.056,0.126c0.023,0.043,0.049,0.082,0.081,0.12c0.03,0.036,0.062,0.067,0.1,0.098s0.075,0.057,0.118,0.08
+	c0.044,0.023,0.09,0.04,0.139,0.055c0.026,0.008,0.048,0.025,0.076,0.03c0.045,0.009,0.09,0.012,0.134,0.013
+	c0.001,0,0.001,0,0.001,0H35.5c0,0,0,0,0.001,0c0.044-0.001,0.089-0.004,0.134-0.013c0.028-0.005,0.05-0.022,0.076-0.03
+	c0.049-0.015,0.095-0.031,0.139-0.055c0.043-0.023,0.081-0.05,0.118-0.08s0.069-0.062,0.1-0.098
+	C36.1,41.562,36.125,41.523,36.148,41.48z M13.5,4.75c0-1.792,1.458-3.25,3.25-3.25h2.125c1.792,0,3.25,1.458,3.25,3.25V7.5H13.5
+	V4.75z M12.75,14c0.414,0,0.75-0.336,0.75-0.75V9h8.625v4.125c0,0.414,0.336,0.75,0.75,0.75s0.75-0.336,0.75-0.75V9h5.249
+	l5.727,31.375H1.649L7.376,9H12v4.25C12,13.664,12.336,14,12.75,14z"/>
 </svg>

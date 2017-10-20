@@ -21,13 +21,29 @@ and open the template in the editor.
     background-position: center;
     background-repeat: no-repeat;
     background-size: auto 100%;
+    @include breakpoint(990){
+        height: 240px;
+    }
+    @include breakpoint(640){
+        height: 210px;
+    }
+    @include breakpoint(480){
+        height: 170px;
+    }
 }
 .page-container {
     padding-top: 20px;
     padding-bottom: 70px;
+    @include breakpoint(990){
+        padding-bottom: 20px;
+    }
     .container {
         padding-left: 70px;
         padding-right: 70px;
+        @include breakpoint(990){
+            padding-left: 20px;
+            padding-right: 20px;
+        }
     }
     .heading-title {
         text-align: center;
@@ -48,5 +64,13 @@ and open the template in the editor.
         background-color: $light-grey;
         border: none;
         @include border-radius(3px);
+        @include breakpoint(990){
+            display: block;
+            padding-left: 20px;
+            padding-right: 20px;
+            margin-left: -20px;
+            margin-right: -20px;
+            @include border-radius(0px);
+        }
     }
 }

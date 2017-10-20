@@ -122,6 +122,9 @@ and open the template in the editor.
                 @include opacity(0);
                 @include transform(translateY(20px));
                 @include transition(all 0.35s ease);
+                @include breakpoint(990){
+                    display: none;
+                }
                 .add-to-cart {
                     &:before {
                         content: "быстрый просмотр";

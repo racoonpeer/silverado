@@ -147,8 +147,8 @@ and open the template in the editor.
             margin-left: -150px;
             @include breakpoint(990){
                 width: 210px;
-                height: 32px;
-                background-position: -74px -187px;
+                height: 33px;
+                background-position: -74px -186px;
                 margin-left: -105px;
                 top: 19px;
             }
@@ -185,7 +185,7 @@ and open the template in the editor.
             .trigger {
                 border: none;
                 padding: 0;
-                width: 24px;
+                width: 25px;
                 height: 30px;
                 background-color: transparent;
                 background-image: url("/images/site/smart/icons/cart.svg");
@@ -206,6 +206,7 @@ and open the template in the editor.
                     }
                 }
                 @include breakpoint(990){
+                    width: 24px;
                     height: 28px;
                 }
             }
@@ -229,10 +230,10 @@ and open the template in the editor.
         }
         .search-toggle {
             position: absolute;
-            top: 73px;
+            top: 70px;
             right: 20px;
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             background-color: transparent;
             background-image: url("/images/site/smart/icons/search.svg");
             background-size: contain;
@@ -240,7 +241,7 @@ and open the template in the editor.
             border: none;
             &:hover {
                 @include breakpoint_min(991){
-                    background-image: url("/images/site/smart/icons/search-h.svg");
+                    @include opacity(0.5);
                 }
             }
             &.toggle-on {
@@ -248,12 +249,12 @@ and open the template in the editor.
                 @include breakpoint_min(991){
                     top: 75px;
                     right: 22px;
-                    width: 16px;
-                    height: 16px;
+                    width: 18px;
+                    height: 18px;
                 }
                 &:hover {
                     @include breakpoint_min(991){
-                        background-image: url("/images/site/smart/icons/close-h.svg");
+                        @include opacity(0.5);
                     }
                 }
                 + .searchbar {

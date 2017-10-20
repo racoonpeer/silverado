@@ -12,6 +12,7 @@ $(window).on("load", function(){
 
 function CHomeSlider(){
     var HomeSlider = {
+        slick: null,
         slider: null,
         isMobile: false,
         mobileWidth: 990,
@@ -20,7 +21,6 @@ function CHomeSlider(){
             self.construct();
             $(window).on("resize orientationchange", function(e){
                 self.checkViewport();
-                
             });
         },
         construct: function(){
@@ -31,18 +31,25 @@ function CHomeSlider(){
         initSlider: function(){
             var self = this;
             if (self.isMobile) {
-                $(self.slider).slick({
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    speed: 300,
-                    autoplay: false,
-                    autoplaySpeed: 5000,
-                    dots: false,
-                    infinite: false,
-                    adaptiveHeight: true,
-                    arrows: false,
-                });
-            } else $(self.slider).slick('unslick');
+                if (self.slick == null) {
+                    self.slick = $(self.slider).slick({
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        speed: 300,
+                        autoplay: false,
+                        autoplaySpeed: 5000,
+                        dots: false,
+                        infinite: false,
+                        adaptiveHeight: true,
+                        arrows: false,
+                    });
+                }
+            } else {
+                if (self.slick != null) {
+                    $(self.slider).slick('unslick');
+                    self.slick = null;
+                }
+            }
         },
         checkViewport: function(){
             var self = this,

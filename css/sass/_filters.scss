@@ -54,6 +54,7 @@ and open the template in the editor.
                     @include opacity(0);
                 }
                 .colorbox {
+                    position: relative;
                     display: block;
                     overflow: hidden;
                     width: 39px;
@@ -62,14 +63,30 @@ and open the template in the editor.
                     border-width: 1px;
                     border-style: solid;
                     border-color: $lite-grey;
+                    @include border-radius(50%);
+                    &:after {
+                        display: block;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        border: 2px solid $white;
+                        background-position: center;
+                        background-size: 16px auto;
+                        background-repeat: no-repeat;
+                        @include border-radius(50%);
+                        content: "";
+                    }
                     &.disabled {
                         @include opacity(0.25);
                         pointer-events: none;
                         cursor: default;
                     }
                     &.checked {
-                        border-width: 2px;
-                        border-color: $purple;
+                        &:after {
+                            background-image: url("/images/site/smart/icons/checked.svg");
+                        }
                     }
                     &:not(.disabled) {
                         cursor: pointer;

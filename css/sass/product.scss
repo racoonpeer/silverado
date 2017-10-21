@@ -17,6 +17,9 @@ and open the template in the editor.
 .page-container {
     padding-top: 40px;
     padding-bottom: 60px;
+    @include breakpoint(480){
+        padding-top: 30px;
+    }
     > .product-title {
         font-size: 2.6rem;
         margin-top: 0;
@@ -24,6 +27,7 @@ and open the template in the editor.
         text-align: center;
         @include breakpoint(480){
             font-size: 2rem;
+            margin-bottom: 10px;
         }
     }
 }

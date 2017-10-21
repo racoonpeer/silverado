@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-10-17 22:24:53
+<?php /* Smarty version Smarty-3.1.14, created on 2017-10-22 00:13:45
          compiled from "tpl/frontend/smart/ajax/comment-form.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:93342586459e65905854e20-41740111%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '24e6f068c77e8a2d35161c25fd4d1acdd929dc02' => 
     array (
       0 => 'tpl/frontend/smart/ajax/comment-form.tpl',
-      1 => 1508266895,
+      1 => 1508620422,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_59e65905a7e824_61997912',
   'variables' => 
   array (
     'IS_AJAX' => 0,
@@ -24,8 +26,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'item' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_59e65905a7e824_61997912',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_59e65905a7e824_61997912')) {function content_59e65905a7e824_61997912($_smarty_tpl) {?><?php if (!$_smarty_tpl->tpl_vars['IS_AJAX']->value){?>
 <div class="comment-form hidden">
@@ -56,7 +56,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <label>Ёл. почта</label>
         <input type="email" name="email" value="<?php if (isset($_smarty_tpl->tpl_vars['formData']->value['email'])){?><?php echo $_smarty_tpl->tpl_vars['formData']->value['email'];?>
 <?php }?>" class="<?php if (isset($_smarty_tpl->tpl_vars['errors']->value['email'])){?>error<?php }?>"/>
-        <button type="submit" class="btn btn-l btn-danger btn-com">ќтправить отзыв</button>
         <div class="f-rating">
             <span></span>
             <input id="r5" type="radio" name="rating" value="5" <?php if (isset($_smarty_tpl->tpl_vars['formData']->value['rating'])&&$_smarty_tpl->tpl_vars['formData']->value['rating']==5){?>checked<?php }?>>
@@ -70,6 +69,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
             <input id="r1" type="radio" name="rating" value="1" <?php if (isset($_smarty_tpl->tpl_vars['formData']->value['rating'])&&$_smarty_tpl->tpl_vars['formData']->value['rating']==1){?>checked<?php }?>>
             <label title="" for="r1"></label>
         </div>
+        <button type="submit" class="btn btn-l btn-danger btn-com">ќтправить отзыв</button>
         <input type="hidden" name="cid" value="<?php if (isset($_smarty_tpl->tpl_vars['formData']->value['cid'])){?><?php echo $_smarty_tpl->tpl_vars['formData']->value['cid'];?>
 <?php }else{ ?>0<?php }?>"/>
         <input type="hidden" name="pid" value="<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>

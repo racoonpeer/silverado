@@ -1,6 +1,6 @@
 <?php
 $SES = array (
-  '608fc0f784f998195db758216fae546e' => 
+  'e89f636042617970b1c4696b98461112' => 
   array (
     'cfg' => 
     array (
@@ -15,7 +15,7 @@ $SES = array (
       'my_host' => 'localhost',
       'my_port' => 3306,
       'my_user' => 'root',
-      'my_pass' => '',
+      'my_pass' => '2c4uk915',
       'my_comp' => 0,
       'my_db' => 'silverado',
       'auth' => 'mysql cfg',
@@ -26,7 +26,7 @@ $SES = array (
       'outfile_path' => 'backup/',
       'outfile_size' => '64',
     ),
-    'time' => 1507973851,
+    'time' => 1508614897,
     'lng' => 'ru',
   ),
 );

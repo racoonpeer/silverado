@@ -24,7 +24,6 @@
         <input type="text" name="title" value="<{if isset($formData.title)}><{$formData.title}><{/if}>" class="<{if isset($errors.title)}>error<{/if}>"/>
         <label>Ёл. почта</label>
         <input type="email" name="email" value="<{if isset($formData.email)}><{$formData.email}><{/if}>" class="<{if isset($errors.email)}>error<{/if}>"/>
-        <button type="submit" class="btn btn-l btn-danger btn-com">ќтправить отзыв</button>
         <div class="f-rating">
             <span></span>
             <input id="r5" type="radio" name="rating" value="5" <{if isset($formData.rating) AND $formData.rating==5}>checked<{/if}>>
@@ -38,6 +37,7 @@
             <input id="r1" type="radio" name="rating" value="1" <{if isset($formData.rating) AND $formData.rating==1}>checked<{/if}>>
             <label title="" for="r1"></label>
         </div>
+        <button type="submit" class="btn btn-l btn-danger btn-com">ќтправить отзыв</button>
         <input type="hidden" name="cid" value="<{if isset($formData.cid)}><{$formData.cid}><{else}>0<{/if}>"/>
         <input type="hidden" name="pid" value="<{$item.id}>"/>
         <input type="hidden" name="module" value="catalog"/>

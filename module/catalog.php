@@ -176,6 +176,7 @@ if ($itemID and $item = getSimpleItemRow($itemID, CATALOG_TABLE) and !empty($ite
 // List Items
 } else {
     
+    $arrPageData['headScripts'][] = "/js/libs/history.js/bundled/html4+html5/jquery.history.min.js";
     $arrPageData['headScripts'][] = "/js/libs/noUiSlider/nouislider.min.js";
     $arrPageData['headScripts'][] = "/js/smart/{$module}.js";
     
@@ -195,7 +196,6 @@ if ($itemID and $item = getSimpleItemRow($itemID, CATALOG_TABLE) and !empty($ite
     $arrPageData['arSorting'] = PHPHelper::getCatalogSorting($UrlWL, $sort);
     $arrPageData['arLimit']   = PHPHelper::getCatalogLimit($UrlWL, $limit);
     $arrPageData['filters']   = $Filters->getFilters($itemsIDX, $itemsFIDX);
-    
     // Total pages and Pager
     if (!$pages) {
         $arrPageData['total_items'] = count($itemsFIDX);
@@ -210,13 +210,40 @@ if ($itemID and $item = getSimpleItemRow($itemID, CATALOG_TABLE) and !empty($ite
     while ($row = $DB->fetchAssoc()) {
         $items[] = PHPHelper::getProductItem($row, $UrlWL, $arrPageData['files_url'], $images_params, true);
     } $DB->Free();
-    
+    // put filter variables into page metadata
     $seoFilters = $UrlWL->getFilters()->getSelectedTitles();
     if (!empty($seoFilters)) {
         $arCategory["seo_title"]  = !empty($arCategory["filter_seo_title"]) ? PHPHelper::BuildFilterMetaData($arCategory["filter_seo_title"], $seoFilters) : $arCategory["seo_title"];
         $arCategory["seo_text"]   = !empty($arCategory["filter_seo_text"])  ? PHPHelper::BuildFilterMetaData($arCategory["filter_seo_text"], $seoFilters)  : $arCategory["seo_text"];
         $arCategory["meta_descr"] = !empty($arCategory["filter_meta_descr"])? PHPHelper::BuildFilterMetaData($arCategory["filter_meta_descr"], $seoFilters): $arCategory["meta_descr"];
         $arCategory["meta_key"]   = !empty($arCategory["filter_meta_key"])  ? PHPHelper::BuildFilterMetaData($arCategory["filter_meta_key"], $seoFilters)  : $arCategory["meta_key"];
+    }
+    // return output via ajax
+    if ($IS_AJAX and !empty($_POST) and isset($_POST["ajaxUpdate"])) {
+        $smarty->assign('HTMLHelper',   $HTMLHelper);
+        $smarty->assign('arrPageData',  $arrPageData);
+        $smarty->assign('arrModules',   $arrModules);
+        $smarty->assign('Basket',       $Basket);
+        $smarty->assign('UrlWL',        $UrlWL);
+        $smarty->assign('IS_AJAX',      $IS_AJAX);
+        $smarty->assign('IS_DEV',       $IS_DEV);
+        $smarty->assign('arCategory',   $arCategory);
+        $smarty->assign('items',        $items);
+        $json = array(
+            "products"         => $smarty->fetch("ajax/products.tpl"),
+            "filters"          => $smarty->fetch("ajax/filter.tpl"),
+            "breadcrumbs"      => $smarty->fetch("core/breadcrumb.tpl"),
+            "selected_filters" => $smarty->fetch("ajax/selected_filters.tpl"),
+            "control_filter"   => $smarty->fetch("ajax/control_filter.tpl"),
+            "control_sort"     => $smarty->fetch("ajax/control_sort.tpl"),
+            "control_limit"    => $smarty->fetch("ajax/control_limit.tpl"),
+            "meta_robots"      => $arCategory["meta_robots"],
+            "meta_descr"       => $arCategory["meta_descr"],
+            "meta_key"         => $arCategory["meta_key"],
+            "seo_title"        => $arCategory["seo_title"],
+            "h_title"          => $arCategory["title"],
+        );
+        exit(json_encode(PHPHelper::dataConv($json)));
     }
 }
 

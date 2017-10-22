@@ -64,8 +64,8 @@ and open the template in the editor.
         @content;
     }
 }
-@mixin breakpoint_min_max($point) {
-    @media (min-width: 1px * $point) and (max-width: 1px * $point) {
+@mixin breakpoint_min_max($min, $max) {
+    @media (min-width: 1px * $min) and (max-width: 1px * $max) {
         @content;
     }
 }

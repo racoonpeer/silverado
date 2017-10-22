@@ -10,9 +10,9 @@ and open the template in the editor.
 
 @import "common";
 @import "_breadcrumbs";
-@import "_controlbar";
-@import "_filters";
-@import "_pagination";
+@import "controlbar";
+@import "filters";
+@import "pagination";
 
 .page-container {
     padding-top: 40px;
@@ -22,18 +22,21 @@ and open the template in the editor.
     font-size: 2rem;
     margin-top: 0;
 }
-
-
 .column-left {
     width: (100% / 5);
     @include breakpoint(960) {
+        width: (100% / 4);
+    }
+    @include breakpoint(768) {
         display: none;
     }
 }
-
 #products {
     width: (100% * 0.8);
     @include breakpoint(960) {
+        width: (100% * 0.75);
+    }
+    @include breakpoint(768) {
         width: 100%;
     }
     .product-item {
@@ -41,9 +44,14 @@ and open the template in the editor.
         @include breakpoint(1280){
             width: (100% / 3);
         }
-        @include breakpoint(720){
+        @include breakpoint_min_max(769, 960){
+            width: (100% / 2);
+        }
+        @include breakpoint(768){
+            width: (100% / 3);
+        }
+        @include breakpoint(640){
             width: (100% / 2);
         }
     }
 }
-

@@ -39,7 +39,7 @@ class mySmarty extends Smarty {
      * @param   bool    $caching
      * @return  void
      */
-    public function __construct($tplname, $debug=false, $error_reporting=null, $force_compile=1, $caching=0) {
+    public function __construct($tplname, $debug=false, $error_reporting=null, $force_compile=0, $caching=0) {
         parent::__construct();
         
         $this->setTemplatePath($tplname, strtolower(WLCMS_ZONE));
@@ -50,7 +50,7 @@ class mySmarty extends Smarty {
         $this->debugging        = (bool)$debug;
         $this->caching          = (bool)$caching;
         $this->force_compile    = (bool)$force_compile;
-        $this->compile_check    = true;
+        $this->compile_check    = getenv("IS_DEV");
         
         // use sub dirs for compiled/cached files?
 //        $this->use_sub_dirs     = true;

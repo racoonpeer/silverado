@@ -1,4 +1,4 @@
-<div class="control-filter">
+<div class="control-filter" id="control_filter">
     <button class="trigger" onclick="return true;">
         <span class="cnt">6</span>
 <{if !empty($arrPageData.selectedFilters)}>

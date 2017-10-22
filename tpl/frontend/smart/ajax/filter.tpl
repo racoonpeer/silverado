@@ -10,7 +10,7 @@
         </div>
         <p><span id="slider_min">0</span> - <span id="slider_max">450</span> грн</p>
         <script type="text/javascript">
-            window.addEventListener("DOMContentLoaded", initPriceSlider, false);
+            initPriceSlider(100);
             function initPriceSlider (timeout) {
                 timeout = timeout||100;
                 if (typeof jQuery != "undefined" && typeof noUiSlider != "undefined") {
@@ -38,7 +38,7 @@
                         }
                     });
                     slider_range.noUiSlider.on("change", function () {
-                        window.location.href = createPriceUrl($(slider_range));
+                        AjaxUpdatePage(createPriceUrl($(slider_range)));
                     });
                 } else setTimeout("initPriceSlider", timeout);
             }

@@ -7,8 +7,21 @@ and open the template in the editor.
     Created on : Apr 9, 2017, 11:24:20 PM
     Author     : yyyaaazzz
 */
-@import "ext/_nouislider";
-
+@import "ext/nouislider";
+#filtersForm {
+    position: relative;
+    &.load {
+        &:after {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255,255,255,0.75);
+            content: "";
+        }
+    }
+}
 .filters {
     max-width: 260px;
     .section {
@@ -42,6 +55,7 @@ and open the template in the editor.
                 }
                 .checkbox {
                     display: block;
+                    text-decoration: none;
                     .cnt {
                         padding-left: 4px;
                         color: $dark-grey;

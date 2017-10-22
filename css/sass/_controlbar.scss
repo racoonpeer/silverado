@@ -127,7 +127,7 @@ and open the template in the editor.
         left: 0;
         right: 0;
         bottom: 8px;
-        @include breakpoint_min(991){
+        @include breakpoint_min(769){
             display: none;
         }
         button {
@@ -162,7 +162,7 @@ and open the template in the editor.
     .selected-filters {
         font-size: 1.3rem;
         text-align: center;
-        @include breakpoint(990){
+        @include breakpoint(768){
             display: none;
         }
         a {

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-10-21 00:29:11
+<?php /* Smarty version Smarty-3.1.14, created on 2017-10-22 22:50:49
          compiled from "tpl/frontend/smart/module/catalog.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:30621671059e658e0dcfa85-92191473%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '44c4508e0ba51d260097dd73ace18e44efe00d3b' => 
     array (
       0 => 'tpl/frontend/smart/module/catalog.tpl',
-      1 => 1508534940,
+      1 => 1508701565,
       2 => 'file',
     ),
   ),
@@ -116,7 +116,7 @@ $_smarty_tpl->tpl_vars['arItem']->_loop = true;
             <div class="share">
                 <a href="#" class="fb" onclick="Share.facebook(location.href, document.title, 'http://<?php echo ($_SERVER['HTTP_HOST']).($_smarty_tpl->tpl_vars['item']->value['image']['big_image']);?>
 ');"></a>
-                <a href="#" class="gp" onclick="Share.vkontakte(location.href, document.title, 'http://<?php echo ($_SERVER['HTTP_HOST']).($_smarty_tpl->tpl_vars['item']->value['image']['big_image']);?>
+                <a href="#" class="vk" onclick="Share.vkontakte(location.href, document.title, 'http://<?php echo ($_SERVER['HTTP_HOST']).($_smarty_tpl->tpl_vars['item']->value['image']['big_image']);?>
 ');"></a>
                 <a href="#" class="tw" onclick="Share.twitter(location.href, document.title);"></a>
             </div>
@@ -170,17 +170,17 @@ $_smarty_tpl->tpl_vars['arItem']->_loop = true;
 
         <?php echo $_smarty_tpl->getSubTemplate ("ajax/control_sort.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
-        <div class="selected-filters" id="selectedFilters">
+        <div class="selected-filters" id="selected_filters">
             <?php echo $_smarty_tpl->getSubTemplate ('ajax/selected_filters.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
         </div>
     </div>
-    <div class="pull-left column-left" id="filtersForm">
-        <?php echo $_smarty_tpl->getSubTemplate ('ajax/filter.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
-
-    </div>
     <div class="pull-right product-grid clearfix" id="products">
         <?php echo $_smarty_tpl->getSubTemplate ('ajax/products.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('items'=>$_smarty_tpl->tpl_vars['items']->value), 0);?>
+
+    </div>
+    <div class="pull-left column-left" id="filtersForm">
+        <?php echo $_smarty_tpl->getSubTemplate ('ajax/filter.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
     </div>
 

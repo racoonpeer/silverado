@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-10-17 22:24:17
+<?php /* Smarty version Smarty-3.1.14, created on 2017-10-22 22:21:40
          compiled from "tpl/frontend/smart/ajax/selected_filters.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:149141165159e658e14f7020-45631518%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '4648d12d283958b7190ec7126a83e1c0872a691f' => 
     array (
       0 => 'tpl/frontend/smart/ajax/selected_filters.tpl',
-      1 => 1508266895,
+      1 => 1508699901,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_59e658e16e71b3_19135527',
   'variables' => 
   array (
     'arrPageData' => 0,
@@ -24,8 +26,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'UrlWL' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_59e658e16e71b3_19135527',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_59e658e16e71b3_19135527')) {function content_59e658e16e71b3_19135527($_smarty_tpl) {?><?php if (!empty($_smarty_tpl->tpl_vars['arrPageData']->value['selectedFilters'])){?>
 <?php  $_smarty_tpl->tpl_vars['filter'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['filter']->_loop = false;
@@ -46,7 +46,7 @@ $_smarty_tpl->tpl_vars['arItem']->_loop = true;
  $_smarty_tpl->tpl_vars['arKey']->value = $_smarty_tpl->tpl_vars['arItem']->key;
 ?>
 <?php if ($_smarty_tpl->tpl_vars['arItem']->value['selected']){?>
-<a href="<?php echo $_smarty_tpl->tpl_vars['arItem']->value['url'];?>
+<a class="filter-element" href="<?php echo $_smarty_tpl->tpl_vars['arItem']->value['url'];?>
 "><?php echo $_smarty_tpl->tpl_vars['arItem']->value['title'];?>
 </a>
 <?php }?>
@@ -54,7 +54,7 @@ $_smarty_tpl->tpl_vars['arItem']->_loop = true;
 
 <?php }elseif($_smarty_tpl->tpl_vars['filter']->value['type']=='price'){?>
 <?php if ($_smarty_tpl->tpl_vars['filter']->value['children']['selected']['min']&&$_smarty_tpl->tpl_vars['filter']->value['children']['selected']['max']){?>
-<a href="<?php echo $_smarty_tpl->tpl_vars['filter']->value['children']['selected']['url'];?>
+<a class="filter-element" href="<?php echo $_smarty_tpl->tpl_vars['filter']->value['children']['selected']['url'];?>
 ">от <?php echo $_smarty_tpl->tpl_vars['filter']->value['children']['selected']['min'];?>
  до <?php echo $_smarty_tpl->tpl_vars['filter']->value['children']['selected']['max'];?>
  грн</a>
@@ -69,7 +69,7 @@ $_smarty_tpl->tpl_vars['arItem']->_loop = true;
  $_smarty_tpl->tpl_vars['arKey']->value = $_smarty_tpl->tpl_vars['arItem']->key;
 ?>
 <?php if ($_smarty_tpl->tpl_vars['arItem']->value['selected']){?>
-<a href="<?php echo $_smarty_tpl->tpl_vars['arItem']->value['url'];?>
+<a class="filter-element" href="<?php echo $_smarty_tpl->tpl_vars['arItem']->value['url'];?>
 "><?php echo $_smarty_tpl->tpl_vars['arItem']->value['title'];?>
 </a>
 <?php }?>
@@ -84,7 +84,7 @@ $_smarty_tpl->tpl_vars['arItem']->_loop = true;
  $_smarty_tpl->tpl_vars['arKey']->value = $_smarty_tpl->tpl_vars['arItem']->key;
 ?>
 <?php if ($_smarty_tpl->tpl_vars['arItem']->value['selected']){?>
-<a href="<?php echo $_smarty_tpl->tpl_vars['arItem']->value['url'];?>
+<a class="filter-element" href="<?php echo $_smarty_tpl->tpl_vars['arItem']->value['url'];?>
 "><?php echo $_smarty_tpl->tpl_vars['arItem']->value['title'];?>
 </a>
 <?php }?>
@@ -92,7 +92,7 @@ $_smarty_tpl->tpl_vars['arItem']->_loop = true;
 <?php }?>
 <?php }?>
 <?php } ?>
-<a class="clear-all" href="<?php echo $_smarty_tpl->tpl_vars['UrlWL']->value->copy()->resetPage()->resetFilters()->buildUrl();?>
+<a class="filter-element clear-all" href="<?php echo $_smarty_tpl->tpl_vars['UrlWL']->value->copy()->resetPage()->resetFilters()->buildUrl();?>
 "><?php echo @constant('REMOVE_ALL_FILTERS');?>
 </a>
 <?php }?><?php }} ?>

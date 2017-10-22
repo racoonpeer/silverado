@@ -38,7 +38,7 @@
 <{/if}>
             <div class="share">
                 <a href="#" class="fb" onclick="Share.facebook(location.href, document.title, 'http://<{$smarty.server.HTTP_HOST|cat:$item.image.big_image}>');"></a>
-                <a href="#" class="gp" onclick="Share.vkontakte(location.href, document.title, 'http://<{$smarty.server.HTTP_HOST|cat:$item.image.big_image}>');"></a>
+                <a href="#" class="vk" onclick="Share.vkontakte(location.href, document.title, 'http://<{$smarty.server.HTTP_HOST|cat:$item.image.big_image}>');"></a>
                 <a href="#" class="tw" onclick="Share.twitter(location.href, document.title);"></a>
             </div>
         </div>
@@ -80,15 +80,15 @@
         <{include file="ajax/control_filter.tpl"}>
         <{include file="ajax/control_limit.tpl"}>
         <{include file="ajax/control_sort.tpl"}>
-        <div class="selected-filters" id="selectedFilters">
+        <div class="selected-filters" id="selected_filters">
             <{include file='ajax/selected_filters.tpl'}>
         </div>
     </div>
-    <div class="pull-left column-left" id="filtersForm">
-        <{include file='ajax/filter.tpl'}>
-    </div>
     <div class="pull-right product-grid clearfix" id="products">
         <{include file='ajax/products.tpl' items=$items}>
+    </div>
+    <div class="pull-left column-left" id="filtersForm">
+        <{include file='ajax/filter.tpl'}>
     </div>
 <{* DISPLAY CATEGORY INFO *}>
 <{else}>

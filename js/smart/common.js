@@ -67,10 +67,7 @@ $(function(){
         }, 400);
     });
     // Lazy load images
-    $("img.lazy").lazyload({
-        skip_invisible : false,
-        event: "load"
-    });
+    LazyLoadImages();
     // Init basket
     Basket.construct();
     // toggle mobile menu
@@ -170,11 +167,18 @@ $(function(){
     });
 });
 
+function LazyLoadImages(){
+    $("img.lazy").lazyload({
+        skip_invisible : false,
+        event: "load"
+    });
+}
+
 function setZoom(el, eq) {
     eq = parseInt(eq)||2;
     $(el).zoom({
         magnify: eq,
-        touch: false,
+        touch: true,
         url: $(el).data("original")
     });
 }

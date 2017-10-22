@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-10-17 22:24:17
+<?php /* Smarty version Smarty-3.1.14, created on 2017-10-22 22:54:51
          compiled from "tpl/frontend/smart/ajax/filter.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:124766502859e658e16ef706-17030955%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a897f165b7a2bee4fc0f2436dd6a52d23db6221a' => 
     array (
       0 => 'tpl/frontend/smart/ajax/filter.tpl',
-      1 => 1508266895,
+      1 => 1508702083,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_59e658e199b8e6_52078073',
   'variables' => 
   array (
     'arrPageData' => 0,
@@ -24,8 +26,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'arItem' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_59e658e199b8e6_52078073',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_59e658e199b8e6_52078073')) {function content_59e658e199b8e6_52078073($_smarty_tpl) {?><div class="filters">
 <?php  $_smarty_tpl->tpl_vars['filter'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['filter']->_loop = false;
@@ -49,7 +49,7 @@ $_smarty_tpl->tpl_vars['filter']->_loop = true;
         </div>
         <p><span id="slider_min">0</span> - <span id="slider_max">450</span> грн</p>
         <script type="text/javascript">
-            window.addEventListener("DOMContentLoaded", initPriceSlider, false);
+            initPriceSlider(100);
             function initPriceSlider (timeout) {
                 timeout = timeout||100;
                 if (typeof jQuery != "undefined" && typeof noUiSlider != "undefined") {
@@ -83,7 +83,7 @@ $_smarty_tpl->tpl_vars['filter']->_loop = true;
                         }
                     });
                     slider_range.noUiSlider.on("change", function () {
-                        window.location.href = createPriceUrl($(slider_range));
+                        AjaxUpdatePage(createPriceUrl($(slider_range)));
                     });
                 } else setTimeout("initPriceSlider", timeout);
             }

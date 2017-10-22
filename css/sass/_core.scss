@@ -54,7 +54,7 @@ body {
     position: relative;
     font-size: 1.4rem;
     line-height: 1.4;
-    font-weight: 300;
+    font-weight: 400;
 }
 article,
 aside,
@@ -321,7 +321,7 @@ h4,
     border-width: 1px;
     border-style: solid;
     text-transform: uppercase;
-    font-weight: 300;
+    font-weight: 400;
     @include border-radius(none);
     &:active {
         @include transform(scale(0.95, 0.95));
@@ -344,7 +344,6 @@ h4,
         }
     }
     &.btn-l {
-        font-weight: 400;
         height: 40px;
         line-height: 3.8rem;
         padding-left: 15px;
@@ -355,7 +354,6 @@ h4,
         }
     }
     &.btn-xl {
-        font-weight: 400;
         height: 48px;
         line-height: 4.8rem;
         padding-left: 25px;
@@ -366,7 +364,6 @@ h4,
         }
     }
     &.btn-xxl {
-        font-weight: 400;
         height: 66px;
         line-height: 6.2rem;
         padding-left: 35px;

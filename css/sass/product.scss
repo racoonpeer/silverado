@@ -195,13 +195,25 @@ and open the template in the editor.
         margin-right: auto;
     }
     @include breakpoint(390){
-        max-width: 280px;
+        max-width: none;
+        width: 100%;
+        text-align: center;
     }
     .screen {
         text-align: center;
+        @include breakpoint(390){
+            height: 270px;
+        }
         img {
-            width: 100%;
             vertical-align: top;
+            &:not(.zoomImg) {
+                width: 100%;
+                @include breakpoint(390){
+                    width: auto;
+                    height: 270px;
+                    display: inline-block;
+                }
+            }
         }
     }
     .thumbs {
@@ -414,12 +426,14 @@ and open the template in the editor.
         padding-bottom: 35px;
         position: relative;
         @include breakpoint(480){
-            padding-top: 20px;
             padding-left: 20px;
             padding-right: 20px;
             padding-bottom: 20px;
             margin-left: -20px;
             margin-right: -20px;
+        }
+        @include breakpoint_min_max(390, 480) {
+            padding-top: 20px;
         }
         .h3 {
             margin-bottom: 10px;

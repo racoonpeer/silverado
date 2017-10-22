@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-10-17 22:23:36
+<?php /* Smarty version Smarty-3.1.14, created on 2017-10-22 22:50:49
          compiled from "tpl/frontend/smart/core/head.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:5604324459e658b8583378-25753125%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '304bee3444d4ec425a2eeb78771cc459813bc25d' => 
     array (
       0 => 'tpl/frontend/smart/core/head.tpl',
-      1 => 1508266895,
+      1 => 1508701720,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_59e658b8704044_55002118',
   'variables' => 
   array (
     'lang' => 0,
@@ -27,8 +29,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'arrPageData' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_59e658b8704044_55002118',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_59e658b8704044_55002118')) {function content_59e658b8704044_55002118($_smarty_tpl) {?><head>
 <!--[if false]>
@@ -106,7 +106,7 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.
 ">
 <?php if ($_smarty_tpl->tpl_vars['arCategory']->value['meta_robots']){?>
     <meta name="robots" content="<?php echo $_smarty_tpl->tpl_vars['arCategory']->value['meta_robots'];?>
-"/>
+" id="meta_robots"/>
 <?php }?>
 <?php if ($_smarty_tpl->tpl_vars['objSettingsInfo']->value->logo){?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi">

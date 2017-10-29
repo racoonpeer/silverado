@@ -45,6 +45,7 @@ $arSpreadSheets = array(
     "SZgLFBBMmiZrr02YCrRIVJ8TEQizA0XkCS09kKTgDqAjz4FFy0m7y75zpGKbOyZzAGQACXNO3LZO-v", // Водопьян
     "T0_f5syKKwfUoRRdNoVWlADerk5jSaxWS2ywc_-bLobwZPmtIhqYDJxNnRTUVpKeSIEAgQcTM7H0sr", // Устименко
     "RgRfF9YkWXJ0hF4c2zeBHwSio6KguhZAjXy7VnRuYraVVe9uWN96mhwswRxoPEy_DHJQqz-x3Rng0K", // Бигсан
+    "Q3YSxi5UEtzUBy5mxL93eqxcsH7WlbF7fOk3RHZ58Vp9q34PtfCE-xV-RHKTaK_i9kZoUoZbUTiemk", // Silverado
 );
 $pColNames = array(
     "Артикул"      => "pcode", 
@@ -183,7 +184,7 @@ foreach ($arSpreadSheets as $spreadID) {
             $PHPExcel->disconnectWorksheets();
             unset($PHPExcel);
         }
-//        if (file_exists($fpath)) unlinkFile($spreadID.".xlsx", $files_path);
+        if (file_exists($fpath)) unlinkFile($spreadID.".xlsx", $files_path);
     }
 }
 // Write data to DB

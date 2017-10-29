@@ -269,7 +269,7 @@ class Banners {
                 if(!empty($item['image']) && is_file(self::getFolderPath().$item['image'])){
                     $arImage = getimagesize(self::getFolderPath().$item['image']);
                     $target  = !empty($item['target']) ? ' target="'.$item['target'].'"' : '';
-                    $item['content'] = '<img src="'.self::getFolderURL().$item['image'].'" width="'.$arImage[0].'" height="'.$arImage[1].'" alt="" />';
+                    $item['content'] = '<img class="lazy" data-original="'.self::getFolderURL().$item['image'].'" width="'.$arImage[0].'" height="'.$arImage[1].'" alt=""/>';
                     if($item['link']) $item['content'] = '<a href="'.$item['link'].'" title="'.$item['title'].'"'.$target.'>'.$item['content'].'</a>';
                 } $item['customcode'] = '';
                 break;

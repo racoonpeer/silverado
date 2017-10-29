@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-10-21 22:42:42
+<?php /* Smarty version Smarty-3.1.14, created on 2017-10-29 20:37:49
          compiled from "tpl/frontend/smart/core/product-kit.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:7610835759eba33276d941-79335965%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c5d4669018ac9e1b3df23bd7b5ed3cafd6ef5273' => 
     array (
       0 => 'tpl/frontend/smart/core/product-kit.tpl',
-      1 => 1508266895,
+      1 => 1509301716,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_59eba332acfbb3_37193100',
   'variables' => 
   array (
     'item' => 0,
@@ -23,8 +25,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'Basket' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_59eba332acfbb3_37193100',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_59eba332acfbb3_37193100')) {function content_59eba332acfbb3_37193100($_smarty_tpl) {?><div class="product-set">
     <div class="h2">В комплекте дешевле</div>
@@ -49,7 +49,7 @@ $_smarty_tpl->tpl_vars['element']->_loop = true;
                                 <a href="<?php echo $_smarty_tpl->getSubTemplate ("core/href_item.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('arCategory'=>$_smarty_tpl->tpl_vars['element']->value['arCategory'],'arItem'=>$_smarty_tpl->tpl_vars['element']->value,'params'=>''), 0);?>
 ">
 <?php }?>
-                                <img src="<?php echo $_smarty_tpl->tpl_vars['element']->value['image']['small_image'];?>
+                                <img src="<?php echo $_smarty_tpl->tpl_vars['element']->value['image']['middle_image'];?>
 " alt=""/>
 <?php if ($_smarty_tpl->tpl_vars['element']->value['id']!=$_smarty_tpl->tpl_vars['item']->value['id']){?>
                                 </a>

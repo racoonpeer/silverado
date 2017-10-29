@@ -14,7 +14,7 @@
                     <a href="tel:+380930549540">093 0549540</a><br/>
                     <a href="tel:+380990549540">099 0549540</a>
                 </div>
-                <p>Вы также можете <a href="mailto:<{$objSettingsInfo->siteEmail}>" target="_blank">написать нам</a><br/>
+                <p>Вы также можете <a href="mailto:<{$objSettingsInfo->siteEmail}>">написать нам</a><br/>
                 или заказать <a href="#" onclick="return Modal.open('<{include file="core/href.tpl" arCategory=$arrModules.callback}>');">обратный звонок</a></p>
             </div>
         </div>

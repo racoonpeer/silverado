@@ -29,10 +29,10 @@ and open the template in the editor.
         padding-bottom: 30px;
         .price {
             margin-bottom: 24px;
-            font-size: 3rem;
+            font-size: 2.8rem;
             line-height: 4.8rem;
             &:after {
-                font-size: 2.4rem;
+                font-size: 2rem;
                 content: "грн.";
             }
             strong {
@@ -42,12 +42,12 @@ and open the template in the editor.
                 line-height: 4.2rem;
             }
             .strike {
-                font-size: 2.2rem;
+                font-size: 2rem;
                 display: inline-block;
                 vertical-align: middle;
                 position: relative;
                 color: $dark-grey;
-                margin-right: 10px;
+                margin-right: 8px;
                 strong {
                     position: relative;
                     &:after {
@@ -62,7 +62,7 @@ and open the template in the editor.
                     }
                 }
                 &:after {
-                    font-size: 1.7rem;
+                    font-size: 1.5rem;
                     content: "грн.";
                 }
             }

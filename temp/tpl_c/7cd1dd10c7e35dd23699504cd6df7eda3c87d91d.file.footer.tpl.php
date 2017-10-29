@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-10-17 22:23:37
+<?php /* Smarty version Smarty-3.1.14, created on 2017-10-29 19:19:12
          compiled from "tpl/frontend/smart/core/footer.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2617554559e658b9118148-91199680%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '7cd1dd10c7e35dd23699504cd6df7eda3c87d91d' => 
     array (
       0 => 'tpl/frontend/smart/core/footer.tpl',
-      1 => 1508266895,
+      1 => 1509297534,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_59e658b9166395_78976811',
   'variables' => 
   array (
     'bottomMenu' => 0,
@@ -22,8 +24,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'arrModules' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_59e658b9166395_78976811',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_59e658b9166395_78976811')) {function content_59e658b9166395_78976811($_smarty_tpl) {?><div class="footer-container">
     <div class="container clearfix">
@@ -44,7 +44,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                     <a href="tel:+380990549540">099 0549540</a>
                 </div>
                 <p>¬ы также можете <a href="mailto:<?php echo $_smarty_tpl->tpl_vars['objSettingsInfo']->value->siteEmail;?>
-" target="_blank">написать нам</a><br/>
+">написать нам</a><br/>
                 или заказать <a href="#" onclick="return Modal.open('<?php echo $_smarty_tpl->getSubTemplate ("core/href.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('arCategory'=>$_smarty_tpl->tpl_vars['arrModules']->value['callback']), 0);?>
 ');">обратный звонок</a></p>
             </div>

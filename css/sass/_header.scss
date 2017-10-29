@@ -204,6 +204,11 @@ and open the template in the editor.
                     @include breakpoint_min(991){
                         background-image: url("/images/site/smart/icons/cart-h.svg");
                     }
+                    &:after {
+                        @include breakpoint_min(991){
+                            content: attr(data-count);
+                        }
+                    }
                 }
                 @include breakpoint(990){
                     width: 24px;

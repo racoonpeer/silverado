@@ -1022,72 +1022,79 @@
         }
     }*}>
 </script>
-
-<{* +++++++++++++++++++++++++ SHOW ALL ITEMS ++++++++++++++++++++++++++ *}>
-<{else}> 
-<{include file='common/order_links.tpl' arrOrderLinks=$arrPageData.arrOrderLinks}>
-<div class="clear"></div>
-<{include file='common/new_page_btn.tpl' title=$smarty.const.ADMIN_ADD_NEW_PRODUCT shortcut=true}>
-<div class="search_block">
-    <form method="GET" id="searchForm" action="">
-        <input type="hidden" name="module" value="<{$arrPageData.module}>" />
-        <input type="hidden" name="cid" value="<{$arrPageData.cid}>" />
-        <input size="89" type="text" placeholder="поиск по артикулу или названию товара" id="categorySearch" name="filters[title]" value="<{if isset($arrPageData.filters.title)}><{$arrPageData.filters.title}><{/if}>" />
-        <button type="submit" class="buttons right" style="margin-top:0; margin-right:3px;"><{$smarty.const.SITE_FOUND}></button>
-    </form>
-</div>
-<div class="clear"></div>
-<script type="text/javascript">
-<!--   
-    $(function() {
-        $('#categorySearch').autocomplete({
-            source: function(request, response) {
-                $.ajax({
-                    url: '/interactive/ajax.php',
-                    type: 'GET',
-                    dataType: 'json',
-                    data: {
-                        zone: 'admin',
-                        action: 'liveSearch',
-                        module: '<{$arrPageData.module}>',
-                        cid: <{$arrPageData.cid}>,
-                        searchStr: request.term
-                    }, 
-                    success: function(json) {
-                        response($.map(json.items, function(item) {
-                            return {
-                                label: item.title,
-                                value: item.title,
-                                category: item.ctitle
-                            }
-                        }));
-                    }
-                });
-            },
-            select: function(event, ui) {},
-            minLength: 2
+<{else}>
+    <div class="clear"></div>
+    <{include file='common/new_page_btn.tpl' title=$smarty.const.ADMIN_ADD_NEW_PRODUCT shortcut=true}>
+    <div class="search_block">
+        <form method="GET" id="searchForm" action="">
+            <input type="hidden" name="module" value="<{$arrPageData.module}>" />
+            <input type="hidden" name="cid" value="<{$arrPageData.cid}>" />
+            <input size="77" type="text" placeholder="поиск по артикулу или названию товара" id="categorySearch" name="filters[title]" value="<{if isset($arrPageData.filters.title)}><{$arrPageData.filters.title}><{/if}>" />
+            <button type="submit" class="buttons right" style="margin-top:0; margin-right:3px;"><{$smarty.const.SITE_FOUND}></button>
+        </form>
+    </div>
+    <div class="clear"></div>
+    <script type="text/javascript">
+        $(function(){
+            $('#categorySearch').autocomplete({
+                source: function(request, response){
+                    $.ajax({
+                        url: '/interactive/ajax.php',
+                        type: 'GET',
+                        dataType: 'json',
+                        data: {
+                            zone: 'admin',
+                            action: 'liveSearch',
+                            module: '<{$arrPageData.module}>',
+                            cid: <{$arrPageData.cid}>,
+                            sort: '<{$arrPageData.sort}>',
+                            searchStr: request.term
+                        },
+                        success: function(json){
+                            response($.map(json.items, function(item) {
+                                return {
+                                    label: item.title + " " + item.pcode,
+                                    value: item.title + " " + item.pcode,
+                                    category: item.ctitle
+                                }
+                            }));
+                        }
+                    });
+                },
+                select: function(event, ui){},
+                minLength: 2
+            });
         });
-    });
-//-->
-</script>
+    </script>
 
     <form method="post" action="<{$arrPageData.current_url|cat:"&task=reorderItems"}>" name="reorderItems">
         <table width="100%" border="0" cellspacing="1" cellpadding="0" class="list" id="operationTbl">
             <tr>
-                <td id="headb" align="center" width="12">
-                   <{* <input id="checkAll" type="checkbox" value="0" onchange="SelectCheckBox('operationTbl', 'checkAll', true)"/>
-             *}>   </td>
+                <td id="headb" align="center" width="12"></td>
                 <td id="headb" align="center" width="38"></td>
-                <td id="headb" align="left"><{$smarty.const.HEAD_NAME}></td>
+                <td id="headb" align="left">
+                    <a class="sort-order <{if $arrPageData.sort=="title_asc"}>desc<{/if}>" href="<{$arrPageData.current_url}>&sort=title_<{if $arrPageData.sort=="title_asc"}>desc<{else}>asc<{/if}>">
+                        <{$smarty.const.HEAD_NAME}>
+                    </a>
+                </td>
 <{if !$arrPageData.cid}>
-                <td id="headb" align="center" width="120"><{$smarty.const.HEAD_CATEGORY}></td>
+                <td id="headb" align="center" width="120">
+                    <a class="sort-order <{if $arrPageData.sort=="category_asc"}>desc<{/if}>" href="<{$arrPageData.current_url}>&sort=category_<{if $arrPageData.sort=="category_asc"}>desc<{else}>asc<{/if}>">
+                        <{$smarty.const.HEAD_CATEGORY}>
+                    </a>
+                </td>
 <{/if}>
                 <td id="headb" class="hidden" align="center" width="95"><{$smarty.const.HEAD_DATE_ADDED}></td>
-<{foreach from=$PHPHelper->SELECTIONS item=title}>
-                <td id="headb" class="hidden" align="center" width="15"><{$title}></td>
-<{/foreach}>
-                <td id="headb" align="center" width="62"><{$smarty.const.HEAD_PRICE}></td>
-                <td id="headb" align="center" width="38"><{$smarty.const.HEAD_SORT}></td>
+                <td id="headb" align="center" width="62">
+                    <a class="sort-order <{if $arrPageData.sort=="price_asc"}>desc<{/if}>" href="<{$arrPageData.current_url}>&sort=price_<{if $arrPageData.sort=="price_asc"}>desc<{else}>asc<{/if}>">
+                        <{$smarty.const.HEAD_PRICE}>
+                    </a>
+                </td>
+                <td id="headb" align="center" width="45">
+                    <a class="sort-order <{if $arrPageData.sort=="order_asc"}>desc<{/if}>" href="<{$arrPageData.current_url}>&sort=order_<{if $arrPageData.sort=="order_asc"}>desc<{else}>asc<{/if}>">
+                        <{$smarty.const.HEAD_SORT}>
+                    </a>
+                </td>
                 <td id="headb" align="center" width="38"><{$smarty.const.HEAD_EDIT}></td>
                 <td id="headb" align="center" width="38"><{$smarty.const.HEAD_DELETE}></td>
             </tr>
@@ -1106,30 +1113,26 @@
 <{/if}>
                 </td>
                 <td>
-                    <{if $items[i].isshortcut}>
-                        <a style="position:relative; z-index:10" href="/admin.php?module=shortcuts&task=editItem&itemID=<{$items[i].shortcutID}>">
-                            <{$items[i].title}> 
-                        </a>
-                        <a target="_blank" style="position:relative" href="<{$arrPageData.current_url|cat:$arrPageData.filter_url|cat:"&task=editItem&itemID="|cat:$items[i].id}>">
-                            <img style="position: absolute; right: -15px; top: -30px;" src="<{$arrPageData.system_images}>shortcut.png" />
-                        </a>
-                    <{else}>
-                        <a href="<{$arrPageData.current_url|cat:$arrPageData.filter_url|cat:"&task=editItem&itemID="|cat:$items[i].id}>"><{$items[i].title}><{if $items[i].pcode}>, (<{$items[i].pcode}>)<{/if}></a>
-                    <{/if}>
+<{if $items[i].isshortcut}>
+                    <a style="position:relative; z-index:10" href="/admin.php?module=shortcuts&task=editItem&itemID=<{$items[i].shortcutID}>">
+                        <{$items[i].title}> 
+                    </a>
+                    <a target="_blank" style="position:relative" href="<{$arrPageData.current_url|cat:$arrPageData.filter_url|cat:"&task=editItem&itemID="|cat:$items[i].id}>">
+                        <img style="position: absolute; right: -15px; top: -30px;" src="<{$arrPageData.system_images}>shortcut.png" />
+                    </a>
+<{else}>
+                    <a href="<{$arrPageData.current_url|cat:$arrPageData.filter_url|cat:"&task=editItem&itemID="|cat:$items[i].id}>"><{$items[i].title}><{if $items[i].pcode}>, (<{$items[i].pcode}>)<{/if}></a>
+<{/if}>
                 </td>
 <{if !$arrPageData.cid}>
-                <td align="left"><{$items[i].cat_title}></td>
+                <td align="center"><{$items[i].cat_title}></td>
 <{/if}>
-       <{*         <td class="hidden" align="center"><{$items[i].created|date_format:"%d.%m.%y %H:%M:%S"}></td>
-<{foreach from=$PHPHelper->SELECTIONS item=title key=field}>
-                    <td class="hidden" align="center"><input type="checkbox" name="<{$field}>[]" id="<{$field}>_<{$items[i].id}>" value="<{$items[i].id}>" <{if $items[i].$field}> checked<{/if}> /></td>
-<{/foreach}>*}>
                 <td align="center"> 
-                    <{if $items[i].isshortcut}>
-                        <{$items[i].price}>
-                    <{else}>
-                        <input type="text" size="7" value="<{$items[i].price}>" name="arPrices[<{$items[i].id}>]"/>
-                    <{/if}>
+<{if $items[i].isshortcut}>
+                    <{$items[i].price}>
+<{else}>
+                    <input type="text" size="7" value="<{$items[i].price}>" name="arPrices[<{$items[i].id}>]"/>
+<{/if}>
                 </td>
                 <td align="center"><input type="text" name="<{if $items[i].isshortcut}>arShortcutsOrder[<{$items[i].shortcutID}>]<{else}>arOrder[<{$items[i].id}>]<{/if}>" id="arOrder_<{$items[i].id}>" class="order" value="<{if $items[i].isshortcut}><{$items[i].shortcutOrder}><{else}><{$items[i].order}><{/if}>" maxlength="4" /></td>
                 <td align="center" >
@@ -1137,11 +1140,6 @@
                         <img src="<{$arrPageData.system_images}>edit.png" alt="<{$smarty.const.LABEL_EDIT}>" />
                     </a>
                 </td>
-              <{*  <td align="center" >
-                    <a href="<{$arrPageData.current_url|cat:"&task=addItem&copyID="|cat:$items[i].id}>" title="<{$smarty.const.LABEL_COPY}>">
-                        <img src="<{$arrPageData.system_images}>copy_small.png" alt="<{$smarty.const.LABEL_COPY}>" />
-                    </a>
-                </td>*}>
                 <td align="center">
                     <a href="<{if $items[i].isshortcut}>/admin.php?module=shortcuts&task=deleteItem&itemID=<{$items[i].shortcutID}><{else}><{$arrPageData.current_url|cat:$arrPageData.filter_url|cat:"&task=deleteItem&itemID="|cat:$items[i].id}><{/if}>" onclick="return confirm('<{$smarty.const.CONFIRM_DELETE}>');" title="<{$smarty.const.LABEL_DELETE}>">
                        <img src="<{$arrPageData.system_images}>delete.png" alt="<{$smarty.const.LABEL_DELETE}>" title="<{$smarty.const.LABEL_DELETE}>" />
@@ -1149,49 +1147,48 @@
                 </td>
             </tr>
 <{/section}>
-    </table>
+        </table>
 
-    <table width="100%" border="0" cellspacing="1" cellpadding="0">
-        <tr>
-            <td width="107" align="left" style="padding:6px">
-                <input type="checkbox" value="0" class="checkboxes check_all" onchange="SelectCheckBox(this);"/> ќтметить все &nbsp;
-            </td>
-            <td width="155">
-                <{*<a href="javascript:void(0);" onclick="toggleHiddenFields();"><{$smarty.const.ADMIN_TOGGLE_FIELDS}></a>*}>
-                <div class="dropDown" style="display:none;">
-                    C отмеченными
-                    <ul>
-                        <li data-val="publish" onclick="$(this).parent().parent().find('input').val($(this).data('val')); $(this).closest('form').submit();">
-                            <img src="/images/operation/check.png"/>&nbsp;&nbsp;опубликовать
-                        </li>
-                        <li data-val="unpublish" onclick="$(this).parent().parent().find('input').val($(this).data('val')); $(this).closest('form').submit();">
-                            <img src="/images/operation/un_check.png"/>&nbsp;&nbsp;не публиковать
-                        </li>
-                        <li data-val="delete" onclick="$(this).parent().parent().find('input').val($(this).data('val')); $(this).closest('form').submit();">
-                            <img src="/images/operation/delete.png"/>&nbsp;&nbsp;удалить
-                        </li>
-                    </ul>
-                    <input type="hidden" name="allitems" value=""/>
-                </div>
-            </td>
-            <td align="center" width="350">
-                <{if $arrPageData.total_pages>1}>
+        <table width="100%" border="0" cellspacing="1" cellpadding="0">
+            <tr>
+                <td width="107" align="left" style="padding:6px">
+                    <input type="checkbox" value="0" class="checkboxes check_all" onchange="SelectCheckBox(this);"/> ќтметить все &nbsp;
+                </td>
+                <td width="155">
+                    <div class="dropDown" style="display:none;">
+                        C отмеченными
+                        <ul>
+                            <li data-val="publish" onclick="$(this).parent().parent().find('input').val($(this).data('val')); $(this).closest('form').submit();">
+                                <img src="/images/operation/check.png"/>&nbsp;&nbsp;опубликовать
+                            </li>
+                            <li data-val="unpublish" onclick="$(this).parent().parent().find('input').val($(this).data('val')); $(this).closest('form').submit();">
+                                <img src="/images/operation/un_check.png"/>&nbsp;&nbsp;не публиковать
+                            </li>
+                            <li data-val="delete" onclick="$(this).parent().parent().find('input').val($(this).data('val')); $(this).closest('form').submit();">
+                                <img src="/images/operation/delete.png"/>&nbsp;&nbsp;удалить
+                            </li>
+                        </ul>
+                        <input type="hidden" name="allitems" value=""/>
+                    </div>
+                </td>
+                <td align="center" width="350">
+<{if $arrPageData.total_pages>1}>
                     <!-- ++++++++++ Start PAGER ++++++++++++++++++++++++++++++++++++++++++++++++ -->
                     <{include file='common/pager.tpl' arrPager=$arrPageData.pager page=$arrPageData.page showTitle=0 showFirstLast=0 showPrevNext=0}>
                     <!-- ++++++++++ End PAGER ++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-                <{/if}>
-            </td>
-            <td align="right">
-                <input name="submit_order" class="buttons" type="submit" value="<{$smarty.const.BUTTON_APPLY}>" />
-            </td>
-        </tr>
-        <tr>
-            <td align="left" colspan="3">&nbsp;Ёкспорт всех товаров: &nbsp;
-                <a href="<{$arrPageData.current_url|cat:"&task=exportToCsv"}>">CSV</a>, 
-                <a href="<{$arrPageData.current_url|cat:"&task=exportToYml"}>">YML</a>
-            </td>
-        </tr>
-    </table>
-</form>
+<{/if}>
+                </td>
+                <td align="right">
+                    <input name="submit_order" class="buttons" type="submit" value="<{$smarty.const.BUTTON_APPLY}>" />
+                </td>
+            </tr>
+            <tr>
+                <td align="left" colspan="3">&nbsp;Ёкспорт всех товаров: &nbsp;
+                    <a href="<{$arrPageData.current_url|cat:"&task=exportToCsv"}>">CSV</a>, 
+                    <a href="<{$arrPageData.current_url|cat:"&task=exportToYml"}>">YML</a>
+                </td>
+            </tr>
+        </table>
+    </form>
 <{/if}>
 </div>

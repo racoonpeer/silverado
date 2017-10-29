@@ -12,7 +12,7 @@
 <{if $element.id != $item.id}>
                                 <a href="<{include file="core/href_item.tpl" arCategory=$element.arCategory arItem=$element params=""}>">
 <{/if}>
-                                <img src="<{$element.image.small_image}>" alt=""/>
+                                <img src="<{$element.image.middle_image}>" alt=""/>
 <{if $element.id != $item.id}>
                                 </a>
 <{/if}>

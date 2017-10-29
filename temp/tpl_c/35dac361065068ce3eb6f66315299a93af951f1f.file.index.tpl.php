@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-10-17 22:23:36
+<?php /* Smarty version Smarty-3.1.14, created on 2017-10-23 22:16:55
          compiled from "tpl/frontend/smart/index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:94891714559e658b8359cc6-83928432%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '35dac361065068ce3eb6f66315299a93af951f1f' => 
     array (
       0 => 'tpl/frontend/smart/index.tpl',
-      1 => 1508266895,
+      1 => 1508784891,
       2 => 'file',
     ),
   ),
@@ -15,14 +15,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_59e658b85370f6_57672056',
   'variables' => 
   array (
     'lang' => 0,
     'arCategory' => 0,
+    'items' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_59e658b85370f6_57672056',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_59e658b85370f6_57672056')) {function content_59e658b85370f6_57672056($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="<?php echo $_smarty_tpl->tpl_vars['lang']->value;?>
@@ -32,6 +33,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     <body>
         <?php echo $_smarty_tpl->getSubTemplate ('core/mobile-menu.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
+<?php if ($_smarty_tpl->tpl_vars['arCategory']->value['module']=="catalog"&&!empty($_smarty_tpl->tpl_vars['items']->value)){?>
+        <?php echo $_smarty_tpl->getSubTemplate ("core/filter-popup.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+
+<?php }?>
         <div id="sbIndex" canvas="container">
             <?php echo $_smarty_tpl->getSubTemplate ('core/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 

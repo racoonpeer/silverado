@@ -86,7 +86,7 @@ function CProductSet(){
                     instance = slider.swiper({
                         direction: 'horizontal',
                         spaceBetween: 0,
-                        slidesPerView: 2,
+                        slidesPerView: 3,
                         scrollbar: $(item).find(".swiper-scrollbar"),
                         scrollbarHide: true,
                         scrollbarDraggable: true,
@@ -96,9 +96,6 @@ function CProductSet(){
                         breakpoints: {
                             1280: {
                                 slidesPerView: 2,
-                            },
-                            900: {
-                                slidesPerView: 1,
                             }
                         }
                     });

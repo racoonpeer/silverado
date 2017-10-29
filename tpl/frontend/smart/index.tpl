@@ -3,6 +3,9 @@
     <{include file="core/head.tpl"}>
     <body>
         <{include file='core/mobile-menu.tpl'}>
+<{if $arCategory.module=="catalog" and !empty($items)}>
+        <{include file="core/filter-popup.tpl"}>
+<{/if}>
         <div id="sbIndex" canvas="container">
             <{include file='core/header.tpl'}>
 <{if !empty($arCategory.module)}>

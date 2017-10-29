@@ -421,6 +421,8 @@ function CBasket() {
                 self.body.removeClass("shift");
                 self.opened = false;
             }
+            // close mobile filters if needed
+            if (typeof MobileFilters != "undefined") MobileFilters.close();
         },
         openDialog: function (url) {
             var self = this;

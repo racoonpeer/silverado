@@ -39,12 +39,19 @@ $categoryTree  = getCategoriesTreeWithItems($lang, CATALOG_TABLE, $arrPageData['
 $arCidCntItems = getItemsCountInCategories('cid', 'count', CATALOG_TABLE, '`cid`,COUNT(`cid`) as count', 'WHERE `active`=1 GROUP BY `cid`');
 $filters       = !empty($_GET['filters'])? $_GET['filters']: array();
 $hasAccess     = $UserAccess->getAccessToModule($arrPageData['module']); 
-// /////////////////////// END OPERATION PAGE VARIABLE \\\\\\\\\\\\\\\\\\\\\\\\\
-# ##############################################################################
-
-
-# ##############################################################################
-// ///////////// REQUIRED LOCAL PAGE REINIALIZING VARIABLES \\\\\\\\\\\\\\\\\\\\
+$sort          = !empty($_GET['sort']) ? trim($_GET['sort']) : "order_asc";
+$orderColumns  = array(
+    "title_asc"     => "t.`title` ASC",
+    "title_desc"    => "t.`title` DESC",
+    "category_asc"  => "t.`cat_title` ASC",
+    "category_desc" => "t.`cat_title` DESC",
+    "order_asc"     => "t.`shortcutOrder` ASC",
+    "order_desc"    => "t.`shortcutOrder` DESC",
+    "price_asc"     => "t.`price` ASC",
+    "price_desc"    => "t.`price` DESC",
+);
+$arrPageData['sort']          = $sort;
+$arrPageData['order']         = isset($orderColumns[$sort]) ? $orderColumns[$sort] : $orderColumns["order_asc"];
 $arrPageData['itemID']        = $itemID;
 $arrPageData['cid']           = $cid;
 $arrPageData['category_url']  = $cid ? '&cid='.$cid : '';
@@ -68,7 +75,6 @@ if(!empty($arrPageData['attrGroups'])) {
     }
 }
 $arrPageData['filters'] = $filters;
-
 // available kit categories
 $arrPageData['arKitCats'] = array();
 $query  = "SELECT DISTINCT m.`id`, m.`title` FROM `".MAIN_TABLE."` m "
@@ -124,7 +130,6 @@ if($task=='reorderItems' AND !empty($_POST) AND isset($_POST['submit_order'])) {
                 setSessionErrors($result);
             }
         }
-
         if(!empty($_POST['arPrices'])) {
             $result = updateItems(array('price'=>$_POST['arPrices']), $_POST['arPrices'], 'id', CATALOG_TABLE, array('action'=>ActionsLog::ACTION_EDIT, 'comment'=>'Изменена цена', 'lang'=>$lang, 'module'=>$arrPageData['module']));
             if($result===true) {
@@ -133,19 +138,6 @@ if($task=='reorderItems' AND !empty($_POST) AND isset($_POST['submit_order'])) {
                 setSessionErrors($result);
             }
         }
-
-     /*   foreach($PHPHelper->SELECTIONS as $type => $title){
-            deleteRecords(PRODUCT_SELECTIONS_TABLE, ' WHERE `type`="'.$type.'"');
-            if(isset($_POST[$type])) {
-                foreach($_POST[$type] as $itemID){
-                    $arPostData['pid'] = $itemID;
-                    $arPostData['type'] = $type;
-                    $arPostData['order'] = getMaxPosition('"'.$type.'"', 'order', 'type', PRODUCT_SELECTIONS_TABLE);
-                    $result = $DB->postToDB($arPostData, PRODUCT_SELECTIONS_TABLE, '',  '', 'insert');
-                }
-            }
-        }
-        if($result) $arrPageData['messages'][] = 'Новые состояния популярных и новейших елементов успешно сохранено!';*/
         Redirect($arrPageData['current_url']);
     } else {
         $arrPageData['errors'][] = $UserAccess->getAccessError(); 
@@ -483,37 +475,46 @@ if ($task=='addItem' OR $task=='editItem') {
     $arrPageData['arrOrderLinks'] = getOrdersLinks(
             array('default'=>HEAD_LINK_SORT_DEFAULT, 'title'=>HEAD_LINK_SORT_TITLE, 'created'=>HEAD_LINK_SORTDATEADD, 'price'=>HEAD_LINK_SORT_PRICE),
             $arrOrder['get'], $arrPageData['admin_url'].$arrPageData['category_url'], 'pageorder', '_');
-
-    // Display Items List Data
-    $cselect = 'SELECT t.*, m.`title` AS `cat_title`, "0" `isshortcut`, 0 `shortcutID`, t.`order` `shortcutOrder` , t.`active` `shortcutActive`
-                FROM `'.CATALOG_TABLE.'` t 
-                LEFT JOIN `'.MAIN_TABLE.'` m ON(m.`id` = t.`cid`) ';
-    $cwhere = $cid ? "WHERE t.cid = $cid " : '';
-    
-    $sselect = 'SELECT t.*, m.`title` AS `cat_title`, "1" `isshortcut`, st.`id` `shortcutID`, st.`order` `shortcutOrder` , st.`active` `shortcutActive` 
-                FROM '.CATALOG_TABLE.' t 
-                LEFT JOIN '.SHORTCUTS_TABLE.' st ON t.`id`=st.`pid` 
-                LEFT JOIN `'.MAIN_TABLE.'` m ON(m.`id` = st.`cid`)';
-    $swhere  = 'WHERE st.`lang`="'.$lang.'" AND st.`module`="'.$arrPageData['module'].'" '.($cid ? " AND st.`cid` = $cid " : ' ');
-    
+    // catalog where condition
+    $cselect = "SELECT t1.*, m.`title` AS `cat_title`, '0' AS `isshortcut`, '0' AS `shortcutID`, ".PHP_EOL
+            . "t1.`order` AS `shortcutOrder` , t1.`active` AS `shortcutActive` ".PHP_EOL
+            . "FROM `".CATALOG_TABLE."` t1 ".PHP_EOL
+            . "LEFT JOIN `".MAIN_TABLE."` m ON(m.`id`=t1.`cid`) ".PHP_EOL;
+    $cwhere = ($cid ? "WHERE t1.`cid`=$cid" : ''.PHP_EOL);
+    // shortcuts where condition
+    $sselect = "SELECT t2.*, m.`title` AS `cat_title`, '1' AS `isshortcut`, st.`id` AS `shortcutID`, ".PHP_EOL
+             . "st.`order` AS `shortcutOrder`, st.`active` AS `shortcutActive` ".PHP_EOL
+             . "FROM `".CATALOG_TABLE."` t2 ".PHP_EOL
+             . "LEFT JOIN `".SHORTCUTS_TABLE."` st ON(t2.`id`=st.`pid`) ".PHP_EOL
+             . "LEFT JOIN `".MAIN_TABLE."` m ON(m.`id`=st.`cid`) ".PHP_EOL;
+    $swhere  = "WHERE st.`lang`='{$lang}' AND st.`module`='{$arrPageData["module"]}'".($cid ? "AND st.`cid`={$cid}" : "").PHP_EOL;
+    // common where condition
+    $allwhere = "";
+    // filters operations
     if (!empty($filters)) {
-        if(!empty($filters['title'])) {
-            $search = htmlspecialchars(strtolower(addslashes(trim($filters['title']))));
-            $cwhere .= (!empty($cwhere)? 'AND': 'WHERE').' (t.`title` LIKE "%'.$search.'%" OR t.`pcode` LIKE "%'.$search.'%") ';
-            $swhere .= (!empty($swhere)? 'AND': 'WHERE').' (t.`title` LIKE "%'.$search.'%" OR t.`pcode` LIKE "%'.$search.'%") ';
-            $arrPageData['filter_url'] .= '&filters[title]='.$filters['title'];
+        // search by title, pcode
+        if (!empty($filters['title'])) {
+            $searchStr = PHPHelper::prepareSearchText($filters['title']);
+            $arName = explode(' ', $searchStr);
+            $where_like = array();
+            foreach ($arName as $name) {
+                $where_like[] = "(t.`title` LIKE '%{$name}%' OR t.`pcode` LIKE '%{$name}%')";
+            }
+            $allwhere .= (!empty($allwhere) ? " AND " : " WHERE ")." (".implode(" OR ", $where_like).") ";
+            $arrPageData['filter_url'] .= '&filters[title]='.$searchStr;
         }
+        $allwhere .= (!empty($where_like) ? (!empty($allwhere) ? " AND " : " WHERE ")." (".implode(" OR ", $where_like).") " : "");
     }
     // Total pages and Pager
-    $arrPageData['total_items'] = intval(mysql_num_rows(mysql_query('(' .$cselect.$cwhere.') UNION ALL ('.$sselect.$swhere.')')));
+    $arrPageData['total_items'] = intval(mysql_num_rows(mysql_query('SELECT t.* FROM ((' .$cselect.$cwhere.') UNION ('.$sselect.$swhere.')) t '.$allwhere)));
     $arrPageData['pager']       = getPager($page, $arrPageData['total_items'], $arrPageData['items_on_page'], $arrPageData['admin_url'].$arrPageData['category_url'].$arrPageData['filter_url']);
     $arrPageData['total_pages'] = $arrPageData['pager']['count'];
     $arrPageData['offset']      = ($page-1)*$arrPageData['items_on_page'];
     // END Total pages and Pager
-    $order  = "ORDER BY ".(!empty($arrOrder['mysql']) ? implode(', ', $arrOrder['mysql']) : " `shortcutOrder` ");
+    $order  = "ORDER BY ".$arrPageData['order'].PHP_EOL;
     $limit  = "LIMIT {$arrPageData['offset']}, {$arrPageData['items_on_page']}";
-    $result = mysql_query('(' .$cselect.$cwhere.$limit.') UNION ALL ('.$sselect.$swhere.$limit.') '.$order);
-    
+    $query  = "SELECT t.* FROM (($cselect $cwhere ) UNION ($sselect $swhere )) t $allwhere $order $limit";
+    $result = mysql_query($query);
     if (!$result) {
         $arrPageData['errors'][] = "SELECT OPERATIONS: " . mysql_error();
     } else {

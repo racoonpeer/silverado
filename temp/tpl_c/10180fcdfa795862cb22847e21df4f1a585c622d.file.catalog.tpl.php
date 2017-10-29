@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-10-21 00:18:20
+<?php /* Smarty version Smarty-3.1.14, created on 2017-10-28 20:52:29
          compiled from "tpl/backend/weblife/module/catalog.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:163911063359ea681c98ebe7-97422459%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '10180fcdfa795862cb22847e21df4f1a585c622d' => 
     array (
       0 => 'tpl/backend/weblife/module/catalog.tpl',
-      1 => 1508266895,
+      1 => 1509213146,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_59ea681dc8ec48_67446689',
   'variables' => 
   array (
     'categoryTree' => 0,
@@ -37,8 +39,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'items' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_59ea681dc8ec48_67446689',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_59ea681dc8ec48_67446689')) {function content_59ea681dc8ec48_67446689($_smarty_tpl) {?>
 <?php echo $_smarty_tpl->getSubTemplate ('common/module_head.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('title'=>@constant('CATALOGS'),'creat_title'=>@constant('ADMIN_CREATING_NEW_PRODUCT'),'edit_title'=>@constant('ADMIN_EDIT_PRODUCT')), 0);?>
@@ -1228,90 +1228,97 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smart
     }
 
 </script>
+<?php }else{ ?>
+    <div class="clear"></div>
+    <?php echo $_smarty_tpl->getSubTemplate ('common/new_page_btn.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('title'=>@constant('ADMIN_ADD_NEW_PRODUCT'),'shortcut'=>true), 0);?>
 
-
-<?php }else{ ?> 
-<?php echo $_smarty_tpl->getSubTemplate ('common/order_links.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('arrOrderLinks'=>$_smarty_tpl->tpl_vars['arrPageData']->value['arrOrderLinks']), 0);?>
-
-<div class="clear"></div>
-<?php echo $_smarty_tpl->getSubTemplate ('common/new_page_btn.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('title'=>@constant('ADMIN_ADD_NEW_PRODUCT'),'shortcut'=>true), 0);?>
-
-<div class="search_block">
-    <form method="GET" id="searchForm" action="">
-        <input type="hidden" name="module" value="<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['module'];?>
+    <div class="search_block">
+        <form method="GET" id="searchForm" action="">
+            <input type="hidden" name="module" value="<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['module'];?>
 " />
-        <input type="hidden" name="cid" value="<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['cid'];?>
+            <input type="hidden" name="cid" value="<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['cid'];?>
 " />
-        <input size="89" type="text" placeholder="поиск по артикулу или названию товара" id="categorySearch" name="filters[title]" value="<?php if (isset($_smarty_tpl->tpl_vars['arrPageData']->value['filters']['title'])){?><?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['filters']['title'];?>
+            <input size="77" type="text" placeholder="поиск по артикулу или названию товара" id="categorySearch" name="filters[title]" value="<?php if (isset($_smarty_tpl->tpl_vars['arrPageData']->value['filters']['title'])){?><?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['filters']['title'];?>
 <?php }?>" />
-        <button type="submit" class="buttons right" style="margin-top:0; margin-right:3px;"><?php echo @constant('SITE_FOUND');?>
+            <button type="submit" class="buttons right" style="margin-top:0; margin-right:3px;"><?php echo @constant('SITE_FOUND');?>
 </button>
-    </form>
-</div>
-<div class="clear"></div>
-<script type="text/javascript">
-<!--   
-    $(function() {
-        $('#categorySearch').autocomplete({
-            source: function(request, response) {
-                $.ajax({
-                    url: '/interactive/ajax.php',
-                    type: 'GET',
-                    dataType: 'json',
-                    data: {
-                        zone: 'admin',
-                        action: 'liveSearch',
-                        module: '<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['module'];?>
+        </form>
+    </div>
+    <div class="clear"></div>
+    <script type="text/javascript">
+        $(function(){
+            $('#categorySearch').autocomplete({
+                source: function(request, response){
+                    $.ajax({
+                        url: '/interactive/ajax.php',
+                        type: 'GET',
+                        dataType: 'json',
+                        data: {
+                            zone: 'admin',
+                            action: 'liveSearch',
+                            module: '<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['module'];?>
 ',
-                        cid: <?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['cid'];?>
+                            cid: <?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['cid'];?>
 ,
-                        searchStr: request.term
-                    }, 
-                    success: function(json) {
-                        response($.map(json.items, function(item) {
-                            return {
-                                label: item.title,
-                                value: item.title,
-                                category: item.ctitle
-                            }
-                        }));
-                    }
-                });
-            },
-            select: function(event, ui) {},
-            minLength: 2
+                            sort: '<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['sort'];?>
+',
+                            searchStr: request.term
+                        },
+                        success: function(json){
+                            response($.map(json.items, function(item) {
+                                return {
+                                    label: item.title + " " + item.pcode,
+                                    value: item.title + " " + item.pcode,
+                                    category: item.ctitle
+                                }
+                            }));
+                        }
+                    });
+                },
+                select: function(event, ui){},
+                minLength: 2
+            });
         });
-    });
-//-->
-</script>
+    </script>
 
     <form method="post" action="<?php echo ($_smarty_tpl->tpl_vars['arrPageData']->value['current_url']).("&task=reorderItems");?>
 " name="reorderItems">
         <table width="100%" border="0" cellspacing="1" cellpadding="0" class="list" id="operationTbl">
             <tr>
-                <td id="headb" align="center" width="12">
-                      </td>
+                <td id="headb" align="center" width="12"></td>
                 <td id="headb" align="center" width="38"></td>
-                <td id="headb" align="left"><?php echo @constant('HEAD_NAME');?>
-</td>
+                <td id="headb" align="left">
+                    <a class="sort-order <?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['sort']=="title_asc"){?>desc<?php }?>" href="<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['current_url'];?>
+&sort=title_<?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['sort']=="title_asc"){?>desc<?php }else{ ?>asc<?php }?>">
+                        <?php echo @constant('HEAD_NAME');?>
+
+                    </a>
+                </td>
 <?php if (!$_smarty_tpl->tpl_vars['arrPageData']->value['cid']){?>
-                <td id="headb" align="center" width="120"><?php echo @constant('HEAD_CATEGORY');?>
-</td>
+                <td id="headb" align="center" width="120">
+                    <a class="sort-order <?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['sort']=="category_asc"){?>desc<?php }?>" href="<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['current_url'];?>
+&sort=category_<?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['sort']=="category_asc"){?>desc<?php }else{ ?>asc<?php }?>">
+                        <?php echo @constant('HEAD_CATEGORY');?>
+
+                    </a>
+                </td>
 <?php }?>
                 <td id="headb" class="hidden" align="center" width="95"><?php echo @constant('HEAD_DATE_ADDED');?>
 </td>
-<?php  $_smarty_tpl->tpl_vars['title'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['title']->_loop = false;
- $_from = $_smarty_tpl->tpl_vars['PHPHelper']->value->SELECTIONS; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
-foreach ($_from as $_smarty_tpl->tpl_vars['title']->key => $_smarty_tpl->tpl_vars['title']->value){
-$_smarty_tpl->tpl_vars['title']->_loop = true;
-?>
-                <td id="headb" class="hidden" align="center" width="15"><?php echo $_smarty_tpl->tpl_vars['title']->value;?>
-</td>
-<?php } ?>
-                <td id="headb" align="center" width="62"><?php echo @constant('HEAD_PRICE');?>
-</td>
-                <td id="headb" align="center" width="38"><?php echo @constant('HEAD_SORT');?>
-</td>
+                <td id="headb" align="center" width="62">
+                    <a class="sort-order <?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['sort']=="price_asc"){?>desc<?php }?>" href="<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['current_url'];?>
+&sort=price_<?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['sort']=="price_asc"){?>desc<?php }else{ ?>asc<?php }?>">
+                        <?php echo @constant('HEAD_PRICE');?>
+
+                    </a>
+                </td>
+                <td id="headb" align="center" width="45">
+                    <a class="sort-order <?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['sort']=="order_asc"){?>desc<?php }?>" href="<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['current_url'];?>
+&sort=order_<?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['sort']=="order_asc"){?>desc<?php }else{ ?>asc<?php }?>">
+                        <?php echo @constant('HEAD_SORT');?>
+
+                    </a>
+                </td>
                 <td id="headb" align="center" width="38"><?php echo @constant('HEAD_EDIT');?>
 </td>
                 <td id="headb" align="center" width="38"><?php echo @constant('HEAD_DELETE');?>
@@ -1369,38 +1376,37 @@ un_check.png" alt="<?php echo @constant('HEAD_PUBLISH');?>
 <?php }?>
                 </td>
                 <td>
-                    <?php if ($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['isshortcut']){?>
-                        <a style="position:relative; z-index:10" href="/admin.php?module=shortcuts&task=editItem&itemID=<?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['shortcutID'];?>
+<?php if ($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['isshortcut']){?>
+                    <a style="position:relative; z-index:10" href="/admin.php?module=shortcuts&task=editItem&itemID=<?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['shortcutID'];?>
 ">
-                            <?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['title'];?>
+                        <?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['title'];?>
  
-                        </a>
-                        <a target="_blank" style="position:relative" href="<?php echo ((($_smarty_tpl->tpl_vars['arrPageData']->value['current_url']).($_smarty_tpl->tpl_vars['arrPageData']->value['filter_url'])).("&task=editItem&itemID=")).($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id']);?>
+                    </a>
+                    <a target="_blank" style="position:relative" href="<?php echo ((($_smarty_tpl->tpl_vars['arrPageData']->value['current_url']).($_smarty_tpl->tpl_vars['arrPageData']->value['filter_url'])).("&task=editItem&itemID=")).($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id']);?>
 ">
-                            <img style="position: absolute; right: -15px; top: -30px;" src="<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['system_images'];?>
+                        <img style="position: absolute; right: -15px; top: -30px;" src="<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['system_images'];?>
 shortcut.png" />
-                        </a>
-                    <?php }else{ ?>
-                        <a href="<?php echo ((($_smarty_tpl->tpl_vars['arrPageData']->value['current_url']).($_smarty_tpl->tpl_vars['arrPageData']->value['filter_url'])).("&task=editItem&itemID=")).($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id']);?>
+                    </a>
+<?php }else{ ?>
+                    <a href="<?php echo ((($_smarty_tpl->tpl_vars['arrPageData']->value['current_url']).($_smarty_tpl->tpl_vars['arrPageData']->value['filter_url'])).("&task=editItem&itemID=")).($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id']);?>
 "><?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['title'];?>
 <?php if ($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['pcode']){?>, (<?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['pcode'];?>
 )<?php }?></a>
-                    <?php }?>
+<?php }?>
                 </td>
 <?php if (!$_smarty_tpl->tpl_vars['arrPageData']->value['cid']){?>
-                <td align="left"><?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['cat_title'];?>
+                <td align="center"><?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['cat_title'];?>
 </td>
 <?php }?>
-       
                 <td align="center"> 
-                    <?php if ($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['isshortcut']){?>
-                        <?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['price'];?>
+<?php if ($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['isshortcut']){?>
+                    <?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['price'];?>
 
-                    <?php }else{ ?>
-                        <input type="text" size="7" value="<?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['price'];?>
+<?php }else{ ?>
+                    <input type="text" size="7" value="<?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['price'];?>
 " name="arPrices[<?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id'];?>
 ]"/>
-                    <?php }?>
+<?php }?>
                 </td>
                 <td align="center"><input type="text" name="<?php if ($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['isshortcut']){?>arShortcutsOrder[<?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['shortcutID'];?>
 ]<?php }else{ ?>arOrder[<?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id'];?>
@@ -1418,7 +1424,6 @@ edit.png" alt="<?php echo @constant('LABEL_EDIT');?>
 " />
                     </a>
                 </td>
-              
                 <td align="center">
                     <a href="<?php if ($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['isshortcut']){?>/admin.php?module=shortcuts&task=deleteItem&itemID=<?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['shortcutID'];?>
 <?php }else{ ?><?php echo ((($_smarty_tpl->tpl_vars['arrPageData']->value['current_url']).($_smarty_tpl->tpl_vars['arrPageData']->value['filter_url'])).("&task=deleteItem&itemID=")).($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id']);?>
@@ -1433,54 +1438,53 @@ delete.png" alt="<?php echo @constant('LABEL_DELETE');?>
                 </td>
             </tr>
 <?php endfor; endif; ?>
-    </table>
+        </table>
 
-    <table width="100%" border="0" cellspacing="1" cellpadding="0">
-        <tr>
-            <td width="107" align="left" style="padding:6px">
-                <input type="checkbox" value="0" class="checkboxes check_all" onchange="SelectCheckBox(this);"/> ќтметить все &nbsp;
-            </td>
-            <td width="155">
-                
-                <div class="dropDown" style="display:none;">
-                    C отмеченными
-                    <ul>
-                        <li data-val="publish" onclick="$(this).parent().parent().find('input').val($(this).data('val')); $(this).closest('form').submit();">
-                            <img src="/images/operation/check.png"/>&nbsp;&nbsp;опубликовать
-                        </li>
-                        <li data-val="unpublish" onclick="$(this).parent().parent().find('input').val($(this).data('val')); $(this).closest('form').submit();">
-                            <img src="/images/operation/un_check.png"/>&nbsp;&nbsp;не публиковать
-                        </li>
-                        <li data-val="delete" onclick="$(this).parent().parent().find('input').val($(this).data('val')); $(this).closest('form').submit();">
-                            <img src="/images/operation/delete.png"/>&nbsp;&nbsp;удалить
-                        </li>
-                    </ul>
-                    <input type="hidden" name="allitems" value=""/>
-                </div>
-            </td>
-            <td align="center" width="350">
-                <?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['total_pages']>1){?>
+        <table width="100%" border="0" cellspacing="1" cellpadding="0">
+            <tr>
+                <td width="107" align="left" style="padding:6px">
+                    <input type="checkbox" value="0" class="checkboxes check_all" onchange="SelectCheckBox(this);"/> ќтметить все &nbsp;
+                </td>
+                <td width="155">
+                    <div class="dropDown" style="display:none;">
+                        C отмеченными
+                        <ul>
+                            <li data-val="publish" onclick="$(this).parent().parent().find('input').val($(this).data('val')); $(this).closest('form').submit();">
+                                <img src="/images/operation/check.png"/>&nbsp;&nbsp;опубликовать
+                            </li>
+                            <li data-val="unpublish" onclick="$(this).parent().parent().find('input').val($(this).data('val')); $(this).closest('form').submit();">
+                                <img src="/images/operation/un_check.png"/>&nbsp;&nbsp;не публиковать
+                            </li>
+                            <li data-val="delete" onclick="$(this).parent().parent().find('input').val($(this).data('val')); $(this).closest('form').submit();">
+                                <img src="/images/operation/delete.png"/>&nbsp;&nbsp;удалить
+                            </li>
+                        </ul>
+                        <input type="hidden" name="allitems" value=""/>
+                    </div>
+                </td>
+                <td align="center" width="350">
+<?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['total_pages']>1){?>
                     <!-- ++++++++++ Start PAGER ++++++++++++++++++++++++++++++++++++++++++++++++ -->
                     <?php echo $_smarty_tpl->getSubTemplate ('common/pager.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('arrPager'=>$_smarty_tpl->tpl_vars['arrPageData']->value['pager'],'page'=>$_smarty_tpl->tpl_vars['arrPageData']->value['page'],'showTitle'=>0,'showFirstLast'=>0,'showPrevNext'=>0), 0);?>
 
                     <!-- ++++++++++ End PAGER ++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-                <?php }?>
-            </td>
-            <td align="right">
-                <input name="submit_order" class="buttons" type="submit" value="<?php echo @constant('BUTTON_APPLY');?>
+<?php }?>
+                </td>
+                <td align="right">
+                    <input name="submit_order" class="buttons" type="submit" value="<?php echo @constant('BUTTON_APPLY');?>
 " />
-            </td>
-        </tr>
-        <tr>
-            <td align="left" colspan="3">&nbsp;Ёкспорт всех товаров: &nbsp;
-                <a href="<?php echo ($_smarty_tpl->tpl_vars['arrPageData']->value['current_url']).("&task=exportToCsv");?>
+                </td>
+            </tr>
+            <tr>
+                <td align="left" colspan="3">&nbsp;Ёкспорт всех товаров: &nbsp;
+                    <a href="<?php echo ($_smarty_tpl->tpl_vars['arrPageData']->value['current_url']).("&task=exportToCsv");?>
 ">CSV</a>, 
-                <a href="<?php echo ($_smarty_tpl->tpl_vars['arrPageData']->value['current_url']).("&task=exportToYml");?>
+                    <a href="<?php echo ($_smarty_tpl->tpl_vars['arrPageData']->value['current_url']).("&task=exportToYml");?>
 ">YML</a>
-            </td>
-        </tr>
-    </table>
-</form>
+                </td>
+            </tr>
+        </table>
+    </form>
 <?php }?>
 </div>
 <?php }} ?>

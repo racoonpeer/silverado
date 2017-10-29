@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-10-22 22:50:50
+<?php /* Smarty version Smarty-3.1.14, created on 2017-10-23 23:14:23
          compiled from "tpl/frontend/smart/ajax/control_sort.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:8577234459e658e1494d23-07317045%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '69da89e3188dc902fefa4affa2688d336057cbc6' => 
     array (
       0 => 'tpl/frontend/smart/ajax/control_sort.tpl',
-      1 => 1508701413,
+      1 => 1508789624,
       2 => 'file',
     ),
   ),
@@ -28,7 +28,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <div class="pull-left sort" id="control_sort">
     <label>
         <span>сортировка:</span>
-        <select onchange="AjaxUpdatePage(this.value);">
+        <select onchange="forceUpdatePage(this.value);">
 <?php  $_smarty_tpl->tpl_vars['sorting'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['sorting']->_loop = false;
  $_smarty_tpl->tpl_vars['sortID'] = new Smarty_Variable;
  $_from = $_smarty_tpl->tpl_vars['arrPageData']->value['arSorting']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}

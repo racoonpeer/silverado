@@ -232,6 +232,7 @@ if ($itemID and $item = getSimpleItemRow($itemID, CATALOG_TABLE) and !empty($ite
         $json = array(
             "products"         => $smarty->fetch("ajax/products.tpl"),
             "filters"          => $smarty->fetch("ajax/filter.tpl"),
+            "filters_popup"    => $smarty->fetch("ajax/filter-popup.tpl"),
             "breadcrumbs"      => $smarty->fetch("core/breadcrumb.tpl"),
             "selected_filters" => $smarty->fetch("ajax/selected_filters.tpl"),
             "control_filter"   => $smarty->fetch("ajax/control_filter.tpl"),

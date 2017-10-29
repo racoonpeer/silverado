@@ -210,7 +210,7 @@ and open the template in the editor.
                 width: 100%;
                 @include breakpoint(390){
                     width: auto;
-                    height: 270px;
+                    height: 240px;
                     display: inline-block;
                 }
             }
@@ -587,6 +587,19 @@ and open the template in the editor.
     padding-bottom: 40px;
     border: 1px solid #e7e7e7;
     text-align: center;
+    @include breakpoint(960){
+        margin-top: 40px;
+        padding-top: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+    }
+    @include breakpoint(640){
+        padding-left: 0;
+        padding-right: 0;
+        border-left: none;
+        border-right: none;
+    }
     .h2 {
         font-weight: 300;
         padding-left: 7px;
@@ -611,77 +624,147 @@ and open the template in the editor.
             padding-left: 40px;
             padding-right: 40px;
         }
+        @include breakpoint(960){
+            padding-left: 0;
+            padding-right: 0;
+        }
     }
     .product-set-block {
         display: flex;
         vertical-align: top;
         justify-content: center;
         align-content: center;
+        @include breakpoint(960){
+            flex-direction: column;
+            align-content: center;
+            align-items: center;
+        }
         .product-set-items {
             overflow: hidden;
             .swiper-container {
-                padding-top: 10px;
-                padding-bottom: 25px;
+                padding-top: 0;
+                padding-bottom: 0;
                 .swiper-wrapper {
                     .product-set-item {
-                        text-align: left;
+                        min-width: 300px;
+                        padding-top: 20px;
+                        padding-left: 20px;
+                        padding-right: 20px;
+                        padding-bottom: 20px;
+                        text-align: center;
                         position: relative;
-                        + .product-set-item {
-                            margin-left: 64px;
-                            @include breakpoint(1280){
-                                margin-left: 40px;
+                        @include breakpoint(700){
+                            min-width: 240px;
+                            max-width: 50%;
+                        }
+                        @include breakpoint(540){
+                            min-width: 200px;
+                        }
+                        @include breakpoint(450){
+                            min-width: 140px;
+                        }
+                        &:first-child {
+                            @include breakpoint(700){
+                                padding-left: 0;
+                                padding-right: 10px;
+                            }
+                            @include breakpoint(450){
+                                padding-right: 0;
                             }
                         }
                         &:not(:first-child) {
+                            @include breakpoint(700){
+                                padding-left: 10px; 
+                                padding-right: 0; 
+                            }
+                            @include breakpoint(450){
+                                padding-left: 0; 
+                            }
                             &:before {
                                 display: block;
                                 position: absolute;
-                                top: 24px;
-                                left: -46px;
-                                font-size: 40px;
-                                line-height: 35px;
-                                color: #808c99;
+                                top: 30px;
+                                left: 0;
+                                bottom: 30px;
+                                width: 1px;
+                                background-color: $lite-grey;
+                                content: "";
+                                @include breakpoint(450){
+                                    content: none;
+                                }
+                            }
+                            &:after {
+                                display: block;
+                                position: absolute;
+                                top: 50%;
+                                margin-top: -17px;
+                                left: -17px;
+                                font-size: 2.9rem;
+                                line-height: 3.4rem;
+                                font-weight: 300;
+                                color: $dark-grey;
                                 content: "+";
-                                @include breakpoint(1280){
-                                    left: -34px;
+                                width: 35px;
+                                height: 35px;
+                                border: 1px solid $lite-grey;
+                                background-color: $white;
+                                @include border-radius(50%);
+                                @include breakpoint(450){
+                                    top: 33%;
                                 }
                             }
                         }
                         .product-set-item-image {
-                            float: left;
-                            width: 80px;
-                            height: 80px;
-                            border: 1px solid #e7e7e7;
+                            text-align: center;
+                            overflow: hidden;
+                            margin-bottom: 15px;
+                            position: relative;
                             img {
                                 vertical-align: top;
                                 max-width: 100%;
+                                margin-left: auto;
+                                margin-right: auto;
                             }
                         }
                         .product-set-item-info {
-                            margin-left: 96px;
-                            min-width: 194px;
                             .product-set-item-title {
-                                font-size: 1.4rem;
-                                line-height: 2.1rem;
+                                position: relative;
+                                letter-spacing: 0.6px;
+                                font-weight: 400;
+                                font-size: 1.2rem;
+                                line-height: 1.5;
                                 text-transform: uppercase;
+                                margin-bottom: 13px;
+                                @include breakpoint(700){
+                                    text-transform: none;
+                                    margin-bottom: 10px;
+                                }
+                                @include breakpoint(640){
+                                    line-height: 1.4;
+                                }
                                 a {
                                     text-decoration: none;
-                                    color: $purple;
+                                    color: inherit;
                                     &:hover {
-                                        color: $lite-purple;
+                                        color: $purple;
                                     }
                                 }
                             }
                             .product-set-item-price {
-                                margin-top: 9px;
-                                font-size: 1.4rem;
-                                white-space: nowrap;
+                                position: relative;
+                                font-size: 1.6rem;
+                                @include breakpoint(480){
+                                    font-size: 1.4rem;
+                                }
                                 &:after {
+                                    font-size: 1.3rem;
                                     content: "грн.";
+                                    @include breakpoint(480){
+                                        font-size: 1.2rem;
+                                    }
                                 }
                                 strong {
-                                    font-size: 1.6rem;
-                                    font-weight: 500;
+                                    font-weight: inherit;
                                 }
                             }
                         }
@@ -731,24 +814,43 @@ and open the template in the editor.
         .product-set-summary {
             width: 300px;
             min-width: 300px;
-            padding-left: 64px;
+            padding-left: 37px;
+            padding-bottom: 8px;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            align-content: center;
+            align-self: center;
+            z-index: 1;
             @include breakpoint(1280){
-                padding-left: 40px;
                 width: 270px;
                 min-width: 270px;
+            }
+            @include breakpoint(960){
+                padding-left: 0;
+                padding-bottom: 0;
+                padding-top: 64px;
             }
             &:before {
                 display: block;
                 position: absolute;
-                left: 9px;
+                left: -17px;
                 top: 34px;
-                font-size: 40px;
-                line-height: 35px;
-                color: #808c99;
+                font-size: 2.9rem;
+                line-height: 3.4rem;
+                font-weight: 300;
+                color: $dark-grey;
                 content: "=";
-                @include breakpoint(1280){
-                    left: 3px;
+                width: 35px;
+                height: 35px;
+                border: 1px solid $lite-grey;
+                background-color: $white;
+                @include border-radius(50%);
+                @include breakpoint(960){
+                    left: 50%;
+                    margin-left: -17px;
+                    top: 10px;
                 }
             }
             .price {

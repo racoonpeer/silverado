@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-10-22 22:54:51
+<?php /* Smarty version Smarty-3.1.14, created on 2017-10-23 23:14:22
          compiled from "tpl/frontend/smart/ajax/filter.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:124766502859e658e16ef706-17030955%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a897f165b7a2bee4fc0f2436dd6a52d23db6221a' => 
     array (
       0 => 'tpl/frontend/smart/ajax/filter.tpl',
-      1 => 1508702083,
+      1 => 1508789648,
       2 => 'file',
     ),
   ),
@@ -19,15 +19,23 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'unifunc' => 'content_59e658e199b8e6_52078073',
   'variables' => 
   array (
+    'mobile' => 0,
     'arrPageData' => 0,
     'filter' => 0,
+    'prefix' => 0,
     'filterID' => 0,
     'arKey' => 0,
     'arItem' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_59e658e199b8e6_52078073')) {function content_59e658e199b8e6_52078073($_smarty_tpl) {?><div class="filters">
+<?php if ($_valid && !is_callable('content_59e658e199b8e6_52078073')) {function content_59e658e199b8e6_52078073($_smarty_tpl) {?><?php if (!isset($_smarty_tpl->tpl_vars['mobile']->value)){?><?php $_smarty_tpl->tpl_vars["mobile"] = new Smarty_variable(false, null, 0);?><?php }?>
+<?php if ($_smarty_tpl->tpl_vars['mobile']->value){?>
+<?php $_smarty_tpl->tpl_vars["prefix"] = new Smarty_variable("mobile_", null, 0);?>
+<?php }else{ ?>
+<?php $_smarty_tpl->tpl_vars["prefix"] = new Smarty_variable('', null, 0);?>
+<?php }?>
+<div class="filters">
 <?php  $_smarty_tpl->tpl_vars['filter'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['filter']->_loop = false;
  $_smarty_tpl->tpl_vars['filterID'] = new Smarty_Variable;
  $_from = $_smarty_tpl->tpl_vars['arrPageData']->value['filters']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
@@ -36,27 +44,43 @@ $_smarty_tpl->tpl_vars['filter']->_loop = true;
  $_smarty_tpl->tpl_vars['filterID']->value = $_smarty_tpl->tpl_vars['filter']->key;
 ?>
 <?php if (!empty($_smarty_tpl->tpl_vars['filter']->value['children'])){?>
-    <div class="section <?php if ($_smarty_tpl->tpl_vars['filter']->value['type']=='price'){?>price-filter<?php }?>" id="filter_<?php echo $_smarty_tpl->tpl_vars['filterID']->value;?>
+    <div class="section <?php if ($_smarty_tpl->tpl_vars['filter']->value['type']=='price'){?>price-filter<?php }?>" id="<?php echo $_smarty_tpl->tpl_vars['prefix']->value;?>
+filter_<?php echo $_smarty_tpl->tpl_vars['filterID']->value;?>
 ">
-        <h4><?php echo $_smarty_tpl->tpl_vars['filter']->value['title'];?>
-</h4>
+        <div class="h4" onclick=""><?php echo $_smarty_tpl->tpl_vars['filter']->value['title'];?>
+</div>
 
 <?php if ($_smarty_tpl->tpl_vars['filter']->value['type']=='price'){?>
         <div class="price-slider">
-            <div id="slider_range" data-url="<?php echo $_smarty_tpl->tpl_vars['filter']->value['children']['url'];?>
+            <div id="<?php echo $_smarty_tpl->tpl_vars['prefix']->value;?>
+slider_range" data-url="<?php echo $_smarty_tpl->tpl_vars['filter']->value['children']['url'];?>
 " data-masks="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['filter']->value['children']['masks'], ENT_QUOTES, 'UTF-8', true);?>
 " data-selected="<?php if ($_smarty_tpl->tpl_vars['filter']->value['children']['selected']['min']||$_smarty_tpl->tpl_vars['filter']->value['children']['selected']['max']){?>1<?php }else{ ?>0<?php }?>"></div>
         </div>
-        <p><span id="slider_min">0</span> - <span id="slider_max">450</span> грн</p>
+        <p>
+            <span id="<?php echo $_smarty_tpl->tpl_vars['prefix']->value;?>
+slider_min"><?php if ($_smarty_tpl->tpl_vars['filter']->value['children']['selected']['min']){?><?php echo round($_smarty_tpl->tpl_vars['filter']->value['children']['selected']['min']);?>
+<?php }else{ ?><?php echo round($_smarty_tpl->tpl_vars['filter']->value['children']['min']);?>
+<?php }?></span> - 
+            <span id="<?php echo $_smarty_tpl->tpl_vars['prefix']->value;?>
+slider_max"><?php if ($_smarty_tpl->tpl_vars['filter']->value['children']['selected']['max']){?><?php echo round($_smarty_tpl->tpl_vars['filter']->value['children']['selected']['max']);?>
+<?php }else{ ?><?php echo round($_smarty_tpl->tpl_vars['filter']->value['children']['max']);?>
+<?php }?></span> грн
+        </p>
         <script type="text/javascript">
-            initPriceSlider(100);
-            function initPriceSlider (timeout) {
+            <?php echo $_smarty_tpl->tpl_vars['prefix']->value;?>
+initPriceSlider(100);
+            function <?php echo $_smarty_tpl->tpl_vars['prefix']->value;?>
+initPriceSlider (timeout) {
                 timeout = timeout||100;
                 if (typeof jQuery != "undefined" && typeof noUiSlider != "undefined") {
                     // Price range slider
-                    var slider_range = document.getElementById("slider_range"),
-                        slider_min   = document.getElementById("slider_min"),
-                        slider_max   = document.getElementById("slider_max");
+                    var slider_range = document.getElementById("<?php echo $_smarty_tpl->tpl_vars['prefix']->value;?>
+slider_range"),
+                        slider_min   = document.getElementById("<?php echo $_smarty_tpl->tpl_vars['prefix']->value;?>
+slider_min"),
+                        slider_max   = document.getElementById("<?php echo $_smarty_tpl->tpl_vars['prefix']->value;?>
+slider_max");
                     noUiSlider.create(slider_range, {
                         start: [
                             <?php if ($_smarty_tpl->tpl_vars['filter']->value['children']['selected']['min']){?><?php echo round($_smarty_tpl->tpl_vars['filter']->value['children']['selected']['min']);?>
@@ -66,30 +90,32 @@ $_smarty_tpl->tpl_vars['filter']->_loop = true;
 <?php }else{ ?><?php echo round($_smarty_tpl->tpl_vars['filter']->value['children']['max']);?>
 <?php }?>
                         ],
-                        connect: true,
                         range: {
                             min: parseInt(<?php echo round($_smarty_tpl->tpl_vars['filter']->value['children']['min']);?>
 ),
                             max: parseInt(<?php echo round($_smarty_tpl->tpl_vars['filter']->value['children']['max']);?>
 )
-                        }
+                        },
+                        connect: true
                     });
                     slider_range.noUiSlider.on("update", function (values, handle) {
                         var value = values[handle];
-                        if (handle) {
-                            slider_max.innerText = Math.ceil(value);
-                        } else {
-                            slider_min.innerText = Math.floor(value);
-                        }
+                        if (handle) slider_max.innerText = Math.ceil(value);
+                        else slider_min.innerText = Math.floor(value);
                     });
                     slider_range.noUiSlider.on("change", function () {
-                        AjaxUpdatePage(createPriceUrl($(slider_range)));
+                        forceUpdatePage(<?php echo $_smarty_tpl->tpl_vars['prefix']->value;?>
+createPriceUrl($(slider_range)));
                     });
-                } else setTimeout("initPriceSlider", timeout);
+                } else setTimeout("<?php echo $_smarty_tpl->tpl_vars['prefix']->value;?>
+initPriceSlider", timeout);
             }
-            function createPriceUrl(obj) {
-                var slider_min = document.getElementById("slider_min"),
-                    slider_max = document.getElementById("slider_max"),
+            function <?php echo $_smarty_tpl->tpl_vars['prefix']->value;?>
+createPriceUrl(obj) {
+                var slider_min = document.getElementById("<?php echo $_smarty_tpl->tpl_vars['prefix']->value;?>
+slider_min"),
+                    slider_max = document.getElementById("<?php echo $_smarty_tpl->tpl_vars['prefix']->value;?>
+slider_max"),
                     masks      = obj.data('masks'),
                     url        = decodeURIComponent(obj.data('url')),
                     min        = parseInt(slider_min.innerHTML),

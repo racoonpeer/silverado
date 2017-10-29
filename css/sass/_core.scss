@@ -409,12 +409,12 @@ h4,
         }
     }
     &.btn-link {
-        color: $dark-grey;
+        color: $deep-grey;
         background-color: rgba(255,255,255,0.5);
         border-color: $dark-grey;
         &:hover {
             color: $purple;
-            border-color: $purple;
+            border-color: $deep-purple;
         }
     }
 }

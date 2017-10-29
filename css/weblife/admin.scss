@@ -1522,3 +1522,25 @@ ul.inline li{
     background-color: rgba(255,255,255,0.5);
     z-index: 99;
 }
+
+.sort-order {
+    &:after {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 3px;
+        width: 9px;
+        height: 7px;
+        background-image: url(/images/operation/desc.png);
+        background-repeat: no-repeat;
+        content: "";
+    }
+    .desc {
+        &:after {
+            -webkit-transform: rotate(-180deg);
+            -moz-transform: rotate(-180deg);
+            -ms-transform: rotate(-180deg);
+            -o-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+        }
+    }
+}

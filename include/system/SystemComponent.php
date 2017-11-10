@@ -13,7 +13,7 @@ defined('WEBlife') or die( 'Restricted access' ); // no direct access
  */
 class SystemComponent {
     const WLCMS_INSTALLED = true;  //IF Your site work OK You must set this parameter to true. If you copy to another hosting - set to false for change folders/files permissions automaticaly
-    private static function initDBSettings() { //Put your site DB Connection data here
+    public static function initDBSettings() { //Put your site DB Connection data here
         return getenv('IS_DEV') ? array(
             "dbhost"     => "localhost",
             "dbusername" => "root",

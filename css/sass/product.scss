@@ -202,7 +202,7 @@ and open the template in the editor.
     .screen {
         text-align: center;
         @include breakpoint(390){
-            height: 270px;
+            height: 240px;
         }
         img {
             vertical-align: top;

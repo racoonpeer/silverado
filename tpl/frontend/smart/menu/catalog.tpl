@@ -2,7 +2,7 @@
 <ul class="main-menu">
 <{section name=i loop=$arItems}>
     <li>
-        <a href="<{include file='core/href.tpl' arCategory=$arItems[i]}>" class="<{if !$arItems[i].essential}>bold<{/if}>"><{$arItems[i].title}></a>
+        <a href="<{include file='core/href.tpl' arCategory=$arItems[i]}>" class="<{if !$arItems[i].essential}>bold<{/if}> <{if $arItems[i].opened}>current<{/if}>"><{$arItems[i].title}></a>
 <{if !empty($arItems[i].subcategories)}>
         <div class="dropdown">
             <div class="container">

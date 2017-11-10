@@ -386,7 +386,35 @@ CREATE TABLE `stocks_related` (
   KEY `idx_rid` (`rid`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=cp1251 COMMENT='Stocks relations';
 -- ----------------------------------------------------------------------------- сделано
-
+-- np_city ---------------------------------------------------------------------
+DROP TABLE IF EXISTS `np_city`;
+CREATE TABLE IF NOT EXISTS `np_city` (
+    `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+    `city_id` int(11) NOT NULL DEFAULT '0',
+    `ref` varchar(255) NOT NULL DEFAULT '',
+    `title_ua` varchar(255) NOT NULL DEFAULT '',
+    `title_ru` varchar(255) NOT NULL DEFAULT '',
+    `area` varchar(255) NOT NULL DEFAULT '',
+    `settlement_ua` varchar(255) NOT NULL DEFAULT '',
+    `settlement_ru` varchar(255) NOT NULL DEFAULT '',
+    PRIMARY KEY (`id`),
+    KEY `idx_ref` (`ref`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=cp1251;
+-- np_warehouse ----------------------------------------------------------------
+DROP TABLE IF EXISTS `np_warehouse`;
+CREATE TABLE IF NOT EXISTS `np_warehouse` (
+    `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+    `ref` varchar(255) NOT NULL DEFAULT '',
+    `type` varchar(255) NOT NULL DEFAULT '',
+    `number` int(11) NOT NULL DEFAULT '0',
+    `title_ua` varchar(255) NOT NULL DEFAULT '',
+    `title_ru` varchar(255) NOT NULL DEFAULT '',
+    `city_ref` varchar(255) NOT NULL DEFAULT '',
+    `city_title_ua` varchar(255) NOT NULL DEFAULT '',
+    `city_title_ru` varchar(255) NOT NULL DEFAULT '',
+    PRIMARY KEY (`id`),
+    KEY `idx_ref` (`city_ref`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=cp1251;
 
 
 -- -----------------------------------------------------------------------------

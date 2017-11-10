@@ -89,9 +89,71 @@
                 <file localPath="js/libs/history.js/uncompressed/json2.js" path="uncompressed/json2.js"/>
                 <file localPath="js/libs/history.js/uncompressed/json2.min.js" path="uncompressed/json2.min.js"/>
             </library>
-            <library name="jquery-zoom" version="1.7.19">
+            <library name="jquery-zoom" version="1.7.20">
                 <file localPath="js/libs/jquery-zoom/jquery.zoom.js" path="jquery.zoom.js"/>
                 <file localPath="js/libs/jquery-zoom/jquery.zoom.min.js" path="jquery.zoom.min.js"/>
+            </library>
+            <library name="select2" version="4.0.5">
+                <file localPath="js/libs/select2/css/select2.css" path="css/select2.css"/>
+                <file localPath="js/libs/select2/css/select2.min.css" path="css/select2.min.css"/>
+                <file localPath="js/libs/select2/js/i18n/af.js" path="js/i18n/af.js"/>
+                <file localPath="js/libs/select2/js/i18n/ar.js" path="js/i18n/ar.js"/>
+                <file localPath="js/libs/select2/js/i18n/az.js" path="js/i18n/az.js"/>
+                <file localPath="js/libs/select2/js/i18n/bg.js" path="js/i18n/bg.js"/>
+                <file localPath="js/libs/select2/js/i18n/bs.js" path="js/i18n/bs.js"/>
+                <file localPath="js/libs/select2/js/i18n/ca.js" path="js/i18n/ca.js"/>
+                <file localPath="js/libs/select2/js/i18n/cs.js" path="js/i18n/cs.js"/>
+                <file localPath="js/libs/select2/js/i18n/da.js" path="js/i18n/da.js"/>
+                <file localPath="js/libs/select2/js/i18n/de.js" path="js/i18n/de.js"/>
+                <file localPath="js/libs/select2/js/i18n/dsb.js" path="js/i18n/dsb.js"/>
+                <file localPath="js/libs/select2/js/i18n/el.js" path="js/i18n/el.js"/>
+                <file localPath="js/libs/select2/js/i18n/en.js" path="js/i18n/en.js"/>
+                <file localPath="js/libs/select2/js/i18n/es.js" path="js/i18n/es.js"/>
+                <file localPath="js/libs/select2/js/i18n/et.js" path="js/i18n/et.js"/>
+                <file localPath="js/libs/select2/js/i18n/eu.js" path="js/i18n/eu.js"/>
+                <file localPath="js/libs/select2/js/i18n/fa.js" path="js/i18n/fa.js"/>
+                <file localPath="js/libs/select2/js/i18n/fi.js" path="js/i18n/fi.js"/>
+                <file localPath="js/libs/select2/js/i18n/fr.js" path="js/i18n/fr.js"/>
+                <file localPath="js/libs/select2/js/i18n/gl.js" path="js/i18n/gl.js"/>
+                <file localPath="js/libs/select2/js/i18n/he.js" path="js/i18n/he.js"/>
+                <file localPath="js/libs/select2/js/i18n/hi.js" path="js/i18n/hi.js"/>
+                <file localPath="js/libs/select2/js/i18n/hr.js" path="js/i18n/hr.js"/>
+                <file localPath="js/libs/select2/js/i18n/hsb.js" path="js/i18n/hsb.js"/>
+                <file localPath="js/libs/select2/js/i18n/hu.js" path="js/i18n/hu.js"/>
+                <file localPath="js/libs/select2/js/i18n/hy.js" path="js/i18n/hy.js"/>
+                <file localPath="js/libs/select2/js/i18n/id.js" path="js/i18n/id.js"/>
+                <file localPath="js/libs/select2/js/i18n/is.js" path="js/i18n/is.js"/>
+                <file localPath="js/libs/select2/js/i18n/it.js" path="js/i18n/it.js"/>
+                <file localPath="js/libs/select2/js/i18n/ja.js" path="js/i18n/ja.js"/>
+                <file localPath="js/libs/select2/js/i18n/km.js" path="js/i18n/km.js"/>
+                <file localPath="js/libs/select2/js/i18n/ko.js" path="js/i18n/ko.js"/>
+                <file localPath="js/libs/select2/js/i18n/lt.js" path="js/i18n/lt.js"/>
+                <file localPath="js/libs/select2/js/i18n/lv.js" path="js/i18n/lv.js"/>
+                <file localPath="js/libs/select2/js/i18n/mk.js" path="js/i18n/mk.js"/>
+                <file localPath="js/libs/select2/js/i18n/ms.js" path="js/i18n/ms.js"/>
+                <file localPath="js/libs/select2/js/i18n/nb.js" path="js/i18n/nb.js"/>
+                <file localPath="js/libs/select2/js/i18n/nl.js" path="js/i18n/nl.js"/>
+                <file localPath="js/libs/select2/js/i18n/pl.js" path="js/i18n/pl.js"/>
+                <file localPath="js/libs/select2/js/i18n/ps.js" path="js/i18n/ps.js"/>
+                <file localPath="js/libs/select2/js/i18n/pt-BR.js" path="js/i18n/pt-BR.js"/>
+                <file localPath="js/libs/select2/js/i18n/pt.js" path="js/i18n/pt.js"/>
+                <file localPath="js/libs/select2/js/i18n/ro.js" path="js/i18n/ro.js"/>
+                <file localPath="js/libs/select2/js/i18n/ru.js" path="js/i18n/ru.js"/>
+                <file localPath="js/libs/select2/js/i18n/sk.js" path="js/i18n/sk.js"/>
+                <file localPath="js/libs/select2/js/i18n/sl.js" path="js/i18n/sl.js"/>
+                <file localPath="js/libs/select2/js/i18n/sr-Cyrl.js" path="js/i18n/sr-Cyrl.js"/>
+                <file localPath="js/libs/select2/js/i18n/sr.js" path="js/i18n/sr.js"/>
+                <file localPath="js/libs/select2/js/i18n/sv.js" path="js/i18n/sv.js"/>
+                <file localPath="js/libs/select2/js/i18n/th.js" path="js/i18n/th.js"/>
+                <file localPath="js/libs/select2/js/i18n/tr.js" path="js/i18n/tr.js"/>
+                <file localPath="js/libs/select2/js/i18n/uk.js" path="js/i18n/uk.js"/>
+                <file localPath="js/libs/select2/js/i18n/vi.js" path="js/i18n/vi.js"/>
+                <file localPath="js/libs/select2/js/i18n/zh-CN.js" path="js/i18n/zh-CN.js"/>
+                <file localPath="js/libs/select2/js/i18n/zh-TW.js" path="js/i18n/zh-TW.js"/>
+                <file localPath="js/libs/select2/js/select2.full.js" path="js/select2.full.js"/>
+                <file localPath="js/libs/select2/js/select2.full.min.js" path="js/select2.full.min.js"/>
+                <file localPath="js/libs/select2/js/select2.js" path="js/select2.js"/>
+                <file localPath="js/libs/select2/js/select2.min.js" path="js/select2.min.js"/>
             </library>
         </libraries>
     </configuration>

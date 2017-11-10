@@ -152,7 +152,8 @@ and open the template in the editor.
                 color: $white;
                 text-align: center;
                 line-height: 1.6rem;
-                font-size: 8px;
+                font-size: 9px;
+                font-weight: 500;
                 right: 0;
                 margin-right: -12px;
                 top: 0;
@@ -201,6 +202,7 @@ and open the template in the editor.
                 }
             }
             &.clear-all {
+                font-weight: 500;
                 background-color: $purple;
                 color: $white;
                 border-color: $purple;

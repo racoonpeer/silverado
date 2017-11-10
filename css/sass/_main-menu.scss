@@ -41,10 +41,25 @@ and open the template in the editor.
             }
             &.bold,
             &:hover {
-                color: $purple;
+                color: $deep-purple;
             }
             &.bold {
-                font-weight: 700;
+                font-weight: 400;
+                &:hover {
+                    color: $peach;
+                }
+            }
+            &.current {
+                &:after {
+                    display: block;
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    height: 2px;
+                    background-color: $deep-grey;
+                    content: "";
+                }
             }
         }
         &:first-child {
@@ -127,10 +142,13 @@ and open the template in the editor.
                         color: inherit;
                         &.bold,
                         &:hover {
-                            color: $purple;
+                            color: $deep-purple;
                         }
                         &.bold {
                             font-weight: inherit;
+                            &:hover {
+                                color: $peach;
+                            }
                         }
                     }
                 }

@@ -45,7 +45,7 @@
     </div>
     <div class="buttons clearfix">
         <a href="<{include file="core/href.tpl" arCategory=$arrModules.checkout}>" class="btn btn-xl btn-danger btn-block">Оформить заказ</a><br/>
-        <a href="#" onclick="Basket.close();" class="btn btn-xl btn-link btn-block">Продолжить покупки</a>
+        <a href="#" onclick="Basket.close();" class="btn btn-l btn-link btn-block">Продолжить покупки</a>
     </div>
 </div>
 <{else}>

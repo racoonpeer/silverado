@@ -619,11 +619,15 @@ class Checkout {
     const P24_PAYMENT_ID    = 4;
     // Nova poshta API params
     const NP_API_URL        = "https://api.novaposhta.ua/v2.0/xml/";
-    const NP_API_KEY        = "ed08960dfbe1a44a9ac453f120c055a8";
+    const NP_API_KEY        = "f062bc6a40c2b014512a5030ae2a0e09";
 
     public function __construct () {
     }
     
+    public static function getInstance(){
+        return new Checkout();
+    }
+
     public static function getPaymentTypes () {
         $items = array();
         $query  = "SELECT * FROM `".PAYMENT_TYPES_TABLE."` WHERE `active`=1";
@@ -675,9 +679,10 @@ class Checkout {
                     if ($arrXML["success"]) {
                         foreach ($arrXML["data"]->item as $item) {
                             $items[] = array(
-                                "id"   => $item->CityID,
+                                "id"   => $item->Ref,
                                 "ref"  => $item->Ref,
-                                "name" => PHPHelper::dataConv($item->DescriptionRu, "utf-8", "windows-1251")
+                                "name" => PHPHelper::dataConv($item->DescriptionRu, "utf-8", "windows-1251"),
+                                "text" => PHPHelper::dataConv($item->DescriptionRu, "utf-8", "windows-1251")
                             );
                         }
                     }
@@ -701,7 +706,7 @@ class Checkout {
                     . "<modelName>Address</modelName>"
                     . "<calledMethod>getWarehouses</calledMethod>"
                     . "<methodProperties>"
-                    . (!empty($ref) ? "<CityRef>{$ref}</CityRef>" : !empty($name) ? "<CityName>{$name}</CityName>" : "")
+                    . (!empty($ref) ? "<CityRef>{$ref}</CityRef>" : "")
                     . "</methodProperties>"
                     . "</file>";
             $ch = curl_init();
@@ -721,9 +726,10 @@ class Checkout {
                     if ($arrXML["success"]) {
                         foreach ($arrXML["data"]->item as $item) {
                             $items[] = array(
-                                "city_ref"   => $item->CityRef,
+                                "city_ref" => $item->CityRef,
                                 "ref"  => $item->Ref,
-                                "name" => PHPHelper::dataConv($item->DescriptionRu, "utf-8", "windows-1251")
+                                "name" => PHPHelper::dataConv($item->DescriptionRu, "utf-8", "windows-1251"),
+                                "text" => PHPHelper::dataConv($item->DescriptionRu, "utf-8", "windows-1251")
                             );
                         }
                     }

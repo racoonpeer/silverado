@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-10-17 22:23:36
+<?php /* Smarty version Smarty-3.1.14, created on 2017-11-10 22:40:20
          compiled from "tpl/frontend/smart/menu/catalog.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:149087505659e658b87e13f4-02110722%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ba8f97739019c4264037a1458b8446e0230fde89' => 
     array (
       0 => 'tpl/frontend/smart/menu/catalog.tpl',
-      1 => 1508266895,
+      1 => 1510346416,
       2 => 'file',
     ),
   ),
@@ -15,14 +15,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_59e658b889f7b4_88208354',
   'variables' => 
   array (
     'marginLevel' => 0,
     'arItems' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_59e658b889f7b4_88208354',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_59e658b889f7b4_88208354')) {function content_59e658b889f7b4_88208354($_smarty_tpl) {?><?php if (!isset($_smarty_tpl->tpl_vars['marginLevel']->value)){?><?php $_smarty_tpl->tpl_vars['marginLevel'] = new Smarty_variable(0, null, 0);?><?php }?>
 <ul class="main-menu">
@@ -52,7 +52,7 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smart
 ?>
     <li>
         <a href="<?php echo $_smarty_tpl->getSubTemplate ('core/href.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('arCategory'=>$_smarty_tpl->tpl_vars['arItems']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]), 0);?>
-" class="<?php if (!$_smarty_tpl->tpl_vars['arItems']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['essential']){?>bold<?php }?>"><?php echo $_smarty_tpl->tpl_vars['arItems']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['title'];?>
+" class="<?php if (!$_smarty_tpl->tpl_vars['arItems']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['essential']){?>bold<?php }?> <?php if ($_smarty_tpl->tpl_vars['arItems']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['opened']){?>current<?php }?>"><?php echo $_smarty_tpl->tpl_vars['arItems']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['title'];?>
 </a>
 <?php if (!empty($_smarty_tpl->tpl_vars['arItems']->value[$_smarty_tpl->getVariable('smarty',null,true,false)->value['section']['i']['index']]['subcategories'])){?>
         <div class="dropdown">

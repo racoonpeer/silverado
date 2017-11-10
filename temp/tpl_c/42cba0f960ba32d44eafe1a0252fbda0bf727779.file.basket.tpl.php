@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-10-17 22:23:37
+<?php /* Smarty version Smarty-3.1.14, created on 2017-11-08 20:44:42
          compiled from "tpl/frontend/smart/ajax/basket.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:210399224059e658b929ba75-66380087%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '42cba0f960ba32d44eafe1a0252fbda0bf727779' => 
     array (
       0 => 'tpl/frontend/smart/ajax/basket.tpl',
-      1 => 1508266895,
+      1 => 1510166679,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_59e658b9538cb4_23283816',
   'variables' => 
   array (
     'Basket' => 0,
@@ -27,8 +29,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'UrlWL' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_59e658b9538cb4_23283816',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_59e658b9538cb4_23283816')) {function content_59e658b9538cb4_23283816($_smarty_tpl) {?><?php if (!$_smarty_tpl->tpl_vars['Basket']->value->isEmptyBasket()){?>
 <div class="full">
@@ -119,7 +119,7 @@ $_smarty_tpl->tpl_vars['value']->_loop = true;
     <div class="buttons clearfix">
         <a href="<?php echo $_smarty_tpl->getSubTemplate ("core/href.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('arCategory'=>$_smarty_tpl->tpl_vars['arrModules']->value['checkout']), 0);?>
 " class="btn btn-xl btn-danger btn-block">Оформить заказ</a><br/>
-        <a href="#" onclick="Basket.close();" class="btn btn-xl btn-link btn-block">Продолжить покупки</a>
+        <a href="#" onclick="Basket.close();" class="btn btn-l btn-link btn-block">Продолжить покупки</a>
     </div>
 </div>
 <?php }else{ ?>

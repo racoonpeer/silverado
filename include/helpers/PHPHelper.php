@@ -607,7 +607,7 @@ class PHPHelper {
                 case CatalogMainProperty::TYPE_ATTRIBUTE :
                         $subwhere .= "OR t.`id` IN("
                         . "SELECT DISTINCT pa.`pid` FROM `".PRODUCT_ATTRIBUTE_TABLE."` pa "
-                        . "WHERE pa.`aid`={$facet["aid"]} AND pa.`value`={$facet["value"]}"
+                        . "WHERE pa.`aid`='{$facet["attribute_id"]}' AND pa.`value`='{$facet["value_id"]}'"
                         . ")";
                     break;
             endswitch;

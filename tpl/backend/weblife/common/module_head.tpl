@@ -17,11 +17,11 @@
    
 <div class="breadcrumb">
     <{if $arrPageData.task=='addItem' || $arrPageData.task=='editItem'}>
-        <a href="/admin.php?module=main">Структура разделов</a> 
+        <a href="/admin/?module=main">Структура разделов</a> 
         <{$arrPageData.path_arrow}> 
         <a href="<{$arrPageData.admin_url}>" title=""><{$title}></a>
     <{else if !empty($arrPageData.arParent)}>
-        <a href="/admin.php?module=main">Структура разделов</a> 
+        <a href="/admin/?module=main">Структура разделов</a> 
     <{/if}>
     <!-- ++++++++++ Start BreadCrumb +++++++++++++++++++++++++++++++++++++++++++ -->
     <{include file='common/breadcrumb.tpl' arrBreadCrumb=$arrPageData.arrBreadCrumb}>

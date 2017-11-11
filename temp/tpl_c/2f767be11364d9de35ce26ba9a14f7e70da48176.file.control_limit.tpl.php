@@ -1,6 +1,6 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-10-23 23:14:23
+<?php /* Smarty version Smarty-3.1.14, created on 2017-11-11 11:14:47
          compiled from "tpl/frontend/smart/ajax/control_limit.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:21834986359e658e13decb8-44639969%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:9449783705a06bf87e78ad9-27188207%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,12 +11,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '21834986359e658e13decb8-44639969',
+  'nocache_hash' => '9449783705a06bf87e78ad9-27188207',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_59e658e148dcb4_41795365',
   'variables' => 
   array (
     'arrPageData' => 0,
@@ -24,8 +22,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'limitID' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_5a06bf87f37976_74018525',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_59e658e148dcb4_41795365')) {function content_59e658e148dcb4_41795365($_smarty_tpl) {?><?php if (!empty($_smarty_tpl->tpl_vars['arrPageData']->value['arSorting'])){?>
+<?php if ($_valid && !is_callable('content_5a06bf87f37976_74018525')) {function content_5a06bf87f37976_74018525($_smarty_tpl) {?><?php if (!empty($_smarty_tpl->tpl_vars['arrPageData']->value['arSorting'])){?>
 <div class="pull-right limit" id="control_limit">
     <span>товаров на странице:</span>
 <?php  $_smarty_tpl->tpl_vars['limit'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['limit']->_loop = false;

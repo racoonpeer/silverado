@@ -5,4 +5,4 @@
 */
 defined('WEBlife') or die( 'Restricted access' ); // no direct access
 
-Redirect('/admin.php?module=main');
+Redirect('/admin/?module=main');

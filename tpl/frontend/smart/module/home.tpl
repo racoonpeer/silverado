@@ -13,7 +13,7 @@
 <{*if !$int}>
         <div class="categories">
             <div class="category">
-                <img src="/images/site/smart/cat-1.png" alt=""/>
+                <img src="/images/public/cat-1.png" alt=""/>
                 <div class="blob">
                     Кольца
                     <div class="hr"></div>
@@ -22,7 +22,7 @@
                 <a href="#" class="btn btn-warning btn-l"></a>
             </div>
             <div class="category">
-                <img src="/images/site/smart/cat-2.png" alt=""/>
+                <img src="/images/public/cat-2.png" alt=""/>
                 <div class="blob">
                     Комплекты
                     <div class="hr"></div>
@@ -31,7 +31,7 @@
                 <a href="#" class="btn btn-warning btn-l"></a>
             </div>
             <div class="category">
-                <img src="/images/site/smart/cat-3.png" alt=""/>
+                <img src="/images/public/cat-3.png" alt=""/>
                 <div class="blob">
                     Серьги
                     <div class="hr"></div>
@@ -40,7 +40,7 @@
                 <a href="#" class="btn btn-warning btn-l"></a>
             </div>
             <div class="category">
-                <img src="/images/site/smart/cat-4.png" alt=""/>
+                <img src="/images/public/cat-4.png" alt=""/>
                 <div class="blob">
                     Браслеты
                     <div class="hr"></div>
@@ -49,7 +49,7 @@
                 <a href="#" class="btn btn-warning btn-l"></a>
             </div>
             <div class="category">
-                <img src="/images/site/smart/cat-5.png" alt=""/>
+                <img src="/images/public/cat-5.png" alt=""/>
                 <div class="blob">
                     Аксессуары
                     <div class="hr"></div>

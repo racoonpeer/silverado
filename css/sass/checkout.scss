@@ -21,10 +21,10 @@ and open the template in the editor.
     right: 0;
     z-index: 1;
     .section-middle {
-        height: 68px;
+        height: 58px;
         background-color: $deep-grey;
         .logo {
-            top: 20px;
+            top: 14px;
             left: 50%;
             width: 230px;
             height: 35px;
@@ -36,14 +36,14 @@ and open the template in the editor.
 .page-container {
     .container {
         position: relative;
-        padding-top: 68px;
+        padding-top: 58px;
         min-height:100vh;
         .c-left {
             margin-right: 426px;
         }
         .c-right {
             position: absolute;
-            top: 68px;
+            top: 58px;
             right: 0;
             bottom: 0;
             background-color: #f5f5f5;
@@ -88,9 +88,13 @@ and open the template in the editor.
                     text-decoration: underline;
                 }
             }
+            .checkbox {
+                font-size: 1.2rem;
+                line-height: 1.6rem;
+            }
             .btn {
                 width: 100%;
-                margin-top: 10px;
+                margin-top: 14px;
             }
             hr {
                 margin-top: 17px;
@@ -118,8 +122,8 @@ and open the template in the editor.
                 position: relative;
                 display: block;
                 width: (100% / 3);
-                padding-top: 20px;
-                padding-bottom: 20px;
+                padding-top: 21px;
+                padding-bottom: 21px;
                 &.current {
                     &:after {
                         display: block;
@@ -250,8 +254,38 @@ and open the template in the editor.
                             display: block;
                             position: absolute;
                             left: 0;
+                            top: 3px;
                             background-repeat: no-repeat;
                             background-image: $sprite;
+                            content: "";
+                        }
+                        &.hint-user {
+                            margin-top: 10px;
+                            padding-left: 25px;
+                            &:before {
+                                background-position: -229px -164px;
+                                width: 15px;
+                                height: 20px;
+                            }
+                        }
+                        &.hint-box {
+                            margin-top: 10px;
+                            padding-left: 44px;
+                            &:before {
+                                top: 0;
+                                background-position: -244px -150px;
+                                width: 33px;
+                                height: 36px;
+                            }
+                        }
+                        &.hint-card {
+                            margin-top: 10px;
+                            padding-left: 44px;
+                            &:before {
+                                background-position: -244px -122px;
+                                width: 31px;
+                                height: 28px;
+                            }
                         }
                         a {
                             color: $black;
@@ -269,6 +303,21 @@ and open the template in the editor.
                     background-color: $lite-grey;
                     height: 1px;
                     display: block;
+                }
+                .proceed,
+                .return {
+                    color: $deep-grey;
+                    font-weight: 700;
+                    font-size: 1.4rem;
+                    &:hover {
+                        color: $purple;
+                    }
+                }
+                .proceed {
+                    float: right;
+                }
+                .return {
+                    float: left;
                 }
             }
         }

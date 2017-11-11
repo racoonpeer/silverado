@@ -63,7 +63,7 @@ $arrPageData['selectedFilters'] = $UrlWL->getFilters()->getSelected();
 $arrPageData['filters']         = array();
 $arrPageData['stext']         = $searchtext;
 $arrPageData['headScripts'][] = "/js/libs/noUiSlider/nouislider.min.js";
-$arrPageData['headScripts'][] = "/js/smart/catalog.js";
+$arrPageData['headScripts'][] = "/js/public/catalog.js";
 
 if ($searchtext and strlen($searchtext)>1) {
     // Include filters class

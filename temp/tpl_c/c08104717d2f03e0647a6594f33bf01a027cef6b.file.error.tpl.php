@@ -1,6 +1,6 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-10-17 22:24:18
+<?php /* Smarty version Smarty-3.1.14, created on 2017-11-11 11:06:40
          compiled from "tpl/frontend/smart/module/error.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:206607100359e658e247adf6-72273560%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:19986098405a06bda0772b27-70114371%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,7 +11,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '206607100359e658e247adf6-72273560',
+  'nocache_hash' => '19986098405a06bda0772b27-70114371',
   'function' => 
   array (
   ),
@@ -23,9 +23,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_59e658e2558ce7_19195534',
+  'unifunc' => 'content_5a06bda0877754_15051086',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_59e658e2558ce7_19195534')) {function content_59e658e2558ce7_19195534($_smarty_tpl) {?><div class="page-container container clearfix">
+<?php if ($_valid && !is_callable('content_5a06bda0877754_15051086')) {function content_5a06bda0877754_15051086($_smarty_tpl) {?><div class="page-container container clearfix">
     <div class="error-page">
         <div class="code">4<span>0</span>4</div>
         <h1>Страница не найдена</h1>

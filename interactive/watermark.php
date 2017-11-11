@@ -4,7 +4,7 @@
 $watermark          = $_SERVER['DOCUMENT_ROOT']."/images/site/watermark.png";
 $watermark_small    = $_SERVER['DOCUMENT_ROOT']."/images/site/watermark_small.png";
 $placement          = 'middle=0,center=0'; // vertical: top,middle,bottom; horizontal: left,center,right;
-$baseFolder         = "/uploaded/";
+$baseFolder         = "/uploads/";
 $minWidthToUseSmall = array('w'=>150, 'h'=>150);
 $optimalWSize       = true;
 

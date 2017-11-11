@@ -383,11 +383,11 @@
                                                 <li class="ui-state-default <{if !in_array($arrPageData.filters.seo[i].id, $item.filters.seo)}>ui-state-disabled<{/if}>" data-fid="<{$arrPageData.filters.seo[i].id}>">
                                                     <input type="checkbox" name="filters[seo][]" value="<{$arrPageData.filters.seo[i].id}>" onchange="toggleBoxState(this);" <{if in_array($arrPageData.filters.seo[i].id, $item.filters.seo)}>checked<{/if}>/> <label><{$arrPageData.filters.seo[i].title}> <strong><{$arrPageData.filters.seo[i].alias}></strong></label>
 <{if $arrPageData.filters.seo[i].tid==1}>
-                                                    <a href="/admin.php?module=brands" target="_blank">
+                                                    <a href="/admin/?module=brands" target="_blank">
                                                         <img src="/images/operation/edit.png" height="10">
                                                     </a>
 <{elseif $arrPageData.filters.seo[i].tid!=1 AND !empty($arrPageData.filters.seo[i].aid)}>
-                                                    <a href="/admin.php?module=attributes_values&task=editItem&itemID=<{$arrPageData.filters.seo[i].aid}>&ajax=1" onclick="return hs.htmlExpand(this, {headingText:'<{$smarty.const.ATTRIBUTES}>: <{$arrPageData.filters.seo[i].title}>', objectType:'iframe', preserveContent: false, width:910});">
+                                                    <a href="/admin/?module=attributes_values&task=editItem&itemID=<{$arrPageData.filters.seo[i].aid}>&ajax=1" onclick="return hs.htmlExpand(this, {headingText:'<{$smarty.const.ATTRIBUTES}>: <{$arrPageData.filters.seo[i].title}>', objectType:'iframe', preserveContent: false, width:910});">
                                                         <img src="/images/operation/edit.png" height="10">
                                                     </a>
 <{/if}>

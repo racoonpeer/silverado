@@ -56,7 +56,7 @@ if($itemID and $task=='deleteItem') {
                 ActionsLog::getInstance()->save(ActionsLog::ACTION_DELETE, 'Удален ярлык для "'.$object_title.'"', $lang, 'Ярлык для "'.$object_title.'"', 0, $arrPageData['module']);  
             }
         }
-        Redirect('admin.php?module='.$object_module);
+        Redirect('/admin/?module='.$object_module);
     } else {
         $arrPageData['errors'][] = $UserAccess->getAccessError(); 
     }
@@ -71,7 +71,7 @@ elseif($itemID and $task=='publishItem' and isset($_GET['status'])) {
             setSessionMessage('Новое состояние успешно сохранено!');
             ActionsLog::getInstance()->save(ActionsLog::ACTION_PUBLICATION, 'Изменена публикация страницы на "'.($_GET['status']==1 ? 'Опубликована' : 'Неопубликована' ).'"', $lang, 'Ярлык для "'.$object_title.'"', $itemID, $arrPageData['module']);
         }
-        Redirect('admin.php?module='.$object_module);
+        Redirect('/admin/?module='.$object_module);
     } else {
         $arrPageData['errors'][] = $UserAccess->getAccessError(); 
     }
@@ -133,7 +133,7 @@ elseif(!empty($_POST) and ($task=='addItem' or $task=='editItem')) {
                 } else {
                      ActionsLog::getInstance()->save(($task=='addItem' ? ActionsLog::ACTION_CREATE : ActionsLog::ACTION_EDIT), ($task=='addItem' ? 'Создан ярлык для товара ' : 'Отредактирован ярлык ').'"'.$object_title.'"', $lang, 'Ярлык для "'.$object_title.'"', $itemID, $arrPageData['module']);
                 } 
-                Redirect((isset($_POST['submit']) ? 'admin.php?module='.$object_module : $arrPageData['current_url']).(isset($_POST['submit_add']) ? '&task=addItem' : ((isset($_POST['submit_apply']) and $itemID) ? '&task=editItem&itemID='.$itemID : '')) );
+                Redirect((isset($_POST['submit']) ? '/admin/?module='.$object_module : $arrPageData['current_url']).(isset($_POST['submit_add']) ? '&task=addItem' : ((isset($_POST['submit_apply']) and $itemID) ? '&task=editItem&itemID='.$itemID : '')) );
             } else {
                 $arrPageData['errors'][] = 'Запись <font color="red">НЕ была сохранена</font>!';          
             }
@@ -157,7 +157,7 @@ if($task=='addItem' or $task=='editItem'){
             $item['arHistory'] = array();
         } else {
             setSessionErrors($UserAccess->getAccessError()); 
-            Redirect('admin.php?module='.$object_module);
+            Redirect('/admin/?module='.$object_module);
         }
     } elseif($itemID) {
         $query = "SELECT * FROM ".SHORTCUTS_TABLE." WHERE id = $itemID LIMIT 1";

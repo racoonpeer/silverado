@@ -35,7 +35,7 @@
                      <tr>
                          <td id="headb" align="left" width="175">Операции с базой</td>
                          <td  class="padding">
-                             <a href="/admin.php?module=mysqldumper"><{$smarty.const.TOPLINK_MYSQLDUMPER}></a> |
+                             <a href="/admin/?module=mysqldumper"><{$smarty.const.TOPLINK_MYSQLDUMPER}></a> |
                              <a href="javascript:void(0)" onclick="if(window.confirm('<{$smarty.const.LABEL_QUESTION_TO_DO}>?')) {window.location='<{$arrPageData.current_url|cat:"&task=repairDBTables"}>'}; return false;" />
                              <{$smarty.const.LABEL_REPAIR_DB_TABLES}>
                              </a> |

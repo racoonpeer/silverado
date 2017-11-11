@@ -4,7 +4,7 @@
     <div><{$item.created|date_format:"%d.%m.%Y"}></div>
     <h2><{$item.title}></h2>
     <form method="POST" action="">
-        <input type="image" name="pdf" src="/images/site/smart/icons/pdf.png" value="1"/>
+        <input type="image" name="pdf" src="/images/public/icons/pdf.png" value="1"/>
     </form>
     <br/>
     <{$item.fulldescr}>

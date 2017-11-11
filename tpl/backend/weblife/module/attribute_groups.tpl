@@ -18,7 +18,7 @@
                     <{section name=i loop=$categoryTree}>
                           <li>
                             &nbsp; <img src="/images/admin/treeview/folder-closed.png" />  &nbsp;
-                                <a href="/admin.php?module=attributes&gid=<{$categoryTree[i].id}>">
+                                <a href="/admin/?module=attributes&gid=<{$categoryTree[i].id}>">
                                     <{$categoryTree[i].title}>
                                 </a>
                                 <a href="<{$arrPageData.admin_url|cat:"&task=editItem&itemID="|cat:$categoryTree[i].id}>">
@@ -28,10 +28,10 @@
                                 <ul>
                                 <{section name=j loop=$categoryTree[i].children}>
                                     <li>
-                                            <a href="/admin.php?module=attributes&task=editItem&itemID=<{$categoryTree[i].children[j].id}>">
+                                            <a href="/admin/?module=attributes&task=editItem&itemID=<{$categoryTree[i].children[j].id}>">
                                                 <{$categoryTree[i].children[j].title}>
                                             </a>
-                                            <a href="/admin.php?module=attributes&task=editItem&itemID=<{$categoryTree[i].children[j].id}>">
+                                            <a href="/admin/?module=attributes&task=editItem&itemID=<{$categoryTree[i].children[j].id}>">
                                                 <img src="/images/operation/edit.png" height="10"/>
                                             </a>
                                     </li>
@@ -150,7 +150,7 @@
             </td>
             <td><a href="<{$arrPageData.current_url|cat:$arrPageData.filter_url|cat:"&task=editItem&itemID="|cat:$items[i].id}>" title="<{$smarty.const.LABEL_EDIT}>"><{$items[i].title}> <{if !empty($items[i].descr)}>(<{$items[i].descr}>)<{/if}></a></td>
             <td  align="center" >
-                <a href="/admin.php?module=attributes&gid=<{$items[i].id}>" title="<{$smarty.const.HEAD_ADD_VIEW_SUB_PAGES}>">
+                <a href="/admin/?module=attributes&gid=<{$items[i].id}>" title="<{$smarty.const.HEAD_ADD_VIEW_SUB_PAGES}>">
                     <img src="<{$arrPageData.system_images}>add_tree.png" alt="<{$smarty.const.HEAD_ADD_VIEW_SUB_PAGES}>" title="<{$smarty.const.HEAD_ADD_VIEW_SUB_PAGES}>" />
                 </a>
                 <{if !empty($items[i].attributes)}><small class="subchildrens"><{$items[i].attributes|count}></small><{/if}>

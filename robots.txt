@@ -9,14 +9,11 @@ Disallow: /temp/
 Disallow: /tpl/
 Disallow: /seo/
 Disallow: /flash/
-Disallow: /verstka/
 Disallow: /cronjobs/
 
-Disallow: /admin.php
-Disallow: /login.php
 Disallow: /dumper.php
-Disallow: /test.php
-Disallow: /sinfo.php
+Disallow: /phptest.php
+Disallow: /phpinfo.php
 
 Disallow: /*filter
 Disallow: /*gclid

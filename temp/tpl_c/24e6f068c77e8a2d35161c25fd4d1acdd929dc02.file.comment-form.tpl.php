@@ -1,6 +1,6 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-10-22 00:13:45
+<?php /* Smarty version Smarty-3.1.14, created on 2017-11-11 11:15:22
          compiled from "tpl/frontend/smart/ajax/comment-form.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:93342586459e65905854e20-41740111%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:19555615065a06bfaa727db7-29782447%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,12 +11,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '93342586459e65905854e20-41740111',
+  'nocache_hash' => '19555615065a06bfaa727db7-29782447',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_59e65905a7e824_61997912',
   'variables' => 
   array (
     'IS_AJAX' => 0,
@@ -26,8 +24,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'item' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_5a06bfaa90b190_07177316',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_59e65905a7e824_61997912')) {function content_59e65905a7e824_61997912($_smarty_tpl) {?><?php if (!$_smarty_tpl->tpl_vars['IS_AJAX']->value){?>
+<?php if ($_valid && !is_callable('content_5a06bfaa90b190_07177316')) {function content_5a06bfaa90b190_07177316($_smarty_tpl) {?><?php if (!$_smarty_tpl->tpl_vars['IS_AJAX']->value){?>
 <div class="comment-form hidden">
     <div class="h3">Оставьте отзыв или задайте вопрос</div>
 <?php }?>

@@ -7,7 +7,7 @@ $files_url = UPLOAD_URL_DIR.'catalog/';
 $arAliases = SystemComponent::prepareImagesParams(getValueFromDB(IMAGES_PARAMS_TABLE, 'aliases', 'WHERE `module`="catalog"'));
 
 $arrPageData["headingTitle"]  = $arCategory["title"];
-$arrPageData["headCss"][]     = "/css/smart/thanks.css";
+$arrPageData["headCss"][]     = "/css/public/thanks.css";
 
 // Process order
 if ($itemID and $item=getSimpleItemRow($itemID, ORDERS_TABLE)) {

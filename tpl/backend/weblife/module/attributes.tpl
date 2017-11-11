@@ -9,16 +9,16 @@
 <{section name=i loop=$categoryTree}>
                     <li class="<{if $arrPageData.GID == $categoryTree[i].id}>active collapsable<{/if}>">
                         &nbsp; <img src="/images/admin/treeview/folder-closed.png" />  &nbsp;
-                        <a href="/admin.php?module=attributes&gid=<{$categoryTree[i].id}>"><{$categoryTree[i].title}></a>
-                        <a href="/admin.php?module=attribute_groups&task=editItem&itemID=<{$categoryTree[i].id}>">
+                        <a href="/admin/?module=attributes&gid=<{$categoryTree[i].id}>"><{$categoryTree[i].title}></a>
+                        <a href="/admin/?module=attribute_groups&task=editItem&itemID=<{$categoryTree[i].id}>">
                             <img src="/images/operation/edit.png" height="10"/>
                         </a>
 <{if !empty($categoryTree[i].children)}>
                         <ul>
 <{section name=j loop=$categoryTree[i].children}>
                             <li>
-                                <a href="/admin.php?module=attributes&task=editItem&itemID=<{$categoryTree[i].children[j].id}>"><{$categoryTree[i].children[j].title}></a>
-                                <a href="/admin.php?module=attributes&task=editItem&itemID=<{$categoryTree[i].children[j].id}>">
+                                <a href="/admin/?module=attributes&task=editItem&itemID=<{$categoryTree[i].children[j].id}>"><{$categoryTree[i].children[j].title}></a>
+                                <a href="/admin/?module=attributes&task=editItem&itemID=<{$categoryTree[i].children[j].id}>">
                                     <img src="/images/operation/edit.png" height="10"/>
                                 </a>
                             </li>

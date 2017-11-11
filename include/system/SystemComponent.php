@@ -35,7 +35,7 @@ class SystemComponent {
     }
     private static function initTestCookie() { //Put your Test Cookie values to array here
         return array(
-            'name'  => 'WLCMS_CHECKED', //set unique name of test cookie
+            'name'  => 'CI_INIT', //set unique name of test cookie
             'val'   => md5($_SERVER['REMOTE_ADDR']), //set unique value of test cookie from md5 of client
             'exp'   => time()+57533 // set time to will be expire test cookie
         );
@@ -111,7 +111,7 @@ define('LANG_LIVE_IN_COOKIE',           3600 * 24 * 7); // set live period for l
 define('URL_ENABLE_SUFFIX',             1); // set 1 to include seo suffix like .html to URL or 0 to not
 define('URL_SEO_SUFFIX',                '/'); // set String text suffix for append to Url
 
-define('UPLOAD_DIR',                    'uploaded'); // set WebLife CMS UPLOAD DIR
+define('UPLOAD_DIR',                    'uploads'); // set WebLife CMS UPLOAD DIR
 define('UPLOAD_URL_DIR',                '/'.UPLOAD_DIR.'/'); // set WebLife CMS UPLOAD URL DIR
 
 define('MAIN_CATEGORIES_DIR',           UPLOAD_DIR.DS.'main'); // set WebLife CMS MAIN CATEGORIES DIR FROM DB

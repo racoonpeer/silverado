@@ -82,7 +82,7 @@
         </tr>
 <{section name=i loop=$items}>
          <tr>
-            <td ><a href="/admin.php?module=catalog&task=editItem&itemID=<{$items[i].id}>"><{$items[i].title}></a></td>
+            <td ><a href="/admin/?module=catalog&task=editItem&itemID=<{$items[i].id}>"><{$items[i].title}></a></td>
 <{if !$arrPageData.cid}>
             <td ><{$items[i].cat_title}></td>
 <{/if}>     
@@ -90,7 +90,7 @@
                 <input type="text" name="arOrder[<{$items[i].id}>]" id="arOrder_<{$items[i].id}>" class="field_smal" value="<{$items[i].order}>" style="width:27px;padding-left:0px;text-align:center;" maxlength="4" />
             </td>
             <td  align="center" >
-                <a href="/admin.php?module=catalog&task=editItem&itemID=<{$items[i].id}>" title="<{$smarty.const.LABEL_EDIT}>">
+                <a href="/admin/?module=catalog&task=editItem&itemID=<{$items[i].id}>" title="<{$smarty.const.LABEL_EDIT}>">
                     <img src="<{$arrPageData.system_images}>edit.png" alt="<{$smarty.const.LABEL_EDIT}>" />
                 </a>
             </td>

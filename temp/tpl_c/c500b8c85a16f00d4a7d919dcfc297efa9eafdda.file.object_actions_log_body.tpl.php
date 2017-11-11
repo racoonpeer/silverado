@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-10-21 22:34:03
+<?php /* Smarty version Smarty-3.1.14, created on 2017-11-11 11:11:55
          compiled from "tpl/backend/weblife/ajax/object_actions_log_body.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:75394256659eba12baa4749-50448350%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:20304666375a06bedb78bad7-41059985%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'c500b8c85a16f00d4a7d919dcfc297efa9eafdda' => 
     array (
       0 => 'tpl/backend/weblife/ajax/object_actions_log_body.tpl',
-      1 => 1508266895,
+      1 => 1510388823,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '75394256659eba12baa4749-50448350',
+  'nocache_hash' => '20304666375a06bedb78bad7-41059985',
   'function' => 
   array (
   ),
@@ -22,9 +22,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_59eba12bd5f8c6_44934815',
+  'unifunc' => 'content_5a06bedb8f5467_53323699',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_59eba12bd5f8c6_44934815')) {function content_59eba12bd5f8c6_44934815($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include '/Volumes/K2/htdocs/silverado/www/include/smarty/plugins/modifier.date_format.php';
+<?php if ($_valid && !is_callable('content_5a06bedb8f5467_53323699')) {function content_5a06bedb8f5467_53323699($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include '/Volumes/K2/htdocs/silverado/www/include/smarty/plugins/modifier.date_format.php';
 ?><?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['i'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['i']);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['name'] = 'i';
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['loop'] = is_array($_loop=$_smarty_tpl->tpl_vars['arHistoryData']->value['history']) ? count($_loop) : max(0, (int)$_loop); unset($_loop);
@@ -56,7 +56,7 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smart
 </td>
         <td align="center">
             <?php if ($_smarty_tpl->tpl_vars['arHistoryData']->value['history'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['uid']!=-1){?>
-            <a target="_blank" href="/admin.php?module=users&task=viewItem&itemID=<?php echo $_smarty_tpl->tpl_vars['arHistoryData']->value['history'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['uid'];?>
+            <a target="_blank" href="/admin/?module=users&task=viewItem&itemID=<?php echo $_smarty_tpl->tpl_vars['arHistoryData']->value['history'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['uid'];?>
 ">
                 <?php echo $_smarty_tpl->tpl_vars['arHistoryData']->value['history'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['user'];?>
 

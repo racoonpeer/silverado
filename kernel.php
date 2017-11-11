@@ -125,8 +125,8 @@ $arrPageData     = array( //Page data array
         "/js/libs/Swiper/js/swiper.jquery.min.js",
         "/js/libs/remodal/remodal.min.js",
         "/js/libs/verge/verge.min.js",
-        "/js/smart/common.js",
-        "/js/smart/dom-extra.js"
+        "/js/public/common.js",
+        "/js/public/dom-extra.js"
     ),
     'headCss'       => array(),
     'messages'      => getSessionMessages(),
@@ -220,8 +220,8 @@ if(!in_array($arCategory['module'], array('catalog', 'search', 'basket', 'newest
 }
 // Prepare styles & scripts for entire page
 $mdname = ($module=="catalog" and !empty($item)) ? "product" : $module;
-if ($mdname and file_exists("css/smart/{$mdname}.css")) $arrPageData["headCss"][] = "/css/smart/{$mdname}.css";
-else $arrPageData["headCss"][] = "/css/smart/common.css";
+if ($mdname and file_exists("css/public/{$mdname}.css")) $arrPageData["headCss"][] = "/css/public/{$mdname}.css";
+else $arrPageData["headCss"][] = "/css/public/common.css";
 //$pageScriptName = !$mdname ? "common" : $mdname;
 //if (!file_exists("js/min/{$pageScriptName}.js")) {
 //    $yui = new YUICompressor("include/classes/yuicompressor/yuicompressor-2.4.8.jar", "js/min", array("semi"=>true));

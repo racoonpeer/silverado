@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-10-21 00:18:16
+<?php /* Smarty version Smarty-3.1.14, created on 2017-11-11 10:50:08
          compiled from "tpl/backend/weblife/common/main_menu.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:191008592259ea68181dfda2-76775202%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1576279335a06b9c0c3eae6-58091397%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '1c28794d4f3a7ea71ac68d1c9e8220536b9582bb' => 
     array (
       0 => 'tpl/backend/weblife/common/main_menu.tpl',
-      1 => 1508266895,
+      1 => 1510388907,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '191008592259ea68181dfda2-76775202',
+  'nocache_hash' => '1576279335a06b9c0c3eae6-58091397',
   'function' => 
   array (
   ),
@@ -21,9 +21,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_59ea6818296666_56964048',
+  'unifunc' => 'content_5a06b9c0ceae81_47797347',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_59ea6818296666_56964048')) {function content_59ea6818296666_56964048($_smarty_tpl) {?><?php if (!empty($_smarty_tpl->tpl_vars['arrPageData']->value['main_menu'])){?>
+<?php if ($_valid && !is_callable('content_5a06b9c0ceae81_47797347')) {function content_5a06b9c0ceae81_47797347($_smarty_tpl) {?><?php if (!empty($_smarty_tpl->tpl_vars['arrPageData']->value['main_menu'])){?>
     <ul>
     <?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['i'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['i']);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['name'] = 'i';
@@ -50,7 +50,7 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['first']      = ($_smart
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'] == $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['total']);
 ?>
         <li class="menu_item<?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['module']==$_smarty_tpl->tpl_vars['arrPageData']->value['main_menu'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['module']||($_smarty_tpl->tpl_vars['arrPageData']->value['main_menu'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['module']=='attribute_groups'&&$_smarty_tpl->tpl_vars['arrPageData']->value['module']=='attributes')){?> active<?php }?>">
-            <a href="/admin.php?module=<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['main_menu'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['module'];?>
+            <a href="/admin/?module=<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['main_menu'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['module'];?>
 "><?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['main_menu'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['title'];?>
 </a>
         </li>

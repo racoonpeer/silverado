@@ -155,7 +155,7 @@ and open the template in the editor.
             @include breakpoint(480){
                 width: 70px;
                 height: 42px;
-                background-image: url("/images/site/smart/icons/logo-m.svg");
+                background-image: url("/images/public/icons/logo-m.svg");
                 background-position: center;
                 background-size: contain;
                 background-repeat: no-repeat;
@@ -188,7 +188,7 @@ and open the template in the editor.
                 width: 25px;
                 height: 30px;
                 background-color: transparent;
-                background-image: url("/images/site/smart/icons/cart.svg");
+                background-image: url("/images/public/icons/cart.svg");
                 background-position: center;
                 background-repeat: no-repeat;
                 background-size: cover;
@@ -202,7 +202,7 @@ and open the template in the editor.
                 }
                 &.active {
                     @include breakpoint_min(991){
-                        background-image: url("/images/site/smart/icons/cart-h.svg");
+                        background-image: url("/images/public/icons/cart-h.svg");
                     }
                     &:after {
                         @include breakpoint_min(991){
@@ -240,7 +240,7 @@ and open the template in the editor.
             width: 22px;
             height: 22px;
             background-color: transparent;
-            background-image: url("/images/site/smart/icons/search.svg");
+            background-image: url("/images/public/icons/search.svg");
             background-size: contain;
             background-repeat: no-repeat;
             border: none;
@@ -250,7 +250,7 @@ and open the template in the editor.
                 }
             }
             &.toggle-on {
-                background-image: url("/images/site/smart/icons/close.svg");
+                background-image: url("/images/public/icons/close.svg");
                 @include breakpoint_min(991){
                     top: 75px;
                     right: 22px;
@@ -299,7 +299,7 @@ and open the template in the editor.
                 display: block;
                 &.loading {
                     button {
-                        background-image: url("/images/site/smart/loading_16.gif");
+                        background-image: url("/images/public/loading_16.gif");
                         background-position: center;
                         background-repeat: no-repeat;
                     }

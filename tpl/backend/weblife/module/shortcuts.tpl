@@ -1,6 +1,6 @@
 <{* +++++++++++++++++ START HEAD ++++++++++++++++++++++ *}>
 <{include file='common/module_head.tpl' title=$smarty.const.CATALOGS creat_title=$smarty.const.ADMIN_CREATING_NEW_PRODUCT edit_title=$smarty.const.ADMIN_EDIT_PRODUCT}>
-<{include file='common/left_menu.tpl' dependID=0 categoryTree=$categoryTree islist=true admin_url='admin.php?module=catalog'}>
+<{include file='common/left_menu.tpl' dependID=0 categoryTree=$categoryTree islist=true admin_url='/admin/?module=catalog'}>
 <{* +++++++++++++++++ END HEAD ++++++++++++++++++++++ *}>
    
 <div id="right_block">
@@ -48,7 +48,7 @@
                             <div id="object">
 <{if $item.id}>
                                     <{$item.title}>
-                                    <a target="_blank" href="admin.php?module=<{$arrPageData.object_module}>&task=editItem&itemID=<{$item.pid}>" >
+                                    <a target="_blank" href="/admin/?module=<{$arrPageData.object_module}>&task=editItem&itemID=<{$item.pid}>" >
                                         <img width="15" src="/images/operation/edit.png"/>
                                     </a>
 <{/if}>
@@ -118,7 +118,7 @@
                 document.forms[0].reset();
                 break
               case 'cancel':
-                window.location='/admin.php?module=catalog';
+                window.location='/admin/?module=catalog';
                 break
               case 'delete':
                 window.location='<{$arrPageData.current_url|cat:"&task=deleteItem&itemID="|cat:$item.id}>';
@@ -187,7 +187,7 @@
             $('#messages').text('');
             $('#messages').addClass('hidden_block');
             $('#pid').val(ui.item.id);
-            $('#object').html(ui.item.value+' <a href="admin.php?module=<{$arrPageData.object_module}>&task=editItem&itemID='+ui.item.id+'" ><img width="15" src="/images/operation/edit.png"/></a>');
+            $('#object').html(ui.item.value+' <a href="/admin/?module=<{$arrPageData.object_module}>&task=editItem&itemID='+ui.item.id+'" ><img width="15" src="/images/operation/edit.png"/></a>');
            $(this).val("");
            return false;
         }

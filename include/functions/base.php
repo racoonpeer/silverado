@@ -21,7 +21,7 @@ function setSessId($sesName, $arData=array()) {
     }   return false;
 }
 
-function checkErrorLoginInSession($key, $setCount=true, $link='/login.php?log=banned'){
+function checkErrorLoginInSession($key, $setCount=true, $link='/admin/login.php?log=banned'){
     if ($setCount && !isset($_SESSION[$key]))            $_SESSION[$key]['count']  = 1;
     elseif($setCount && isset($_SESSION[$key]['count'])) $_SESSION[$key]['count'] += 1;
 

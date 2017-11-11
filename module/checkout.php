@@ -13,7 +13,7 @@ $arrPageData['headScripts'][] = "/js/libs/jquery.validate/localization/messages_
 $arrPageData['headScripts'][] = "/js/libs/jquery-steps/jquery.steps.min.js";
 $arrPageData['headScripts'][] = "/js/libs/select2/js/select2.full.min.js";
 $arrPageData['headScripts'][] = "/js/libs/select2/js/i18n/ru.js";
-$arrPageData['headScripts'][] = "/js/smart/checkout.js";
+$arrPageData['headScripts'][] = "/js/public/checkout.js";
 // Search cities
 if ($IS_AJAX and !empty($term) and $task=="getCities") {
     $term = PHPHelper::dataConv($term, "utf-8", WLCMS_SYSTEM_ENCODING);

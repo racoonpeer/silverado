@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-10-25 22:33:21
+<?php /* Smarty version Smarty-3.1.14, created on 2017-11-11 11:12:09
          compiled from "tpl/backend/weblife/module/attribute_groups.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:132349080059f0e7013b41c4-08781463%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:12213959025a06bee98b3583-73990396%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'fc175241629709d7874e7590cbd1f0fa1d253c5f' => 
     array (
       0 => 'tpl/backend/weblife/module/attribute_groups.tpl',
-      1 => 1508266895,
+      1 => 1510389051,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '132349080059f0e7013b41c4-08781463',
+  'nocache_hash' => '12213959025a06bee98b3583-73990396',
   'function' => 
   array (
   ),
@@ -24,9 +24,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_59f0e701a6ef75_69271956',
+  'unifunc' => 'content_5a06beea035d72_70868896',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_59f0e701a6ef75_69271956')) {function content_59f0e701a6ef75_69271956($_smarty_tpl) {?>
+<?php if ($_valid && !is_callable('content_5a06beea035d72_70868896')) {function content_5a06beea035d72_70868896($_smarty_tpl) {?>
 <?php echo $_smarty_tpl->getSubTemplate ('common/module_head.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('title'=>@constant('ATTRIBUTE_GROUPS'),'creat_title'=>@constant('ADMIN_CREATING_NEW_ATTR_GROUP'),'edit_title'=>@constant('ADMIN_EDIT_ATTR_GROUP')), 0);?>
 
 
@@ -67,7 +67,7 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smart
 ?>
                           <li>
                             &nbsp; <img src="/images/admin/treeview/folder-closed.png" />  &nbsp;
-                                <a href="/admin.php?module=attributes&gid=<?php echo $_smarty_tpl->tpl_vars['categoryTree']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id'];?>
+                                <a href="/admin/?module=attributes&gid=<?php echo $_smarty_tpl->tpl_vars['categoryTree']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id'];?>
 ">
                                     <?php echo $_smarty_tpl->tpl_vars['categoryTree']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['title'];?>
 
@@ -103,12 +103,12 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['first']      = ($_smart
 $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['last']       = ($_smarty_tpl->tpl_vars['smarty']->value['section']['j']['iteration'] == $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['total']);
 ?>
                                     <li>
-                                            <a href="/admin.php?module=attributes&task=editItem&itemID=<?php echo $_smarty_tpl->tpl_vars['categoryTree']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['children'][$_smarty_tpl->getVariable('smarty')->value['section']['j']['index']]['id'];?>
+                                            <a href="/admin/?module=attributes&task=editItem&itemID=<?php echo $_smarty_tpl->tpl_vars['categoryTree']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['children'][$_smarty_tpl->getVariable('smarty')->value['section']['j']['index']]['id'];?>
 ">
                                                 <?php echo $_smarty_tpl->tpl_vars['categoryTree']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['children'][$_smarty_tpl->getVariable('smarty')->value['section']['j']['index']]['title'];?>
 
                                             </a>
-                                            <a href="/admin.php?module=attributes&task=editItem&itemID=<?php echo $_smarty_tpl->tpl_vars['categoryTree']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['children'][$_smarty_tpl->getVariable('smarty')->value['section']['j']['index']]['id'];?>
+                                            <a href="/admin/?module=attributes&task=editItem&itemID=<?php echo $_smarty_tpl->tpl_vars['categoryTree']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['children'][$_smarty_tpl->getVariable('smarty')->value['section']['j']['index']]['id'];?>
 ">
                                                 <img src="/images/operation/edit.png" height="10"/>
                                             </a>
@@ -285,7 +285,7 @@ un_check.png" alt="<?php echo @constant('HEAD_PUBLISH');?>
  <?php if (!empty($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty',null,true,false)->value['section']['i']['index']]['descr'])){?>(<?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['descr'];?>
 )<?php }?></a></td>
             <td  align="center" >
-                <a href="/admin.php?module=attributes&gid=<?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id'];?>
+                <a href="/admin/?module=attributes&gid=<?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id'];?>
 " title="<?php echo @constant('HEAD_ADD_VIEW_SUB_PAGES');?>
 ">
                     <img src="<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['system_images'];?>

@@ -1,6 +1,6 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-10-23 23:14:23
+<?php /* Smarty version Smarty-3.1.14, created on 2017-11-11 11:14:47
          compiled from "tpl/frontend/smart/ajax/control_sort.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:8577234459e658e1494d23-07317045%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:4168959575a06bf87f3f519-25039038%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,20 +11,20 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '8577234459e658e1494d23-07317045',
+  'nocache_hash' => '4168959575a06bf87f3f519-25039038',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_59e658e14f0994_86180160',
   'variables' => 
   array (
     'arrPageData' => 0,
     'sorting' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_5a06bf8805d8c3_57050454',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_59e658e14f0994_86180160')) {function content_59e658e14f0994_86180160($_smarty_tpl) {?><?php if (!empty($_smarty_tpl->tpl_vars['arrPageData']->value['arSorting'])){?>
+<?php if ($_valid && !is_callable('content_5a06bf8805d8c3_57050454')) {function content_5a06bf8805d8c3_57050454($_smarty_tpl) {?><?php if (!empty($_smarty_tpl->tpl_vars['arrPageData']->value['arSorting'])){?>
 <div class="pull-left sort" id="control_sort">
     <label>
         <span>сортировка:</span>

@@ -86,7 +86,7 @@
             <{section loop=$item.arImagesSettings name=s}>
                 <{if ($arrPageData.task=='addItem' && !$item.arImagesSettings[s].ftable || $item.arImagesSettings[s].ftable==$item.arImagesSettings[s].ptable) || $arrPageData.task=='editItem'}>
                 <a class="buttons left" 
-                   href="/admin.php?module=images_uploadify&ajax=1&pmodule=<{$arrPageData.module}>&pid=<{$item.id}>&type=<{$item.arImagesSettings[s].column}>" 
+                   href="/admin/?module=images_uploadify&ajax=1&pmodule=<{$arrPageData.module}>&pid=<{$item.id}>&type=<{$item.arImagesSettings[s].column}>" 
                    onclick="return hs.htmlExpand(this, { headingText:'”правление файлами', objectType:'iframe', preserveContent: false, width:<{if !empty($item.arImagesSettings[s].ftable)}>1024<{else}>550<{/if}> } );">
                     <{$item.arImagesSettings[s].title}>
                 </a>

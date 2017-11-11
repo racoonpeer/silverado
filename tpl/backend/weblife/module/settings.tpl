@@ -214,7 +214,7 @@
                     $('#filters').html(json.filters);
                 }
                 if(History.enabled) {
-                    History.pushState(null, document.title, '/admin.php?module=<{$arrPageData.module}>'+json.url);
+                    History.pushState(null, document.title, '/admin/?module=<{$arrPageData.module}>'+json.url);
                 }
             }
         });

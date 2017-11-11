@@ -32,8 +32,8 @@
 
         // General filesystem options
         $mcImageManagerConfig['filesystem'] = "Moxiecode_LocalFileImpl";
-        $mcImageManagerConfig['filesystem.path'] = '../../../../uploaded/'; // absolute or relative from this script path, optional.
-        $mcImageManagerConfig['filesystem.rootpath'] = '../../../../uploaded/'; // absolute or relative from this script path, required.
+        $mcImageManagerConfig['filesystem.path'] = '../../../../uploads/'; // absolute or relative from this script path, optional.
+        $mcImageManagerConfig['filesystem.rootpath'] = '../../../../uploads/'; // absolute or relative from this script path, required.
         $mcImageManagerConfig['filesystem.datefmt'] = "Y-m-d H:i";
         $mcImageManagerConfig['filesystem.include_directory_pattern'] = '';
         $mcImageManagerConfig['filesystem.exclude_directory_pattern'] = '/^mcith$/i';

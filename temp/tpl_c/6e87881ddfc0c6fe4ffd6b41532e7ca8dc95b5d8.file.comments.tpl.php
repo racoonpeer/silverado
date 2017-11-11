@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-10-25 22:33:17
+<?php /* Smarty version Smarty-3.1.14, created on 2017-11-11 11:12:07
          compiled from "tpl/backend/weblife/module/comments.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:81635006459f0e6fd602c42-37839181%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:19252739255a06bee71e5768-67667199%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '6e87881ddfc0c6fe4ffd6b41532e7ca8dc95b5d8' => 
     array (
       0 => 'tpl/backend/weblife/module/comments.tpl',
-      1 => 1508266895,
+      1 => 1510389163,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '81635006459f0e6fd602c42-37839181',
+  'nocache_hash' => '19252739255a06bee71e5768-67667199',
   'function' => 
   array (
   ),
@@ -23,9 +23,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_59f0e6fdd6d976_18800214',
+  'unifunc' => 'content_5a06bee77e8445_57166539',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_59f0e6fdd6d976_18800214')) {function content_59f0e6fdd6d976_18800214($_smarty_tpl) {?>
+<?php if ($_valid && !is_callable('content_5a06bee77e8445_57166539')) {function content_5a06bee77e8445_57166539($_smarty_tpl) {?>
 <?php echo $_smarty_tpl->getSubTemplate ('common/module_head.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('title'=>@constant('COMMENTS'),'creat_title'=>@constant('ADMIN_CREATING_NEW_COMMENTS'),'edit_title'=>@constant('ADMIN_EDIT_COMMENTS')), 0);?>
 
 
@@ -224,7 +224,7 @@ un_check.png" alt="<?php echo @constant('HEAD_PUBLISH');?>
 </a></td>
             <td  align="center" >
 <?php if (!empty($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty',null,true,false)->value['section']['i']['index']]['children'])){?>
-                <a href="/admin.php?module=comments&cid=<?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id'];?>
+                <a href="/admin/?module=comments&cid=<?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id'];?>
 " title="<?php echo @constant('HEAD_ADD_VIEW_SUB_PAGES');?>
 ">
                     <img src="<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['system_images'];?>

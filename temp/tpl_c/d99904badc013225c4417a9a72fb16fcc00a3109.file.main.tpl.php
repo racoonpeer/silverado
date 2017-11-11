@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-10-21 00:18:16
+<?php /* Smarty version Smarty-3.1.14, created on 2017-11-11 10:50:08
          compiled from "tpl/backend/weblife/module/main.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:5986193459ea68182a0b25-52038941%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:12023036675a06b9c0cf59b4-60571435%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'd99904badc013225c4417a9a72fb16fcc00a3109' => 
     array (
       0 => 'tpl/backend/weblife/module/main.tpl',
-      1 => 1508266895,
+      1 => 1510389208,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '5986193459ea68182a0b25-52038941',
+  'nocache_hash' => '12023036675a06b9c0cf59b4-60571435',
   'function' => 
   array (
   ),
@@ -33,9 +33,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_59ea68196cec77_60306814',
+  'unifunc' => 'content_5a06b9c20599d6_44371813',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_59ea68196cec77_60306814')) {function content_59ea68196cec77_60306814($_smarty_tpl) {?>
+<?php if ($_valid && !is_callable('content_5a06b9c20599d6_44371813')) {function content_5a06b9c20599d6_44371813($_smarty_tpl) {?>
 <?php echo $_smarty_tpl->getSubTemplate ('common/module_head.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('title'=>@constant('ADMIN_MAIN_TITLE'),'creat_title'=>@constant('ADMIN_CREATING_NEW_PAGE'),'edit_title'=>@constant('ADMIN_EDIT_CATEGORY_PAGE')), 0);?>
 
 
@@ -623,11 +623,11 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smart
  <strong><?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['filters']['seo'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['alias'];?>
 </strong></label>
 <?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['filters']['seo'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['tid']==1){?>
-                                                    <a href="/admin.php?module=brands" target="_blank">
+                                                    <a href="/admin/?module=brands" target="_blank">
                                                         <img src="/images/operation/edit.png" height="10">
                                                     </a>
 <?php }elseif($_smarty_tpl->tpl_vars['arrPageData']->value['filters']['seo'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['tid']!=1&&!empty($_smarty_tpl->tpl_vars['arrPageData']->value['filters']['seo'][$_smarty_tpl->getVariable('smarty',null,true,false)->value['section']['i']['index']]['aid'])){?>
-                                                    <a href="/admin.php?module=attributes_values&task=editItem&itemID=<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['filters']['seo'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['aid'];?>
+                                                    <a href="/admin/?module=attributes_values&task=editItem&itemID=<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['filters']['seo'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['aid'];?>
 &ajax=1" onclick="return hs.htmlExpand(this, {headingText:'<?php echo @constant('ATTRIBUTES');?>
 : <?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['filters']['seo'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['title'];?>
 ', objectType:'iframe', preserveContent: false, width:910});">

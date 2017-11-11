@@ -119,7 +119,7 @@
             <td><a href="<{$arrPageData.current_url|cat:$arrPageData.filter_url|cat:"&task=editItem&itemID="|cat:$items[i].id}>"><{$items[i].title}></a></td>
             <td  align="center" >
 <{if !empty($items[i].children)}>
-                <a href="/admin.php?module=comments&cid=<{$items[i].id}>" title="<{$smarty.const.HEAD_ADD_VIEW_SUB_PAGES}>">
+                <a href="/admin/?module=comments&cid=<{$items[i].id}>" title="<{$smarty.const.HEAD_ADD_VIEW_SUB_PAGES}>">
                     <img src="<{$arrPageData.system_images}>add_tree.png" alt="<{$smarty.const.HEAD_ADD_VIEW_SUB_PAGES}>" title="<{$smarty.const.HEAD_ADD_VIEW_SUB_PAGES}>" />
                 </a>
 <{/if}>

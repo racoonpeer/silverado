@@ -1,22 +1,20 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-10-28 20:52:29
+<?php /* Smarty version Smarty-3.1.14, created on 2017-11-11 11:12:26
          compiled from "tpl/backend/weblife/module/catalog.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:163911063359ea681c98ebe7-97422459%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:13373972795a06befa1eee29-63954994%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '10180fcdfa795862cb22847e21df4f1a585c622d' => 
     array (
       0 => 'tpl/backend/weblife/module/catalog.tpl',
-      1 => 1509213146,
+      1 => 1510389125,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '163911063359ea681c98ebe7-97422459',
+  'nocache_hash' => '13373972795a06befa1eee29-63954994',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_59ea681dc8ec48_67446689',
   'variables' => 
   array (
     'categoryTree' => 0,
@@ -39,8 +37,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'items' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_5a06befb5b6797_44045564',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_59ea681dc8ec48_67446689')) {function content_59ea681dc8ec48_67446689($_smarty_tpl) {?>
+<?php if ($_valid && !is_callable('content_5a06befb5b6797_44045564')) {function content_5a06befb5b6797_44045564($_smarty_tpl) {?>
 <?php echo $_smarty_tpl->getSubTemplate ('common/module_head.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('title'=>@constant('CATALOGS'),'creat_title'=>@constant('ADMIN_CREATING_NEW_PRODUCT'),'edit_title'=>@constant('ADMIN_EDIT_PRODUCT')), 0);?>
 
 
@@ -945,16 +945,16 @@ $_smarty_tpl->tpl_vars['arItem']->_loop = true;
                     </tr>
                     <tr valign="top">
                         <td >
-                            <select onChange="this.form.related_add.disabled=(this.selectedIndex == -1);jsSelectUtils.addExtraOptionsParams(this.form.selected_related, {ondblclick: 'openTab(\'/admin.php?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" multiple="" size="10" id="list_settings_all_related" name="all_related" class="jsSelectUtils_select"></select>
+                            <select onChange="this.form.related_add.disabled=(this.selectedIndex == -1);jsSelectUtils.addExtraOptionsParams(this.form.selected_related, {ondblclick: 'openTab(\'/admin/?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" multiple="" size="10" id="list_settings_all_related" name="all_related" class="jsSelectUtils_select"></select>
                         </td>
                         <td  valign="middle">
-                            <input type="button" onClick="jsSelectUtils.addSelectedOptions(this.form.all_related, 'list_settings_selected_related', 0);jsSelectUtils.addExtraOptionsParams(this.form.selected_related, {ondblclick: 'openTab(\'/admin.php?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" disabled="" title="Выбрать отмеченные колонки" value="&nbsp; &gt; &nbsp;" name="related_add" class="buttons green" style="min-width: 30px;"/>
+                            <input type="button" onClick="jsSelectUtils.addSelectedOptions(this.form.all_related, 'list_settings_selected_related', 0);jsSelectUtils.addExtraOptionsParams(this.form.selected_related, {ondblclick: 'openTab(\'/admin/?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" disabled="" title="Выбрать отмеченные колонки" value="&nbsp; &gt; &nbsp;" name="related_add" class="buttons green" style="min-width: 30px;"/>
                             <br/>
-                            <input type="button" onClick="jsSelectUtils.addSelectedOptions(this.form.selected_related, 'list_settings_all_related');jsSelectUtils.addExtraOptionsParams(this.form.all_related, {ondblclick: 'openTab(\'/admin.php?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" disabled="" title="Выбрать отмеченные колонки" value="&nbsp; &lt; &nbsp;" name="related_del" class="buttons green" style="min-width: 30px;"/>
+                            <input type="button" onClick="jsSelectUtils.addSelectedOptions(this.form.selected_related, 'list_settings_all_related');jsSelectUtils.addExtraOptionsParams(this.form.all_related, {ondblclick: 'openTab(\'/admin/?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" disabled="" title="Выбрать отмеченные колонки" value="&nbsp; &lt; &nbsp;" name="related_del" class="buttons green" style="min-width: 30px;"/>
                         </td>
                         <td >
                             <input type="hidden" name="related" id="related" value=""/>
-                            <select onChange="var frm=this.form; frm.related_up.disabled=frm.related_down.disabled=frm.related_del.disabled=(this.selectedIndex == -1);jsSelectUtils.addExtraOptionsParams(this.form.all_related, {ondblclick: 'openTab(\'/admin.php?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" multiple="" size="10" id="list_settings_selected_related" name="selected_related" class="jsSelectUtils_select">
+                            <select onChange="var frm=this.form; frm.related_up.disabled=frm.related_down.disabled=frm.related_del.disabled=(this.selectedIndex == -1);jsSelectUtils.addExtraOptionsParams(this.form.all_related, {ondblclick: 'openTab(\'/admin/?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" multiple="" size="10" id="list_settings_selected_related" name="selected_related" class="jsSelectUtils_select">
 <?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['i'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['i']);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['name'] = 'i';
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['loop'] = is_array($_loop=$_smarty_tpl->tpl_vars['item']->value['related']) ? count($_loop) : max(0, (int)$_loop); unset($_loop);
@@ -980,15 +980,15 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['first']      = ($_smart
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'] == $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['total']);
 ?>
                                 <option value="<?php echo $_smarty_tpl->tpl_vars['item']->value['related'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id'];?>
-" ondblclick="openTab('/admin.php?module=catalog&task=editItem&itemID=' + this.value);" style="color: blue; text-decoration: underline;"><?php echo (($_smarty_tpl->tpl_vars['item']->value['related'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['title']).(" ")).($_smarty_tpl->tpl_vars['item']->value['related'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['pcode']);?>
+" ondblclick="openTab('/admin/?module=catalog&task=editItem&itemID=' + this.value);" style="color: blue; text-decoration: underline;"><?php echo (($_smarty_tpl->tpl_vars['item']->value['related'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['title']).(" ")).($_smarty_tpl->tpl_vars['item']->value['related'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['pcode']);?>
 </option>
 <?php endfor; endif; ?>
                             </select>
                         </td>
                         <td  valign="middle">
-                            <input type="button" onClick="jsSelectUtils.moveOptionsUp(this.form.selected_related);jsSelectUtils.addExtraOptionsParams(this.form.selected_related, {ondblclick: 'openTab(\'/admin.php?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" disabled="" title="Порядок показа колонок (выше)" value="Выше" class="buttons" name="related_up" style="min-width: 30px;"/>
+                            <input type="button" onClick="jsSelectUtils.moveOptionsUp(this.form.selected_related);jsSelectUtils.addExtraOptionsParams(this.form.selected_related, {ondblclick: 'openTab(\'/admin/?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" disabled="" title="Порядок показа колонок (выше)" value="Выше" class="buttons" name="related_up" style="min-width: 30px;"/>
                             <br/>
-                            <input type="button" onClick="jsSelectUtils.moveOptionsDown(this.form.selected_related);jsSelectUtils.addExtraOptionsParams(this.form.selected_related, {ondblclick: 'openTab(\'/admin.php?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" disabled="" title="Порядок показа колонок: ниже" value="Ниже" class="buttons" name="related_down" style="min-width: 30px;"/>
+                            <input type="button" onClick="jsSelectUtils.moveOptionsDown(this.form.selected_related);jsSelectUtils.addExtraOptionsParams(this.form.selected_related, {ondblclick: 'openTab(\'/admin/?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" disabled="" title="Порядок показа колонок: ниже" value="Ниже" class="buttons" name="related_down" style="min-width: 30px;"/>
                         </td>
                         <td class="buttons_row"></td>
                     </tr>
@@ -1024,16 +1024,16 @@ $_smarty_tpl->tpl_vars['arItem']->_loop = true;
                     </tr>
                     <tr valign="top">
                         <td align="center">
-                            <select onChange="this.form.kit_add.disabled=(this.selectedIndex == -1); jsSelectUtils.addExtraOptionsParams(this.form.selected_kits, {ondblclick: 'openTab(\'/admin.php?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" size="10" id="list_settings_all_kits" name="all_kits" class="jsSelectUtils_select"></select>
+                            <select onChange="this.form.kit_add.disabled=(this.selectedIndex == -1); jsSelectUtils.addExtraOptionsParams(this.form.selected_kits, {ondblclick: 'openTab(\'/admin/?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" size="10" id="list_settings_all_kits" name="all_kits" class="jsSelectUtils_select"></select>
                         </td>
                         <td valign="middle">
-                            <input type="button" onClick="jsSelectUtils.addSelectedOptions(this.form.all_kits, 'list_settings_selected_kits', 10, true, false);jsSelectUtils.addExtraOptionsParams(this.form.selected_kits, {ondblclick: 'openTab(\'/admin.php?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" disabled="" title="Выбрать отмеченные колонки" value="&nbsp; &gt; &nbsp;" name="kit_add" class="buttons green" style="min-width: 30px;"/>
+                            <input type="button" onClick="jsSelectUtils.addSelectedOptions(this.form.all_kits, 'list_settings_selected_kits', 10, true, false);jsSelectUtils.addExtraOptionsParams(this.form.selected_kits, {ondblclick: 'openTab(\'/admin/?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" disabled="" title="Выбрать отмеченные колонки" value="&nbsp; &gt; &nbsp;" name="kit_add" class="buttons green" style="min-width: 30px;"/>
                             <br/>
-                            <input type="button" onClick="jsSelectUtils.addSelectedOptions(this.form.selected_kits, 'list_settings_all_kits', 0, false, false);jsSelectUtils.addExtraOptionsParams(this.form.all_kits, {ondblclick: 'openTab(\'/admin.php?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" disabled="" title="Выбрать отмеченные колонки" value="&nbsp; &lt; &nbsp;" name="kit_del" class="buttons green" style="min-width: 30px;"/>
+                            <input type="button" onClick="jsSelectUtils.addSelectedOptions(this.form.selected_kits, 'list_settings_all_kits', 0, false, false);jsSelectUtils.addExtraOptionsParams(this.form.all_kits, {ondblclick: 'openTab(\'/admin/?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" disabled="" title="Выбрать отмеченные колонки" value="&nbsp; &lt; &nbsp;" name="kit_del" class="buttons green" style="min-width: 30px;"/>
                         </td>
                         <td align="center">
                             <input type="hidden" name="arKits" value="" />
-                            <select onChange="var frm=this.form; frm.kit_up.disabled=frm.kit_down.disabled=frm.kit_del.disabled=(this.selectedIndex == -1);jsSelectUtils.addExtraOptionsParams(this.form.all_kits, {ondblclick: 'openTab(\'/admin.php?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" multiple="" size="10" id="list_settings_selected_kits" name="selected_kits" class="jsSelectUtils_select">
+                            <select onChange="var frm=this.form; frm.kit_up.disabled=frm.kit_down.disabled=frm.kit_del.disabled=(this.selectedIndex == -1);jsSelectUtils.addExtraOptionsParams(this.form.all_kits, {ondblclick: 'openTab(\'/admin/?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" multiple="" size="10" id="list_settings_selected_kits" name="selected_kits" class="jsSelectUtils_select">
 <?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['i'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['i']);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['name'] = 'i';
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['loop'] = is_array($_loop=$_smarty_tpl->tpl_vars['item']->value['arKits']) ? count($_loop) : max(0, (int)$_loop); unset($_loop);
@@ -1059,15 +1059,15 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['first']      = ($_smart
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'] == $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['total']);
 ?>
                                 <option value="<?php echo $_smarty_tpl->tpl_vars['item']->value['arKits'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id'];?>
-" ondblclick="openTab('/admin.php?module=catalog&task=editItem&itemID=' + this.value);" style="color: blue; text-decoration: underline;"><?php echo (($_smarty_tpl->tpl_vars['item']->value['arKits'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['title']).(" ")).($_smarty_tpl->tpl_vars['item']->value['arKits'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['pcode']);?>
+" ondblclick="openTab('/admin/?module=catalog&task=editItem&itemID=' + this.value);" style="color: blue; text-decoration: underline;"><?php echo (($_smarty_tpl->tpl_vars['item']->value['arKits'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['title']).(" ")).($_smarty_tpl->tpl_vars['item']->value['arKits'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['pcode']);?>
 </option>
 <?php endfor; endif; ?>
                             </select>
                         </td>
                         <td valign="middle">
-                            <input type="button" onClick="jsSelectUtils.moveOptionsUp(this.form.selected_kits);jsSelectUtils.addExtraOptionsParams(this.form.selected_kits, {ondblclick: 'openTab(\'/admin.php?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" disabled="" title="Порядок показа колонок (выше)" value="Выше" class="buttons green" name="kit_up" style="min-width: 30px;"/>
+                            <input type="button" onClick="jsSelectUtils.moveOptionsUp(this.form.selected_kits);jsSelectUtils.addExtraOptionsParams(this.form.selected_kits, {ondblclick: 'openTab(\'/admin/?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" disabled="" title="Порядок показа колонок (выше)" value="Выше" class="buttons green" name="kit_up" style="min-width: 30px;"/>
                             <br/>
-                            <input type="button" onClick="jsSelectUtils.moveOptionsDown(this.form.selected_kits);jsSelectUtils.addExtraOptionsParams(this.form.selected_kits, {ondblclick: 'openTab(\'/admin.php?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" disabled="" title="Порядок показа колонок: ниже" value="Ниже" class="buttons green" name="kit_down" style="min-width: 30px;"/>
+                            <input type="button" onClick="jsSelectUtils.moveOptionsDown(this.form.selected_kits);jsSelectUtils.addExtraOptionsParams(this.form.selected_kits, {ondblclick: 'openTab(\'/admin/?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" disabled="" title="Порядок показа колонок: ниже" value="Ниже" class="buttons green" name="kit_down" style="min-width: 30px;"/>
                         </td>
                         <td class="buttons_row" width="145"></td>
                     </tr>
@@ -1186,7 +1186,7 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smart
                     if(json.items){
                         var html = '';
                         for (var i in json.items){
-                            html += '<option value="' + i + '" ondblclick="openTab(\'/admin.php?module=catalog&task=editItem&itemID=\' + this.value);" style="color: blue; text-decoration: underline;">' + json.items[i].name + '</option>';
+                            html += '<option value="' + i + '" ondblclick="openTab(\'/admin/?module=catalog&task=editItem&itemID=\' + this.value);" style="color: blue; text-decoration: underline;">' + json.items[i].name + '</option>';
                         }
                         $('#list_settings_all_kits').html(html);
                     }
@@ -1218,7 +1218,7 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smart
                     if(json.items){
                         var html = '';
                         for (var i in json.items){
-                            html += '<option value="' + json.items[i].id + '" ondblclick="openTab(\'/admin.php?module=catalog&task=editItem&itemID=\' + this.value);" style="color: blue; text-decoration: underline;">' + json.items[i].name + '</option>';
+                            html += '<option value="' + json.items[i].id + '" ondblclick="openTab(\'/admin/?module=catalog&task=editItem&itemID=\' + this.value);" style="color: blue; text-decoration: underline;">' + json.items[i].name + '</option>';
                         }
                         $('#list_settings_all_related').html(html);
                     }
@@ -1354,7 +1354,7 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smart
 ]<?php }?>" onchange="SelectCheckBox(this);" value="1" /></td>
                 <td align="center">
 <?php if ($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['shortcutActive']){?>
-                    <a href="<?php if ($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['isshortcut']){?>/admin.php?module=shortcuts&task=publishItem&status=0&itemID=<?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['shortcutID'];?>
+                    <a href="<?php if ($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['isshortcut']){?>/admin/?module=shortcuts&task=publishItem&status=0&itemID=<?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['shortcutID'];?>
 <?php }else{ ?><?php echo ((($_smarty_tpl->tpl_vars['arrPageData']->value['current_url']).($_smarty_tpl->tpl_vars['arrPageData']->value['filter_url'])).("&task=publishItem&status=0&itemID=")).($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id']);?>
 <?php }?>" title="<?php echo @constant('HEAD_NO_PUBLISH');?>
 ">
@@ -1364,7 +1364,7 @@ check.png" alt="<?php echo @constant('HEAD_NO_PUBLISH');?>
 " />
                     </a>
 <?php }else{ ?>
-                    <a href="<?php if ($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['isshortcut']){?>/admin.php?module=shortcuts&task=publishItem&status=1&itemID=<?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['shortcutID'];?>
+                    <a href="<?php if ($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['isshortcut']){?>/admin/?module=shortcuts&task=publishItem&status=1&itemID=<?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['shortcutID'];?>
 <?php }else{ ?><?php echo ((($_smarty_tpl->tpl_vars['arrPageData']->value['current_url']).($_smarty_tpl->tpl_vars['arrPageData']->value['filter_url'])).("&task=publishItem&status=1&itemID=")).($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id']);?>
 <?php }?>" title="<?php echo @constant('HEAD_PUBLISH');?>
 ">
@@ -1377,7 +1377,7 @@ un_check.png" alt="<?php echo @constant('HEAD_PUBLISH');?>
                 </td>
                 <td>
 <?php if ($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['isshortcut']){?>
-                    <a style="position:relative; z-index:10" href="/admin.php?module=shortcuts&task=editItem&itemID=<?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['shortcutID'];?>
+                    <a style="position:relative; z-index:10" href="/admin/?module=shortcuts&task=editItem&itemID=<?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['shortcutID'];?>
 ">
                         <?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['title'];?>
  
@@ -1415,7 +1415,7 @@ shortcut.png" />
 <?php }else{ ?><?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['order'];?>
 <?php }?>" maxlength="4" /></td>
                 <td align="center" >
-                    <a href="<?php if ($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['isshortcut']){?>/admin.php?module=shortcuts&task=editItem&itemID=<?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['shortcutID'];?>
+                    <a href="<?php if ($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['isshortcut']){?>/admin/?module=shortcuts&task=editItem&itemID=<?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['shortcutID'];?>
 <?php }else{ ?><?php echo ((($_smarty_tpl->tpl_vars['arrPageData']->value['current_url']).($_smarty_tpl->tpl_vars['arrPageData']->value['filter_url'])).("&task=editItem&itemID=")).($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id']);?>
 <?php }?>" title="<?php echo @constant('LABEL_EDIT');?>
 ">
@@ -1425,7 +1425,7 @@ edit.png" alt="<?php echo @constant('LABEL_EDIT');?>
                     </a>
                 </td>
                 <td align="center">
-                    <a href="<?php if ($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['isshortcut']){?>/admin.php?module=shortcuts&task=deleteItem&itemID=<?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['shortcutID'];?>
+                    <a href="<?php if ($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['isshortcut']){?>/admin/?module=shortcuts&task=deleteItem&itemID=<?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['shortcutID'];?>
 <?php }else{ ?><?php echo ((($_smarty_tpl->tpl_vars['arrPageData']->value['current_url']).($_smarty_tpl->tpl_vars['arrPageData']->value['filter_url'])).("&task=deleteItem&itemID=")).($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id']);?>
 <?php }?>" onclick="return confirm('<?php echo @constant('CONFIRM_DELETE');?>
 ');" title="<?php echo @constant('LABEL_DELETE');?>

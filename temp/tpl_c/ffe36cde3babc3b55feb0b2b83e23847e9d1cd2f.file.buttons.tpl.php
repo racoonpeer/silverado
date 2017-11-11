@@ -1,6 +1,6 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-10-21 00:18:29
+<?php /* Smarty version Smarty-3.1.14, created on 2017-11-11 11:11:54
          compiled from "tpl/backend/weblife/common/buttons.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:129265393559ea6825d3f945-49924560%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:11281786595a06bedad599c7-20145629%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,7 +11,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '129265393559ea6825d3f945-49924560',
+  'nocache_hash' => '11281786595a06bedad599c7-20145629',
   'function' => 
   array (
   ),
@@ -25,9 +25,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_59ea682601c8c9_04169070',
+  'unifunc' => 'content_5a06bedb079709_65487173',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_59ea682601c8c9_04169070')) {function content_59ea682601c8c9_04169070($_smarty_tpl) {?>
+<?php if ($_valid && !is_callable('content_5a06bedb079709_65487173')) {function content_5a06bedb079709_65487173($_smarty_tpl) {?>
 
 <div class="buttons_list">
        <input class="buttons" name="submit" type="submit" value="<?php echo @constant('BUTTON_SAVE');?>

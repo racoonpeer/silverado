@@ -18,7 +18,7 @@
                 <td align="center"><{$arHistoryData.history[i].ip}></td>
                 <td align="center">
                     <{if $arHistoryData.history[i].uid!=-1}>
-                        <a target="_blank" href="/admin.php?module=users&task=viewItem&itemID=<{$arHistoryData.history[i].uid}>">
+                        <a target="_blank" href="/admin/?module=users&task=viewItem&itemID=<{$arHistoryData.history[i].uid}>">
                             <{$arHistoryData.history[i].user}>
                         </a> [<{$arHistoryData.history[i].uid}>]
                     <{else}>
@@ -36,7 +36,7 @@
                 <td align="center">
                     <{if !empty($arHistoryData.history[i].object)}>
                         <{if !empty($arHistoryData.history[i].oid)}>
-                            <a target="_blank" href="/admin.php?module=<{$arHistoryData.history[i].module}>&task=editItem&itemID=<{$arHistoryData.history[i].oid}>">
+                            <a target="_blank" href="/admin/?module=<{$arHistoryData.history[i].module}>&task=editItem&itemID=<{$arHistoryData.history[i].oid}>">
                                 <{$arHistoryData.history[i].object}>
                             </a> 
                             [<{$arHistoryData.history[i].oid}>]

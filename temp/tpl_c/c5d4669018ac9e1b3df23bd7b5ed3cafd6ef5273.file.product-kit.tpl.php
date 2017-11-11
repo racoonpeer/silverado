@@ -1,6 +1,6 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-10-29 20:37:49
+<?php /* Smarty version Smarty-3.1.14, created on 2017-11-11 11:15:35
          compiled from "tpl/frontend/smart/core/product-kit.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:7610835759eba33276d941-79335965%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:17534542535a06bfb7de4425-46766237%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,12 +11,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '7610835759eba33276d941-79335965',
+  'nocache_hash' => '17534542535a06bfb7de4425-46766237',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_59eba332acfbb3_37193100',
   'variables' => 
   array (
     'item' => 0,
@@ -25,8 +23,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'Basket' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_5a06bfb80fc5a0_20784323',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_59eba332acfbb3_37193100')) {function content_59eba332acfbb3_37193100($_smarty_tpl) {?><div class="product-set">
+<?php if ($_valid && !is_callable('content_5a06bfb80fc5a0_20784323')) {function content_5a06bfb80fc5a0_20784323($_smarty_tpl) {?><div class="product-set">
     <div class="h2">В комплекте дешевле</div>
     <div class="product-set-blocks">
 <?php  $_smarty_tpl->tpl_vars['kitItem'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['kitItem']->_loop = false;

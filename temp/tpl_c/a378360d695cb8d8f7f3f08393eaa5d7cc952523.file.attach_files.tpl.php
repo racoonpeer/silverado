@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-10-21 00:18:30
+<?php /* Smarty version Smarty-3.1.14, created on 2017-11-11 11:11:55
          compiled from "tpl/backend/weblife/common/attach_files.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:409463459ea6826028d01-25638549%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:11731529885a06bedb0cd358-49895318%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'a378360d695cb8d8f7f3f08393eaa5d7cc952523' => 
     array (
       0 => 'tpl/backend/weblife/common/attach_files.tpl',
-      1 => 1508266895,
+      1 => 1510388897,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '409463459ea6826028d01-25638549',
+  'nocache_hash' => '11731529885a06bedb0cd358-49895318',
   'function' => 
   array (
   ),
@@ -25,9 +25,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_59ea682648ead0_91613359',
+  'unifunc' => 'content_5a06bedb562c63_46563739',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_59ea682648ead0_91613359')) {function content_59ea682648ead0_91613359($_smarty_tpl) {?><?php if (isset($_smarty_tpl->tpl_vars['attachFile']->value)&&$_smarty_tpl->tpl_vars['attachFile']->value){?>
+<?php if ($_valid && !is_callable('content_5a06bedb562c63_46563739')) {function content_5a06bedb562c63_46563739($_smarty_tpl) {?><?php if (isset($_smarty_tpl->tpl_vars['attachFile']->value)&&$_smarty_tpl->tpl_vars['attachFile']->value){?>
 <tr>
     <td id="headb" align="left"><?php echo @constant('HEAD_ATTACH_FILE');?>
 </td>
@@ -159,7 +159,7 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['s']['last']       = ($_smart
 ?>
                 <?php if (($_smarty_tpl->tpl_vars['arrPageData']->value['task']=='addItem'&&!$_smarty_tpl->tpl_vars['item']->value['arImagesSettings'][$_smarty_tpl->getVariable('smarty')->value['section']['s']['index']]['ftable']||$_smarty_tpl->tpl_vars['item']->value['arImagesSettings'][$_smarty_tpl->getVariable('smarty')->value['section']['s']['index']]['ftable']==$_smarty_tpl->tpl_vars['item']->value['arImagesSettings'][$_smarty_tpl->getVariable('smarty')->value['section']['s']['index']]['ptable'])||$_smarty_tpl->tpl_vars['arrPageData']->value['task']=='editItem'){?>
                 <a class="buttons left" 
-                   href="/admin.php?module=images_uploadify&ajax=1&pmodule=<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['module'];?>
+                   href="/admin/?module=images_uploadify&ajax=1&pmodule=<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['module'];?>
 &pid=<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
 &type=<?php echo $_smarty_tpl->tpl_vars['item']->value['arImagesSettings'][$_smarty_tpl->getVariable('smarty')->value['section']['s']['index']]['column'];?>
 " 

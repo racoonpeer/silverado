@@ -33,8 +33,8 @@ if(!empty($objUserInfo) && $objUserInfo->logined) {
     } unset($query, $result);
 }
 
-if($ajax && !$auth) { RedirectAjax('/login.php', $_SERVER['REQUEST_URI']); }
-elseif(!$auth) { Redirect('/login.php', (@$_GET['action']=='logout' ? '/admin.php?page=welcome' : $_SERVER['REQUEST_URI'])); }
+if($ajax && !$auth) { RedirectAjax('/admin/login.php', $_SERVER['REQUEST_URI']); }
+elseif(!$auth) { Redirect('/admin/login.php', (@$_GET['action']=='logout' ? '/admin/?page=welcome' : $_SERVER['REQUEST_URI'])); }
 
 $arrPageData['auth'] = $auth;
 // \\\\\\\\\\\\\\\\\\\ END ADMIN USER AUTHENTICATION ///////////////////////////

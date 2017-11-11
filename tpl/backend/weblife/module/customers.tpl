@@ -99,7 +99,7 @@
 
                              <div class="inline"><{$smarty.const.HEAD_FILES_MANAGER}>: </div>
                              <{if $arrPageData.task=='editItem'}>
-                                <a href="/admin.php?module=users_files_uploadify&ajax=1&pmodule=<{$arrPageData.module}>&pid=<{if $item.id}><{$item.id}><{else}>0<{/if}>&files_params=<{$arrPageData.files_params|serialize|base64_encode|urlencode}>" onclick="return hs.htmlExpand(this, { headingText:'<{$smarty.const.HEAD_FILES_MANAGER}>', objectType:'iframe', preserveContent: false, width:900 } );"><{$smarty.const.HEAD_OPEN_MANAGER}></a>
+                                <a href="/admin/?module=users_files_uploadify&ajax=1&pmodule=<{$arrPageData.module}>&pid=<{if $item.id}><{$item.id}><{else}>0<{/if}>&files_params=<{$arrPageData.files_params|serialize|base64_encode|urlencode}>" onclick="return hs.htmlExpand(this, { headingText:'<{$smarty.const.HEAD_FILES_MANAGER}>', objectType:'iframe', preserveContent: false, width:900 } );"><{$smarty.const.HEAD_OPEN_MANAGER}></a>
                              <{else}>
                                 <{$smarty.const.HEAD_FILES_MANAGER_ACCESS}>                        
                              <{/if}><br/><br/>
@@ -262,7 +262,7 @@
                             <td><{$item.orders[i].id}></td>
                             <td><{$item.orders[i].title}></td>
                             <td>
-                                <a href="/admin.php?module=orders&task=editItem&itemID=<{$item.orders[i].id}>" target="_blank">
+                                <a href="/admin/?module=orders&task=editItem&itemID=<{$item.orders[i].id}>" target="_blank">
                                     <{$item.orders[i].products|@implode:" | "}>
                                 </a>
                             </td>

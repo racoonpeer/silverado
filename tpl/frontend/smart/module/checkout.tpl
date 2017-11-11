@@ -23,24 +23,24 @@
                                     <input type="tel" class="input-l required <{if isset($arrPageData.errors.phone)}>error<{/if}>" name="phone" value="<{if isset($item.phone)}><{$item.phone}><{/if}>" placeholder="+38"/>
                                 </div>
                                 <div class="f-column">
-                                    <input type="text" class="input-l required <{if isset($arrPageData.errors.email)}>error<{/if}>" name="email"  value="<{if isset($item.email)}><{$item.email}><{/if}>" placeholder="E-mail"/>
+                                    <input type="email" class="input-l required <{if isset($arrPageData.errors.email)}>error<{/if}>" name="email" value="<{if isset($item.email)}><{$item.email}><{/if}>" placeholder="E-mail"/>
                                 </div>
                             </div>
                             <div class="f-row">
                                 <textarea name="descr" placeholder="Комментарий к заказу" rows="4"></textarea>
                             </div>
-                            <div class="f-row hidden">
-                                <a href="#" class="proceed">Указать способ доставки и оплаты</a>
+                            <div class="f-row clearfix">
+                                <a href="#" class="proceed hidden">Выбрать способ доставки</a>
                             </div>
                         </div>
                     </fieldset>
                     <h3>Доставка</h3>
                     <fieldset>
                         <div class="f-print">
-                            <p class="uc">жанна иванова</p>
-                            <p data-src="email">z.ivanova@gmail.com</p>
-                            <p data-src="phone">+380999027012</p>
-                            <p data-src="comment">Во дворе злая собака</p>
+                            <p class="uc"><span data-source="firstname"></span> <span data-source="surname"></span></p>
+                            <p data-source="email"></p>
+                            <p data-source="phone"></p>
+                            <p data-source="descr"></p>
                         </div>
                         <div class="f-body">
                             <div class="f-row">
@@ -72,35 +72,46 @@
                             </div>
                             <div class="f-row hidden nomargin">
                                 <div class="f-column">
-                                    <input type="text" class="input-l required <{if isset($arrPageData.errors.firstname)}>error<{/if}>" name="recepient_first" value="<{if isset($item.recepient_first)}><{$item.recepient_first}><{/if}>" placeholder="Имя"/>
+                                    <input type="text" class="input-l required <{if isset($arrPageData.errors.ext_firstname)}>error<{/if}>" name="ext_firstname" id="ext_firstname" value="<{if isset($item.ext_firstname)}><{$item.ext_firstname}><{/if}>" placeholder="Имя"/>
                                 </div>
                                 <div class="f-column">
-                                    <input type="text" class="input-l required <{if isset($arrPageData.errors.surname)}>error<{/if}>" name="recepient_sur" value="<{if isset($item.recepient_sur)}><{$item.recepient_sur}><{/if}>" placeholder="Фамилия"/>
+                                    <input type="text" class="input-l required <{if isset($arrPageData.errors.ext_surname)}>error<{/if}>" name="ext_surname" id="ext_surname" value="<{if isset($item.ext_surname)}><{$item.ext_surname}><{/if}>" placeholder="Фамилия"/>
                                 </div>
                                 <div class="f-hint hint-user">Введите имя и фамилию получателя, если заказ будете получать не вы лично<br/>
                                 Внимание! При получении заказа необходимо предьявить паспорт</div>
+                            </div>
+                            <div class="f-row stage-complete">
+                                <a href="#" class="return">Назад</a>
+                                <a href="#" class="proceed hidden">Выбрать способ оплаты</a>
                             </div>
                         </div>
                     </fieldset>
                     <h3>Оплата</h3>
                     <fieldset>
                         <div class="f-print">
-                            <p class="uc">жанна иванова</p>
-                            <p data-src="email">z.ivanova@gmail.com</p>
-                            <p data-src="phone">+380999027012</p>
-                            <p data-src="comment">Во дворе злая собака</p>
+                            <p class="uc"><span data-source="firstname"></span> <span data-source="surname"></span></p>
+                            <p data-source="email"></p>
+                            <p data-source="phone"></p>
+                            <p data-source="descr"></p>
                         </div>
                         <div class="f-body">
                             <div class="f-row">
 <{foreach name=i from=$arrPageData.arPayment item=payment}>
-                                <input type="radio" name="payment_id" value="<{$payment.id}>" class="hidden" id="payment_<{$payment.id}>" <{if (!isset($item.payment) AND $smarty.section.i.first) OR (isset($item.payment) AND $item.payment==$payment.id)}>checked<{/if}>/> 
+                                <input type="radio" name="payment_id" value="<{$payment.id}>" class="hidden" id="payment_<{$payment.id}>" <{if (!isset($item.payment) AND $smarty.foreach.i.first) OR (isset($item.payment) AND $item.payment==$payment.id)}>checked<{/if}>/> 
                                 <label for="payment_<{$payment.id}>" class="radiobox"><{$payment.title}></label>
 <{/foreach}>
                             </div>
-                            <div class="f-row hidden">
-                                <div class="f-hint hint-card">Вы оплачиваете после подтверждения заказа в телефонном режиме<br/>
+                            <hr/>
+                            <div class="f-row">
+                                <div class="f-hint hint-box <{if isset($item.payment) AND $item.payment!=Checkout::CASH_PAYMENT_ID}>hidden<{/if}>" data-toggle-id="payment_<{Checkout::CASH_PAYMENT_ID}>">Вы оплачиваете заказ при получении 
+                                осмотрев и проверив товар на соответствие вашему заказу, отсутствие брака и повреждений.<br/>
+                                Подробнее о <a href="<{include file="core/href.tpl" arCategory=$arrModules.refund}>" target="_blank">возврате и обмене товара</a></div>
+                                <div class="f-hint hint-card <{if !isset($item.payment) OR (isset($item.payment) AND $item.payment!=Checkout::LP_PAYMENT_ID)}>hidden<{/if}>" data-toggle-id="payment_<{Checkout::LP_PAYMENT_ID}>">Вы оплачиваете после подтверждения заказа в телефонном режиме<br/>
                                 предварительно согласовав с менеджером сроки доставки товара.<br/>
                                 Подробнее о <a href="<{include file="core/href.tpl" arCategory=$arrModules.delivery}>" target="_blank">способах оплаты заказа</a></div>
+                            </div>
+                            <div class="f-row hidden stage-complete">
+                                <a href="#" class="return">Назад</a>
                             </div>
                         </div>
                     </fieldset>
@@ -117,7 +128,9 @@
             <hr/>
             <a href="#" onclick="return Basket.open();" class="edit-order">Редактировать заказ</a>
             <hr/>
-            <button class="btn btn-danger btn-xl">подтвердить заказ</button>
+            <input type="checkbox" class="hidden" name="agree" id="agree" value="1"/>
+            <label class="checkbox" for="agree">Согласен с условиями <a href="<{include file="core/href.tpl" arCategory=$arrModules.refund}>" target="_blank">возврата и обмена товара</a></label>
+            <button class="btn btn-danger btn-xl" disabled="">подтвердить заказ</button>
         </div>
     </div>
 </div>

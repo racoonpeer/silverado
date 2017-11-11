@@ -4,7 +4,7 @@
         <td align="center"><{$arHistoryData.history[i].ip}></td>
         <td align="center">
             <{if $arHistoryData.history[i].uid!=-1}>
-            <a target="_blank" href="/admin.php?module=users&task=viewItem&itemID=<{$arHistoryData.history[i].uid}>">
+            <a target="_blank" href="/admin/?module=users&task=viewItem&itemID=<{$arHistoryData.history[i].uid}>">
                 <{$arHistoryData.history[i].user}>
             </a> [<{$arHistoryData.history[i].uid}>]
             <{else}>Система

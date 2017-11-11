@@ -9,7 +9,7 @@
             <tr>
                 <td colspan="3">
                     <a href="<{$arData.server}>">
-                        <img src="<{$arData.server}>/images/site/smart/logo.gif" style="border: 0px none;"/>
+                        <img src="<{$arData.server}>/images/public/logo.gif" style="border: 0px none;"/>
                     </a>
                     <br/>
                 </td>
@@ -51,7 +51,7 @@
 <{if !empty($arItem.image)}>
                             <td width="150px" valign="top">
                                 <a href="<{$arData.server|cat:$arItem.link}>">
-                                    <img src="<{$arData.server}>/uploaded/catalog/<{$arItem.image}>" style="width: 150px; border: none;"/>
+                                    <img src="<{$arData.server}>/uploads/catalog/<{$arItem.image}>" style="width: 150px; border: none;"/>
                                 </a>
                             </td>
 <{/if}>

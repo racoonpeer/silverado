@@ -611,15 +611,16 @@ class Basket {
 
 class Checkout {
     
-    const COURIER_KIEV_SHIPPING_ID  = 4;
-    const COURIER_SHIPPING_ID  = 1;
-    const SELF_SHIPPING_ID  = 3;
-    const NP_SHIPPING_ID    = 2;
-    const LP_PAYMENT_ID     = 3;
-    const P24_PAYMENT_ID    = 4;
+    const COURIER_KIEV_SHIPPING_ID = 4;
+    const COURIER_SHIPPING_ID      = 1;
+    const SELF_SHIPPING_ID         = 3;
+    const NP_SHIPPING_ID           = 2;
+    const CASH_PAYMENT_ID          = 1;
+    const LP_PAYMENT_ID            = 3;
+    const P24_PAYMENT_ID           = 4;
     // Nova poshta API params
-    const NP_API_URL        = "https://api.novaposhta.ua/v2.0/xml/";
-    const NP_API_KEY        = "f062bc6a40c2b014512a5030ae2a0e09";
+    const NP_API_URL               = "https://api.novaposhta.ua/v2.0/xml/";
+    const NP_API_KEY               = "f062bc6a40c2b014512a5030ae2a0e09";
 
     public function __construct () {
     }

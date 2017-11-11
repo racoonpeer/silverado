@@ -433,7 +433,7 @@ h4,
                 width: 11px !important;
                 background-position: center;
                 background-repeat: no-repeat;
-                background-image: url(/images/site/smart/select.gif);
+                background-image: url(/images/public/select.gif);
             }
         }
     }
@@ -553,7 +553,7 @@ input[type="number"],
 input[type="password"],
 input[type="tel"] {
     &.required {
-        background-image: url("/images/site/smart/required.png");
+        background-image: url("/images/public/required.png");
         background-position: right 11px top 50%;
         background-repeat: no-repeat;
     }
@@ -562,7 +562,7 @@ select {
     background-color: $white;
     padding-left: 10px;
     padding-right: 24px;
-    background-image: url("/images/site/smart/select.gif");
+    background-image: url("/images/public/select.gif");
     background-repeat: no-repeat;
     background-position: right 9px top 50%;
     @include appearance(none);
@@ -716,7 +716,7 @@ input[type="radio"] {
         background-position: center;
         background-repeat: no-repeat;
         border: none;
-        background-image: url("/images/site/smart/spin.gif");
+        background-image: url("/images/public/spin.gif");
         transform-origin: center;
         &.minus {
             bottom: 0;

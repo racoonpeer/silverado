@@ -74,8 +74,8 @@ function Resample(&$img, $owdt, $ohgt, $maxwdt, $maxhgt, $quality=1) {
 
 /**
  * Examples:
- *  createThumbWithBg('uploaded/img.jpg', 'uploaded/img1.jpg', 150, 150, array(228, 238, 252), 90, 1);
- *  createThumbWithBg('uploaded/img.png', 'uploaded/img1.png', 150, 150, array('r'=>255, 'g'=>0, 'b'=>255), 90, 1);
+ *  createThumbWithBg('uploads/img.jpg', 'uploads/img1.jpg', 150, 150, array(228, 238, 252), 90, 1);
+ *  createThumbWithBg('uploads/img.png', 'uploads/img1.png', 150, 150, array('r'=>255, 'g'=>0, 'b'=>255), 90, 1);
  * @param String $file
  * @param String $dest
  * @param int $bgwdt

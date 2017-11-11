@@ -1,1 +1,29 @@
-Deny from all
+#Deny from all
+DirectoryIndex index.php index.html
+# AddDefaultCharset UTF-8
+AddDefaultCharset WINDOWS-1251
+
+AddType application/x-javascript .js
+AddType text/css .css
+AddType text/xml .xml
+AddType application/octet-stream .doc .mov .avi .xls
+AddType application/pdf .pdf
+AddType image/svg+xml svg svgz
+
+<IfModule mod_rewrite.c>
+    Options +FollowSymLinks
+    RewriteEngine On
+    RewriteBase /
+    RewriteCond %{HTTP_HOST} ^www\.admin\.silverado\.com\.ua$ [NC,OR]
+    RewriteCond %{HTTP_HOST} ^admin\.silverado\.com\.ua$ [NC]
+    RewriteRule ^(.*)$ http://silverado.com.ua/admin/$1 [R=301,L]
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule . index.php [L]
+
+    ErrorDocument  400  /
+    ErrorDocument  401  /
+    ErrorDocument  403  /
+    ErrorDocument  404  /
+    ErrorDocument  500  /
+</IfModule>

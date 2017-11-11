@@ -152,7 +152,7 @@ if ($itemID and $item = getSimpleItemRow($itemID, CATALOG_TABLE) and !empty($ite
         $arCategory['meta_robots']    = $item['meta_robots'];
         $arrPageData['headScripts'][] = "/js/libs/slick-carousel/slick.min.js";
         $arrPageData['headScripts'][] = "/js/libs/cshare/cshare.js";
-        $arrPageData['headScripts'][] = "/js/smart/product.js";
+        $arrPageData['headScripts'][] = "/js/public/product.js";
         // related items
         $item['related'] = $item['similar'] = $item['additions'] = array();
         $query  = "SELECT DISTINCT c.*, cr.`type` FROM `".CATALOG_RELATED_TABLE."` cr "
@@ -178,7 +178,7 @@ if ($itemID and $item = getSimpleItemRow($itemID, CATALOG_TABLE) and !empty($ite
     
     $arrPageData['headScripts'][] = "/js/libs/history.js/bundled/html4+html5/jquery.history.min.js";
     $arrPageData['headScripts'][] = "/js/libs/noUiSlider/nouislider.min.js";
-    $arrPageData['headScripts'][] = "/js/smart/{$module}.js";
+    $arrPageData['headScripts'][] = "/js/public/{$module}.js";
     
     require_once('include/classes/Filters.php');
     

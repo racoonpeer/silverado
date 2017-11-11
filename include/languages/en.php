@@ -67,7 +67,7 @@ define('ADMIN_MAIN_TITLE', 'Main');
 define('ADMIN_PATH', 'Path: ');
 define('ADMIN_HELLO', 'Hello');
 define('ADMIN_LIST_ITEMS', 'List');
-define('ADMIN_MODULE_ID_ERROR', 'Module "%s" [%s] is not selected in either category as the executable. For proper operation of the module, you must first select it in the site structure. <a href="/admin.php?module=main ">Back &gt;</a>!');
+define('ADMIN_MODULE_ID_ERROR', 'Module "%s" [%s] is not selected in either category as the executable. For proper operation of the module, you must first select it in the site structure. <a href="/admin/?module=main ">Back &gt;</a>!');
 define('ADMIN_MODULE_TABLE_ERROR', 'DataTable of Module "%s" [%s] does not exist in the database. For proper operation of the module, you must first create a ("%s") Table');
 
 define('PRODUCT_OPTIONS', 'Product options');

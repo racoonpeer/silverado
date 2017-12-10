@@ -50,7 +50,7 @@ if($itemID and $task=='deleteItem') {
         if(!$result) {
             $arrPageData['errors'][] = 'Данные не удалось удалить. Возможная причина - <p>MySQL Error Delete: '.mysql_errno().'</b> Error:'.mysql_error().'</p>';
         } elseif($result) {
-            deleteRecords(ORDER_PRODUCTS_TABLE, 'WHERE `oid`='.$itemID);
+            deleteRecords(ORDER_PRODUCTS_TABLE, 'WHERE `order_id`='.$itemID);
             Redirect($arrPageData['current_url']);
         }
     } else {
@@ -94,8 +94,8 @@ if($itemID and $task=='editItem'){
         $item['createdTime'] = date('H:i:s', strtotime($item['created']));
         
         $item['arStatus']    = getItemRow(ORDER_STATUS_TABLE, '*', 'WHERE `id`='.$item['status']);
-        $item['arPayment']   = getItemRow(PAYMENT_TYPES_TABLE, '*', 'WHERE `id`='.$item['payment']);
-        $item['arShipping']  = getItemRow(SHIPPING_TYPES_TABLE, '*', 'WHERE `id`='.$item['shipping']);
+        $item['arPayment']   = getItemRow(PAYMENT_TYPES_TABLE, '*', 'WHERE `id`='.$item['payment_id']);
+        $item['arShipping']  = getItemRow(SHIPPING_TYPES_TABLE, '*', 'WHERE `id`='.$item['shipping_id']);
         
         if($item['price'] > $item['arShipping']['minprice']) {
             $item['shipping_price'] = 0;
@@ -108,7 +108,7 @@ if($itemID and $task=='editItem'){
         // order products
         $item['children'] = array();
         $select = 'SELECT op.* FROM `'.ORDER_PRODUCTS_TABLE.'` op ';
-        $where  = 'WHERE op.`oid`='.$itemID.' ';
+        $where  = 'WHERE op.`order_id`='.$itemID.' ';
         $order  = 'ORDER BY op.`id`';
         $query  = $select.$where.$order;
         $result = mysql_query($query);
@@ -119,7 +119,7 @@ if($itemID and $task=='editItem'){
                     $product = getItemRow(CATALOG_TABLE, '*', 'WHERE `id`='.$row['pid']);
                     if (!empty($product)) {
                         $row['link'] = $UrlWL->buildItemUrl($UrlWL->getCategoryById($product['cid']), $product);
-                        $row['ptitle'] = $product['title'];
+                        $row['ptitle'] = "{$product['title']} {$product['pcode']}";
                         $row["selectedOptions"] = isset($arOptions[$product["id"]]) ? $arOptions[$product["id"]] : array();
                         $row["options"] = PHPHelper::getProductOptions($product["id"], $row["selectedOptions"]);
                     } else {
@@ -128,29 +128,9 @@ if($itemID and $task=='editItem'){
                         $row["selectedOptions"] = array();
                         $row["options"] = array();
                     }
-                } elseif ($row['type']=="kit") {
-                    $row['link']     = null;
-                    $row['ptitle']   = $row['title'];
-                    $row["children"] = array();
-                    $kitx = !empty($row["kitx"]) ? explode(",", $row["kitx"]) : array(0);
-                    $qry  = "SELECT c.*, IF(ck.`pid`=c.`id`, 1, 0) AS `primary` FROM `".CATALOG_TABLE."` c ";
-                    $qry .= "LEFT JOIN `".CATALOG_KITS_TABLE."` ck ON(ck.`pid` = c.`id`) ";
-                    $qry .= "LEFT JOIN `".CATALOG_KITS_TABLE."` ck2 ON(ck2.`kid` = c.`id`) ";
-                    $qry .= "WHERE c.`id` IN(".implode(",", $kitx).") ";
-                    $qry .= "GROUP BY c.`id` ORDER BY `primary` DESC LIMIT 1";
-                    $res  = mysql_query($qry);
-                    if ($res AND mysql_num_rows($res) > 0) {
-                        while ($kit = mysql_fetch_assoc($res)) {
-                            $kit["selectedOptions"] = isset($arOptions[$kit["id"]]) ? $arOptions[$kit["id"]] : array();
-                            $kit["options"] = PHPHelper::getProductOptions($kit["id"], $kit["selectedOptions"]);
-                            $row["children"][] = $kit;
-                        }
-                    }
-                }
-                $item['children'][] = $row;
+                } $item['children'][] = $row;
             }
         }
-        
         if (!empty($_POST)) {
             $Validator->validateGeneral($_POST['firstname'], 'Укажите имя клиента');
             $Validator->validateGeneral($_POST['phone'], 'Укажите номер телефона клиента');
@@ -161,7 +141,6 @@ if($itemID and $task=='editItem'){
                 $arUnusedKeys = array('id');
                 $query_type = "update";
                 $whereOptions = "WHERE `id`=$itemID";
-                
                 $result = $DB->postToDB($arPostData, ORDERS_TABLE, $whereOptions, $arUnusedKeys, $query_type);
                 if ($result) {
                     $item_title = "Заказ №$itemID";

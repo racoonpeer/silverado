@@ -434,3 +434,6 @@ CREATE TABLE IF NOT EXISTS `np_warehouse` (
 -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 -- =============================================================================
 
+ALTER TABLE `ru_main` ADD `is_stock` TINYINT(1) unsigned NOT NULL DEFAULT '0' AFTER `essential`;
+ALTER TABLE `ru_main` ADD `separate` TINYINT(1) unsigned NOT NULL DEFAULT '0' AFTER `is_stock`;
+ALTER TABLE `ru_main` ADD `filter_title` VARCHAR(255) NOT NULL DEFAULT '' AFTER `seo_text`;

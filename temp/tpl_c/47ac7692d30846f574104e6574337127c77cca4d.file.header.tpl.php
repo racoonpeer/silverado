@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-11-11 10:18:45
+<?php /* Smarty version Smarty-3.1.14, created on 2017-12-03 13:58:06
          compiled from "tpl/frontend/smart/core/header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:6066972515a06b265ed78b1-08383906%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '47ac7692d30846f574104e6574337127c77cca4d' => 
     array (
       0 => 'tpl/frontend/smart/core/header.tpl',
-      1 => 1508266895,
+      1 => 1512302280,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_5a06b266018404_99530547',
   'variables' => 
   array (
     'mainMenu' => 0,
@@ -23,8 +25,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'catalogMenu' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_5a06b266018404_99530547',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5a06b266018404_99530547')) {function content_5a06b266018404_99530547($_smarty_tpl) {?>
 <div class="header-container">
@@ -38,11 +38,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         </div>
     </div>
     <div class="section-middle container clearfix">
+<?php if ($_smarty_tpl->tpl_vars['arCategory']->value['module']!="checkout"){?>
         <button class="btn-nav">
             <span class="constituent-1"></span>
             <span class="constituent-2"></span>
             <span class="constituent-3"></span>
         </button>
+<?php }?>
         <div class="logo">
 <?php if ($_smarty_tpl->tpl_vars['arCategory']->value['module']!="home"){?>
             <a href="/"></a>
@@ -61,10 +63,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 ');">обратный звонок</a></div>
 <?php }?>
         </div>
+<?php if ($_smarty_tpl->tpl_vars['arCategory']->value['module']=="checkout"){?>
+        <a href="javascript:window.history.back();" class="return">вернуться к покупкам</a>
+<?php }else{ ?>
         <?php echo $_smarty_tpl->getSubTemplate ('ajax/minicart.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
         <?php echo $_smarty_tpl->getSubTemplate ('core/search-form.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
+<?php }?>
     </div>
     <div class="section-bottom">
         <div class="container clearfix">

@@ -7,8 +7,7 @@
                 initBasket(timeout);
             }, timeout);
         }
-    }
-    initBasket(100);
+    } initBasket(100);
 </script>
 <{*script type="text/javascript">
     var _gaq = _gaq || [];

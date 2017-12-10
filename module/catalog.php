@@ -211,8 +211,9 @@ if ($itemID and $item = getSimpleItemRow($itemID, CATALOG_TABLE) and !empty($ite
         $items[] = PHPHelper::getProductItem($row, $UrlWL, $arrPageData['files_url'], $images_params, true);
     } $DB->Free();
     // put filter variables into page metadata
-    $seoFilters = $UrlWL->getFilters()->getSelectedTitles();
+    $seoFilters = $UrlWL->getFilters()->getSelectedSeoTitles();
     if (!empty($seoFilters)) {
+        $arCategory["title"]      = !empty($arCategory["filter_title"])     ? PHPHelper::BuildFilterMetaData($arCategory["filter_title"], $seoFilters)     : $arCategory["title"];
         $arCategory["seo_title"]  = !empty($arCategory["filter_seo_title"]) ? PHPHelper::BuildFilterMetaData($arCategory["filter_seo_title"], $seoFilters) : $arCategory["seo_title"];
         $arCategory["seo_text"]   = !empty($arCategory["filter_seo_text"])  ? PHPHelper::BuildFilterMetaData($arCategory["filter_seo_text"], $seoFilters)  : $arCategory["seo_text"];
         $arCategory["meta_descr"] = !empty($arCategory["filter_meta_descr"])? PHPHelper::BuildFilterMetaData($arCategory["filter_meta_descr"], $seoFilters): $arCategory["meta_descr"];
@@ -243,8 +244,7 @@ if ($itemID and $item = getSimpleItemRow($itemID, CATALOG_TABLE) and !empty($ite
             "meta_key"         => $arCategory["meta_key"],
             "seo_title"        => $arCategory["seo_title"],
             "h_title"          => $arCategory["title"],
-        );
-        exit(json_encode(PHPHelper::dataConv($json)));
+        ); exit(json_encode(PHPHelper::dataConv($json)));
     }
 }
 

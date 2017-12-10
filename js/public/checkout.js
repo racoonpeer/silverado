@@ -27,16 +27,45 @@ function CCheckout(){
                 headerTag: "h3",
                 bodyTag: "fieldset",
                 transitionEffect: "slide",
-                enablePagination: false,
-                enableFinishButton: false,
+                enablePagination: true,
+                enableFinishButton: true,
                 preloadContent: true,
-                onStepChanged: function (event, currentIndex, priorIndex) {
-                    if (currentIndex === 2) {
-                        $("#frm_sbm").removeClass("hidden");
-                    }
+                stepsOrientation: $.fn.steps.stepsOrientation.vertical,
+                onFinished: function () {
+                    self.form.submit();
+                },
+                onStepChanging: function (event, currentIndex, newIndex) {
+                    // Allways allow previous action even if the current form is not valid!
+                    if (currentIndex > newIndex) return true;
+                    // Needed in some cases if the user went back (clean up)
+                    if (currentIndex < newIndex) {
+                        // To remove error styles
+                        self.form.find(".error").removeClass("error");
+                    } self.form.validate().settings.ignore = ":disabled,:hidden";
+                    return self.form.valid();
+                },
+                labels: {
+                    cancel: "Отмена",
+                    current: "current step:",
+                    pagination: "Pagination",
+                    finish: "Оформить заказ",
+                    next: "Далее",
+                    previous: "Назад",
+                    loading: "Подождите ..."
+                },
+                onFinishing: function (event, currentIndex) {
+                    self.form.validate().settings.ignore = ":disabled,:hidden";
+                    return self.form.valid();
                 }
             });
+            $.validator.addMethod("ukrPhone", function(value, element) {
+                // allow any non-whitespace characters as the host part
+                return this.optional( element ) || /^\+380([0-9]{9})$/.test(value);
+            }, 'Please enter a valid phone number');
             self.form.validate({
+                errorPlacement: function (error, element) {
+                    element.addClass("error");
+                },
                 rules: {
                     firstname: {
                         required: true
@@ -45,7 +74,8 @@ function CCheckout(){
                         required: true
                     },
                     phone: {
-                        required: true
+                        required: true,
+                        ukrPhone: true
                     },
                     email: {
                         required: true,
@@ -65,60 +95,6 @@ function CCheckout(){
                     }
                 }
             });
-            self.form.on("click", ".proceed", function(e){
-                e.preventDefault();
-                self.container.steps("next");
-            });
-            self.form.on("click", ".return", function(e){
-                e.preventDefault();
-                self.container.steps("previous");
-            });
-        },
-        validateForm: function(){
-            var self   = this,
-                errors = new Array(),
-                stages = self.container.children("fieldset"),
-                step   = null;
-            self.form.validate().settings.ignore = ":disabled";
-            if (!self.form.valid()) {
-                $.map(stages, function(stage, i){
-                    $.map(stages, function(stage, i){
-                        var fields = $(stage).find(".required").not(":disabled");
-                        $.map(fields, function(field){
-                            if (!self.validateField(field, true)) {
-                                if (!errors.length) {
-                                    self.container.steps("goToStep", step);
-                                    $(field).focus();
-                                } errors.push($(field).attr("name"));
-                            }
-                        });
-                    });
-                });
-            } if (errors.length) return false;
-            return true;
-        },
-        validateField: function(field){
-            var self  = this,
-                iName = $(field).attr("name"),
-                iType = $(field).attr("type"),
-                iVal  = $(field).val(),
-                rxEmail = /^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@([a-zA-Z0-9-]+\.)+([a-zA-Z]{2,4})$/,
-                rxPhone = /^\+380([0-9]{9})$/,
-                valid   = true;
-            if (!iVal.length || (iVal.length && iName=="phone" && iVal.match(rxPhone)==null) || (iVal.length && iName=="phone" && iVal.match(rxPhone)==null)) valid = false;
-            if (!valid) {
-                $(field).addClass("error");
-                return false;
-            }
-            $(field).removeClass("error");
-            return true;
-        },
-        validateStage: function(stage){
-            var self = this,
-                btn    = $(stage).find(".proceed");
-            self.form.validate().settings.ignore = ":disabled,:hidden";
-            if (self.form.valid()) btn.removeClass("hidden");
-            else btn.addClass("hidden");
         },
         setUpFields: function(){
             var self = this;
@@ -178,11 +154,6 @@ function CCheckout(){
                 }
                 // get warehouses by city
                 if (iName=="city") self.setUpAddress();
-                // call stage validation
-                if ($(this).hasClass("required")) {
-                    self.validateField(this);
-                    self.validateStage($(this).closest("fieldset"));
-                }
             });
         },
         setUpAddress: function(){
@@ -201,7 +172,7 @@ function CCheckout(){
                     success: function(json){
                         if (json.items && json.items.length) {
                             $.map(json.items, function(item){
-                                var opt = new Option(item.text, item.id, false, false);
+                                var opt = new Option(item.text, item.text, false, false);
                                 inputAddress.append(opt);
                             }); inputAddress.prop("disabled", false).trigger('change');
                         }
@@ -228,7 +199,6 @@ function CCheckout(){
             if (initial) {
                 self.form.find("#recepient").on("change", function(){
                     self.setUpRecepient();
-                    self.validateStage($(this).closest("fieldset"));
                 });
             }
         }

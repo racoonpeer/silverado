@@ -94,6 +94,9 @@ define('WLCMS_WRITABLE_CHMOD',          '0775'); // [ 0775 | 0777 ] SET Chmod to
 
 define('WLCMS_ERROR_REPORTING',         E_ALL); // [ E_ALL | 0 ] SET WAY TO SHOW ERRORS
 define('WLCMS_SMARTY_ERROR_REPORTING',  E_ALL); // [ E_ALL | 0 ] SET WAY TO SHOW ERRORS
+define('WLCMS_USE_HTTPS',               (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off')); // [ E_ALL | 0 ] SET WAY TO SHOW ERRORS
+define('WLCMS_HTTP_PROTOCOL',           "http".(WLCMS_USE_HTTPS ? "s" : "")); // [ E_ALL | 0 ] SET WAY TO SHOW ERRORS
+define('WLCMS_HTTP_PREFIX',             WLCMS_HTTP_PROTOCOL."://"); // [ E_ALL | 0 ] SET WAY TO SHOW ERRORS
 
 define('WLCMS_DEBUG',                   0); // [1 - true | 0 - false ] SET Script Debug Status
 define('WLCMS_USE_CACHE',               1); // [1 - true | 0 - false ] SET Script Debug Status
@@ -151,6 +154,8 @@ define('USER_TYPE_MEMBER',              'Member');
 define('USER_TYPE_REGISTERED',          'Registered');
 define('USER_TYPE_ANONIMOUS',           'Anonimous');
 
+define('LIQPAY_PUBLIC_KEY',             'i21224482971');
+define('LIQPAY_PRIVATE_KEY',            'sJ7wsGj8oHrP1qhQBvyPAGuPeqPVXlz2dAt4YwNY');
 
 ///////////////// CHECK SYSTEM \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 require_once(WLCMS_ABS_ROOT.'include/sys_verifications.php');

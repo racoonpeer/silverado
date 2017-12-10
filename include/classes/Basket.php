@@ -240,17 +240,16 @@ class Basket {
      * @return bool
      */
     public function updateItem($id, $qty) {
-            $qty = intval($qty);
-            if (isset($_SESSION[$this->basketName][$id])) {
-            $_SESSION[$this->basketName][$id] = $qty;
-            if ($_SESSION[$this->basketName][$id] <= 0)
-                    $this->delete($id);
-                $this->recalc();
-                $this->SetCookie();
-                $this->SetDB();
-                return true;
-            }
-        return false;
+        $qty = intval($qty);
+        if (isset($_SESSION[$this->basketName][$id])) {
+        $_SESSION[$this->basketName][$id] = $qty;
+        if ($_SESSION[$this->basketName][$id] <= 0)
+                $this->delete($id);
+            $this->recalc();
+            $this->SetCookie();
+            $this->SetDB();
+            return true;
+        } return false;
     }
 
     /**
@@ -273,8 +272,7 @@ class Basket {
             $this->SetCookie();
             $this->SetDB();
             return true;
-        }
-        return false;
+        } return false;
     }
 
     /**
@@ -365,11 +363,7 @@ class Basket {
         $items       = array();
         if (!empty($_SESSION[$this->basketName])) {
             foreach ($_SESSION[$this->basketName] as $id=>$qty) {
-              //  if(array_key_exists($id, $this->items)) {
-          //          $items[$id] = $this->items[$id];
-          //      } else {
-                    $items[$id] = $this->getItemRow($id);
-            //    }                  
+                $items[$id] = $this->getItemRow($id);
                 
                 if($items[$id]===false){
                     unset($items[$id]);
@@ -383,6 +377,7 @@ class Basket {
                 $items[$id]['price']    = $price;
                 $items[$id]['amount']   = $price*$qty;
                 $items[$id]['quantity'] = $qty;
+                $items[$id]['qty']      = $qty;
                 
                 $total_price += $items[$id]['amount'];
                 $quantity    += $qty;
@@ -475,9 +470,10 @@ class Basket {
      * get Item Row For basket From DB : array
      */
     private function getItemRow ($id) {
-        global $DB;
+        global $DB, $UrlWL;
         $files_url     = UPLOAD_URL_DIR.'catalog/';
         $files_path    = prepareDirPath($files_url);
+        $images_params = SystemComponent::prepareImagesParams(getValueFromDB(IMAGES_PARAMS_TABLE, 'aliases', 'WHERE `module`="catalog"'));
         if (strlen($id)>0) {
             $idx  = self::parseIdKey($id, $id);      
             // формирование родительского элемента комплекта
@@ -485,40 +481,11 @@ class Basket {
             $DB->Query($query);
             $item = $DB->fetchAssoc();
             if ($item) {
-                $images_url           = $files_url.$item['id'].'/';
-                $item['arCategory']   = UrlWL::getCategoryByIdWithSeoPath($item['cid']);
-                $item['image']        = getValueFromDB(CATALOGFILES_TABLE." t", 'filename', 'WHERE t.`pid`='.$item['id'].' AND t.`isdefault`=1' );
-                $item['middle_image'] = (!empty($item['image']) and is_file(prepareDirPath($images_url).'middle_'.$item['image'])) ? $images_url.'middle_'.$item['image'] : $files_url.'middle_noimage.jpg';
-                $item['brand']        = getItemRow(BRANDS_TABLE, '*', 'WHERE `id`='.$item['bid']);
-                $item["options"]      = PHPHelper::getProductOptions($id, $idx[$id]);
+                $item = PHPHelper::getProductItem($item, $UrlWL, $files_url, $images_params);
+                $item["options"]         = PHPHelper::getProductOptions($id, $idx[$id]);
                 $item["selectedOptions"] = $idx[$id];
-                $item['arKits']       = array();
-                PHPHelper::calcProductPrices($item, true);
-                $arTitle = array();
-                if (!empty($idx) AND count($idx) > 1) {
-                    $item['kit_price'] = $item['price'];
-                    foreach ($idx as $kitID=>$opts) {
-                        if ($kitID==$id) continue; // skip first product
-                        $query = 'SELECT c.* FROM `'.CATALOG_TABLE.'` c WHERE c.`id`='.$kitID;
-                        $DB->Query($query);
-                        while ($row = $DB->fetchAssoc()) {
-                            $row['arCategory']   = UrlWL::getCategoryByIdWithSeoPath($row['cid']);
-                            $images_url          = $files_url.$row['id'].'/';
-                            $row['image']        = getValueFromDB(CATALOGFILES_TABLE." t", 'filename', 'WHERE t.`pid`='.$row['id'].' AND t.`isdefault`=1' );
-                            $row['middle_image'] = (!empty($row['image']) and is_file(prepareDirPath($images_url).'middle_'.$row['image'])) ? $images_url.'middle_'.$row['image'] : $files_url.'middle_noimage.jpg';
-                            $row['brand']        = getItemRow(BRANDS_TABLE, '*', 'WHERE `id`='.$row['bid']);
-                            $row["options"]      = PHPHelper::getProductOptions($row["id"], $opts);
-                            $row["selectedOptions"] = $opts;
-                            PHPHelper::calcProductPrices($row, false); 
-                            $item['arKits'][]    = $row;
-                            $arTitle[]           = $row['title'];
-                        }
-                    } 
-                    $newTitle = $this->kitPrefix.' '.$item['title'].' '.$this->kitOperator.implode($this->kitOperator, $arTitle);
-                    $item['set_title'] = $newTitle;
-                }
-            }
-            return $item;
+                $item['arKits']          = array();
+            } return $item;
         } return false;
     }
     
@@ -680,7 +647,7 @@ class Checkout {
                     if ($arrXML["success"]) {
                         foreach ($arrXML["data"]->item as $item) {
                             $items[] = array(
-                                "id"   => $item->Ref,
+                                "id"   => PHPHelper::dataConv($item->DescriptionRu, "utf-8", "windows-1251"),
                                 "ref"  => $item->Ref,
                                 "name" => PHPHelper::dataConv($item->DescriptionRu, "utf-8", "windows-1251"),
                                 "text" => PHPHelper::dataConv($item->DescriptionRu, "utf-8", "windows-1251")
@@ -698,7 +665,7 @@ class Checkout {
      * @param string $ref
      * @return array
      */
-    public function np_getWareHouses ($ref = "", $name = "") {
+    public function np_getWareHouses ($name = "") {
         $items = array();
         if (!empty($ref) or !empty($name)) {
             $xml    = "<?xml version=\"1.0\" encoding=\"utf-8\"?>"
@@ -707,7 +674,7 @@ class Checkout {
                     . "<modelName>Address</modelName>"
                     . "<calledMethod>getWarehouses</calledMethod>"
                     . "<methodProperties>"
-                    . (!empty($ref) ? "<CityRef>{$ref}</CityRef>" : "")
+                    . (!empty($name) ? "<CityName>{$name}</CityName>" : "")
                     . "</methodProperties>"
                     . "</file>";
             $ch = curl_init();

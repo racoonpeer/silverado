@@ -67,7 +67,7 @@ class IValidator {
 
         $Font	= imagecolorallocate($Image, $Theme['font'][0], $Theme['font'][1], $Theme['font'][2]);
 
-        $TrFontSize = 14;
+        $TrFontSize = 24;
         $_TC = strlen($_Code)-1;
         $LettersStart = 5;
         $LetterOffset = ceil(($this->Width-$LettersStart*2)/($_TC+1));
@@ -81,7 +81,7 @@ class IValidator {
 
         if(0 && function_exists('imagecreatetruecolor')) {
             $TrFont 	= imagecolorallocatealpha($Image, $Theme['font'][0], $Theme['font'][1], $Theme['font'][2], 100);
-            $TrFontSize = 20;
+            $TrFontSize = 24;
             $_TC = strlen($_Code)-1;
             $LetterOffset = ceil($this->Width/($_TC+1));
             for(;$_TC>=0;$_TC--) {
@@ -92,12 +92,12 @@ class IValidator {
 
         if($this->ImageType == "jpeg") {
             header("Content-type: image/jpeg");
-            imagejpeg($Image, false, 95);
+            imagejpeg($Image, null, 80);
         }else {
             header("Content-type: image/png");
             imagepng($Image);
         }
-        imagedestroy($Image);
+        @imagedestroy($Image);
     }
 
     function rndCode() {

@@ -10,7 +10,7 @@
         <div class="item clearfix">
             <div class="pull-left image">
                 <a href="<{include file='core/href_item.tpl' arCategory=$arItem.arCategory arItem=$arItem}>">
-                    <img src="<{$arItem.middle_image}>" alt=""/>
+                    <img src="<{$arItem.image.small_image}>" alt=""/>
                 </a>
             </div>
             <div class="title">
@@ -41,10 +41,12 @@
     </div>
     <div class="summary clearfix">
         Итого к оплате
-        <strong class="pull-right"><{$Basket->getTotalPrice()|number_format:0:'.':' '}></strong>
+        <strong class="pull-right">
+            <{$Basket->getTotalPrice()|number_format:0:'.':' '}>
+        </strong>
     </div>
     <div class="buttons clearfix">
-        <a href="<{include file="core/href.tpl" arCategory=$arrModules.checkout}>" class="btn btn-xl btn-danger btn-block">Оформить заказ</a><br/>
+        <a href="<{include file="core/href.tpl" arCategory=$arrModules.checkout}>" class="btn btn-l btn-danger btn-block">Оформить заказ</a><br/>
         <a href="#" onclick="Basket.close();" class="btn btn-l btn-link btn-block">Продолжить покупки</a>
     </div>
 </div>
@@ -52,7 +54,7 @@
 <div class="empty">
     <div class="message">
         Корзина пуста
-        <p>но это легко исправить :)</p>
+        <p>но это легко исправить ...</p>
     </div>
     <div class="last-watched">
         <div class="h3">Вы недавно смотрели</div>

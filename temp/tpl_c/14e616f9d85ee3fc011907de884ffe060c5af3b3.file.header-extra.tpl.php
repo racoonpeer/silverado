@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-11-11 10:18:45
+<?php /* Smarty version Smarty-3.1.14, created on 2017-12-10 14:20:06
          compiled from "tpl/frontend/smart/core/header-extra.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:11296673315a06b265d01ce9-09504242%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '14e616f9d85ee3fc011907de884ffe060c5af3b3' => 
     array (
       0 => 'tpl/frontend/smart/core/header-extra.tpl',
-      1 => 1508266895,
+      1 => 1512908300,
       2 => 'file',
     ),
   ),
@@ -15,13 +15,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_5a06b265d405e5_19605547',
   'variables' => 
   array (
     'arrModules' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_5a06b265d405e5_19605547',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5a06b265d405e5_19605547')) {function content_5a06b265d405e5_19605547($_smarty_tpl) {?><script type="text/javascript">
     function initBasket (timeout) {
@@ -33,7 +33,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 initBasket(timeout);
             }, timeout);
         }
-    }
-    initBasket(100);
+    } initBasket(100);
 </script>
 <?php }} ?>

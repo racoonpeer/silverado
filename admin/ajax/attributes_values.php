@@ -64,11 +64,12 @@ if ($itemID) {
                         $arValue['seo_path']  = $UrlWL->strToUniqueUrl($DB, $arValue['seo_path'], $item_seopath, ATTRIBUTES_VALUES_TABLE, (empty($arValue['id']) ? 0 : $arValue['id']), empty($arValue['id']));
                     }
                     $arData = array(
-                        'aid'      => $itemID,
-                        'title'    => $arValue['title'],
-                        'seo_path' => $arValue['seo_path'],
-                        'image'    => $arValue['image'],
-                        'order'    => $order++
+                        'aid'       => $itemID,
+                        'title'     => $arValue['title'],
+                        'seo_value' => $arValue['seo_value'],
+                        'seo_path'  => $arValue['seo_path'],
+                        'image'     => $arValue['image'],
+                        'order'     => $order++
                     );
                     $result = $DB->postToDB($arData, ATTRIBUTES_VALUES_TABLE, !empty($valueItem) ? 'WHERE `id`='.$valueItem['id'] : '', array(), (!empty($valueItem) ? 'update' : 'insert'), (!empty($valueItem) ? false : true));
                     $arResults[] = !empty($valueItem) ? $valueItem['id'] : intval($result);

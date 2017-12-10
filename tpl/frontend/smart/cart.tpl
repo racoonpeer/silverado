@@ -3,7 +3,7 @@
     <{include file="core/head.tpl"}>
     <body>
         <div id="sbIndex" canvas="container">
-            <{include file='core/header-basket.tpl'}>
+            <{include file='core/header.tpl'}>
             <{include file='module/'|cat:$arCategory.module|cat:'.tpl'}>
         </div>
         <{include file='core/basket.tpl'}>

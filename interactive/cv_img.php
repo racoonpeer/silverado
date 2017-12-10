@@ -37,15 +37,15 @@ if($zone){
 
     switch($zone){
         case 'admin':
-            $IValidator->Width      = 75;
-            $IValidator->Height     = 25;
+            $IValidator->Width      = 90;
+            $IValidator->Height     = 38;
             $IValidator->RndCodes = $IValidator->RndCodes.'abcdefghijklnmopqrstuvwxyz';
-            $IValidator->Fonts    = array('arial.ttf', 'verdana.ttf');
+            $IValidator->Fonts    = array('arial.ttf');
             $IValidator->Themes   = array(
                 array(
-                    'background' => array(0, 80, 179),
-                    'border'     => array(180, 180, 180),
-                    'font'       => array(255,255,255)
+                    'background' => array(214, 216, 217),
+                    'border'     => array(198, 200, 202),
+                    'font'       => array(27, 30, 33)
                  )
             );
             break;
@@ -55,9 +55,9 @@ if($zone){
             $IValidator->Fonts      = array('arial.ttf', 'verdana.ttf');
             $IValidator->Themes     = array(
                 array(
-                    'background' => array(214, 225, 232),
-                    'border'     => array(214, 225, 232),
-                    'font'       => array(32, 94, 53)
+                    'background' => array(214, 216, 217),
+                    'border'     => array(198, 200, 202),
+                    'font'       => array(27, 30, 33)
                  )
             );
             break;

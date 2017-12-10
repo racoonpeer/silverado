@@ -35,8 +35,9 @@ and open the template in the editor.
             margin-left: auto;
             margin-right: auto;
             margin-bottom: 20px;
-            background-image: url("/images/public/phone-contact.gif");
+            background-image: url("/images/public/icons/cellphone.svg");
             background-repeat: no-repeat;
+            background-size: contain;
             content: "";
         }
     }

@@ -40,7 +40,13 @@
                                     <tr>
                                         <td>Имя</td>
                                         <td>
-                                            <input type="text" name="firstname" value="<{$item.firstname}>"/>
+                                            <input type="text" name="firstname" value="<{$item.firstname|unScreenData}>"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Фамилия</td>
+                                        <td>
+                                            <input type="text" name="firstname" value="<{$item.surname|unScreenData}>"/>
                                         </td>
                                     </tr>
                                     <tr>
@@ -56,9 +62,15 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td>Город</td>
+                                        <td>
+                                            <textarea name="address" rows="4" style="height: 60px;"><{$item.city|unScreenData}></textarea>
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td>Адрес</td>
                                         <td>
-                                            <textarea name="address" rows="4" style="height: 60px;"><{$item.address}></textarea>
+                                            <textarea name="address" rows="4" style="height: 60px;"><{$item.address|unScreenData}></textarea>
                                         </td>
                                     </tr>
                                     <tr>
@@ -72,7 +84,7 @@
                                     <tr>
                                         <td>Комментарий к заказу</td>
                                         <td>
-                                            <textarea name="descr" rows="4" style="height: 60px;"><{$item.descr}></textarea>
+                                            <textarea name="descr" rows="4" style="height: 60px;"><{$item.descr|unScreenData}></textarea>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -83,11 +95,12 @@
                                 <a class="buttons left" data-option='confirm' data-confirm="1" onclick="UpdateOrder(this);" style="width:200px;">
                                     &nbsp;Отправить подтверждение заказа&nbsp;
                                 </a>
-                                <span id="confirm" class="left" style="margin:10px;"><{if $item.confirmed==1}>
+                                <span id="confirm" class="left" style="margin:10px;">
+<{if $item.confirmed==1}>
                                     <{$smarty.const.ORDER_CONFIRM_LETTER_SEND}>
-                                <{else}>
+<{else}>
                                     <{$smarty.const.ORDER_CONFIRM_LETTER_NOT_SEND}>
-                                <{/if}>
+<{/if}>
                                 </span>
                             </div>
                         </td>
@@ -282,33 +295,33 @@
                         <td>
                             <select name="id" class="nosize_field" style="width: 140px;" onchange="unsetDisabled(this)">       
 <{section name=i loop=$arrPageData.arPayments}>
-                                    <option value="<{$arrPageData.arPayments[i].id}>" <{if $arrPageData.arPayments[i].id==$item.arPayment.id}>selected<{/if}>>
-                                        <{$arrPageData.arPayments[i].title}>
-                                    </option>
+                                <option value="<{$arrPageData.arPayments[i].id}>" <{if $arrPageData.arPayments[i].id==$item.arPayment.id}>selected<{/if}>>
+                                    <{$arrPageData.arPayments[i].title}>
+                                </option>
 <{/section}>
                             </select>
                         </td>
-                        <td  style="padding:10px;">
+                        <td style="padding:10px;">
                             <textarea class="nosize_field" disabled style="width: 100%; height: 50px" name="comment"></textarea>
                         </td>
-                        <td >
-                            <a class="buttons disabled" data-payment="<{$item.payment}>" data-option="payment" onclick="UpdateOrder(this);">Сохранить</a>
+                        <td>
+                            <a class="buttons disabled" data-payment="<{$item.payment_id}>" data-option="payment" onclick="UpdateOrder(this);">Сохранить</a>
                         </td>
                     </tr>
                     <tr>
-                        <td >Доставка:</td>
-                        <td >
+                        <td>Доставка:</td>
+                        <td>
                             <select name="id" class="nosize_field" style="width: 140px;" onchange="unsetDisabled(this)">       
 <{section name=i loop=$arrPageData.arShippings}>
-                                    <option value="<{$arrPageData.arShippings[i].id}>" <{if $arrPageData.arShippings[i].id==$item.arShipping.id}>selected<{/if}>><{$arrPageData.arShippings[i].title}></option>
+                                <option value="<{$arrPageData.arShippings[i].id}>" <{if $arrPageData.arShippings[i].id==$item.arShipping.id}>selected<{/if}>><{$arrPageData.arShippings[i].title}></option>
 <{/section}>
                             </select>
                         </td>
-                        <td  style="padding:10px;">
+                        <td style="padding:10px;">
                             <textarea class="nosize_field" style="width: 100%; height: 50px" name="comment" disabled></textarea>
                         </td>
-                        <td >
-                            <a class="buttons disabled" data-shipping="<{$item.shipping}>" data-option="shipping" onclick="UpdateOrder(this);">Сохранить</a>
+                        <td>
+                            <a class="buttons disabled" data-shipping="<{$item.shipping_id}>" data-option="shipping" onclick="UpdateOrder(this);">Сохранить</a>
                         </td>
                     </tr>
                 </table>
@@ -337,7 +350,6 @@
                 $.each(tinyMCE.editors, function() {
                     this.setContent('');
                 }); 
-
                 $.each($('input:text, textarea'), function() {
                     $(this).val('');
                 });
@@ -389,8 +401,7 @@
                 window.location='<{$arrPageData.current_url|cat:"&task=deleteItem&itemID="|cat:$item.id}>';
                 break
             }   
-        }
-        return false; 
+        } return false; 
     }
     
     function UpdateOrder(link) { 
@@ -425,12 +436,10 @@
                     if(json){
                         if(json.option_title) $('#'+option).text(json.option_title);
                         if(json.history) $('#history').html(json.history);
-                        
                         $(link).closest('tr').find('select option:selected').removeAttr('selected');
                         $(link).closest('tr').find('select option[value="'+optionID+'"]').prop('selected', 'true');
                         if(option!='admin_comment' && option!='confirm') $(link).closest('tr').find('textarea').val('');
                         $(link).attr('data-'+option, optionID);
-                        
                         unsetDisabled($(link).closest('tr').find('select'));
                         if($(loader).length>0) {
                             $(loader).addClass('hidden');
@@ -440,7 +449,6 @@
             });
         }
     }
-    
     function unsetDisabled(item) {
         var option = $(item).closest('tr').find('a').attr('data-option');
         if($(item).closest('tr').find('a').attr('data-'+option) != $('option:selected', item).val()) { 

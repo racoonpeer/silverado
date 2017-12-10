@@ -82,7 +82,7 @@ and open the template in the editor.
         max-width: 480px;
         margin-left: 460px;
         padding-right: 0;
-        margin-top: 20px;
+        margin-top: 30px;
     }
     @include breakpoint(820){
         margin-left: 400px;
@@ -601,15 +601,18 @@ and open the template in the editor.
         border-right: none;
     }
     .h2 {
-        font-weight: 300;
-        padding-left: 7px;
-        padding-right: 7px;
-        background-color: $white;
+        font-weight: 400;
+        padding-left: 20px;
+        padding-right: 20px;
         color: $purple;
+        background-color: $white;
         position: absolute;
+        border: 1px solid #e7e7e7;
+        line-height: 3.6rem;
         margin: 0;
-        top: -14px;
+        top: -20px;
         left: 50%;
+        white-space: nowrap;
         @include transform(translateX(-50%));
     }
     .product-set-blocks {

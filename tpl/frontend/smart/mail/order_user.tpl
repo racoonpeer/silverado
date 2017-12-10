@@ -1,3 +1,190 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Заказ №<{$arData.oid}> - Silverado</title>
+        <meta charset="windows-1251">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body style="font-family: sans-serif; margin: 0; padding: 0;">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+            	<td bgcolor="#262626" height="5" style="height:5px; background-color:#262626;"></td>
+            </tr>
+            <tr>
+            	<td height="40" style="height:40px;"></td>
+            </tr>
+            <tr>
+                <td align="center" valign="middle" style="text-align:center;">
+                    <a href="<{$arData.server}>">
+                    	<img alt="Silverado" src="<{$arData.server}>/images/public/logo-top.png"/>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+            	<td height="32px;" style="height:32px;"></td>
+            </tr>
+            <tr>
+            	<td height="1" bgcolor="#e7e7e7" style="height:1px; background-color:#e7e7e7;"></td>
+            </tr>
+            <tr>
+            	<td height="10px;" style="height:10px;"></td>
+            </tr>
+            <tr>
+            	<td>
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                    	<tr>
+                            <td width="20"></td>
+                            <td>
+                            	<p style="font-size:24px; font-family:Verdana, Geneva, sans-serif;">Спасибо! Отличный выбор<br/>
+                                    <span style="font-size:16px; font-family:Verdana, Geneva, sans-serif;">Номер вашего заказа <span style="font-size:20px"><{$arData.oid}></span>. В ближайшее время наш менеджер свяжется с вами для уточнения деталей заказа</span>
+                                </p>
+                            </td>
+                            <td width="20"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+            	<td>
+                    <table cellpadding="10" cellspacing="10" border="0">
+                    	<tr>
+<{foreach name=i from=$arData.children key=arKey item=arItem}>
+                            <td align="center" valign="top" style="text-align:center;">
+                            	<a href="<{$arData.server}><{include file="core/href_item.tpl" arCategory=$arItem.arCategory arItem=$arItem params=""}>">
+                                    <img src="<{$arData.server}><{$arItem.image.small_image}>" alt="<{$arItem.title}>"/>
+                                </a>
+                                <br/>
+                                <a href="<{$arData.server}><{include file="core/href_item.tpl" arCategory=$arItem.arCategory arItem=$arItem params=""}>" style="font-family:Verdana, Geneva, sans-serif; color:#262626; text-decoration:none; font-size:14px;"><{$arItem.title}> <{$arItem.pcode}></a><br/>
+<{foreach name=j from=$arItem.options key=optID item=option}>
+<{foreach name=z from=$option.values key=valID item=value}>
+<{if $value.selected}>
+                                <span style="font-family:Verdana, Geneva, sans-serif; font-size:12px; color:#666;"><{$option.title}>: <{$value.title}></span><br/>
+<{/if}>
+<{/foreach}>
+<{/foreach}>
+                                <span style="font-family:Verdana, Geneva, sans-serif; font-size:18px;">
+                                    <{$arItem.price|number_format:0:'.':' '}> <small>грн</small> 
+<{if $arItem.qty > 1}>
+                                    (<{$arItem.qty}> <small>шт</small>)
+<{/if}>
+                                </span>
+                                
+                            </td>
+<{/foreach}>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+            	<td height="32px;" style="height:32px;"></td>
+            </tr>
+            <tr>
+            	<td height="1" bgcolor="#e7e7e7" style="height:1px; background-color:#e7e7e7;"></td>
+            </tr>
+            <tr>
+            	<td>
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                    	<tr>
+                            <td width="20"></td>
+                            <td>
+                            	<p style="font-size:18px; font-family:Verdana, Geneva, sans-serif;">Сумма к оплате <span style="font-size:20px;"><{$arData.price|number_format:0:'.':' '}></span> грн</p>
+<{if isset($arData.payment)}>
+                                <p style="font-family:Verdana, Geneva, sans-serif; font-size:14px;">Способ оплаты <strong><{$arData.payment.title}></strong>
+<{if $arData.payment.id==3}>
+                                <br/>
+                                <span style="font-size:10px;">Внимание!<br/>
+Заказ оплачивается только после подтверждения по телефону.<br/>
+Ознакомьтесь с условиями <a href="#" style="color:#000; text-decoration:underline;">доставки и оплаты</a> заказа</span>
+<{/if}>
+                                </p>
+<{/if}>
+                            </td>
+                        	<td width="20"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+            	<td height="2" bgcolor="#262626" style="height:2px; background-color:#262626;"></td>
+            </tr>
+            <tr>
+            	<td>
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                    	<tr>
+                            <td width="20"></td>
+                            <td>
+                            	<p style="font-size:10px; font-family:Verdana, Geneva, sans-serif;">Пожалуйста, проверьте правильность указанных данных</p>
+                            	<p style="font-size:14px; font-family:Verdana, Geneva, sans-serif;">
+<{if isset($arData.firstname)}>
+                                Имя: <{$arData.firstname|unScreenData}><{if !empty($arData.surname)}> <{$arData.surname|unScreenData}><{/if}><br/>
+<{/if}>
+                                Тел: <{$arData.phone}>
+<{if isset($arData.email)}>
+                                <br/>
+                                E-mail: <{$arData.email}>
+<{/if}>
+                                </p>
+                                <p style="font-size:14px; font-family:Verdana, Geneva, sans-serif;">
+<{if isset($arData.shipping)}>
+                                Доставка: <{$arData.shipping.title}>
+<{/if}>
+<{if isset($arData.city)}>
+                                <br/>
+                                Город: <{$arData.city|unScreenData}>
+<{/if}>
+<{if isset($arData.address)}>
+                                <br/>
+                                Адрес: <{$arData.address|unScreenData}>
+<{/if}>
+<{if isset($arData.ext_firstname) and !empty($arData.ext_firstname)}>
+                                <br/>
+                                Получатель: <{$arData.ext_firstname|unScreenData}><{if !empty($arData.ext_surname)}> <{$arData.ext_surname|unScreenData}><{/if}>
+<{/if}>
+                                </p>
+                            </td>
+                            <td width="20"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+            	<td height="20" style="height:20px;"></td>
+            </tr>
+            <tr>
+            	<td bgcolor="#ededed" style="background-color:#ededed;">
+                    <table cellpadding="10" cellspacing="10" border="0" width="100%">
+                    	<tr>
+                            <td width="200" style="width:200px;">
+                            	<a href="#" style="font-family:Verdana, Geneva, sans-serif; font-size:18px; color:#000; text-decoration:none;">099 0549540</a> <img src="<{$arData.server}>/images/public/viber-sm.png" alt="" valign="top"/><br/>
+                                <a href="#" style="font-family:Verdana, Geneva, sans-serif; font-size:18px; color:#000; text-decoration:none;">096 0549540</a><br/>
+                                <a href="#" style="font-family:Verdana, Geneva, sans-serif; font-size:18px; color:#000; text-decoration:none;">093 0549540</a><br/>
+                                <span style="font-family:Verdana, Geneva, sans-serif; font-size: 12px;">с 8:00 до 20:00. Без выходных</span>
+                            </td>
+                            <td width="300" valign="top" style="font-family:Verdana, Geneva, sans-serif; font-size: 12px;">
+                            	<h3 style="font-family:Verdana, Geneva, sans-serif; font-weight:400; margin-top: 0; margin-bottom:0.5em;">Покупателю</h3>
+                            	<a href="#" style="color:#06C;">Гарантия качества продукции</a><br/>
+                            	<a href="#" style="color:#06C;">Условия возврата и обмена товара</a><br/>
+                            	<a href="#" style="color:#06C;">Доставка и оплата заказа</a>
+                            </td>
+                            <td valign="bottom" align="right" style="text-align:right">
+                            	<a href="<{$arData.server}>" style="font-size:12px; color:#06C;">silverado.com.ua</a>&emsp;&emsp;&emsp;
+                            	<span style="font-family:'Courier New', Courier, monospace; font-size:10px; color:#999;"><{$smarty.now|date_format:"%d.%m.%Y %H:%M"}></span>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
+<{*
+
+
+
+
+
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -128,7 +315,7 @@
         </table>
     </body>
 </html>
-<{*
+
 <!DOCTYPE html>
 <html>
     <head>

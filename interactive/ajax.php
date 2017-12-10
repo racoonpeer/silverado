@@ -969,6 +969,7 @@ if($site_zone){
                 $smarty->assign('UrlWL',        $UrlWL);
                 $smarty->assign('HTMLHelper',   $HTMLHelper);
                 $smarty->assign('arrModules',   $arrModules);
+                $smarty->assign('IS_AJAX',      1);
 
                 $arrPageData['wishlist'] = array();
                 if($Cookie->isSetCookie('wishlist')) {
@@ -1002,9 +1003,10 @@ if($site_zone){
                     // Update Basket
                     case 'update':
                         $json['output'] = array(
-                            'minicart'  => $smarty->fetch('ajax/minicart.tpl'),
-                            'basket'    => !$Basket->isEmptyBasket() ? $smarty->fetch('ajax/basket.tpl') : '',
-                            'isEmpty'   => $Basket->isEmptyBasket()
+                            'minicart'   => $smarty->fetch('ajax/minicart.tpl'),
+                            'basket'     => $smarty->fetch('ajax/basket.tpl'),
+                            'minibasket' => $smarty->fetch('ajax/minibasket.tpl'),
+                            'isEmpty'    => $Basket->isEmptyBasket()
                         );
                         break;
                     // Clear Basket

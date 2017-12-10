@@ -16,6 +16,7 @@
                 </form>
             </div>
 <{/foreach}>
+            <{include file="core/product-features.tpl"}>
         </div>
         <div class="product-details">
 <{if $item.comments_count>0}>

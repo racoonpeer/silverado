@@ -10,10 +10,14 @@
         </li>
 <{foreach name=i from=$arrBreadCrumb key=sKey item=sItem}>
         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+<{if !$smarty.foreach.i.last}>
             <a href="<{$sKey}>">
+<{/if}>
                 <span itemprop="name"><{$sItem}></span>
                 <meta itemprop="position" content="<{$smarty.foreach.i.iteration+1}>"/>
+<{if !$smarty.foreach.i.last}>
             </a>
+<{/if}>
         </li>
 <{/foreach}>
     </ul>

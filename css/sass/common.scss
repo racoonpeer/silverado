@@ -17,7 +17,7 @@ and open the template in the editor.
 #sbIndex {
     z-index: 0;
     @include breakpoint(990){
-        padding-top: 60px;
+        padding-top: 62px;
     }
     &.shift,
     &.overlay {

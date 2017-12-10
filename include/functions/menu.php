@@ -26,7 +26,7 @@ default   :  Меню не выбрано
 function getMenu($type, $pid=false, $incLevels=0, $level=1, $arPath=array()){
     global $catid, $UrlWL;
     $menu = array();
-    $query = 'SELECT `id`, `pid`, `redirectid`, `title`, `image`, `menutype`, `pagetype`, `module`, TRIM(`redirecturl`) `redirecturl`, TRIM(`seo_path`) `seo_path`, `essential` 
+    $query = 'SELECT `id`, `pid`, `redirectid`, `title`, `image`, `menutype`, `pagetype`, `module`, TRIM(`redirecturl`) `redirecturl`, TRIM(`seo_path`) `seo_path`, `essential`, `is_stock`, `separate` 
                 FROM `'.MAIN_TABLE.'` 
                 WHERE `active` = 1 AND `menutype`='.$type.($pid!==false ? ' AND `pid`='.$pid : '').' 
                 ORDER BY `order`, `id`';

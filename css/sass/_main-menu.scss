@@ -13,7 +13,7 @@ and open the template in the editor.
     font-size: 15px;
     padding: 0;
     margin: 0;
-    border-bottom: 1px solid $deep-grey;
+    border-bottom: 2px solid $purple;
     width: 100%;
     display: -webkit-flex;
     display: flex;
@@ -30,51 +30,15 @@ and open the template in the editor.
             position: relative;
             text-decoration: none;
             color: inherit;
-            padding: 15px 9px 18px;
-            &:before {
-                display: block;
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                height: 3px;
-            }
-            &.bold,
+            padding: 15px 20px;
             &:hover {
-                color: $deep-purple;
+                color: $purple;
             }
             &.bold {
                 font-weight: 700;
-                &:hover {
-                    color: $peach;
-                }
             }
-            &.current {
-                &:after {
-                    display: block;
-                    position: absolute;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                    height: 2px;
-                    background-color: $deep-grey;
-                    content: "";
-                }
-            }
-        }
-        &:first-child {
-            & > a {
-                padding-left: 0;
-            }
-        }
-        &:last-child {
-            & > a {
-                padding-right: 0;
-            }
-        }
-        &:hover {
-            .dropdown {
-                @include transform(scale(1, 1));
+            &.stock {
+                color: $peach;
             }
         }
         &.active {
@@ -84,14 +48,28 @@ and open the template in the editor.
                 }
             }
         }
+        &.sublevels {
+            &:hover {
+                > a {
+                    background-color: $purple;
+                    color: $white;
+                }
+                .dropdown {
+                    @include transform(scale(1, 1));
+                    @include opacity(1);
+                }
+            }
+        }
         .dropdown {
             left: 0;
             right: 0;
-            top: 53px;
+            top: 51px;
             position: absolute;
+            border-top: 3px solid $purple;
             background-color: $white;
             @include transform-origin(top);
             @include transform(scale(1, 0));
+            @include opacity(0);
             @include transition(all 200ms ease-in);
             &:after {
                 display: block;
@@ -129,26 +107,21 @@ and open the template in the editor.
                 padding-right: 30px;
                 border-left: 1px solid #e7e7e7;
                 &:first-child {
-                    padding-left: 0;
+                    padding-left: 20px;
                     border-left: none;
-                }
-                &:last-child {
                 }
                 li {
                     padding-top: 5px;
                     padding-bottom: 5px;
+                    &.separator {
+                        font-weight: 700;
+                        text-transform: uppercase;
+                    }
                     a {
                         text-decoration: none;
                         color: inherit;
-                        &.bold,
                         &:hover {
-                            color: $deep-purple;
-                        }
-                        &.bold {
-                            font-weight: inherit;
-                            &:hover {
-                                color: $peach;
-                            }
+                            color: $purple;
                         }
                     }
                 }

@@ -248,8 +248,7 @@ function CModal() {
                 beforeSend: function () {
                     self.beforeOpen();
                 }
-            });
-            return false;
+            }); return false;
         },
         close: function() {
             var self = this;
@@ -278,7 +277,7 @@ function CBasket() {
         basket_url: null,
         minicart: 'minicart', // Minicart widget ID
         basket: 'basketLayout', // Basket module layout ID
-        checkout: 'simplebasket', // Checkout module layout ID
+        minibasket: 'minibasket', // Checkout module layout ID
         construct: function () {
             var self = this;
             self.slidebar = new slidebars();
@@ -363,9 +362,9 @@ function CBasket() {
                                 $(document).find('#'+self.minicart).replaceWith(json.output.minicart);
                                 $(window.parent.document).find('#'+self.minicart).replaceWith(json.output.minicart);
                             }
-                            if (!empty(json.output.checkout) && !empty($("#"+self.checkout))) {
-                                $(document).find("#"+self.checkout).replaceWith(json.output.checkout);
-                                $(window.parent.document).find("#"+self.checkout).replaceWith(json.output.checkout);
+                            if (!empty(json.output.minibasket) && !empty($('#'+self.minibasket))) {
+                                $(document).find('#'+self.minibasket).html(json.output.minibasket);
+                                $(window.parent.document).find('#'+self.minibasket).html(json.output.minibasket);
                             }
                             if (!empty(json.output.isEmpty) && !empty($("#"+self.basket))) {
                                 var slider = $("#"+self.basket).find(".watched-slider");

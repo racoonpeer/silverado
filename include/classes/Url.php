@@ -408,7 +408,7 @@ class UrlWL extends Url {
     const LANG_PATH_IDX  = 0;
     const HOME_CATID     = 1;
     const ERROR_CATID    = 2;
-    const CATALOG_CATID    = 18;
+    const CATALOG_CATID    = 88;
     const PAGE_TYPE_STATIC = 0;
     const PAGE_TYPE_AUTO   = 1;
     const PAGE_TYPE_AJAX   = 2;
@@ -432,7 +432,8 @@ class UrlWL extends Url {
     private $arBreadCrumb = array();
     private $_arPath      = array();
 
-    protected $DB        = null;
+    protected $DB         = null;
+    protected $arSkipPath = array("category-88");
     
     /**
      * UrlWL::__construct()
@@ -962,21 +963,17 @@ class UrlWL extends Url {
             $query = 'SELECT f.`id`, f.`title`, cf.`order` `seq`, f.`tid`/*, ft.`title` `ttitle`*/, a.*, o.`id` `oid`, o.`title` `otitle`/*, ot.`id` `otid`, ot.`title` `ottitle`*/
                 FROM `'.CATEGORY_FILTERS_TABLE.'` cf
                 JOIN `'.FILTERS_TABLE.'` f ON f.`id`=cf.`fid`
-                /*JOIN `'.FILTER_TYPES_TABLE.'` ft ON ft.`id`=f.`tid`*/
                 LEFT JOIN (
                     SELECT a.`id` `aid`, a.`title` `atitle`, ag.`id` `agid`, ag.`title` `agtitle`, ag.`descr` `agdescr`/*, at.`id` `atid`, at.`title` `attitle`, at.`value` `atvalue`*/
                     FROM `'.CATEGORY_ATTRIBUTES_TABLE.'` ca
                     JOIN `'.ATTRIBUTES_TABLE.'` a ON a.`id`=ca.`aid`
                     JOIN `'.ATTRIBUTE_GROUPS_TABLE.'` ag ON ag.`id`=a.`gid` AND ag.`active`=1
-                  /*JOIN `'.ATTRIBUTE_TYPES_TABLE.'` at ON at.`id`=a.`tid`*/
                     JOIN `'.CATEGORY_ATTRIBUTE_GROUPS_TABLE.'` cag ON cag.`gid`=a.`gid` 
                     WHERE ca.`cid` = "'.$id.'" AND cag.`cid` = "'.$id.'" 
                 ) a ON a.`aid`=f.`aid`
                 LEFT JOIN `'.OPTIONS_TABLE.'` o ON o.`id`=f.`oid` AND o.`active`=1
-              /*LEFT JOIN `'.OPTIONS_TYPES_TABLE.'` ot ON ot.`id`=o.`type_id`*/
-                WHERE cf.`cid` = "'.$id.'" AND  cf.`type` = "'.$type.' AND (f.`aid`=0 OR a.`aid` IS NOT NULL OR o.`id` IS NOT NULL)"
-                ORDER BY cf.`order` 
-            ';
+                WHERE cf.`cid` = "'.$id.'" AND  cf.`type` = "'.$type.'" AND (f.`aid`=0 OR a.`aid` IS NOT NULL OR o.`id` IS NOT NULL)
+                ORDER BY cf.`order`';
             $result1 = mysql_query($query);
             while($row1 = mysql_fetch_assoc($result1)){
                 // получаем возможные значения с сеопутями если необходимо
@@ -984,42 +981,43 @@ class UrlWL extends Url {
                 if($includeValues){
                 switch ($row1['tid']) {
                     case UrlFilters::TYPE_BRAND:
-                            $query = 'SELECT `id`, `title`, `title` AS `seo_value`, `seo_path`, `id` `alias` FROM `'.BRANDS_TABLE.'` WHERE `active`=1 AND `seo_path`<>"" ORDER BY `order`';
+                        $query = 'SELECT `id`, `title`, `title` AS `seo_value`, `seo_path`, `id` `alias` FROM `'.BRANDS_TABLE.'` WHERE `active`=1 AND `seo_path`<>"" ORDER BY `order`';
                         $result2 = mysql_query($query);
                         while($row2 = mysql_fetch_assoc($result2)){
                             $row1['values'][$row2['seo_path']] = $row2;
                         }
                         break;
                     case UrlFilters::TYPE_CATEGORY:
-                            $query = 'SELECT `id`, `title`, `title` AS `seo_value`, `seo_path`, `id` `alias` FROM `'.MAIN_TABLE.'` WHERE `active`=1 AND `seo_path`<>"" AND `pid`="'.$id.'" ORDER BY `order`';
+                        $query = 'SELECT `id`, `title`, `title` AS `seo_value`, `seo_path`, `id` `alias` FROM `'.MAIN_TABLE.'` WHERE `active`=1 AND `seo_path`<>"" AND `pid`="'.$id.'" ORDER BY `order`';
                         $result2 = mysql_query($query);
                         while($row2 = mysql_fetch_assoc($result2)){
                             $row1['values'][$row2['seo_path']] = $row2;
                         }
                         break;
                     case UrlFilters::TYPE_OPTION:
-                            $query = 'SELECT `id`, `title`, `seo_value`, `seo_path`, `id` `alias` FROM `'.OPTIONS_VALUES_TABLE.'` WHERE `seo_path`<>"" AND `option_id`="'.$row1['oid'].'" ORDER BY `order`';
-                            $result2 = mysql_query($query);
-                            while($row2 = mysql_fetch_assoc($result2)){
-                                $row1['values'][$row2['seo_path']] = $row2;
-                            }
-                            break;
+                        $query = 'SELECT `id`, `title`, `seo_value`, `seo_path`, `id` `alias` FROM `'.OPTIONS_VALUES_TABLE.'` WHERE `seo_path`<>"" AND `option_id`="'.$row1['oid'].'" ORDER BY `order`';
+                        $result2 = mysql_query($query);
+                        while($row2 = mysql_fetch_assoc($result2)){
+                            $row1['values'][$row2['seo_path']] = $row2;
+                        }
+                        break;
                     case UrlFilters::TYPE_PRICE:
                     case UrlFilters::TYPE_NUMBER:
-                            $query = 'SELECT `id`, `title`, `title` AS `seo_value`, IF(`vmin` IS NULL, 0, `vmin`) `vmin`, IF(`vmax` IS NULL, 0, `vmax`) `vmax`, `id` `alias` FROM `'.RANGES_TABLE.'` WHERE `fid`="'.$row1['id'].'" ORDER BY `order`';
+                        $query = 'SELECT `id`, `title`, `title` AS `seo_value`, IF(`vmin` IS NULL, 0, `vmin`) `vmin`, IF(`vmax` IS NULL, 0, `vmax`) `vmax`, `id` `alias` FROM `'.RANGES_TABLE.'` WHERE `fid`="'.$row1['id'].'" ORDER BY `order`';
                         $result2 = mysql_query($query);
                         while($row2 = mysql_fetch_assoc($result2)){
                             $row2['seo_path'] = UrlFiltersRange::generateSeoPath(($row1['tid']==UrlFilters::TYPE_PRICE ? UrlFiltersRange::SEO_AUTO_PRICE : UrlFiltersRange::SEO_AUTO_RANGE), $row2['id'], $row2['vmin'], $row2['vmax']);
                             $row1['values'][$row2['seo_path']] = $row2;
                         }
-                    case UrlFilters::TYPE_TEXT:
-                            $query = 'SELECT av.`id`, av.`title`, av.`seo_value`, av.`seo_path`, av.`id` AS `alias` 
-                             FROM `'.ATTRIBUTES_VALUES_TABLE.'` av 
-                                 WHERE av.`aid`="'.$row1['aid'].'" AND `seo_path`!="" 
-                                 ORDER BY av.`title`';
+                        break;
+                    default:
+                        $query = 'SELECT av.`id`, av.`title`, av.`seo_value`, av.`seo_path`, av.`id` AS `alias` 
+                            FROM `'.ATTRIBUTES_VALUES_TABLE.'` av 
+                            WHERE av.`aid`="'.$row1['aid'].'" AND `seo_path`<>""
+                            ORDER BY av.`order`';
                         $result2 = mysql_query($query);
                         while($row2 = mysql_fetch_assoc($result2)){
-//                                isset($row2['alias']) or $row2['alias'] = '0';
+                            isset($row2['alias']) or $row2['alias'] = '0';
                             $row1['values'][$row2['seo_path']] = $row2;
                         }
                         break;
@@ -1469,7 +1467,7 @@ class UrlWL extends Url {
      * @return
      */
     public function getBaseUrl($protocol='http://', $setSep=false) {
-        return $protocol.$this->base.($setSep ? '/' : '');
+        return WLCMS_HTTP_PREFIX.$this->base.($setSep ? '/' : '');
     }
     /**
      * UrlWL::getBreadCrumbs()

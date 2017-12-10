@@ -47,24 +47,18 @@ if (empty($_GET) && isset($_SESSION['auser_wrong_entries']['count'])) {
 }
 checkErrorLoginInSession('auser_wrong_entries', false);
 
-
-# ##############################################################################
-// ///////////////////// REQUIRED LOCAL PAGE VARIABLE \\\\\\\\\\\\\\\\\\\\\\\\\\
 //GET and SET Log Task Action
 $logTask     = (isset($_GET['log']) && strlen($_GET['log'])>0) ? addslashes(trim($_GET['log'])) : false;
 $refresh     = array('head'=>'', 'body'=>'');
 $messages    = array('top'=>'', 'bottom'=>'');
 $arrPageData = array( //Page data array
-                    'css_dir'       => '/css/'.TPL_BACKEND_NAME.'/',
-                    'images_dir'    => '/images/admin/',
-                    'headTitle'     => 'Login WEBlife CMS Admin Area'
-              );
-// //////////////////// END REQUIRED LOCAL PAGE VARIABLE \\\\\\\\\\\\\\\\\\\\\\\
-# ##############################################################################
+    'css_dir'       => '/css/private/',
+    'images_dir'    => '/images/admin/',
+    'headTitle'     => 'Admin zone'
+);
 
 //Post actions
 if (!empty($_POST)) {
-
     if (isset($_POST['fConfirmationCode']) || @$_SESSION['auser_wrong_entries']['count']>=WRONG_SUBMITS_TO_CAPTCHA) { ////////// Answer for spec
         if (!$IValidator->checkCode(addslashes(@$_POST['fConfirmationCode']))) {
             $_POST['login'] = $_POST['pass'] = '';
@@ -73,7 +67,6 @@ if (!empty($_POST)) {
             checkErrorLoginInSession('auser_wrong_entries');
         }
     }
-
     if (empty($refresh['head']) && isset($_POST['Submit2'])) {
         $password = md5(addslashes($_POST['pass']));
         $query = "SELECT * FROM `".USERS_TABLE."` WHERE `active`=1 AND `login`='".addslashes($_POST['login'])."' AND `pass`=MD5(CONCAT('".$password."', `salt`)) LIMIT 1";
@@ -132,19 +125,10 @@ if($logTask){
     }
 } else $messages['top'] = 'System function - ok.';
 
-
-
-///////////////////// SMARTY BASE PAGE VARIABLES \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 $smarty->assign('refresh',      $refresh);
 $smarty->assign('messages',     $messages);
 $smarty->assign('arrPageData',  $arrPageData);
 $smarty->assign('showCode',     ((isset($_GET['log']) || isset($_GET['code'])) && @$_SESSION['auser_wrong_entries']['count']>=WRONG_SUBMITS_TO_CAPTCHA) ? 1 : 0);
 $smarty->assign('bannedTime',   isset($_SESSION['auser_wrong_entries']['time']) ? $_SESSION['auser_wrong_entries']['time']+BANNED_TIME : 0);
-//\\\\\\\\\\\\\\\\\ END SMARTY BASE PAGE VARIABLES//////////////////////////////
 
-
-# ##############################################################################
-// ///////////////////////// SMARTY DISPLAY \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 $smarty->display('login.tpl');
-// \\\\\\\\\\\\\\\\\\\\\\\ END SMARTY DISPLAY //////////////////////////////////
-# ##############################################################################

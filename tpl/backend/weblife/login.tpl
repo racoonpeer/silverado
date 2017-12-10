@@ -5,13 +5,27 @@
         <{$refresh.head}>
 <{/if}>
         <title><{$arrPageData.headTitle}></title>
-        <meta http-equiv="content-type" content="text/html; charset=windows-1251">
-        <meta http-equiv="imagetoolbar" content="no">
-        <link rel="stylesheet" type="text/css" href="<{$arrPageData.css_dir}>admin.css" />
-        <link rel="shortcut icon" href="<{$arrPageData.images_dir}>weblife.ico" />
+        <meta http-equiv="content-type" content="text/html; charset=windows-1251"/>
+        <meta http-equiv="imagetoolbar" content="no"/>
+        <link rel="stylesheet" type="text/css" href="/js/libs/twitter-bootstrap/css/bootstrap.min.css"/>
+        <link rel="shortcut icon" href="/images/icons/favicon.ico"/>
+        <style type="text/css">
+            .bd-example-modal {
+                background-color: #fafafa;
+            }
+            .bd-example-modal .modal {
+                position: relative;
+                top: auto;
+                right: auto;
+                bottom: auto;
+                left: auto;
+                z-index: 1;
+                display: block;
+            }
+        </style>
+        <script type="text/javascript" src="/js/libs/twitter-bootstrap/js/bootstrap.min.js"></script>
 <{if $bannedTime>0}>
         <script type="text/javascript">
-            <!--
             var banTimerID = null;
             function updateBanTimer(){
                 var banDate = new Date(<{$bannedTime}>*1000); // seconds*1000 in JavaScripts Milisecons Timestamp
@@ -46,64 +60,64 @@
                 } else form.Submit2.disabled=true;
                 return false;
             }
-            banTimerID = setInterval("updateBanTimer()", 1000);
-            //-->
+            banTimerID = setInterval("updateBanTimer", 1000);
         </script>
 <{/if}>
     </head>
     <body>
 <{if !empty($refresh.head) or !empty($refresh.body)}>
-    <{$refresh.body}>
+        <{$refresh.body}>
 <{else}>
-        <form id="loginForm" name="loginForm" action="" method="post" onsubmit="<{if $bannedTime>0}>return checkForm(this);<{/if}>">
-            <table width="300" border="0" cellspacing="5" cellpadding="5" class="list" style="border:1px solid #CCCCCC; margin:auto; margin-top:200px;" align="center">
-                <tr>
-                    <td colspan="2">
-                        <br/>
-                        &nbsp;&nbsp;&nbsp;<strong><{$smarty.const.WELCOME_TO_ADMIN}></strong>&nbsp;&nbsp;<a href="http://weblife.ua" style="text-decoration:none;">&reg;</a>
-                        <br/>
-                        &nbsp;&nbsp;&nbsp;<{$messages.top}><br/><br/>
-                    </td>
-                </tr>
-                <tr>
-                    <td width="70">
-                        <{$smarty.const.USERS_LOGIN}>:
-                    </td>
-                    <td>
-                        <input type="text" name="login" value="" size="36"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td width="70">
-                        <{$smarty.const.USERS_PASS}>:
-                    </td>
-                    <td>
-                        <input name="pass" value="" type="password" size="36"/>
-                    </td>
-                </tr>
+        <div class="bd-example bd-example-modal">
+            <div class="modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <form id="loginForm" name="loginForm" action="" method="post" onsubmit="<{if $bannedTime>0}>return checkForm(this);<{/if}>">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Login to administration area</h5>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="login"><{$smarty.const.USERS_LOGIN}></label>
+                                        <input type="text" name="login" id="login" value="" class="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="pass"><{$smarty.const.USERS_PASS}></label>
+                                        <input name="pass" id="pass" value="" type="password" class="form-control"/>
+                                    </div>
+                                </div>
 <{if $showCode}>
-                <tr>
-                    <td colspan="2" style="padding-top: 10px;" valign="middle" align="center">
-                        <img alt="code" src="/interactive/cv_img.php?zone=admin" border="0" align="top"/>&nbsp;
-                        Confirmation code: 
-                        <input type="text" id="fConfirmationCode" name="fConfirmationCode" value="" maxlength="<{$smarty.const.IVALIDATOR_MAX_LENTH}>" size="10"/>
-                    </td>
-                </tr>
+                                <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                        <img alt="code" src="/interactive/cv_img.php?zone=admin" border="0" align="top"/>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <input type="text" id="fConfirmationCode" name="fConfirmationCode" value="" maxlength="<{$smarty.const.IVALIDATOR_MAX_LENTH}>" class="form-control"/>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="inputState">Captcha code</label>
+                                    </div>
+                                </div>
 <{/if}>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>
-                        <br/>
-                        <input type="submit" name="Submit2" value="<{$smarty.const.BUTTON_ENTER}>" class="buttons"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" align="center">
-                        <{$messages.bottom}><br/>
-                    </td>
-                </tr>
-            </table>
-        </form>
+                                <div class="form-row">
+<{if !empty($messages.bottom)}>
+                                    <div class="alert alert-danger" role="alert">
+                                        <{$messages.bottom}>
+                                    </div>
+<{/if}>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="submit" name="Submit2" class="btn btn-primary" value="Login...">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 <{/if}>
     </body>
 </html>

@@ -273,7 +273,7 @@ class PHPHelper {
             // init product kits
             self::initProductKitItems($item, $UrlWL, $images_path, $arAliases, $inList);
             // Recalc Item price
-            self::calcProductPrices ($item, !$isKitItem);
+            self::calcProductPrices($item, !$isKitItem);
             $item["discount_price"]  = !empty($item["old_price"]) ? abs($item["price"]-$item["old_price"]) : 0;
             $item["discount_percent"]= !empty($item["old_price"]) ? abs(round((($item["price"]-$item["old_price"])/$item["old_price"])*100)) : 0;
             // get brand
@@ -820,7 +820,7 @@ class PHPHelper {
             $meta = str_replace($replace, $title, $meta);
         }
         $meta = preg_replace("/".sprintf(self::$meta_template, "\d+")."/", "", $meta);
-        return trim(str_replace("  ", " ", $meta));
+        return ucfirst(trim(str_replace("  ", " ", $meta)));
     }
     
     public static function prepareSearchText ($stext, $iconv = false, $addslashes = true) {
@@ -837,7 +837,7 @@ class Selections {
     
     static $COLUMNS = array(
         "is_top" => "Товар дня",
-        "is_kit" => "Лучшие комплекты"
+        "is_kit" => "Акционые комплекты"
     );
     /**
      * 

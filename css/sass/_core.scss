@@ -48,13 +48,14 @@ html {
     text-rendering: optimizelegibility;
 }
 body {
-    font-family: "GothamPro";
+    font-family: "GothamPro", Verdana, sans-serif;
     margin: 0 auto;
     padding: 0;
     position: relative;
     font-size: 1.4rem;
     line-height: 1.4;
     font-weight: 400;
+    min-width: 320px;
 }
 article,
 aside,
@@ -177,6 +178,7 @@ button,
 html input[type="button"],
 input[type="reset"],
 input[type="submit"] {
+    @include border-radius(0px);
     -webkit-appearance: button;
     cursor: pointer;
 }
@@ -228,6 +230,11 @@ optgroup {
 table {
     border-collapse: collapse;
     border-spacing: 0;
+}
+.non-print {
+    @include print(){
+        display: none;
+    }
 }
 .hidden {
     display: none !important;
@@ -286,6 +293,12 @@ table {
 .nopadding {
     padding: 0 !important;
 }
+.uppercase {
+    text-transform: uppercase;
+}
+.lowercase {
+    text-transform: lowercase;
+}
 h1,
 .h1,
 h2,
@@ -320,15 +333,19 @@ h4,
 }
 /*buttons*/
 .btn {
+    letter-spacing: 1px;
     text-decoration: none;
     display: inline-block;
     border-width: 1px;
     border-style: solid;
     text-transform: uppercase;
     font-weight: 500;
-    @include border-radius(none);
+    @include border-radius(0px);
     &:active {
         @include transform(scale(0.95, 0.95));
+    }
+    &:disabled {
+        pointer-events: none;
     }
     &.btn-s {
         height: 30px;
@@ -338,29 +355,29 @@ h4,
         font-size: 1.2rem;
     }
     &.btn-m {
-        height: 34px;
-        line-height: 3.2rem;
+        height: 36px;
+        line-height: 3.4rem;
         padding-left: 15px;
         padding-right: 15px;
         font-size: 1.2rem;
     }
     &.btn-l {
-        height: 40px;
-        line-height: 3.8rem;
+        height: 44px;
+        line-height: 4.2rem;
         padding-left: 15px;
         padding-right: 15px;
         font-size: 1.2rem;
     }
     &.btn-xl {
-        height: 48px;
+        height: 50px;
         line-height: 4.8rem;
         padding-left: 25px;
         padding-right: 25px;
         font-size: 1.2rem;
     }
     &.btn-xxl {
-        height: 66px;
-        line-height: 6.2rem;
+        height: 60px;
+        line-height: 5.8rem;
         padding-left: 35px;
         padding-right: 35px;
         font-size: 1.4rem;
@@ -392,8 +409,9 @@ h4,
         color: $white;
         background-color: $purple;
         border: none;
-        &.btn-xl,
-        &.btn-xxl {
+        &:disabled {
+            background-color: $lite-peach;
+            color: $black;
         }
         &:hover {
             background-color: $lite-purple;
@@ -402,10 +420,9 @@ h4,
     &.btn-link {
         color: $deep-grey;
         background-color: rgba(255,255,255,0.65);
-        border-color: $dark-grey;
+        border-color: #e7e7e7;
         &:hover {
-            /*color: $purple;*/
-            border-color: $deep-purple;
+            color: $purple;
         }
     }
 }
@@ -473,9 +490,9 @@ input[type="password"],
 input[type="tel"],
 select,
 .select2-selection {
-    height: 32px;
+    height: 36px;
     .select2-selection__rendered {
-        line-height: 32px;
+        line-height: 36px;
     }
     &.input-s {
         height: 30px;
@@ -489,34 +506,34 @@ select,
         } 
     }
     &.input-m {
-        height: 32px;
+        height: 36px;
         + .select2-container{
             .select2-selection {
-                height: 32px;
+                height: 36px;
                 .select2-selection__rendered {
-                    line-height: 32px;
+                    line-height: 36px;
                 }
             }
         } 
     }
     &.input-l {
-        height: 40px;
+        height: 44px;
         + .select2-container{
             .select2-selection {
-                height: 40px;
+                height: 44px;
                 .select2-selection__rendered {
-                    line-height: 40px;
+                    line-height: 44px;
                 }
             }
         } 
     }
     &.input-xl {
-        height: 48px;
+        height: 50px;
         + .select2-container{
             .select2-selection {
-                height: 48px;
+                height: 50px;
                 .select2-selection__rendered {
-                    line-height: 48px;
+                    line-height: 50px;
                 }
             }
         } 
@@ -737,6 +754,11 @@ input[type="radio"] {
     text-align: center;
     text-transform: uppercase;
     border: 1px solid;
+    @include breakpoint(479){
+        line-height: 1.7rem;
+        font-size: 1rem;
+        height: 18px;
+    }
     &.new {
         background-color: $white;
         color: $mint;

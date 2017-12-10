@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-11-11 11:39:07
+<?php /* Smarty version Smarty-3.1.14, created on 2017-12-03 11:10:38
          compiled from "tpl/frontend/smart/cart.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:13819070365a06c53babe8a1-07189996%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '7233b96b7004ad39c7b07a9ffe9ff3243a3315a4' => 
     array (
       0 => 'tpl/frontend/smart/cart.tpl',
-      1 => 1509843551,
+      1 => 1512292232,
       2 => 'file',
     ),
   ),
@@ -15,14 +15,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_5a06c53bbe8dc3_82328672',
   'variables' => 
   array (
     'lang' => 0,
     'arCategory' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_5a06c53bbe8dc3_82328672',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5a06c53bbe8dc3_82328672')) {function content_5a06c53bbe8dc3_82328672($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="<?php echo $_smarty_tpl->tpl_vars['lang']->value;?>
@@ -31,7 +31,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
     <body>
         <div id="sbIndex" canvas="container">
-            <?php echo $_smarty_tpl->getSubTemplate ('core/header-basket.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+            <?php echo $_smarty_tpl->getSubTemplate ('core/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
             <?php echo $_smarty_tpl->getSubTemplate ((('module/').($_smarty_tpl->tpl_vars['arCategory']->value['module'])).('.tpl'), $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 

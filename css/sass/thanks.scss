@@ -1,0 +1,158 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Dec 10, 2017, 3:24:21 PM
+    Author     : yyyaaazzz
+*/
+@import "common";
+
+.page-container {
+    padding-top: 40px;
+}
+.heading-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+.messages {
+    text-align: center;
+    padding-bottom: 40px;
+    &:before {
+        display: block;
+        width: 48px;
+        height: 48px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 25px;
+        background-image: $sprite;
+        background-position: -132px -325px;
+        background-repeat: no-repeat;
+        @include border-radius(50%);
+        content: "";
+    }
+}
+.order {
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 40px;
+    .h2 {
+        position: relative;
+        text-align: center;
+        margin-bottom: 10px;
+        .print {
+            position: absolute;
+            right: 0;
+            top: 5px;
+            color: $deep-grey;
+            font-weight: 400;
+            text-decoration: none;
+            font-size: 1.3rem;
+            &:before {
+                display: inline-block;
+                vertical-align: -3px;
+                margin-right: 8px;
+                width: 17px;
+                height: 16px;
+                background-image: $sprite;
+                background-position: -283px -122px;
+                content: "";
+                @include breakpoint(479){
+                    margin-right: 0;
+                }
+            }
+            &:after {
+                content: "распечатать";
+                @include breakpoint(479){
+                    content: none;
+                    display: none;
+                }
+            }
+            &:hover {
+                color: $purple;
+            }
+        }
+    }
+    .basket-items {
+        border: 1px solid rgb(233, 233, 233);
+        .item {
+            padding-left: 5px;
+            padding-right: 10px;
+            position: relative;
+            border-top: 1px solid rgb(233, 233, 233);
+            &:first-child {
+                border-top: none;
+            }
+            .image {
+                height: 90px;
+                margin-right: 10px;
+                img {
+                    vertical-align: top;
+                    max-height: 100%;
+                }
+            }
+            .title {
+                padding-top: 10px;
+                font-size: 1.4rem;
+                font-weight: 400;
+                a {
+                    color: inherit;
+                    text-decoration: none;
+                    &:hover {
+                        color: $lite-purple;
+                    }
+                }
+            }
+            .options {
+                font-size: 1.2rem;
+                margin-top: 6px;
+                color: #868e96;
+            }
+            .price {
+                padding-bottom: 8px;
+                margin-top: 7px;
+                font-size: 1.6rem;
+                strong {
+                    margin-left: 10px;
+                    font-weight: 400;
+                    &:after {
+                        font-size: 1.4rem;
+                        content: "грн.";
+                    }
+                }
+                small {
+                    font-size: 1.4rem;
+                }
+            }
+        }
+    }
+    .summary {
+        padding-top: 20px;
+        font-size: 1.6rem;
+        line-height: 1.6rem;
+        strong {
+            font-weight: 400;
+            font-size: 2rem;
+            line-height: 1rem;
+            &:after {
+                font-size: 1.6rem;
+                content: "грн.";
+            }
+        }
+    }
+    .hr {
+        height: 2px;
+        background-color: #4a4c4c;
+    }
+    .user-info {
+        font-size: 1.2rem;
+        line-height: 1.5;
+        .h3 {
+            color: #666666;
+        }
+    }
+}

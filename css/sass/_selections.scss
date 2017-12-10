@@ -10,65 +10,47 @@ and open the template in the editor.
 
 .selections {
     text-align: -webkit-center;
-    padding-top: 40px;
-    &:hover {
-        position: relative;
-        .slick-slider {
-            .slick-list {
-                .product-item {
-                    text-align: center;
-                    .img {
-                        img {
-                            display: inline-block !important;
-                        }
+    padding-top: 30px;
+    .slick-slider {
+        .slick-arrow {
+            top: 0;
+            z-index: 1;
+            width: 50px;
+            height: 21px;
+            &:after {
+                content: none;
+            }
+            &:before {
+                width: 50px;
+                height: 21px;
+                display: block;
+                background-image: $sprite;
+                background-position: -232px -284px;
+                @include transform(translateX(0));
+                @include transition(transform 120ms ease-out);
+                content: "";
+            }
+            &.slick-next {
+                right: 50%;
+                @include transform(translateX(80px));
+                &:active {
+                    &:before {
+                        @include transform(translateX(5px));
                     }
                 }
             }
-            .slick-arrow {
-                top: 150px;
-                &:not(.slick-disabled) {
-                    display: block !important;
+            &.slick-prev {
+                left: 50%;
+                @include transform(translateX(-80px) rotate(180deg));
+                &:active {
+                    &:before {
+                        @include transform(translateX(-5px));
+                    }
                 }
             }
-        }
-    }
-    .slick-slider {
-        .slick-arrow {
-            top: 130px;
-            display: none !important;
-            background-image: $sprite;
-            background-position: -1px -163px;
-            width: 36px;
-            height: 36px;
-            border: 1px solid $dark-peach;
-            background-color: $white;
-            padding: 1px;
-            z-index: 1;
-            left: 0;
-            &:after {
+            &.slick-disabled {
                 display: none;
-                content: "";
-            }
-            &:before {
-                width: 32px;
-                height: 32px;
-                display: block;
-                background-color: $dark-peach;
-                background-image: $sprite;
-                background-position: -36px -162px;
-                @include transform(scale(0, 0));
-                @include transition(all 100ms ease);
-                content: "";
-            }
-            &:hover {
-                &:before {
-                    @include transform(scale(1, 1));
-                }
-            }
-            &.slick-next {
-                left: auto;
-                right: 0;
-                @include transform(translate(0, -50%) rotate(180deg));
+                @include opacity(0);
             }
         }
     }

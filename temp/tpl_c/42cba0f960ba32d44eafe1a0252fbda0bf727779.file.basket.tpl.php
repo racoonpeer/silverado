@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-11-11 10:18:46
+<?php /* Smarty version Smarty-3.1.14, created on 2017-12-10 13:52:57
          compiled from "tpl/frontend/smart/ajax/basket.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:11000907155a06b266920da7-36829625%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '42cba0f960ba32d44eafe1a0252fbda0bf727779' => 
     array (
       0 => 'tpl/frontend/smart/ajax/basket.tpl',
-      1 => 1510166679,
+      1 => 1512906446,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_5a06b266d74393_57174251',
   'variables' => 
   array (
     'Basket' => 0,
@@ -27,8 +29,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'UrlWL' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_5a06b266d74393_57174251',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5a06b266d74393_57174251')) {function content_5a06b266d74393_57174251($_smarty_tpl) {?><?php if (!$_smarty_tpl->tpl_vars['Basket']->value->isEmptyBasket()){?>
 <div class="full">
@@ -52,7 +52,7 @@ $_smarty_tpl->tpl_vars['arItem']->_loop = true;
             <div class="pull-left image">
                 <a href="<?php echo $_smarty_tpl->getSubTemplate ('core/href_item.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('arCategory'=>$_smarty_tpl->tpl_vars['arItem']->value['arCategory'],'arItem'=>$_smarty_tpl->tpl_vars['arItem']->value), 0);?>
 ">
-                    <img src="<?php echo $_smarty_tpl->tpl_vars['arItem']->value['middle_image'];?>
+                    <img src="<?php echo $_smarty_tpl->tpl_vars['arItem']->value['image']['small_image'];?>
 " alt=""/>
                 </a>
             </div>
@@ -113,12 +113,14 @@ $_smarty_tpl->tpl_vars['value']->_loop = true;
     </div>
     <div class="summary clearfix">
         Итого к оплате
-        <strong class="pull-right"><?php echo number_format($_smarty_tpl->tpl_vars['Basket']->value->getTotalPrice(),0,'.',' ');?>
-</strong>
+        <strong class="pull-right">
+            <?php echo number_format($_smarty_tpl->tpl_vars['Basket']->value->getTotalPrice(),0,'.',' ');?>
+
+        </strong>
     </div>
     <div class="buttons clearfix">
         <a href="<?php echo $_smarty_tpl->getSubTemplate ("core/href.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('arCategory'=>$_smarty_tpl->tpl_vars['arrModules']->value['checkout']), 0);?>
-" class="btn btn-xl btn-danger btn-block">Оформить заказ</a><br/>
+" class="btn btn-l btn-danger btn-block">Оформить заказ</a><br/>
         <a href="#" onclick="Basket.close();" class="btn btn-l btn-link btn-block">Продолжить покупки</a>
     </div>
 </div>
@@ -126,7 +128,7 @@ $_smarty_tpl->tpl_vars['value']->_loop = true;
 <div class="empty">
     <div class="message">
         Корзина пуста
-        <p>но это легко исправить :)</p>
+        <p>но это легко исправить ...</p>
     </div>
     <div class="last-watched">
         <div class="h3">Вы недавно смотрели</div>

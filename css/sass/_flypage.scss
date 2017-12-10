@@ -16,6 +16,10 @@ and open the template in the editor.
     padding-left: 40px;
     .badge {
         margin-bottom: 10px;
+        @include breakpoint(640){
+            margin-left: auto;
+            margin-right: auto;
+        }
     }
     .product-title {
         font-size: 2rem;
@@ -67,10 +71,27 @@ and open the template in the editor.
                 }
             }
         }
+        .btn-wrap {
+            @include breakpoint_min_max(991, 1280){
+                text-align: center;
+                display: inline-block;
+                width: 200px;
+            }
+            @include breakpoint_min_max(641, 850){
+                text-align: center;
+                display: inline-block;
+                width: 200px;
+            }
+            @include breakpoint(400){
+                text-align: center;
+                display: inline-block;
+                width: 200px;
+            }
+        }
         .add-to-cart {
             padding-left: 0;
             padding-right: 0;
-            width: 190px;
+            min-width: 200px;
             &:before {
                 content: "купить";
             }
@@ -80,26 +101,27 @@ and open the template in the editor.
                 }
             }
         }
-        .favorite {
-            margin-top: 12px;
+        .buy-quick {
+            display: inline-block;
             vertical-align: middle;
-            width: 29px;
-            height: 24px;
-            border: none;
-            background-color: transparent;
-            background-image: $sprite;
-            background-position: -87px -82px;
-            &:hover,
-            &.liked {
-                background-position: -116px -82px;
+            margin-left: 20px;
+            text-decoration: none;
+            color: $dark-grey;
+            border-bottom: 1px dotted;
+            &:hover {
+                color: $peach;
             }
-            &.liked {
-                &:hover {
-                    @include opacity(0.75);
-                }
+            @include breakpoint_min_max(991, 1280){
+                margin-left: 0;
+                margin-top: 20px;
             }
-            &:active {
-                @include transform(scale(0.95, 0.95));
+            @include breakpoint_min_max(641, 850){
+                margin-left: 0;
+                margin-top: 20px;
+            }
+            @include breakpoint(400){
+                margin-left: 0;
+                margin-top: 20px;
             }
         }
     }
@@ -144,7 +166,7 @@ and open the template in the editor.
                 &:checked {
                     & + label {
                         font-weight: 400;
-                        border-color: $ground-purple;
+                        border-color: $purple;
                     }
                 }
             }
@@ -178,7 +200,7 @@ and open the template in the editor.
                 @include opacity(0);
                 &:checked {
                     & + label {
-                        border-color: $ground-purple;
+                        border-color: $purple;
                         outline: 3px solid #FFFFFF;
                         outline-offset: -4px;
                     }
@@ -186,8 +208,47 @@ and open the template in the editor.
             }
         }
     }
+    .product-features {
+        margin-top: 30px;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+        font-size: 1.3rem;
+        color: $dark-grey;
+        .feature-item {
+            text-align: center;
+            &:before {
+                display: block;
+                width: 44px;
+                height: 34px;
+                background-image: $sprite;
+                background-repeat: no-repeat;
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 8px;
+                content: "";
+            }
+            &:nth-child(1){
+                &:before {
+                    background-position: 0px -325px;
+                }
+            }
+            &:nth-child(2){
+                &:before {
+                    background-position: -44px -325px;
+                }
+            }
+            &:nth-child(3){
+                &:before {
+                    background-position: -88px -325px;
+                }
+            }
+            + .feature-item {
+                margin-left: 20px;
+            }
+        }
+    }
 }
-
 .product-dialog {
     .product-title {
         font-size: 2rem;

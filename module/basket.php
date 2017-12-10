@@ -14,6 +14,7 @@ if ($IS_AJAX) {
     $smarty->assign('arrModules',  $arrModules);
     $smarty->assign('arrPageData', $arrPageData); 
     $smarty->assign('list',        $list);
+    $smarty->assign('IS_AJAX',     1);
 }
 
 switch ($action) {
@@ -31,10 +32,11 @@ switch ($action) {
     // UPDATE --------------------------------------------------------------
     case 'update':
         $json['output'] = array(
-            'minicart' => $smarty->fetch('ajax/minicart.tpl'),
-            'basket'   => $smarty->fetch('ajax/basket.tpl'),
-            "items"    => $Basket->getItems(),
-            'isEmpty'  => $Basket->isEmptyBasket()
+            'minicart'   => $smarty->fetch('ajax/minicart.tpl'),
+            'minibasket' => $smarty->fetch('ajax/minibasket.tpl'),
+            'basket'     => $smarty->fetch('ajax/basket.tpl'),
+            "items"      => $Basket->getItems(),
+            'isEmpty'    => $Basket->isEmptyBasket()
         );
         break;
     // CLEAR ---------------------------------------------------------------
@@ -52,6 +54,7 @@ if ($IS_AJAX) {
     $smarty->assign('arrModules',  $arrModules);
     $smarty->assign('arrPageData', $arrPageData); 
     $smarty->assign('list',        $list);
+    $smarty->assign('IS_AJAX',     1);
     echo json_encode(PHPHelper::dataConv($json));
     exit;
 }

@@ -11,107 +11,208 @@ and open the template in the editor.
 @import "common";
 @import "ext/select2";
 
-.container {
-    max-width: 1303px;
-}
 .header-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
+    @include breakpoint_min(991){
+        border-bottom: 2px solid $purple;
+    }
+    .section-bottom {
+        display: none;
+    }
     .section-middle {
-        height: 58px;
-        background-color: $deep-grey;
+        .phones {
+            @include breakpoint_min(991){
+                top: 60px;
+            }
+        }
         .logo {
-            top: 14px;
-            left: 50%;
-            width: 230px;
-            height: 35px;
-            background-position: 0px -285px;
-            margin-left: -115px;
+            @include breakpoint_min(991){
+                top: 50px;
+            }
+        }
+        .return {
+            text-decoration: none;
+            display: block;
+            position: absolute;
+            right: 20px;
+            top: 65px;
+            color: $black;
+            @include breakpoint(990){
+                width: 23px;
+                height: 24px;
+                background-position: left;
+                background-size: contain;
+                background-image: url("/images/public/icons/return.svg");
+                background-repeat: no-repeat;
+                font-size: 0;
+                right: auto;
+                left: 20px;
+                top: 50%;
+                @include transform(translateY(-50%));
+            }
+            @include breakpoint(479){
+                width: 20px;
+                height: 20px;
+            }
+            &:hover {
+                color: $lite-purple;
+            }
         }
     }
 }
 .page-container {
     .container {
         position: relative;
-        padding-top: 58px;
-        min-height:100vh;
+        @include breakpoint_min(991){
+            padding-top: 58px;
+            min-height:100vh;
+        }
         .c-left {
             margin-right: 426px;
+            @include breakpoint(1200){
+                margin-right: 320px;
+            }
+            @include breakpoint(990){
+                margin-right: auto;
+            }
         }
         .c-right {
             position: absolute;
             top: 58px;
-            right: 0;
+            right: 20px;
             bottom: 0;
-            background-color: #f5f5f5;
-            width: 426px;
+            width: 406px;
             padding-left: 20px;
             padding-right: 20px;
             padding-bottom: 30px;
-            padding-top: 44px;
-            .f-summary {
-                display: flex;
-                flex-wrap: nowrap;
-                justify-content: space-between;
-                align-items: flex-end;
-                .price {
-                    font-size: 2.4rem;
-                    color: $purple;
-                    font-weight: 300;
-                    &:after {
-                        font-size: 1.8rem;
-                        content: "грн.";
+            @include breakpoint(1200){
+                width: 320px;
+            }
+            @include breakpoint(990){
+                padding-top: 50px;
+                position: static;
+                right: auto;
+                top: auto;
+                width: auto;
+                padding-left: 0;
+                padding-right: 0;
+            }
+            .pre-order {
+                h3 {
+                    margin: 0;
+                    display: block;
+                    text-align: center;
+                    font-size: 1.5rem;
+                    font-weight: 400;
+                    line-height: 3.8rem;
+                    height: 39px;
+                    background-color: #f5f5f5;
+                    border: 1px solid rgb(233, 233, 233);
+                    border-bottom: none;
+                    .edit-order {
+                        &:after {
+                            display: inline-block;
+                            vertical-align: -2px;
+                            margin-left: 7px;
+                            background-position: -258px 0;
+                            background-image: $sprite;
+                            width: 16px;
+                            height: 16px;
+                            content: "";
+                        }
                     }
                 }
             }
-            .edit-order {
-                font-size: 1.2rem;
-                text-transform: uppercase;
-                text-decoration: none;
-                color: $black;
-                font-weight: 30;
-                letter-spacing: 1px;
-                &:after {
-                    display: inline-block;
-                    vertical-align: -2px;
-                    margin-left: 7px;
-                    background-position: -258px 0;
-                    background-image: $sprite;
-                    width: 16px;
-                    height: 16px;
-                    content: "";
+            .minibasket {
+                padding-bottom: 40px;
+                .basket-items {
+                    border: 1px solid rgb(233, 233, 233);
+                    .item {
+                        padding-left: 5px;
+                        padding-right: 10px;
+                        position: relative;
+                        border-top: 1px solid rgb(233, 233, 233);
+                        &:first-child {
+                            border-top: none;
+                        }
+                        .image {
+                            height: 90px;
+                            margin-right: 10px;
+                            img {
+                                vertical-align: top;
+                                max-height: 100%;
+                            }
+                        }
+                        .title {
+                            padding-top: 10px;
+                            font-size: 1.4rem;
+                            font-weight: 400;
+                            a {
+                                color: inherit;
+                                text-decoration: none;
+                                &:hover {
+                                    color: $lite-purple;
+                                }
+                            }
+                        }
+                        .options {
+                            font-size: 1.2rem;
+                            margin-top: 6px;
+                            color: #868e96;
+                        }
+                        .price {
+                            padding-bottom: 8px;
+                            margin-top: 7px;
+                            font-size: 1.6rem;
+                            strong {
+                                margin-left: 10px;
+                                font-weight: 400;
+                                &:after {
+                                    font-size: 1.4rem;
+                                    content: "грн.";
+                                }
+                            }
+                            small {
+                                font-size: 1.4rem;
+                            }
+                        }
+                    }
                 }
-                &:hover {
-                    text-decoration: underline;
+                .summary {
+                    padding-left: 20px;
+                    padding-right: 20px;
+                    padding-top: 20px;
+                    font-size: 1.6rem;
+                    line-height: 1.6rem;
+                    @include breakpoint(990){
+                        padding-left: 0;
+                        padding-right: 0;
+                    }
+                    strong {
+                        font-weight: 400;
+                        font-size: 2rem;
+                        line-height: 1rem;
+                        &:after {
+                            font-size: 1.6rem;
+                            content: "грн.";
+                        }
+                    }
                 }
-            }
-            .checkbox {
-                font-size: 1.2rem;
-                line-height: 1.6rem;
-            }
-            .btn {
-                width: 100%;
-                margin-top: 14px;
-            }
-            hr {
-                margin-top: 17px;
-                margin-bottom: 17px;
-                border: none;
-                background-color: $lite-grey;
-                height: 1px;
-                display: block;
             }
         }
     }
 }
 .form-wizard {
     .steps {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
         line-height: 1;
-        border-bottom: 1px solid $lite-grey;
+        @include breakpoint(990){
+            margin-left: -18px;
+            margin-right: -18px;
+            padding-top: 2px;
+        }
+        @include breakpoint(640){
+            font-size: 0;
+        }
         ul {
             list-style: none;
             display: flex;
@@ -120,39 +221,31 @@ and open the template in the editor.
             margin: 0;
             li {
                 position: relative;
-                display: block;
+                display: flex;
+                text-align: center;
+                align-items: center;
+                align-content: center;
                 width: (100% / 3);
-                padding-top: 21px;
-                padding-bottom: 21px;
+                height: 40px;
+                background-color: #eeeeee;
+                + li {
+                    border-left: 2px solid $white;
+                }
                 &.current {
-                    &:after {
-                        display: block;
-                        position: absolute;
-                        width: 30px;
-                        height: 30px;
-                        bottom: -15px;
-                        left: 50%;
-                        margin-left: -15px;
-                        background-color: $white;
-                        border: 1px solid $lite-grey;
-                        border-top-color: $white;
-                        border-right-color: $white;
-                        @include transform(rotate(-45deg));
-                        content: "";
-                    }
+                    background-color: #f5f5f5;
                     a {
                         pointer-events: none;
-                        color: $dark-grey;
+                        color: $purple;
                     }
                 }
                 a {
                     color: $black;
                     text-decoration: none;
                     display: block;
-                    padding-left: 20px;
-                    padding-right: 20px;
-                    padding-top: 18px;
-                    padding-bottom: 18px;
+                    width: 100%;
+                    @include breakpoint(640){
+                        padding: 0;
+                    }
                     &:hover {
                         color: $dark-grey;
                     }
@@ -160,10 +253,11 @@ and open the template in the editor.
                     .number {
                         display: none;
                     }
-                }
-                + li {
-                    a {
-                        border-left: 1px solid $lite-grey;
+                    .number {
+                        @include breakpoint(640){
+                            display: inline-block;
+                            font-size: 1.6rem;
+                        }
                     }
                 }
             }
@@ -177,10 +271,14 @@ and open the template in the editor.
             position: relative;
             border: none;
             padding-top: 40px;
-            padding-bottom: 40px;
+            padding-bottom: 20px;
             padding-left: 0;
             padding-right: 0;
             margin: 0;
+            @include breakpoint(640){
+                padding-top: 25px;
+                padding-bottom: 20px;
+            }
             .f-print {
                 letter-spacing: 1px;
                 font-size: 1.4rem;
@@ -190,6 +288,13 @@ and open the template in the editor.
                 padding-top: 10px;
                 max-width: 32%;
                 float: left;
+                @include breakpoint(640){
+                    float: none;
+                    max-width: none;
+                    padding-left: 0;
+                    padding-right: 0;
+                    margin-bottom: 15px;
+                }
                 p {
                     margin: 0;
                     &.uc {
@@ -199,9 +304,12 @@ and open the template in the editor.
             }
             .f-body {
                 margin-left: 33.3%;
+                @include breakpoint(640){
+                    margin-left: 0;
+                }
                 .f-row {
                     font-size: 0;
-                    min-height: 40px;
+                    min-height: 36px;
                     + .f-row {
                         margin-top: 10px;
                     }
@@ -210,9 +318,17 @@ and open the template in the editor.
                         display: inline-block;
                         vertical-align: top;
                         padding-right: 5px;
+                        @include breakpoint(425){
+                            display: block;
+                            width: 100%;
+                            padding-right: 0;
+                        }
                         + .f-column {
                             padding-left: 5px;
                             padding-right: 0;
+                            @include breakpoint(425){
+                                padding-left: 0;
+                            }
                         }
                     }
                     input[type="text"],
@@ -239,6 +355,10 @@ and open the template in the editor.
                         + input[type="radio"]{
                             + .radiobox {
                                 margin-left: 40px;
+                                @include breakpoint(425){
+                                    display: block;
+                                    margin-left: 0;
+                                }
                             }
                         }
                     }
@@ -304,22 +424,53 @@ and open the template in the editor.
                     height: 1px;
                     display: block;
                 }
-                .proceed,
-                .return {
-                    color: $deep-grey;
-                    font-weight: 700;
-                    font-size: 1.4rem;
-                    &:hover {
-                        color: $purple;
+            }
+        }
+    }
+    .actions {
+        ul[role="menu"] {
+            margin-left: (100% / 3);
+            margin-top: 0;
+            margin-bottom: 0;
+            list-style: none;
+            padding-left: 0;
+            display: flex;
+            justify-content: space-between;
+            @include breakpoint(640){
+                margin-left: 0;
+            }
+            li {
+                &[aria-disabled="true"]{
+                    @include opacity(0);
+                    pointer-events: none;
+                }
+                a {
+                    @extend .btn;
+                    @extend .btn-m;
+                    min-width: 200px;
+                    text-align: center;
+                    @include breakpoint_min_max(641, 760){
+                        min-width: 170px;
                     }
-                }
-                .proceed {
-                    float: right;
-                }
-                .return {
-                    float: left;
+                    @include breakpoint(480){
+                        min-width: 170px;
+                    }
+                    @include breakpoint(400){
+                        min-width: 150px;
+                    }
+                    @include breakpoint(360){
+                        min-width: 131px;
+                    }
+                    &[href="#next"],
+                    &[href="#finish"]{
+                        @extend .btn-danger;
+                    }
+                    &[href="#previous"]{
+                        @extend .btn-link;
+                    }
                 }
             }
         }
+        
     }
 }

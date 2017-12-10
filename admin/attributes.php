@@ -158,11 +158,12 @@ elseif (!empty($_POST) AND ($task=='addItem' OR $task=='editItem')) {
                             $arValue['seo_path'] = $UrlWL->strToUniqueUrl($DB, $arValue['seo_path'], $item_seopath, ATTRIBUTES_VALUES_TABLE, (empty($arValue['id']) ? 0 : $arValue['id']), empty($arValue['id']));
                         }
                         $arData = array(
-                            'aid'      => $itemID,
-                            'title'    => $arValue['title'],
-                            'seo_path' => $arValue['seo_path'],
-                            'image'    => $arValue['image'],
-                            'order'    => $order++
+                            'aid'       => $itemID,
+                            'title'     => $arValue['title'],
+                            'seo_value' => $arValue['seo_value'],
+                            'seo_path'  => $arValue['seo_path'],
+                            'image'     => $arValue['image'],
+                            'order'     => $order++
                         );
                         $result = $DB->postToDB($arData, ATTRIBUTES_VALUES_TABLE, !empty($valueItem) ? 'WHERE `id`='.$valueItem['id'] : '', array(), (!empty($valueItem) ? 'update' : 'insert'), (!empty($valueItem) ? false : true));
                         $arResults[] = !empty($valueItem) ? $valueItem['id'] : intval($result);
@@ -179,13 +180,6 @@ elseif (!empty($_POST) AND ($task=='addItem' OR $task=='editItem')) {
         $arrPageData['errors'][] = $UserAccess->getAccessError();
     }
 }
-// \\\\\\\\\\\\\\\\\\\\\\\ END POST AND GET OPERATIONS /////////////////////////
-# ##############################################################################
-
-
-# ##############################################################################
-// ///////////////////////// LOCAL PAGE OPERATIONS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
 // Sorts and Filters block
 $arrOrder = getOrdersByKeyExplodeFilteredArray($_GET, 'pageorder', '_');
 $arrPageData['filter_url'] = !empty($arrOrder['url']) ? '&'.implode('&', $arrOrder['url']) : '';

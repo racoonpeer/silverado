@@ -17,8 +17,9 @@
 <{foreach name=i from=$item.arValues key=arKey item=arValue}>
                         <li class="ui-state-default attrsort">
                             <input type="hidden" name="arValues[<{$arKey}>][id]" value="<{$arKey}>"/>
-                            <input class="left field" type="text" name="arValues[<{$arKey}>][title]" value="<{$arValue.title}>" style="width: 200px;" <{if !$arValue.edit}>readonly title="недоступно дл€ редактировани€, так как используетс€ в товаре"<{/if}>/>
-                            <input class="left field" type="text" name="arValues[<{$arKey}>][seo_path]" value="<{$arValue.seo_path}>" style="width: 200px;" <{if !$arValue.edit}>readonly title="недоступно дл€ редактировани€, так как используетс€ в товаре"<{/if}>/>
+                            <input class="left field" type="text" name="arValues[<{$arKey}>][title]" value="<{$arValue.title}>" style="width: 200px;"/>
+                            <input class="left field" type="text" name="arValues[<{$arKey}>][seo_value]" value="<{$arValue.seo_value}>" style="width: 200px;"/>
+                            <input class="left field" type="text" name="arValues[<{$arKey}>][seo_path]" value="<{$arValue.seo_path}>" style="width: 200px;"/>
                             <input type="button" value="√енерировать" style="float: left; margin: 3px 5px 0 0; min-width: 100px;" class="buttons" onclick="if(this.form['arValues[<{$arKey}>][title]'].value.length==0){alert('¬ы не ввели значение атрибута!'); this.form['arValues[<{$arKey}>][title]'].focus(); return false; } else { generateSeoPath(this.form['arValues[<{$arKey}>][seo_path]'], this.form['arValues[<{$arKey}>][title]'].value, this.form.title.value);}">
                             <input type="file" name="arValues[<{$arKey}>][image]" value="" style="margin-top:4px"/>
 <{if !empty($arValue.image)}>
@@ -26,9 +27,8 @@
                             <input type="checkbox" name="arValues[<{$arKey}>][delete_image]" value="1"/> удалить 
 <{/if}>
 <{if $arValue.edit}>
-                            <a class="right" href="javascript:void(0)" onclick="removeAttrVal(this);"><img src="images/admin/error.png"/></a>&nbsp;
+                            <a class="right" href="javascript:void(0)" onclick="removeAttrVal(this);"><img src="/images/admin/error.png"/></a>&nbsp;
 <{/if}>
-                            <img class="right" src="images/sort.png" title="Ќажмите и перетащите элемент на новое место в списке" <{if !$arValue.edit}>readonly title="недоступно дл€ редактировани€, так как используетс€ в товаре" style="margin-right:35px;"<{/if}>/>
                             <div class="clear"></div>
                         </li>
 <{/foreach}>
@@ -92,6 +92,7 @@
                 var html = '<li class="ui-state-default attrsort">'+
                            '<input type="hidden" name="arValues['+maxID+'][id]" value=""/>'+
                            '<input name="arValues['+maxID+'][title]" class="left field" type="text" value="'+$('#attrValue').val()+'" style="width: 200px;"/>'+
+                           '<input name="arValues['+maxID+'][seo_value]" class="left field" type="text" value="'+$('#attrValue').val()+'" style="width: 200px;"/>'+
                            '<input name="arValues['+maxID+'][seo_path]" class="left field" type="text" value="" style="width: 200px;"/>'+
                            '<input type="button" value="√енерировать" style="float: left; margin: 3px 5px 0 0; min-width: 100px;" class="buttons" onclick="if(this.form[\'arValues['+maxID+'][title]\'].value.length==0){alert(\'¬ы не ввели значение атрибута!\'); this.form[\'arValues['+maxID+'][title]\'].focus(); return false; } else{ generateSeoPath(this.form[\'arValues['+maxID+'][seo_path]\'], this.form[\'arValues['+maxID+'][title]\'].value, this.form.title.value);}">'+
                            '<input type="file" name="arValues['+maxID+'][image]" value=""/>'+ 

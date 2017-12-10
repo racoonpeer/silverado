@@ -204,6 +204,7 @@ elseif (!empty($_POST) and ($task=='addItem' or $task=='editItem')) {
             else $arPostData['redirecturl'] = trim($arPostData['redirecturl']);
             if (empty($arPostData['redirectid']) or !empty($arPostData['redirecturl']))  $arPostData['redirectid']  = 0;
             if (!isset($arPostData['essential'])) $arPostData['essential'] = 0;
+            if (!isset($arPostData['separate']))  $arPostData['separate'] = 0;
 
             $result = $DB->postToDB($arPostData, MAIN_TABLE, $conditions,  $arUnusedKeys, $query_type, ($itemID ? false : true));
             if ($result) {
@@ -214,9 +215,7 @@ elseif (!empty($_POST) and ($task=='addItem' or $task=='editItem')) {
                     $arUpdate['treepath'] = CatalogHelper::createTreePath($itemID, isset($arParentData['treepath']) ? $arParentData['treepath'] : '');  
                 }
                 // update seopath for catalog item
-                if (isset($arPostData["module"]) and $arPostData["module"] == "catalog" and $arPostData['seo_path'] != UrlWL::generateIdentifySeoPath($itemID, UrlWL::CATEGORY_SEOPREFIX)) {
-                    $arUpdate['seo_path'] = UrlWL::generateIdentifySeoPath($itemID, UrlWL::CATEGORY_SEOPREFIX);
-                } elseif ($itemID and !empty($item) and $item["module"]=="catalog" and $item['seo_path'] != UrlWL::generateIdentifySeoPath($itemID, UrlWL::CATEGORY_SEOPREFIX)) {
+                if ($arPostData["separate"]>0 and $arPostData['seo_path'] != UrlWL::generateIdentifySeoPath($itemID, UrlWL::CATEGORY_SEOPREFIX)) {
                     $arUpdate['seo_path'] = UrlWL::generateIdentifySeoPath($itemID, UrlWL::CATEGORY_SEOPREFIX);
                 }
                 // if new parent generate new treepath if not generated yet

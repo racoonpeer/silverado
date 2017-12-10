@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-11-11 11:14:58
+<?php /* Smarty version Smarty-3.1.14, created on 2017-12-10 13:12:16
          compiled from "tpl/frontend/smart/module/catalog.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:18082036695a06bf92b83198-41150439%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '44c4508e0ba51d260097dd73ace18e44efe00d3b' => 
     array (
       0 => 'tpl/frontend/smart/module/catalog.tpl',
-      1 => 1508701565,
+      1 => 1512904296,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_5a06bf92e9ed63_98724614',
   'variables' => 
   array (
     'arrPageData' => 0,
@@ -25,8 +27,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'arCategory' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_5a06bf92e9ed63_98724614',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5a06bf92e9ed63_98724614')) {function content_5a06bf92e9ed63_98724614($_smarty_tpl) {?><div class="page-container container clearfix">
     <?php echo $_smarty_tpl->getSubTemplate ('core/breadcrumb.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('arrBreadCrumb'=>$_smarty_tpl->tpl_vars['arrPageData']->value['arrBreadCrumb']), 0);?>
@@ -60,6 +60,8 @@ $_smarty_tpl->tpl_vars['option']->_loop = true;
                 </form>
             </div>
 <?php } ?>
+            <?php echo $_smarty_tpl->getSubTemplate ("core/product-features.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+
         </div>
         <div class="product-details">
 <?php if ($_smarty_tpl->tpl_vars['item']->value['comments_count']>0){?>

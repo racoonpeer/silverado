@@ -756,22 +756,17 @@ class Checkout {
  * EXTENSION INFORMATION
  *
  * LIQPAY API       https://www.liqpay.com/ru/doc
+ * Payment method   liqpay process
  *
- */
-
-/**
- * Payment method liqpay process
- *
- * @author      Liqpay <support@liqpay.com>
+ * @author          Liqpay <support@liqpay.com>
  */
 class LiqPay {
 
     private $_public_key;
     private $_private_key;
-    private $_api_url       = 'https://www.liqpay.com/api/';
-    private $_checkout_url  = 'https://www.liqpay.com/api/checkout';
+    private $_api_url      = 'https://www.liqpay.com/api/';
+    private $_checkout_url = 'https://www.liqpay.com/api/checkout';
     protected $_supportedCurrencies = array('EUR', 'UAH', 'USD', 'RUB', 'RUR');
-
     /**
      * Constructor.
      *
@@ -790,7 +785,6 @@ class LiqPay {
         $this->_public_key = $public_key;
         $this->_private_key = $private_key;
     }
-
     /**
      * Call API
      *
@@ -822,7 +816,6 @@ class LiqPay {
         curl_close($ch);
         return json_decode($server_output);
     }
-
     /**
      * cnb_form
      * @param array $params
@@ -843,11 +836,9 @@ class LiqPay {
                 %s
                 %s
                 <input type="image" src="//static.liqpay.com/buttons/p1ru.radius.png" name="btn_text" />
-            </form>
-            ', $this->_checkout_url, sprintf('<input type="hidden" name="%s" value="%s" />', 'data', $data), sprintf('<input type="hidden" name="%s" value="%s" />', 'signature', $signature), $language
+            </form>', $this->_checkout_url, sprintf('<input type="hidden" name="%s" value="%s" />', 'data', $data), sprintf('<input type="hidden" name="%s" value="%s" />', 'signature', $signature), $language
         );
     }
-
     /**
      * cnb_signature
      *
@@ -862,7 +853,6 @@ class LiqPay {
         $signature = $this->str_to_sign($private_key . $json . $private_key);
         return $signature;
     }
-
     /**
      * cnb_params
      *
@@ -892,7 +882,6 @@ class LiqPay {
         }
         return $params;
     }
-
     /**
      * str_to_sign
      *
@@ -904,7 +893,6 @@ class LiqPay {
         $signature = base64_encode(sha1($str, 1));
         return $signature;
     }
-
 }
 
 

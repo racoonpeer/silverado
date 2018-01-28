@@ -601,13 +601,11 @@ and open the template in the editor.
         border-right: none;
     }
     .h2 {
-        font-weight: 400;
-        padding-left: 20px;
-        padding-right: 20px;
-        color: $purple;
+        font-weight: 300;
+        padding-left: 10px;
+        padding-right: 10px;
         background-color: $white;
         position: absolute;
-        border: 1px solid #e7e7e7;
         line-height: 3.6rem;
         margin: 0;
         top: -20px;

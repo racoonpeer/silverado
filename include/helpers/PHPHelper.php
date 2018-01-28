@@ -820,7 +820,10 @@ class PHPHelper {
             $meta = str_replace($replace, $title, $meta);
         }
         $meta = preg_replace("/".sprintf(self::$meta_template, "\d+")."/", "", $meta);
-        return ucfirst(trim(str_replace("  ", " ", $meta)));
+        $meta = str_replace("  ", " ", $meta);
+        $meta = trim($meta);
+        $meta = ucfirst($meta);
+        return unScreenData($meta);
     }
     
     public static function prepareSearchText ($stext, $iconv = false, $addslashes = true) {

@@ -38,7 +38,7 @@ and open the template in the editor.
                 font-weight: 700;
             }
             &.stock {
-                color: $peach;
+                color: $deep-purple;
             }
         }
         &.active {
@@ -114,12 +114,17 @@ and open the template in the editor.
                     padding-top: 5px;
                     padding-bottom: 5px;
                     &.separator {
-                        font-weight: 700;
+                        letter-spacing: 1px;
+                        font-size: 1.2rem;
                         text-transform: uppercase;
+                        color: $dark-grey;
                     }
                     a {
                         text-decoration: none;
                         color: inherit;
+                        &.bold {
+                            color: $deep-purple;
+                        }
                         &:hover {
                             color: $purple;
                         }

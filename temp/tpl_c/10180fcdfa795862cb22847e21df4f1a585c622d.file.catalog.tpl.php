@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-11-11 11:12:26
+<?php /* Smarty version Smarty-3.1.14, created on 2018-01-28 18:12:54
          compiled from "tpl/backend/weblife/module/catalog.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:13373972795a06befa1eee29-63954994%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '10180fcdfa795862cb22847e21df4f1a585c622d' => 
     array (
       0 => 'tpl/backend/weblife/module/catalog.tpl',
-      1 => 1510389125,
+      1 => 1517155420,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_5a06befb5b6797_44045564',
   'variables' => 
   array (
     'categoryTree' => 0,
@@ -37,8 +39,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'items' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_5a06befb5b6797_44045564',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5a06befb5b6797_44045564')) {function content_5a06befb5b6797_44045564($_smarty_tpl) {?>
 <?php echo $_smarty_tpl->getSubTemplate ('common/module_head.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('title'=>@constant('CATALOGS'),'creat_title'=>@constant('ADMIN_CREATING_NEW_PRODUCT'),'edit_title'=>@constant('ADMIN_EDIT_PRODUCT')), 0);?>
@@ -68,12 +68,12 @@ Form" onsubmit="return formCheck(this);" enctype="multipart/form-data">
 <?php }?>
     <div class="tabsContainer">
         <ul class="nav">
-            <li><a href="javascript:void(0);" data-target="main" class="active">Основные</a></li>
-            <li><a href="javascript:void(0);" data-target="attributes">Характеристики</a></li>
-            <li><a href="javascript:void(0);" data-target="options">Опции</a></li>
-            <li><a href="javascript:void(0);" data-target="relations">Связь с товарами</a></li>
-            <li><a href="javascript:void(0);" data-target="seo">SEO</a></li>
-            <li><a href="javascript:void(0);" data-target="history">История</a></li>
+            <li><a href="#main" data-target="main" class="active">Основные</a></li>
+            <li><a href="#attributes" data-target="attributes">Характеристики</a></li>
+            <li><a href="#options" data-target="options">Опции</a></li>
+            <li><a href="#relations" data-target="relations">Связь с товарами</a></li>
+            <li><a href="#seo" data-target="seo">SEO</a></li>
+            <li><a href="#history" data-target="history">История</a></li>
         </ul>
         <div class="tab_line"></div>
         <ul class="tabs">

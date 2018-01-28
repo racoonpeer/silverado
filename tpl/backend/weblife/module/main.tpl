@@ -14,13 +14,13 @@
         <input type="hidden" name="order" value="<{$item.order}>" />
         <div class="tabsContainer">
             <ul class="nav">
-                <li><a href="javascript:void(0);" data-target="main" class="active">Основные</a></li>
+                <li><a href="#main" data-target="main" class="active">Основные</a></li>
 <{if $item.module=='catalog'}>
-                <li><a href="javascript:void(0);" data-target="attributes" >Характеристики</a></li>
+                <li><a href="#attributes" data-target="attributes" >Характеристики</a></li>
 <{/if}>
-                <li><a href="javascript:void(0);" data-target="seo">SEO</a></li>
-                <li><a href="javascript:void(0);" data-target="settings">Настройки</a></li>
-                <li><a href="javascript:void(0);" data-target="history">История</a></li>
+                <li><a href="#seo" data-target="seo">SEO</a></li>
+                <li><a href="#settings" data-target="settings">Настройки</a></li>
+                <li><a href="#history" data-target="history">История</a></li>
             </ul>
             <div class="tab_line"></div>
             <ul class="tabs">

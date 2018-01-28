@@ -16,12 +16,12 @@
 <{/if}>
     <div class="tabsContainer">
         <ul class="nav">
-            <li><a href="javascript:void(0);" data-target="main" class="active">Основные</a></li>
-            <li><a href="javascript:void(0);" data-target="attributes">Характеристики</a></li>
-            <li><a href="javascript:void(0);" data-target="options">Опции</a></li>
-            <li><a href="javascript:void(0);" data-target="relations">Связь с товарами</a></li>
-            <li><a href="javascript:void(0);" data-target="seo">SEO</a></li>
-            <li><a href="javascript:void(0);" data-target="history">История</a></li>
+            <li><a href="#main" data-target="main" class="active">Основные</a></li>
+            <li><a href="#attributes" data-target="attributes">Характеристики</a></li>
+            <li><a href="#options" data-target="options">Опции</a></li>
+            <li><a href="#relations" data-target="relations">Связь с товарами</a></li>
+            <li><a href="#seo" data-target="seo">SEO</a></li>
+            <li><a href="#history" data-target="history">История</a></li>
         </ul>
         <div class="tab_line"></div>
         <ul class="tabs">

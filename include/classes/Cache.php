@@ -404,7 +404,7 @@ class CMemCache extends CCache {
      */
     public function __construct($keyPrefix=null) {
         parent::__construct($keyPrefix);
-        $this->useMemcached = getenv("IS_MAC");
+        $this->useMemcached = true;//getenv("IS_MAC");
         $servers = $this->getServers();
         $cache = $this->getMemCache();
         if (count($servers)) {
@@ -415,7 +415,7 @@ class CMemCache extends CCache {
                     $cache->addServer($server->host, $server->port, $server->persistent, $server->weight, $server->timeout, $server->retryInterval, $server->status);
             }
         } else
-            $cache->addServer('127.0.0.1', 11211);
+            $cache->addServer('localhost', 11211);
     }
 
     /**

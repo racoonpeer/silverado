@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-11-14 22:42:55
+<?php /* Smarty version Smarty-3.1.14, created on 2018-01-21 20:57:26
          compiled from "tpl/backend/weblife/ajax/order_products.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:16411390425a0b554f7ab6d2-21490503%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '0c7167a824461742f96db2012e950795b9794e90' => 
     array (
       0 => 'tpl/backend/weblife/ajax/order_products.tpl',
-      1 => 1508266895,
+      1 => 1516561025,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_5a0b55503ab212_25649965',
   'variables' => 
   array (
     'arItems' => 0,
@@ -23,12 +25,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'valueID' => 0,
     'value' => 0,
     'children' => 0,
-    'sPrice' => 0,
     'price' => 0,
+    'sPrice' => 0,
+    'item' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_5a0b55503ab212_25649965',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5a0b55503ab212_25649965')) {function content_5a0b55503ab212_25649965($_smarty_tpl) {?><table id="orderProducts" width="100%" border="1" cellspacing="1" cellpadding="0" class="list order" style="border: 1px solid #b6b6b6 !important;">
     <thead>
@@ -238,16 +239,6 @@ $_smarty_tpl->tpl_vars['value']->_loop = true;
     </tbody>
     <tr>
         <td align="right" colspan="5">
-            <strong>Стоимость доставки:</strong>
-        </td>
-        <td align="center">
-            <strong><?php echo $_smarty_tpl->tpl_vars['sPrice']->value;?>
- грн.</strong>
-        </td>
-        <td></td>
-    </tr>
-    <tr>
-        <td align="right" colspan="5">
             <strong>Сумма к оплате:</strong>
         </td>
         <td align="center">
@@ -256,4 +247,156 @@ $_smarty_tpl->tpl_vars['value']->_loop = true;
         </td>
         <td></td>
     </tr>
-</table><?php }} ?>
+</table>
+<script type="text/javascript">
+    $(function(){
+        OP.setup();
+    });
+    var OP = {
+        update: function() {
+            var _self = this;
+            $.ajax({
+                url: '/interactive/ajax.php',
+                type: 'GET',
+                dataType: 'json',
+                data: {
+                    zone: 'admin',
+                    action: 'orderProducts',
+                    option: 'update',
+                    itemID: <?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
+
+                }, 
+                success: function(json) {
+                    if(json.output) {
+                        $('#orderProducts').replaceWith(json.output);
+                        _self.setup();
+                    }
+                    if(json.history) {
+                        $('#history').html(json.history);
+                    }
+                }
+            });
+        },
+        setup: function() {
+            var _self = this;
+            var arExItems = new Array();
+            $.each($('#orderProducts').children('tbody').find('tr'), function(i, tr){
+                arExItems.push($(tr).data('pid'));
+            });
+            $("#orderProductsSearch").autocomplete({
+                minLength: 3,
+                source: function(request, response) {
+                    $.ajax({
+                        url: "/interactive/ajax.php",
+                        type: 'GET',
+                        dataType: "json",
+                        data: {
+                            zone: 'admin',
+                            action: 'orderProducts',
+                            option: 'search',
+                            itemID: <?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
+,
+                            stext: request.term,
+                            exItems: arExItems
+                        },
+                        success: function(json) {
+                            if(json.items) {
+                                response($.map(json.items, function(item) {
+                                    return {
+                                        label: item.title + ' (' + item.ctitle + ')',
+                                        value: item.title,
+                                        id: item.id,
+                                        type: item.type
+                                    }
+                                }));
+                            }
+                        }
+                    });
+                },
+                select: function(event, ui) {
+                    _self.add(ui.item.id, ui.item.type);
+                }
+            }); 
+        },
+        add: function(PID, TYPE) {
+            var _self = this;
+            $.ajax({
+                url: "/interactive/ajax.php",
+                type: 'GET',
+                dataType: "json",
+                data: {
+                    zone: 'admin',
+                    action: 'orderProducts',
+                    option: 'add',
+                    itemID: <?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
+,
+                    pid: PID,
+                    type: TYPE
+                },
+                complete: function(){
+                    _self.update();
+                }
+            });
+        },
+        delete: function(PID) {
+            var _self = this;
+            $.ajax({
+                url: "/interactive/ajax.php",
+                type: 'GET',
+                dataType: "json",
+                data: {
+                    zone: 'admin',
+                    action: 'orderProducts',
+                    option: 'delete',
+                    itemID: <?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
+,
+                    pid: PID
+                },
+                complete: function(){
+                    _self.update();
+                }
+            });
+        },
+        recalc: function(PID) {
+            var _self = this;
+            var QTY = $('#orderProducts').children('tbody').find('input#qty_'+PID).val(),
+                Inputs = $('#orderProducts').children('tbody').children('tr#product_' + PID).children("td:nth-of-type(3)").find("select, input[type='checkbox']:checked"),
+                Options = {};
+            if (Inputs.length) {
+                $.each(Inputs, function (j, input) {
+                    var pid = $(input).data("pid"),
+                        oid = $(input).data("oid"),
+                        similar = $(Inputs).parent().find("input[data-oid='" + oid + "']:checked"),
+                        arVal   = new Array();
+                    if (!array_key_exists(pid, Options)) Options[pid] = {};
+                    if (similar.length) {
+                        $.each(similar, function (j, cb) {
+                            arVal.push(cb.value)
+                        });
+                        Options[pid][oid] = arVal;
+                    } else {
+                        Options[pid][oid] = parseInt(input.value);
+                    }
+                });
+            }
+            $.ajax({
+                url: "/interactive/ajax.php",
+                type: 'GET',
+                dataType: "json",
+                data: {
+                    zone: 'admin',
+                    action: 'orderProducts',
+                    option: 'recalc',
+                    itemID: <?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
+,
+                    pid: PID,
+                    qty: QTY,
+                    options: Options
+                },
+                complete: function () {
+                    _self.update();
+                }
+            });
+        }
+    }
+</script><?php }} ?>

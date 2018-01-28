@@ -196,153 +196,150 @@ elseif (!empty($_POST) and ($task=='addItem' or $task=='editItem')) {
     if ($Validator->foundErrors()) {
         $arrPageData['errors'][] = "<font color='#990033'>Пожалуйста, введите правильное значение :  </font>".$Validator->getListedErrors();
     } else {
-            $arPostData = $_POST;
-
-            imageManipulationWithCrop($arPostData, $arUnusedKeys, $arrPageData['files_url'], $arrPageData['files_path'], $task, $itemID, $module);
-
-            if (empty($arPostData['redirecturl'])) $arPostData['redirecturl'] = '';
-            else $arPostData['redirecturl'] = trim($arPostData['redirecturl']);
-            if (empty($arPostData['redirectid']) or !empty($arPostData['redirecturl']))  $arPostData['redirectid']  = 0;
-            if (!isset($arPostData['essential'])) $arPostData['essential'] = 0;
-            if (!isset($arPostData['separate']))  $arPostData['separate'] = 0;
-
-            $result = $DB->postToDB($arPostData, MAIN_TABLE, $conditions,  $arUnusedKeys, $query_type, ($itemID ? false : true));
-            if ($result) {
-                $arUpdate = array();               
-                if (!$itemID and $result and is_int($result)) {
-                    $itemID = $result;     
-                    // generate treepath for new record
-                    $arUpdate['treepath'] = CatalogHelper::createTreePath($itemID, isset($arParentData['treepath']) ? $arParentData['treepath'] : '');  
+        $arPostData = $_POST;
+        imageManipulationWithCrop($arPostData, $arUnusedKeys, $arrPageData['files_url'], $arrPageData['files_path'], $task, $itemID, $module);
+        if (empty($arPostData['redirecturl'])) $arPostData['redirecturl'] = '';
+        else $arPostData['redirecturl'] = trim($arPostData['redirecturl']);
+        if (empty($arPostData['redirectid']) or !empty($arPostData['redirecturl'])) $arPostData['redirectid']  = 0;
+        if (!isset($arPostData['essential'])) $arPostData['essential'] = 0;
+        if (!isset($arPostData['separate']))  $arPostData['separate'] = 0;
+        $result = $DB->postToDB($arPostData, MAIN_TABLE, $conditions,  $arUnusedKeys, $query_type, ($itemID ? false : true));
+        if ($result) {
+            $arUpdate = array();               
+            if (!$itemID and $result and is_int($result)) {
+                $itemID = $result;     
+                // generate treepath for new record
+                $arUpdate['treepath'] = CatalogHelper::createTreePath($itemID, isset($arParentData['treepath']) ? $arParentData['treepath'] : '');  
+            }
+            // update seopath for catalog item
+            if ($arPostData["separate"]>0 and $arPostData['seo_path'] != UrlWL::generateIdentifySeoPath($itemID, UrlWL::CATEGORY_SEOPREFIX)) {
+                $arUpdate['seo_path'] = UrlWL::generateIdentifySeoPath($itemID, UrlWL::CATEGORY_SEOPREFIX);
+            }
+            // if new parent generate new treepath if not generated yet
+            if($pid != $arPostData['pid'] and !isset($arUpdate['treepath'])) {
+                $arUpdate['treepath'] = CatalogHelper::createTreePath($itemID, isset($arParentData['treepath']) ? $arParentData['treepath'] : '');
+            }
+            // update item data
+            if ($arUpdate) {
+                $DB->postToDB($arUpdate, MAIN_TABLE, 'WHERE `id`='.$itemID, array(), 'update', true);
+                $arPostData = array_merge($arPostData, $arUpdate);
+            }
+            // update item children
+            if($pid != $arPostData['pid']) {
+                CatalogHelper::generateRecursiveTreePath($itemID, $arPostData['treepath']);
+            }
+            // Update product properties
+            if (isset($arPostData['savePropertyInProducts']) and isset($arPostData["property_type"]) and $arPostData["property_type"] == CatalogMainProperty::TYPE_ATTRIBUTE) {
+                if (empty($arPostData['treepath'])) $arPostData['treepath'] = getValueFromDB(MAIN_TABLE, 'treepath', 'WHERE id='.$itemID);
+                if (!empty($arPostData["property_attribute"]) and !empty($arPostData["property_value"]) and !empty($arPostData['treepath'])){
+                    $query = 'INSERT IGNORE INTO '.PRODUCT_ATTRIBUTE_TABLE.' (aid, pid, value) 
+                        SELECT "'.$arPostData["property_attribute"].'" aid, c.id pid, "'.$arPostData["property_value"].'" value 
+                        FROM '.CATALOG_TABLE.' c LEFT JOIN '.MAIN_TABLE.' m ON m.id=c.cid 
+                        WHERE m.treepath LIKE "'.$arPostData['treepath'].'%"';
+                    mysql_query($query);
                 }
-                // update seopath for catalog item
-                if ($arPostData["separate"]>0 and $arPostData['seo_path'] != UrlWL::generateIdentifySeoPath($itemID, UrlWL::CATEGORY_SEOPREFIX)) {
-                    $arUpdate['seo_path'] = UrlWL::generateIdentifySeoPath($itemID, UrlWL::CATEGORY_SEOPREFIX);
-                }
-                // if new parent generate new treepath if not generated yet
-                if($pid != $arPostData['pid'] and !isset($arUpdate['treepath'])) {
-                    $arUpdate['treepath'] = CatalogHelper::createTreePath($itemID, isset($arParentData['treepath']) ? $arParentData['treepath'] : '');
-                }
-                // update item data
-                if ($arUpdate) {
-                    $DB->postToDB($arUpdate, MAIN_TABLE, 'WHERE `id`='.$itemID, array(), 'update', true);
-                    $arPostData = array_merge($arPostData, $arUpdate);
-                }
-                // update item children
-                if($pid != $arPostData['pid']) {
-                    CatalogHelper::generateRecursiveTreePath($itemID, $arPostData['treepath']);
-                }
-                // Update product properties
-                if (isset($arPostData['savePropertyInProducts']) and isset($arPostData["property_type"]) and $arPostData["property_type"] == CatalogMainProperty::TYPE_ATTRIBUTE) {
-                    if (empty($arPostData['treepath'])) $arPostData['treepath'] = getValueFromDB(MAIN_TABLE, 'treepath', 'WHERE id='.$itemID);
-                    if (!empty($arPostData["property_attribute"]) and !empty($arPostData["property_value"]) and !empty($arPostData['treepath'])){
-                        $query = 'INSERT IGNORE INTO '.PRODUCT_ATTRIBUTE_TABLE.' (aid, pid, value) 
-                            SELECT "'.$arPostData["property_attribute"].'" aid, c.id pid, "'.$arPostData["property_value"].'" value 
-                            FROM '.CATALOG_TABLE.' c LEFT JOIN '.MAIN_TABLE.' m ON m.id=c.cid 
-                            WHERE m.treepath LIKE "'.$arPostData['treepath'].'%"';
-                        mysql_query($query);
-                    }
-                }
-                // operation with category properties
-                deleteRecords(CATEGORY_PROPERTIES_TABLE, "WHERE `category_id`={$itemID}");
-                if (isset($arPostData["property_type"]) and intval($arPostData["property_type"])>0) {
-                    if ($arPostData["property_type"] == CatalogMainProperty::TYPE_ATTRIBUTE) {
-                        $attrID = getValueFromDB(ATTRIBUTES_TABLE, 'id', "WHERE `id`={$arPostData["property_attribute"]}");
-                        $valID = getValueFromDB(ATTRIBUTES_VALUES_TABLE, 'id', "WHERE `id`={$arPostData["property_value"]}");
-                        if ($attrID and $valID) {
-                            $arData = array(
-                                "category_id"  => $itemID,
-                                "type_id"      => $arPostData["property_type"],
-                                "attribute_id" => $arPostData["property_attribute"],
-                                "value_id"     => $arPostData["property_value"]
-                            );
-                            $DB->postToDB($arData, CATEGORY_PROPERTIES_TABLE);
-                        }
-                    } elseif ($arPostData["property_type"] == CatalogMainProperty::TYPE_BRAND or $arPostData["property_type"] == CatalogMainProperty::TYPE_SERIES) {
-                        $table = ($arPostData["property_type"] == CatalogMainProperty::TYPE_BRAND ? BRANDS_TABLE : SERIES_TABLE);
-                        if (getValueFromDB($table, 'id', "WHERE `id`={$arPostData["property_value"]}") > 0) {
-                            $arData = array(
-                                "category_id"  => $itemID,
-                                "type_id"      => $arPostData["property_type"],
-                                "value_id"     => $arPostData["property_value"]
-                            );
-                            $DB->postToDB($arData, CATEGORY_PROPERTIES_TABLE);
-                        }
-                    } else {
+            }
+            // operation with category properties
+            deleteRecords(CATEGORY_PROPERTIES_TABLE, "WHERE `category_id`={$itemID}");
+            if (isset($arPostData["property_type"]) and intval($arPostData["property_type"])>0) {
+                if ($arPostData["property_type"] == CatalogMainProperty::TYPE_ATTRIBUTE) {
+                    $attrID = getValueFromDB(ATTRIBUTES_TABLE, 'id', "WHERE `id`={$arPostData["property_attribute"]}");
+                    $valID = getValueFromDB(ATTRIBUTES_VALUES_TABLE, 'id', "WHERE `id`={$arPostData["property_value"]}");
+                    if ($attrID and $valID) {
                         $arData = array(
                             "category_id"  => $itemID,
-                            "type_id"      => $arPostData["property_type"]
+                            "type_id"      => $arPostData["property_type"],
+                            "attribute_id" => $arPostData["property_attribute"],
+                            "value_id"     => $arPostData["property_value"]
                         );
                         $DB->postToDB($arData, CATEGORY_PROPERTIES_TABLE);
                     }
-                }
-                // Write history record
-                if (mysql_affected_rows()) {
-                    $item_title = getValueFromDB(MAIN_TABLE, 'title', 'WHERE `id`='.$itemID);
-                    if ($task=='addItem') {
-                        foreach(SystemComponent::getAcceptLangs() as $key => $arLang)
-                            ActionsLog::getInstance()->save(ActionsLog::ACTION_CREATE, 'Создано "'.$item_title.'"', $key, $item_title, $itemID, $arrPageData['module']);
-                    } else {
-                         ActionsLog::getInstance()->save(ActionsLog::ACTION_EDIT, 'Отредактировано "'.$item_title.'"', $lang, $item_title, $itemID, $arrPageData['module']);
-                    }  
-                } 
-                setAccess($itemID, $arPostData['access'], ((isset($arPostData['sub_access']) OR $arPostData['access']==0) ? true : false));
-                setSessionMessage('Запись успешно сохранена!');
-                // operation with attribute groups
-                deleteRecords(CATEGORY_ATTRIBUTE_GROUPS_TABLE, 'WHERE `cid`='.$itemID);
-                if (!empty($arPostData['attrGroups'])) {
-                    $key = 0;
-                    foreach ($arPostData['attrGroups'] as $value) {
+                } elseif ($arPostData["property_type"] == CatalogMainProperty::TYPE_BRAND or $arPostData["property_type"] == CatalogMainProperty::TYPE_SERIES) {
+                    $table = ($arPostData["property_type"] == CatalogMainProperty::TYPE_BRAND ? BRANDS_TABLE : SERIES_TABLE);
+                    if (getValueFromDB($table, 'id', "WHERE `id`={$arPostData["property_value"]}") > 0) {
                         $arData = array(
-                            'cid'   => $itemID,
-                            'gid'   => $value,
-                            'order' => ++$key
+                            "category_id"  => $itemID,
+                            "type_id"      => $arPostData["property_type"],
+                            "value_id"     => $arPostData["property_value"]
                         );
-                        $DB->postToDB($arData, CATEGORY_ATTRIBUTE_GROUPS_TABLE);
+                        $DB->postToDB($arData, CATEGORY_PROPERTIES_TABLE);
                     }
+                } else {
+                    $arData = array(
+                        "category_id"  => $itemID,
+                        "type_id"      => $arPostData["property_type"]
+                    );
+                    $DB->postToDB($arData, CATEGORY_PROPERTIES_TABLE);
                 }
-                // operation with attributes
-                deleteRecords(CATEGORY_ATTRIBUTES_TABLE, 'WHERE `cid`='.$itemID);
-                if (!empty($arPostData['attributes'])) {
-                    foreach ($arPostData['attributes'] as $key => $value) {
-                        $arData = array(
-                            'cid'   => $itemID,
-                            'aid'   => $value,
-                            'order' => $key + 1
-                        );
-                        $DB->postToDB($arData, CATEGORY_ATTRIBUTES_TABLE);
-                    }
-                }
-                // operation with category filters
-                deleteRecords(CATEGORY_FILTERS_TABLE, 'WHERE `cid`='.$itemID);
-                if (!empty($arPostData['filters']['all'])) {
-                    foreach ($arPostData['filters']['all'] as $key => $value) {
-                        $arData = array(
-                            'cid'   => $itemID,
-                            'fid'   => $value,
-                            'type'  => 1,
-                            'order' => $key + 1
-                        );
-                        $DB->postToDB($arData, CATEGORY_FILTERS_TABLE);
-                    }
-                }
-                if (!empty($arPostData['filters']['seo'])) {
-                    foreach ($arPostData['filters']['seo'] as $key => $value) {
-                        $arData = array(
-                            'cid'   => $itemID,
-                            'fid'   => $value,
-                            'type'  => 2,
-                            'order' => $key + 1
-                        );
-                        $DB->postToDB($arData, CATEGORY_FILTERS_TABLE);
-                    }
-                    updateRecords(CATEGORY_FILTERS_TABLE.' cf INNER JOIN '.FILTERS_TABLE.' f ON f.`id`=cf.`fid`', 'cf.`order`=0', 'WHERE f.`tid`=5 AND cf.`type`=2 AND cf.`cid`='.$itemID);
-                }
-                // Refresh form
-                Redirect($arrPageData['current_url'].(isset($_POST['submit_add']) ? '&task=addItem' : ((isset($_POST['submit_apply']) and $itemID) ? '&task=editItem&itemID='.$itemID : '')) );
-            } else {
-                $arrPageData['errors'][] = 'Запись <font color="red">НЕ была сохранена</font>!';
             }
+            // Write history record
+            if (mysql_affected_rows()) {
+                $item_title = getValueFromDB(MAIN_TABLE, 'title', 'WHERE `id`='.$itemID);
+                if ($task=='addItem') {
+                    foreach(SystemComponent::getAcceptLangs() as $key => $arLang)
+                        ActionsLog::getInstance()->save(ActionsLog::ACTION_CREATE, 'Создано "'.$item_title.'"', $key, $item_title, $itemID, $arrPageData['module']);
+                } else {
+                     ActionsLog::getInstance()->save(ActionsLog::ACTION_EDIT, 'Отредактировано "'.$item_title.'"', $lang, $item_title, $itemID, $arrPageData['module']);
+                }  
+            } 
+            setAccess($itemID, $arPostData['access'], ((isset($arPostData['sub_access']) OR $arPostData['access']==0) ? true : false));
+            setSessionMessage('Запись успешно сохранена!');
+            // operation with attribute groups
+            deleteRecords(CATEGORY_ATTRIBUTE_GROUPS_TABLE, 'WHERE `cid`='.$itemID);
+            if (!empty($arPostData['attrGroups'])) {
+                $key = 0;
+                foreach ($arPostData['attrGroups'] as $value) {
+                    $arData = array(
+                        'cid'   => $itemID,
+                        'gid'   => $value,
+                        'order' => ++$key
+                    );
+                    $DB->postToDB($arData, CATEGORY_ATTRIBUTE_GROUPS_TABLE);
+                }
+            }
+            // operation with attributes
+            deleteRecords(CATEGORY_ATTRIBUTES_TABLE, 'WHERE `cid`='.$itemID);
+            if (!empty($arPostData['attributes'])) {
+                foreach ($arPostData['attributes'] as $key => $value) {
+                    $arData = array(
+                        'cid'   => $itemID,
+                        'aid'   => $value,
+                        'order' => $key + 1
+                    );
+                    $DB->postToDB($arData, CATEGORY_ATTRIBUTES_TABLE);
+                }
+            }
+            // operation with category filters
+            deleteRecords(CATEGORY_FILTERS_TABLE, 'WHERE `cid`='.$itemID);
+            if (!empty($arPostData['filters']['all'])) {
+                foreach ($arPostData['filters']['all'] as $key => $value) {
+                    $arData = array(
+                        'cid'   => $itemID,
+                        'fid'   => $value,
+                        'type'  => 1,
+                        'order' => $key + 1
+                    );
+                    $DB->postToDB($arData, CATEGORY_FILTERS_TABLE);
+                }
+            }
+            if (!empty($arPostData['filters']['seo'])) {
+                foreach ($arPostData['filters']['seo'] as $key => $value) {
+                    $arData = array(
+                        'cid'   => $itemID,
+                        'fid'   => $value,
+                        'type'  => 2,
+                        'order' => $key + 1
+                    );
+                    $DB->postToDB($arData, CATEGORY_FILTERS_TABLE);
+                }
+                updateRecords(CATEGORY_FILTERS_TABLE.' cf INNER JOIN '.FILTERS_TABLE.' f ON f.`id`=cf.`fid`', 'cf.`order`=0', 'WHERE f.`tid`=5 AND cf.`type`=2 AND cf.`cid`='.$itemID);
+            }
+            // Refresh form
+            Redirect($arrPageData['current_url'].(isset($_POST['submit_add']) ? '&task=addItem' : ((isset($_POST['submit_apply']) and $itemID) ? '&task=editItem&itemID='.$itemID : '')) );
+        } else {
+            $arrPageData['errors'][] = 'Запись <font color="red">НЕ была сохранена</font>!';
         }
+    }
 }
 
 if ($task=='addItem' or $task=='editItem') {
@@ -354,11 +351,10 @@ if ($task=='addItem' or $task=='editItem') {
     if (!$itemID) {
         if ($copyID) {
             $item = getSimpleItemRow($copyID, MAIN_TABLE);
-            if(!empty($item['module']) and !empty($arrPageData['arParent']) and $item['module']!=$arrPageData['arParent']['module']){
+            if (!empty($item['module']) and !empty($arrPageData['arParent']) and $item['module']!=$arrPageData['arParent']['module']){
                 $item['module'] = '';
             }
             $item = array_merge($item, array('id'=>'', 'image'=>'', 'seo_path'=>''));
-
             // category attribute groups
             $item['attrGroups'] = array();
             $query = 'SELECT cag.* FROM `'.CATEGORY_ATTRIBUTE_GROUPS_TABLE.'` cag ';
@@ -370,19 +366,17 @@ if ($task=='addItem' or $task=='editItem') {
                     $item['attrGroups'][] = $row['gid'];
                 }
             }
-
             // category attributes
             $item['attributes'] = array();
             $query = 'SELECT ca.* FROM `'.CATEGORY_ATTRIBUTES_TABLE.'` ca ';
             $where = 'WHERE ca.`cid`='.$copyID.' ';
             $order = 'ORDER BY ca.`order`';
             $result = mysql_query($query.$where.$order);
-            if(mysql_num_rows($result) > 0) {
+            if (mysql_num_rows($result) > 0) {
                 while ($row = mysql_fetch_assoc($result)) {
                     $item['attributes'][] = $row['aid'];
                 }
             }
-
             // category filters
             $item['filters'] = array(
                 'all' => array(),
@@ -402,7 +396,7 @@ if ($task=='addItem' or $task=='editItem') {
                     }
                 }
             }
-        } else {    
+        } else {
             $item = array_combine_multi($DB->getTableColumnsNames(MAIN_TABLE), '');
             $item['pagetype'] = isset($arrPageData['arParent']['pagetype']) ? $arrPageData['arParent']['pagetype'] : '';
             $item['menutype'] = isset($arrPageData['arParent']['menutype']) ? $arrPageData['arParent']['menutype'] : '';
@@ -420,7 +414,7 @@ if ($task=='addItem' or $task=='editItem') {
         $item['order']       = getMaxPosition($pid, 'order', 'pid', MAIN_TABLE);
         $item['created']     = date('Y-m-d H:i:s');
         $item['arHistory']   = array();
-    } elseif($itemID) {
+    } elseif ($itemID) {
         $query = "SELECT * FROM ".MAIN_TABLE." WHERE id = $itemID LIMIT 1";
         $result = mysql_query($query);
         if(!$result) {
@@ -432,9 +426,7 @@ if ($task=='addItem' or $task=='editItem') {
             $item['submodules']  = $item['module'] ? getValueFromDB(MAIN_TABLE, 'COUNT(*)', " WHERE `module`='{$item['module']}' AND `pid`='{$item['id']}'", 'submodules') : 0;
             $item['arImageData'] = $item['image'] ? getArrImageSize($arrPageData['files_url'], $item['image']) : array();
         }
-
         $item['arHistory'] = ActionsLog::getInstance()->getHistory(array('modules'=>array($arrPageData['module']), 'oid'=>$item['id'], 'langs'=>array($lang)));
-       
         // category attribute groups
         $item['attrGroups'] = array();
         $query = 'SELECT cag.* FROM `'.CATEGORY_ATTRIBUTE_GROUPS_TABLE.'` cag ';
@@ -558,29 +550,26 @@ if ($task=='addItem' or $task=='editItem') {
     $item['keyProperty'] = getItemRow(CATEGORY_PROPERTIES_TABLE.' cp LEFT JOIN '.CATEGORY_PROPERTIES_TYPES_TABLE.' cpt ON cpt.id=cp.type_id', 'cp.*, cpt.typename', 'WHERE cp.category_id='.$itemID);
     if(!empty($item['keyProperty'])) {
         $valueItem = array();
-        if(!empty($item['keyProperty']['attribute_id']))
+        if (!empty($item['keyProperty']['attribute_id'])) {
             $valueItem = getItemRow(ATTRIBUTES_VALUES_TABLE, "*", "WHERE `id`={$item['keyProperty']['value_id']} AND `aid`={$item['keyProperty']['attribute_id']}");
-        else if ($item['keyProperty']['type_id'] == CatalogMainProperty::TYPE_BRAND or $item['keyProperty']['type_id'] == CatalogMainProperty::TYPE_SERIES) {
+        } elseif ($item['keyProperty']['type_id'] == CatalogMainProperty::TYPE_BRAND or $item['keyProperty']['type_id'] == CatalogMainProperty::TYPE_SERIES) {
             $table = ($item['keyProperty']['type_id'] == CatalogMainProperty::TYPE_BRAND ? BRANDS_TABLE : SERIES_TABLE);
             $valueItem = getItemRow($table, "*", "WHERE `id`={$item['keyProperty']["value_id"]}");
         }
         $item['keyProperty']['valueItem'] = $valueItem;
     }
-    
 } else {
     // Display Items List Data
-    $where = "WHERE t.pid = $pid ";
+    $where = "WHERE t.`pid` = $pid ";
     // Total pages and Pager
     $arrPageData['total_items'] = intval(getValueFromDB(MAIN_TABLE." t", 'COUNT(*)', $where, 'count'));
     $arrPageData['pager']       = getPager($page, $arrPageData['total_items'], $arrPageData['items_on_page'], $arrPageData['admin_url'].$arrPageData['parent_url']);
     $arrPageData['total_pages'] = $arrPageData['pager']['count'];
     $arrPageData['offset']      = ($page-1)*$arrPageData['items_on_page'];
     // END Total pages and Pager
-    $order = "ORDER BY  t.id, t.menutype, t.order";
-    $limit = "LIMIT {$arrPageData['offset']}, {$arrPageData['items_on_page']}";
-    $query = "SELECT *, (SELECT COUNT(*) FROM `".MAIN_TABLE."` subt WHERE subt.pid = t.id) as childrens 
-        FROM `".MAIN_TABLE."` t
-        $where $order $limit";
+    $order  = "ORDER BY t.`order`";
+    $limit  = "LIMIT {$arrPageData['offset']}, {$arrPageData['items_on_page']}";
+    $query  = "SELECT *, (SELECT COUNT(*) FROM `".MAIN_TABLE."` subt WHERE subt.`pid`=t.`id`) AS `childrens` FROM `".MAIN_TABLE."` t $where $order $limit";
     $result = mysql_query($query);
     if(!$result) $arrPageData['errors'][] = "SELECT OPERATIONS: " . mysql_error();
     else {
@@ -595,22 +584,16 @@ if ($task=='addItem' or $task=='editItem') {
     }
 }
 
-// Include Need CSS and Scripts For This Page To Array
-$arrPageData['headCss'][]       = '<link href="/js/libs/highslide/highslide.css" type="text/css" rel="stylesheet" />';
-$arrPageData['headScripts'][]   = '<script src="/js/libs/highslide/highslide-full.packed.js" type="text/javascript"></script>';
-$arrPageData['headScripts'][]   = '<script src="/js/libs/highslide/highslide.config.admin.js" type="text/javascript"></script>';
-$arrPageData['headCss'][]       = '<link href="/js/jquery/themes/smoothness/jquery.ui.all.css" type="text/css" rel="stylesheet" />';
-$arrPageData['headScripts'][]   = '<script src="/js/jquery/ui/jquery.ui.core.js" type="text/javascript"></script>';
-$arrPageData['headScripts'][]   = '<script src="/js/jquery/ui/jquery.ui.autocomplete.js" type="text/javascript"></script>';
-$arrPageData['headScripts'][]   = '<script src="/js/jquery/ui/jquery.ui.widget.js" type="text/javascript"></script>';
-$arrPageData['headScripts'][]   = '<script src="/js/jquery/ui/jquery.ui.datepicker.js" type="text/javascript"></script>';
-$arrPageData['headScripts'][]   = '<script src="/js/jquery/ui/1251/jquery.ui.datepicker-ru.js" type="text/javascript"></script>';
-// /////////////////////// END LOCAL PAGE OPERATIONS \\\\\\\\\\\\\\\\\\\\\\\\\\\
-# ##############################################################################
+$arrPageData['headCss'][]      = '<link href="/js/libs/highslide/highslide.css" type="text/css" rel="stylesheet"/>';
+$arrPageData['headScripts'][]  = '<script src="/js/libs/highslide/highslide-full.packed.js" type="text/javascript"></script>';
+$arrPageData['headScripts'][]  = '<script src="/js/libs/highslide/highslide.config.admin.js" type="text/javascript"></script>';
+$arrPageData['headCss'][]      = '<link href="/js/jquery/themes/smoothness/jquery.ui.all.css" type="text/css" rel="stylesheet"/>';
+$arrPageData['headScripts'][]  = '<script src="/js/jquery/ui/jquery.ui.core.js" type="text/javascript"></script>';
+$arrPageData['headScripts'][]  = '<script src="/js/jquery/ui/jquery.ui.autocomplete.js" type="text/javascript"></script>';
+$arrPageData['headScripts'][]  = '<script src="/js/jquery/ui/jquery.ui.widget.js" type="text/javascript"></script>';
+$arrPageData['headScripts'][]  = '<script src="/js/jquery/ui/jquery.ui.datepicker.js" type="text/javascript"></script>';
+$arrPageData['headScripts'][]  = '<script src="/js/jquery/ui/1251/jquery.ui.datepicker-ru.js" type="text/javascript"></script>';
 
-
-# ##############################################################################
-///////////////////// SMARTY BASE PAGE VARIABLES \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 $smarty->assign('item',         $item);
 $smarty->assign('items',        $items);
 $smarty->assign('itemID',       $itemID);
@@ -619,6 +602,3 @@ $smarty->assign('arrPageTypes', $arrPageTypes);
 $smarty->assign('arrMenuTypes', $arrMenuTypes);
 $smarty->assign('arrRedirects', $arrRedirects);
 $smarty->assign('categoryTree', $categoryTree);
-//\\\\\\\\\\\\\\\\\ END SMARTY BASE PAGE VARIABLES /////////////////////////////
-# ##############################################################################
-

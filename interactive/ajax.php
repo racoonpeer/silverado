@@ -357,77 +357,48 @@ if($site_zone){
                 $images_path = UPLOAD_URL_DIR."catalog/";
                 $images_params = SystemComponent::prepareImagesParams(getValueFromDB(IMAGES_PARAMS_TABLE, 'aliases', 'WHERE `module`="catalog"'));
                 // обновление данных на странице
-                if($option=='update') {
+                if ($option=='update') {
                     $arItem = getItemRow(ORDERS_TABLE, '*', 'WHERE `id`='.$itemID);
                     $arShipping = getItemRow(SHIPPING_TYPES_TABLE, '*', 'WHERE `id`='.$arItem['shipping']);
                     $sPrice  = $arShipping['price'];
                     $price = 0;
                     $arItems = array();
-                    $select = 'SELECT op.* FROM `'.ORDER_PRODUCTS_TABLE.'` op ';
-                    $where = 'WHERE op.`oid`='.$itemID.' ';
-                    $order = 'ORDER BY op.`id`';
-                    $query = $select.$where.$order;
+                    $query  = "SELECT DISTINCT op.* FROM `".ORDER_PRODUCTS_TABLE."` op WHERE op.`oid`={$itemID}";
                     $result = mysql_query($query);
                     if(mysql_num_rows($result) > 0) {
                         while ($row = mysql_fetch_assoc($result)) {
                             $arOptions = unserialize(unScreenData($row["options"]));
                             // для товара
-                            if($row['type']=="product") {
-                                $product = getItemRow(CATALOG_TABLE, '*', 'WHERE `id`='.$row['pid']);
-                                if(!empty($product))  {
-                                    $row['link'] = $UrlWL->buildItemUrl($UrlWL->getCategoryById($product['cid']), $product);
-                                    $row['ptitle'] = $product['title'];
-                                    $row["selectedOptions"] = isset($arOptions[$product["id"]]) ? $arOptions[$product["id"]] : array();
-                                    $row["options"] = PHPHelper::getProductOptions($product["id"], $row["selectedOptions"]);
-                                } else {
-                                    $row['link'] = null;
-                                    $row['ptitle'] = $row['title'];
-                                    $row["selectedOptions"] = array();
-                                    $row["options"] = array();
-                                }
-                            } 
-                            // для комплекта
-                            elseif ($row['type']=="kit"){
+                            $product = getItemRow(CATALOG_TABLE, '*', 'WHERE `id`='.$row['pid']);
+                            if (!empty($product))  {
+                                $row['link'] = $UrlWL->buildItemUrl($UrlWL->getCategoryById($product['cid']), $product);
+                                $row['ptitle'] = $product['title'];
+                                $row["selectedOptions"] = isset($arOptions[$product["id"]]) ? $arOptions[$product["id"]] : array();
+                                $row["options"] = PHPHelper::getProductOptions($product["id"], $row["selectedOptions"]);
+                            } else {
                                 $row['link'] = null;
                                 $row['ptitle'] = $row['title'];
-                                $row["children"] = array();
-                                $kitx = !empty($row["kitx"]) ? explode(",", $row["kitx"]) : array(0);
-                                $qry  = "SELECT c.*, IF(ck.`pid`=c.`id`, 1, 0) AS `primary` FROM `".CATALOG_TABLE."` c ";
-                                $qry .= "LEFT JOIN `".CATALOG_KITS_TABLE."` ck ON(ck.`pid` = c.`id`) ";
-                                $qry .= "LEFT JOIN `".CATALOG_KITS_TABLE."` ck2 ON(ck2.`kid` = c.`id`) ";
-                                $qry .= "WHERE c.`id` IN(".implode(",", $kitx).") ";
-                                $qry .= "GROUP BY c.`id` ORDER BY `primary` DESC LIMIT 1";
-                                $res  = mysql_query($qry);
-                                if ($res AND mysql_num_rows($res) > 0) {
-                                    while ($kit = mysql_fetch_assoc($res)) {
-                                        $kit["selectedOptions"] = isset($arOptions[$kit["id"]]) ? $arOptions[$kit["id"]] : array();
-                                        $kit["options"] = PHPHelper::getProductOptions($kit["id"], $kit["selectedOptions"]);
-                                        $row["children"][] = $kit;
-                                    }
-                                }
+                                $row["selectedOptions"] = array();
+                                $row["options"] = array();
                             }
                             $price += ($row['price'] * $row['qty']);
                             $arItems[] = $row;
                         }
                     }
-                    
                     // пересчет стоимости доставки
-                    if($price > $arShipping['minprice']) {
+                    if ($price > $arShipping['minprice']) {
                         $sPrice = 0;
                     }
-                    
                     // обновление цены
                     updateRecords(ORDERS_TABLE, '`price`="'.$price.'"', 'WHERE `id`='.$itemID);
                     
                     require_once('include/classes/mySmarty.php');
                     $smarty = new mySmarty(TPL_BACKEND_NAME, WLCMS_DEBUG, WLCMS_SMARTY_ERROR_REPORTING, TPL_BACKEND_FORSE_COMPILE, TPL_BACKEND_CACHING);
-                    
                     $smarty->assign('arItems', $arItems);
                     $smarty->assign('price', $price);
                     $smarty->assign('sPrice', $sPrice);
                     $smarty->assign('arrPageData', $arrPageData);
                     $smarty->assign('arHistoryData', ActionsLog::getAuthInstance($objUserInfo->id, getRealIp())->getHistory(array('modules' => array('orders'), 'oid'=>$itemID, 'langs'=>array($lang))));
-                    
                     $json['history'] = $smarty->fetch('common/object_actions_log.tpl');
                     $json['output'] = $smarty->fetch('ajax/order_products.tpl');
                     echo json_encode(PHPHelper::dataConv($json));
@@ -437,9 +408,8 @@ if($site_zone){
                     $json['items'] = array(); 
                     $stext = (!empty($_GET['stext']))? htmlspecialchars(strtolower(addslashes(trim(PHPHelper::dataConv($_GET['stext'], 'utf-8', 'windows-1251'))))): '';
                     $exItems = (!empty($_GET['exItems']))? $_GET['exItems']: array(0);
-                    
                     // products search
-                    $select = 'SELECT c.*, m.`title` AS `ctitle` FROM `'.CATALOG_TABLE.'` c ';
+                    $select = 'SELECT c.*, CONCAT(c.`title`, " ", c.`pcode`) AS `title`, m.`title` AS `ctitle` FROM `'.CATALOG_TABLE.'` c ';
                     $join   = 'LEFT JOIN `'.MAIN_TABLE.'` m ON(m.`id` = c.`cid`) ';
                     $where  = 'WHERE c.`active`=1 AND m.`active`=1 AND c.`id` NOT IN('.implode(',', $exItems).') ';
                     $where .= 'AND (c.`title` LIKE "%'.$stext.'%" OR c.`pcode` LIKE "%'.$stext.'%") ';
@@ -453,105 +423,28 @@ if($site_zone){
                             $row['type'] = 'product';
                             $json['items'][] = $row;
                         }
-                    }
-
-                    // product kits search
-                    $select = 'SELECT c.`id`, CONCAT_WS(", ", m.`title`, GROUP_CONCAT(mt.`title` SEPARATOR ", ")) AS `ctitle`, CONCAT_WS(" + ", c.`title`, GROUP_CONCAT(ct.`title` SEPARATOR " + ")) AS `title` FROM `'.CATALOG_KITS_TABLE.'` ck ';
-                    $join   = 'LEFT JOIN `'.CATALOG_TABLE.'` c ON(c.`id`=ck.`pid`) ';
-                    $join  .= 'LEFT JOIN `'.MAIN_TABLE.'` m ON(m.`id`=c.`cid`) ';
-                    $join  .= 'LEFT JOIN `'.CATALOG_TABLE.'` ct ON(ct.`id`=ck.`kid`) ';
-                    $join  .= 'LEFT JOIN `'.MAIN_TABLE.'` mt ON(mt.`id`=ct.`cid`) ';
-                    $where  = 'WHERE (c.`active`=1 AND ct.`active`=1) AND (m.`active`=1 AND mt.`active`=1) AND (ck.`id` NOT IN('.implode(',', $exItems).')) ';
-                    $where .= 'AND ((c.`title` LIKE "%'.$stext.'%" OR c.`pcode` LIKE "%'.$stext.'%") OR (ct.`title` LIKE "%'.$stext.'%" OR ct.`pcode` LIKE "%'.$stext.'%")) ';
-                    $order  = 'GROUP BY ck.`pid` ORDER BY ck.`id`';
-                    $query  = $select.$join.$where.$order;
-                    $result = mysql_query($query);
-                    if(mysql_num_rows($result) > 0) {
-                        while ($row = mysql_fetch_assoc($result)) {
-                            $row['title'] = 'Комплект: '.unScreenData($row['title']);
-                            $row['ctitle'] = unScreenData($row['ctitle']);
-                            $row['type'] = 'kit';
-                            $json['items'][] = $row;
-                        }
-                    }
-
-                    echo json_encode(PHPHelper::dataConv($json));
+                    } die(json_encode(PHPHelper::dataConv($json)));
                 }
                 // добавление товара
                 elseif ($option=="add") {
                     if($hasAccess) {
-                        $pid = (!empty($_GET['pid']) && intval($_GET['pid']))? intval($_GET['pid']): 0;
-                        $type = (!empty($_GET['type']))? trim($_GET['type']): die('Item type required!');
-
+                        $pid  = (!empty($_GET['pid']) and intval($_GET['pid'])) ? intval($_GET['pid']) : 0;
+                        $type = !empty($_GET['type']) ? trim($_GET['type']) : die('Item type required!');
                         // добавление товара
-                        if($type=="product") {
-                            $arItem = getItemRow(CATALOG_TABLE, '*', 'WHERE `id`='.$pid);
-                            if(!empty($arItem)) {
-                                $arItem = PHPHelper::getProductItem($arItem, $UrlWL, $images_path, $images_params, true, $arItem["cid"], "catalog", false);
-                                $arData = array(
-                                    'oid'   => $itemID,
-                                    'pid'   => $arItem['id'],
-                                    'title' => $arItem['title'],
-                                    'price' => $arItem['price'],
-                                    'discount' => $arItem['discount'],
-                                    'qty'   => 1,
-                                    "options" => serialize(screenData($arItem["selectedOptions"]))
-                                );
-                                if($DB->postToDB($arData, ORDER_PRODUCTS_TABLE)) {                                
-                                    ActionsLog::getAuthInstance($objUserInfo->id, getRealIp())->save(ActionsLog::ACTION_ORDER_ADD_PRODUCT, 'Товар "'.$arItem['title'].'" добавлен к заказу', $lang, 'Заказ №'.$itemID, $itemID, 'orders');
-                                }
-                            }
-                        }
-                        // добавление комплекта
-                        elseif ($type=="kit") {
-                            $arItem = array();
-                            $select = 'SELECT ck.`id`, c.`id` AS `primary_id`, CONCAT_WS(" + ", c.`title`, GROUP_CONCAT(ct.`title` SEPARATOR " + ")) AS `title`, CONCAT_WS(",", c.`id`, GROUP_CONCAT(ct.`id` SEPARATOR ",")) AS `kitx`, "0" AS `price`, "0" AS `discount` FROM `'.CATALOG_KITS_TABLE.'` ck ';
-                            $join   = 'LEFT JOIN `'.CATALOG_TABLE.'` c ON(c.`id` = ck.`pid`) ';
-                            $join  .= 'LEFT JOIN `'.CATALOG_TABLE.'` ct ON(ct.`id` = ck.`kid`) ';
-                            $where  = 'WHERE ck.`pid`='.$pid.' ';
-                            $order  = 'GROUP BY ck.`pid` LIMIT 1';
-                            $query  = $select.$join.$where.$order;
-                            $result = mysql_query($query);
-                            if(mysql_num_rows($result) > 0) {
-                                $arItem = mysql_fetch_assoc($result);
-                                $arItem["options"] = array();
-                                $qry  = "SELECT c.*, IF(ck.`pid`=c.`id`, 1, 0) AS `primary` FROM `".CATALOG_TABLE."` c ";
-                                $qry .= "LEFT JOIN `".CATALOG_KITS_TABLE."` ck ON(ck.`pid` = c.`id`) ";
-                                $qry .= "LEFT JOIN `".CATALOG_KITS_TABLE."` ck2 ON(ck2.`kid` = c.`id`) ";
-                                $qry .= "WHERE c.`id` IN(".$arItem["kitx"].") ";
-                                $qry .= "GROUP BY c.`id` ORDER BY `primary` DESC";
-                                $res  = mysql_query($qry);
-                                if ($res AND mysql_num_rows($res) > 0) {
-                                    $primaryOptions = array();
-                                    while ($kit = mysql_fetch_assoc($res)) {
-                                        $primary = (bool)$kit["primary"];
-                                        $kit = PHPHelper::getProductItem($kit, $UrlWL, $images_path, $images_params, true, $kit["cid"], "catalog", true);
-                                        if ($primary) $primaryOptions = PHPHelper::getProductOptions($kit["id"], $kit["selectedOptions"]);
-                                        $kit["selectedOptions"] = PHPHelper::getSelectedOptions($primaryOptions);
-                                        $kit["options"] = PHPHelper::getProductOptions($kit["id"], $kit["selectedOptions"]);
-                                        $kit["price"]  = PHPHelper::recalcItemPriceByOptions($kit["price"], $kit["options"]);
-                                        $kit["cprice"] = PHPHelper::recalcItemPriceByOptions($kit["cprice"], $kit["options"]);
-                                        $arItem["options"][$kit["id"]] = $kit["selectedOptions"];
-                                        if ($primary)
-                                            $arItem["price"] += $kit["price"];
-                                        else 
-                                            $arItem["price"] += $kit["cprice"];
-                                    }
-                                }
-                                $arData = array(
-                                    'oid'   => $itemID,
-                                    'pid'   => $arItem['id'],
-                                    'title' => 'Комплект: '.$arItem['title'],
-                                    'price' => $arItem['price'],
-                                    'discount' => 0,
-                                    'qty'      => 1,
-                                    'type'     => 'kit',
-                                    "options"  => serialize(screenData($arItem["options"])),
-                                    "kitx"     => $arItem["kitx"]
-                                );
-                                if($DB->postToDB($arData, ORDER_PRODUCTS_TABLE)) {
-                                    ActionsLog::getAuthInstance($objUserInfo->id, getRealIp())->save(ActionsLog::ACTION_ORDER_ADD_PRODUCT, 'Комплект "'.$arItem['title'].'" добавлен к заказу', $lang, 'Заказ №'.$itemID, $itemID, 'orders');
-                                }
+                        $arItem = getItemRow(CATALOG_TABLE, '*', 'WHERE `id`='.$pid);
+                        if (!empty($arItem)) {
+                            $arItem = PHPHelper::getProductItem($arItem, $UrlWL, $images_path, $images_params);
+                            $arData = array(
+                                'oid'   => $itemID,
+                                'pid'   => $arItem['id'],
+                                'title' => $arItem['title'],
+                                'price' => $arItem['price'],
+                                'discount' => $arItem['discount'],
+                                'qty'   => 1,
+                                "options" => serialize(screenData($arItem["selectedOptions"]))
+                            );
+                            if ($DB->postToDB($arData, ORDER_PRODUCTS_TABLE)) {                                
+                                ActionsLog::getAuthInstance($objUserInfo->id, getRealIp())->save(ActionsLog::ACTION_ORDER_ADD_PRODUCT, 'Товар "'.$arItem['title'].'" добавлен к заказу', $lang, 'Заказ №'.$itemID, $itemID, 'orders');
                             }
                         }
                     }

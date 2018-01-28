@@ -11,12 +11,7 @@
                         </div>
                         <div class="f-body">
                             <div class="f-row">
-                                <div class="f-column">
-                                    <input type="text" class="input-m required <{if isset($arrPageData.errors.firstname)}>error<{/if}>" name="firstname" value="<{if isset($item.firstname)}><{$item.firstname}><{/if}>" placeholder="Èìÿ"/>
-                                </div>
-                                <div class="f-column">
-                                    <input type="text" class="input-m required <{if isset($arrPageData.errors.surname)}>error<{/if}>" name="surname" value="<{if isset($item.surname)}><{$item.surname}><{/if}>" placeholder="Ôàìèëèÿ"/>
-                                </div>
+                                <input type="text" class="input-m required <{if isset($arrPageData.errors.firstname)}>error<{/if}>" name="firstname" value="<{if isset($item.firstname)}><{$item.firstname}><{/if}>" placeholder="ÔÈÎ"/>
                             </div>
                             <div class="f-row">
                                 <div class="f-column">

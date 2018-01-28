@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-12-02 20:45:49
+<?php /* Smarty version Smarty-3.1.14, created on 2017-12-17 12:40:25
          compiled from "tpl/frontend/smart/menu/catalog.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:7165988205a06b265ded742-63611120%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ba8f97739019c4264037a1458b8446e0230fde89' => 
     array (
       0 => 'tpl/frontend/smart/menu/catalog.tpl',
-      1 => 1512240233,
+      1 => 1513505808,
       2 => 'file',
     ),
   ),
@@ -64,12 +64,11 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smart
 </span></a>
                     </li>
                 </ul>
-                <?php echo $_smarty_tpl->getSubTemplate ("menu/catalog_sub.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('arItems'=>$_smarty_tpl->tpl_vars['arItems']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['subcategories'],'break'=>5), 0);?>
+                <?php echo $_smarty_tpl->getSubTemplate ("menu/catalog-sub.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('arItems'=>$_smarty_tpl->tpl_vars['arItems']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['subcategories'],'break'=>5), 0);?>
 
             </div>
         </div>
 <?php }?>
     </li>
 <?php endfor; endif; ?>
-</ul>
-<?php }} ?>
+</ul><?php }} ?>

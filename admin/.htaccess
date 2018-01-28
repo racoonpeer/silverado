@@ -11,12 +11,12 @@ AddType application/pdf .pdf
 AddType image/svg+xml svg svgz
 
 <IfModule mod_rewrite.c>
-    Options +FollowSymLinks
+#    Options +FollowSymLinksOwnerMatch
     RewriteEngine On
     RewriteBase /
     RewriteCond %{HTTP_HOST} ^www\.admin\.silverado\.com\.ua$ [NC,OR]
     RewriteCond %{HTTP_HOST} ^admin\.silverado\.com\.ua$ [NC]
-    RewriteRule ^(.*)$ http://silverado.com.ua/admin/$1 [R=301,L]
+    RewriteRule ^(.*)$ https://silverado.com.ua/admin/$1 [R=301,L]
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule . index.php [L]

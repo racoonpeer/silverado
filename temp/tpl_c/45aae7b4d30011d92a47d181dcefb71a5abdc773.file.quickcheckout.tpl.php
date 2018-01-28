@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-12-10 17:36:33
+<?php /* Smarty version Smarty-3.1.14, created on 2018-01-08 19:00:34
          compiled from "tpl/frontend/smart/module/quickcheckout.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:21443800735a1099004455e3-74739265%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '45aae7b4d30011d92a47d181dcefb71a5abdc773' => 
     array (
       0 => 'tpl/frontend/smart/module/quickcheckout.tpl',
-      1 => 1512908361,
+      1 => 1515430670,
       2 => 'file',
     ),
   ),
@@ -22,6 +22,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'arrPageData' => 0,
     'trackingEcommerceJS' => 0,
     'arrModules' => 0,
+    'item' => 0,
     'formData' => 0,
   ),
   'has_nocache_code' => false,
@@ -34,11 +35,20 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 !<br/>
         Ожидайте звонок
     </div>
-    <script><?php echo $_smarty_tpl->tpl_vars['trackingEcommerceJS']->value;?>
-</script>
+    <?php echo $_smarty_tpl->tpl_vars['trackingEcommerceJS']->value;?>
+
 <?php }else{ ?>
     <form action="<?php echo $_smarty_tpl->getSubTemplate ("core/href.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('arCategory'=>$_smarty_tpl->tpl_vars['arrModules']->value['callback']), 0);?>
 " method="POST" id="quickCheckoutForm">
+        <div class="image">
+            <img src="<?php echo $_smarty_tpl->tpl_vars['item']->value['image']['middle_image'];?>
+" alt="<?php echo $_smarty_tpl->tpl_vars['item']->value['title'];?>
+ <?php echo $_smarty_tpl->tpl_vars['item']->value['pcode'];?>
+"/>
+        </div>
+        <div class="title">Купить <strong><?php echo $_smarty_tpl->tpl_vars['item']->value['title'];?>
+ <?php echo $_smarty_tpl->tpl_vars['item']->value['pcode'];?>
+</strong> в 1 клик</div>
         <div class="hint">Не нужно заполнять никаких форм<br/>
             просто оставьте свой номер<br/>
             <strong>Мы сами перезвоним вам</strong>

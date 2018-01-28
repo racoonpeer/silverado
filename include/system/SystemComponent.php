@@ -20,9 +20,9 @@ class SystemComponent {
             "dbpassword" => (getenv("IS_MAC") ? "2c4uk915" : ""),
             "dbname"     => "silverado"
         ) : array(
-            "dbhost"     => "localhost",
-            "dbusername" => "silverad_dbadmin",
-            "dbpassword" => "5god5oi8tz",
+            "dbhost"     => "silverad.mysql.tools",
+            "dbusername" => "silverad_db",
+            "dbpassword" => "rh4BbwGr",
             "dbname"     => "silverad_db"
         );
     }
@@ -94,7 +94,7 @@ define('WLCMS_WRITABLE_CHMOD',          '0775'); // [ 0775 | 0777 ] SET Chmod to
 
 define('WLCMS_ERROR_REPORTING',         E_ALL); // [ E_ALL | 0 ] SET WAY TO SHOW ERRORS
 define('WLCMS_SMARTY_ERROR_REPORTING',  E_ALL); // [ E_ALL | 0 ] SET WAY TO SHOW ERRORS
-define('WLCMS_USE_HTTPS',               (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off')); // [ E_ALL | 0 ] SET WAY TO SHOW ERRORS
+define('WLCMS_USE_HTTPS',               ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') or (isset($_SERVER["HTTP_X_FORWARDED_PROTO"]) and $_SERVER["HTTP_X_FORWARDED_PROTO"]=="https"))); // [ E_ALL | 0 ] SET WAY TO SHOW ERRORS
 define('WLCMS_HTTP_PROTOCOL',           "http".(WLCMS_USE_HTTPS ? "s" : "")); // [ E_ALL | 0 ] SET WAY TO SHOW ERRORS
 define('WLCMS_HTTP_PREFIX',             WLCMS_HTTP_PROTOCOL."://"); // [ E_ALL | 0 ] SET WAY TO SHOW ERRORS
 
@@ -128,7 +128,7 @@ define('IVALIDATOR_MAX_LENTH',          7); // Set count charachters for Ivalida
 define('CHECKWORD_SALT_LENTH',          7); // Set count charachters for User CheckWord Salt
 define('CHECKW_CONFIRMCODE_DAYS_KEEP',  3); // Set count of days to keep checkword or ConfirmCode alive
 
-define('ENABLE_TRACKING_ECOMMERCE',     false); // set ecommerce operations true|false
+define('ENABLE_TRACKING_ECOMMERCE',     true); // set ecommerce operations true|false
 
 define('WLCMS_SMARTY_DIR',              WLCMS_ABS_ROOT.DS.'include'.DS.'smarty'.DS); // set WebLife CMS SMARTY absolute path DIR
 

@@ -339,7 +339,7 @@ h4,
     border-width: 1px;
     border-style: solid;
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: 700;
     @include border-radius(0px);
     &:active {
         @include transform(scale(0.95, 0.95));
@@ -410,11 +410,12 @@ h4,
         background-color: $purple;
         border: none;
         &:disabled {
-            background-color: $lite-peach;
+            background-color: $lite-grey;
             color: $black;
         }
         &:hover {
             background-color: $lite-purple;
+            color: $black;
         }
     }
     &.btn-link {
@@ -477,7 +478,7 @@ select {
     font-size: 1.3rem;
     border: 1px solid #c6c6c6;
     &.error {
-        border-color: $peach;
+        border-color: $purple;
     }
     &.valid {
         border-color: $mint;

@@ -23,10 +23,10 @@
     <input type="hidden" value="<{$arrPageData.tab}>" name="tab" id="currentTab"/>
     <div class="tabsContainer">
         <ul class="nav">
-            <li><a href="javascript:void(0);" data-target="main" <{if $arrPageData.tab=='main'}>class="active"<{/if}>>Настройки базы</a></li>
-            <li><a href="javascript:void(0);" data-target="images" <{if $arrPageData.tab=='images'}>class="active"<{/if}>>Настройки изображений</a></li>
-            <li><a href="javascript:void(0);" data-target="modules" <{if $arrPageData.tab=='modules'}>class="active"<{/if}>>Управление модулями</a></li>
-            <li><a href="javascript:void(0);" data-target="users" <{if $arrPageData.tab=='users'}>class="active"<{/if}>>Управление доступами</a></li>
+            <li><a href="#main" data-target="main" <{if $arrPageData.tab=='main'}>class="active"<{/if}>>Настройки базы</a></li>
+            <li><a href="#images" data-target="images" <{if $arrPageData.tab=='images'}>class="active"<{/if}>>Настройки изображений</a></li>
+            <li><a href="#modules" data-target="modules" <{if $arrPageData.tab=='modules'}>class="active"<{/if}>>Управление модулями</a></li>
+            <li><a href="#users" data-target="users" <{if $arrPageData.tab=='users'}>class="active"<{/if}>>Управление доступами</a></li>
         </ul>
         <div class="tab_line"></div>
         <ul class="tabs">

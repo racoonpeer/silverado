@@ -5,5 +5,5 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+$arrPageData["headCss"][]     = "/css/public/error.css";
 $arrPageData['headScripts'][] = "/js/libs/slick-carousel/slick.min.js";

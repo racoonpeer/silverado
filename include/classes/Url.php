@@ -1075,38 +1075,32 @@ class UrlWL extends Url {
         }
         return $this;
     }
-
     /**
      * UrlWL::addErrorCategory()
      *
      * Get Category Array with SEO Path Array From Root function.
      * @return array
      */
-    protected function addErrorCategory($flag = false) {
-        $this->page         = null;
-        $this->itemID       = null;
-        $this->assortID     = null;
-        $this->categoryID   = self::ERROR_CATID;
-        $row = self::getErrorCategory();
-        if(true === $flag) { 
-            if(!empty($row['id'])){
-                $this->module      = $row['module'];
-                $this->categoryID  = intval($row['id']);
-                $this->addToCategoryNavPath($row['seo_path']);
-                $this->addToNavPath($row['seo_path']);
-                $this->addToBreadCrumbs($this->buildCategoryUrl(array_merge($row, array('arPath'=>$this->getNavPath()))), $row['title']);
-                return true;
-            }
-            return false;
+    protected function addErrorCategory() {
+        if (($row = self::getErrorCategory())!==array()){
+            $this->redirectToErrorPage($row);
+            return true;
         } else {
-            $this->module       = null;
-            $this->parentID     = 0;
-            if($row!==array()){
-                $this->initCategory($row);
-                return true;
-            }
-        return false;
+            $this->page       = null;
+            $this->itemID     = null;
+            $this->assortID   = null;
+            $this->module     = null;
+            $this->parentID   = 0;
+            $this->categoryID = self::ERROR_CATID;
+            $this->initCategory($row);
+            return false;
         }
+    }
+    
+    public function redirectToErrorPage($category) {
+        $url = $this->buildCategoryUrl($category);
+        Redirect($url);
+        exit();
     }
 
     /**

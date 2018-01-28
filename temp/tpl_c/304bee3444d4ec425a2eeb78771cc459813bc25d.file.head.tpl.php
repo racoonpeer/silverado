@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-11-11 10:18:45
+<?php /* Smarty version Smarty-3.1.14, created on 2018-01-20 19:46:00
          compiled from "tpl/frontend/smart/core/head.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:8012765975a06b265b42ea7-41616510%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '304bee3444d4ec425a2eeb78771cc459813bc25d' => 
     array (
       0 => 'tpl/frontend/smart/core/head.tpl',
-      1 => 1508701720,
+      1 => 1515444579,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_5a06b265cf3e00_84455207',
   'variables' => 
   array (
     'lang' => 0,
@@ -27,65 +29,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'arrPageData' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_5a06b265cf3e00_84455207',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5a06b265cf3e00_84455207')) {function content_5a06b265cf3e00_84455207($_smarty_tpl) {?><head>
-<!--[if false]>
-                                      MMM                                       
-                                      MMM                                       
-                                      MMM                                       
-                         MM           MMM           MM.                         
-                        ,MMMM         MMM        .NMMM.                         
-                          MMMM        MMM       .MMMM                           
-                           MMMMM      $MM      MMMMM                            
-                           . MMMM             MMMM.                             
-                              ZMM            .MMO                               
-                                                                                    
-             MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.             
-            MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:.           
-          DMMMMMMMM               .MMMM~MMMM.                MMM~MMMM           
-         MMMM   MMMZ            .NMMMM  .MMMMM              MMMD  MMMM .        
-        MMMM.   .MMMD          .MMMM..   ..MMMMD           MMMO   .NMMMM        
-      MMMM=      .MMMN        MMMMM         +MMMM         MMM7       MMMM       
-    .MMMM.        .MMM=.    ,MMMM             MMMMM    . MMM+        .MMMM+.    
-   =MMMM.           MMM.   MMMMM                MMMM   .MMMM           7MMMM    
-  MMMM.             .MMM,.MMMM.                  MMMMM MMMM             .MMMM   
- MMMM.               .MMMMMMI                     .MMMMMMM                MMMMD 
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.
-..MMMM                  MMM                                              NMMMM  
- ..MMMM                 $MMM.                                           MMMM.   
-   .MMMMD                MMM .                     MMM               . MMMM     
-     .MMMM               =MMM                      DMM              .8MMMD      
-      .MMMM.              MMMZ                                      MMMM.       
-       .~MMMM              MMM                    +               .MMMM .       
-          MMMM             MMMM                 .MMM.            MMMM+          
-          .MMMMM.           MMM.                MMMM.           MMMM            
-            IMMMM          .MMMM                MMM           ?MMMM             
-             .MMMM.         .MMM               MMMN          MMMM               
-               $MMMN         ~MMM             ,MMM          MMMM                
-                 MMMM         MMMZ           .MMM         MMMM8                 
-                  MMMM,       .MMM           MMMM.      .MMMM.                  
-                   :MMMM      .MMMM          MMM       ZMMMM.                   
-                     MMMM.      MMM.        MMMM.     MMMM:                     
-                      MMMM$ .   MMMM       .MMM    ..MMMM                       
-                      . MMMM     MMM       MMM7.  .MMMMM.                       
-                        .MMMM    ~MMM    .7MMM    MMMM.                         
-                          7MMMM ..MMMZ    MMM.  =MMMM                           
-                            MMMM.. MMM   MMMM. MMMM,                            
-                             MMMMD MMMN .MMM. MMMM                              
-                              ,MMMM MMM.MMMMDMMMM                               
-                               .MMMMNMMMMMMMMMM,.                               
-                                 NMMMMMMMMMMMM                                  
-                                   MMMMMMMMM~                                   
-                                    MMMMMMM                                     
-                                    . MMMM                                      
-                                      .N                                        
-<!-- <![endif]-->
     <meta http-equiv="Content-Type" content="text/html; charset=<?php echo $_smarty_tpl->tpl_vars['arrLangs']->value[$_smarty_tpl->tpl_vars['lang']->value]['charset'];?>
 "/>
-    <title><?php echo $_smarty_tpl->tpl_vars['HTMLHelper']->value->prepareHeadTitle($_smarty_tpl->tpl_vars['arCategory']->value);?>
+    <title><?php echo unScreenData($_smarty_tpl->tpl_vars['HTMLHelper']->value->prepareHeadTitle($_smarty_tpl->tpl_vars['arCategory']->value));?>
 </title>
     <meta name="keywords" content="<?php echo $_smarty_tpl->tpl_vars['arCategory']->value['meta_key'];?>
 "/>
@@ -93,12 +41,12 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.
 "/>
 <?php if ($_smarty_tpl->tpl_vars['arCategory']->value['module']=="catalog"&&!empty($_smarty_tpl->tpl_vars['item']->value)){?>
     <meta property="og:type" content="product"/>
-    <meta property="og:image" content="//<?php echo ($_SERVER['HTTP_HOST']).($_smarty_tpl->tpl_vars['item']->value['image']['big_image']);?>
+    <meta property="og:image" content="<?php echo ((@constant('WLCMS_HTTP_PREFIX')).($_SERVER['HTTP_HOST'])).($_smarty_tpl->tpl_vars['item']->value['image']['big_image']);?>
 ">
 <?php }?>
     <meta property="og:site_name" content="<?php echo $_smarty_tpl->tpl_vars['objSettingsInfo']->value->websiteName;?>
 "/>
-    <meta property="og:url" content="<?php echo $_smarty_tpl->tpl_vars['UrlWL']->value->getUrl();?>
+    <meta property="og:url" content="<?php echo ((@constant('WLCMS_HTTP_PREFIX')).($_SERVER['HTTP_HOST'])).($_smarty_tpl->tpl_vars['UrlWL']->value->getUrl());?>
 "/>
     <meta property="og:title" content="<?php echo $_smarty_tpl->tpl_vars['HTMLHelper']->value->prepareHeadTitle($_smarty_tpl->tpl_vars['arCategory']->value);?>
 "/>
@@ -109,7 +57,7 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.
 " id="meta_robots"/>
 <?php }?>
 <?php if ($_smarty_tpl->tpl_vars['objSettingsInfo']->value->logo){?>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <link rel="apple-touch-icon" sizes="120x120" href="/images/icons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/images/icons/favicon-16x16.png">

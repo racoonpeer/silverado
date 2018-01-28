@@ -46,7 +46,7 @@
             </div>
             <div class="hr"></div>
             <div class="user-info">
-                <div class="h3">Информация о покупателе</div>
+                <div class="h3">Информация о заказе</div>
                 <p>
 <{if !empty($item.firstname)}>
                     Имя: <{$item.firstname|unScreenData}><{if !empty($item.surname)}> <{$item.surname|unScreenData}><{/if}><br/>
@@ -73,6 +73,16 @@
                     <br/>
                     Получатель: <{$item.ext_firstname|unScreenData}><{if !empty($item.ext_surname)}> <{$item.ext_surname|unScreenData}><{/if}>
 <{/if}>
+<{if !empty($item.descr)}>
+                    <br/>
+                    Комментарий к заказу: <{$item.descr|unScreenData}>
+<{/if}>
+                </p>
+                <p>
+<{if !empty($item.payment)}>
+                    Способ оплаты: <{$item.payment.title}><br/>
+<{/if}>
+                    Сумма к оплате: <{$item.price|number_format:0:'.':' '}> грн.
                 </p>
             </div>
         </div>

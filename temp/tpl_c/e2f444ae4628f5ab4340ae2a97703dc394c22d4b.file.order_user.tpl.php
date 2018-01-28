@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-12-01 22:03:55
+<?php /* Smarty version Smarty-3.1.14, created on 2018-01-28 18:33:33
          compiled from "tpl/frontend/smart/mail/order_user.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:10449287995a0b42aa3775d9-36381146%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'e2f444ae4628f5ab4340ae2a97703dc394c22d4b' => 
     array (
       0 => 'tpl/frontend/smart/mail/order_user.tpl',
-      1 => 1512158556,
+      1 => 1517152465,
       2 => 'file',
     ),
   ),
@@ -28,59 +28,40 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5a0b42aa63db82_32677450')) {function content_5a0b42aa63db82_32677450($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include '/Volumes/K2/htdocs/silverado/www/include/smarty/plugins/modifier.date_format.php';
 ?><!DOCTYPE html>
-<html>
+<html style='color:#212121; font-family:"OpenSans", Tahoma, Geneva, sans-serif; font-size:15px; margin:0; min-width:794px; padding:0; scroll-behavior:smooth; width:100%' width="100%">
     <head>
         <title>Заказ №<?php echo $_smarty_tpl->tpl_vars['arData']->value['oid'];?>
- - Silverado</title>
-        <meta charset="windows-1251">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</title>
+        <meta name="viewport" content="width=794"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=windows-1251"/>
     </head>
-    <body style="font-family: sans-serif; margin: 0; padding: 0;">
-        <table width="100%" cellpadding="0" cellspacing="0" border="0">
-            <tr>
-            	<td bgcolor="#262626" height="5" style="height:5px; background-color:#262626;"></td>
-            </tr>
-            <tr>
-            	<td height="40" style="height:40px;"></td>
-            </tr>
-            <tr>
-                <td align="center" valign="middle" style="text-align:center;">
-                    <a href="<?php echo $_smarty_tpl->tpl_vars['arData']->value['server'];?>
-">
-                    	<img alt="Silverado" src="<?php echo $_smarty_tpl->tpl_vars['arData']->value['server'];?>
-/images/public/logo-top.png"/>
-                    </a>
-                </td>
-            </tr>
-            <tr>
-            	<td height="32px;" style="height:32px;"></td>
-            </tr>
-            <tr>
-            	<td height="1" bgcolor="#e7e7e7" style="height:1px; background-color:#e7e7e7;"></td>
-            </tr>
-            <tr>
-            	<td height="10px;" style="height:10px;"></td>
-            </tr>
-            <tr>
-            	<td>
-                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                    	<tr>
-                            <td width="20"></td>
-                            <td>
-                            	<p style="font-size:24px; font-family:Verdana, Geneva, sans-serif;">Спасибо! Отличный выбор<br/>
-                                    <span style="font-size:16px; font-family:Verdana, Geneva, sans-serif;">Номер вашего заказа <span style="font-size:20px"><?php echo $_smarty_tpl->tpl_vars['arData']->value['oid'];?>
-</span>. В ближайшее время наш менеджер свяжется с вами для уточнения деталей заказа</span>
-                                </p>
-                            </td>
-                            <td width="20"></td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-            <tr>
-            	<td>
-                    <table cellpadding="10" cellspacing="10" border="0">
-                    	<tr>
+    <body style='color:#212121; font-family:"OpenSans", sans-serif; font-size:0.8125em; margin:0; min-width:794px; padding:0; scroll-behavior:smooth; width:100%; position:relative' width="100%">
+        <div class="page" style="margin:0 auto; padding:0; text-align:left; width:210mm" align="left" width="210mm">
+            <div class="print-page" style="padding:3.5em 5em">
+                <div class="print-head clearfix" style="padding-bottom:1.4cm">
+                    <div class="print-logo" style="text-align: center;">
+                        <a href="<?php echo $_smarty_tpl->tpl_vars['arData']->value['server'];?>
+" style="color:#09719C; text-decoration:none">
+                            <img src="<?php echo $_smarty_tpl->tpl_vars['arData']->value['server'];?>
+/images/public/logo-top.png" alt="Silverado" title="Silverado"/>
+                        </a>
+                    </div>
+                </div>
+                <div class="print-order">
+                    <h2 class="print-order-title" style="margin-bottom:1em; margin-top:0; font-size:2em; font-weight:400">Заказ № <?php echo $_smarty_tpl->tpl_vars['arData']->value['oid'];?>
+</h2>
+                    <p style="font-size: 1.25em;"><?php if (isset($_smarty_tpl->tpl_vars['arData']->value['firstname'])){?>Здравствуйте, <?php echo $_smarty_tpl->tpl_vars['arData']->value['firstname'];?>
+!<br/><?php }?>
+                        Для подтверждения заказа наш менеджер свяжется с вами<br/>
+                        в ближайшее время. </p>
+                    <div class="print-cart">
+                        <table style="border-collapse:collapse; border-spacing:0" width="100%" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td colspan="2" style="font-size:1.15em; padding: 0.3em 0.2em; border-bottom:1px solid #b9b9b9;" align="left" width="45%"> Название и цена товара </td>
+                                <td style="font-size:1.15em; padding: 0.3em 0.2em; border-bottom:1px solid #b9b9b9;" align="center" width="20%"> Артикул </td>
+                                <td style="font-size:1.15em; padding: 0.3em 0.2em; border-bottom:1px solid #b9b9b9;" align="center" width="15%"> Кол-во </td>
+                                <td style="font-size:1.15em; padding: 0.3em 0.2em; border-bottom:1px solid #b9b9b9;" align="right" width="20%"> Цена </td>
+                            </tr>
 <?php  $_smarty_tpl->tpl_vars['arItem'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['arItem']->_loop = false;
  $_smarty_tpl->tpl_vars['arKey'] = new Smarty_Variable;
  $_from = $_smarty_tpl->tpl_vars['arData']->value['children']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
@@ -88,21 +69,26 @@ foreach ($_from as $_smarty_tpl->tpl_vars['arItem']->key => $_smarty_tpl->tpl_va
 $_smarty_tpl->tpl_vars['arItem']->_loop = true;
  $_smarty_tpl->tpl_vars['arKey']->value = $_smarty_tpl->tpl_vars['arItem']->key;
 ?>
-                            <td align="center" valign="top" style="text-align:center;">
-                            	<a href="<?php echo $_smarty_tpl->tpl_vars['arData']->value['server'];?>
+                            <tr>
+                                <td width="17%" rowspan="2" align="left" valign="top" style="padding-top:1.25em; padding-bottom:1.25em; border-bottom:1px solid #b9b9b9;">
+                                    <a href="<?php echo $_smarty_tpl->tpl_vars['arData']->value['server'];?>
 <?php echo $_smarty_tpl->getSubTemplate ("core/href_item.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('arCategory'=>$_smarty_tpl->tpl_vars['arItem']->value['arCategory'],'arItem'=>$_smarty_tpl->tpl_vars['arItem']->value,'params'=>''), 0);?>
-">
-                                    <img src="<?php echo $_smarty_tpl->tpl_vars['arData']->value['server'];?>
+" target="_blank" style="color:#09719C; text-decoration:none">
+                                        <img src="<?php echo $_smarty_tpl->tpl_vars['arData']->value['server'];?>
 <?php echo $_smarty_tpl->tpl_vars['arItem']->value['image']['small_image'];?>
 " alt="<?php echo $_smarty_tpl->tpl_vars['arItem']->value['title'];?>
-"/>
-                                </a>
-                                <br/>
-                                <a href="<?php echo $_smarty_tpl->tpl_vars['arData']->value['server'];?>
-<?php echo $_smarty_tpl->getSubTemplate ("core/href_item.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('arCategory'=>$_smarty_tpl->tpl_vars['arItem']->value['arCategory'],'arItem'=>$_smarty_tpl->tpl_vars['arItem']->value,'params'=>''), 0);?>
-" style="font-family:Verdana, Geneva, sans-serif; color:#262626; text-decoration:none; font-size:14px;"><?php echo $_smarty_tpl->tpl_vars['arItem']->value['title'];?>
  <?php echo $_smarty_tpl->tpl_vars['arItem']->value['pcode'];?>
-</a><br/>
+" title="<?php echo $_smarty_tpl->tpl_vars['arItem']->value['title'];?>
+ <?php echo $_smarty_tpl->tpl_vars['arItem']->value['pcode'];?>
+" style="max-width:2.65cm; border:none">
+                                    </a>
+                                </td>
+                                <td align="left" valign="top" colspan="4" style="font-size:1.25em; line-height:1.538em; padding-bottom:0.5em; padding-top:1.25em;">
+                                    <a href="<?php echo $_smarty_tpl->tpl_vars['arData']->value['server'];?>
+<?php echo $_smarty_tpl->getSubTemplate ("core/href_item.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('arCategory'=>$_smarty_tpl->tpl_vars['arItem']->value['arCategory'],'arItem'=>$_smarty_tpl->tpl_vars['arItem']->value,'params'=>''), 0);?>
+" target="_blank" style="color:#09719C; text-decoration:none"> <?php echo $_smarty_tpl->tpl_vars['arItem']->value['title'];?>
+ <?php echo $_smarty_tpl->tpl_vars['arItem']->value['pcode'];?>
+ </a>
 <?php  $_smarty_tpl->tpl_vars['option'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['option']->_loop = false;
  $_smarty_tpl->tpl_vars['optID'] = new Smarty_Variable;
  $_from = $_smarty_tpl->tpl_vars['arItem']->value['options']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
@@ -118,141 +104,139 @@ $_smarty_tpl->tpl_vars['value']->_loop = true;
  $_smarty_tpl->tpl_vars['valID']->value = $_smarty_tpl->tpl_vars['value']->key;
 ?>
 <?php if ($_smarty_tpl->tpl_vars['value']->value['selected']){?>
-                                <span style="font-family:Verdana, Geneva, sans-serif; font-size:12px; color:#666;"><?php echo $_smarty_tpl->tpl_vars['option']->value['title'];?>
+                                    <br/><span style="font-family:Verdana, Geneva, sans-serif; font-size:0.95em; color:#666;"><?php echo $_smarty_tpl->tpl_vars['option']->value['title'];?>
 : <?php echo $_smarty_tpl->tpl_vars['value']->value['title'];?>
-</span><br/>
+</span>
 <?php }?>
 <?php } ?>
 <?php } ?>
-                                <span style="font-family:Verdana, Geneva, sans-serif; font-size:18px;">
-                                    <?php echo number_format($_smarty_tpl->tpl_vars['arItem']->value['price'],0,'.',' ');?>
- <small>грн</small> 
-<?php if ($_smarty_tpl->tpl_vars['arItem']->value['qty']>1){?>
-                                    (<?php echo $_smarty_tpl->tpl_vars['arItem']->value['qty'];?>
- <small>шт</small>)
-<?php }?>
-                                </span>
-                                
-                            </td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" valign="top" style="font-size:1.15em;padding-bottom:1em; border-bottom:1px solid #b9b9b9;"> <?php echo number_format($_smarty_tpl->tpl_vars['arItem']->value['price'],0,'.',' ');?>
+ грн </td>
+                                <td align="center" valign="top" style="font-size:1.15em;padding-bottom:1em; border-bottom:1px solid #b9b9b9;"> <?php echo $_smarty_tpl->tpl_vars['arItem']->value['pcode'];?>
+ </td>
+                                <td align="center" valign="top" style="font-size:1.15em;padding-bottom:1em; border-bottom:1px solid #b9b9b9;"> <?php echo $_smarty_tpl->tpl_vars['arItem']->value['qty'];?>
+ шт. </td>
+                                <td align="right" valign="top" style="font-size:1.15em;padding-bottom:1em; border-bottom:1px solid #b9b9b9;"><b><?php echo number_format($_smarty_tpl->tpl_vars['arItem']->value['amount'],0,'.',' ');?>
+ грн</b></td>
+                            </tr>
 <?php } ?>
+                            <tr>
+                                <td colspan="3" align="left" style="padding-top:1em; border-top:1px solid #b9b9b9; font-size:1.25em;"> Сумма к оплате </td>
+                                <td colspan="2" align="right" style="padding-top:1em; border-top:1px solid #b9b9b9; font-size:1.5em;"><b><?php echo number_format($_smarty_tpl->tpl_vars['arData']->value['price'],0,'.',' ');?>
+ грн</b></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="print-info" style="padding-top:4em">
+                    <table width="100%" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td style="padding-bottom:0.1cm;padding-top:0.1cm; font-size:1.15em;" align="left" valign="top" width="30%"> Дата и время </td>
+                            <td width="1.25em"></td>
+                            <td style="padding-bottom:0.1cm;padding-top:0.1cm; font-size:1.15em;"> <?php echo smarty_modifier_date_format(time(),"%d.%m.%Y %H:%M");?>
+ </td>
                         </tr>
-                    </table>
-                </td>
-            </tr>
-            <tr>
-            	<td height="32px;" style="height:32px;"></td>
-            </tr>
-            <tr>
-            	<td height="1" bgcolor="#e7e7e7" style="height:1px; background-color:#e7e7e7;"></td>
-            </tr>
-            <tr>
-            	<td>
-                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                    	<tr>
-                            <td width="20"></td>
-                            <td>
-                            	<p style="font-size:18px; font-family:Verdana, Geneva, sans-serif;">Сумма к оплате <span style="font-size:20px;"><?php echo number_format($_smarty_tpl->tpl_vars['arData']->value['price'],0,'.',' ');?>
-</span> грн</p>
-<?php if (isset($_smarty_tpl->tpl_vars['arData']->value['payment'])){?>
-                                <p style="font-family:Verdana, Geneva, sans-serif; font-size:14px;">Способ оплаты <strong><?php echo $_smarty_tpl->tpl_vars['arData']->value['payment']['title'];?>
-</strong>
-<?php if ($_smarty_tpl->tpl_vars['arData']->value['payment']['id']==3){?>
-                                <br/>
-                                <span style="font-size:10px;">Внимание!<br/>
-Заказ оплачивается только после подтверждения по телефону.<br/>
-Ознакомьтесь с условиями <a href="#" style="color:#000; text-decoration:underline;">доставки и оплаты</a> заказа</span>
-<?php }?>
-                                </p>
-<?php }?>
-                            </td>
-                        	<td width="20"></td>
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
                         </tr>
-                    </table>
-                </td>
-            </tr>
-            <tr>
-            	<td height="2" bgcolor="#262626" style="height:2px; background-color:#262626;"></td>
-            </tr>
-            <tr>
-            	<td>
-                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                    	<tr>
-                            <td width="20"></td>
-                            <td>
-                            	<p style="font-size:10px; font-family:Verdana, Geneva, sans-serif;">Пожалуйста, проверьте правильность указанных данных</p>
-                            	<p style="font-size:14px; font-family:Verdana, Geneva, sans-serif;">
 <?php if (isset($_smarty_tpl->tpl_vars['arData']->value['firstname'])){?>
-                                Имя: <?php echo unScreenData($_smarty_tpl->tpl_vars['arData']->value['firstname']);?>
+                        <tr>
+                            <td style="padding-bottom:0.1cm;padding-top:0.1cm; font-size:1.15em;" align="left" valign="top" width="30%"> Имя </td>
+                            <td width="1.25em"></td>
+                            <td style="padding-bottom:0.1cm;padding-top:0.1cm; font-size:1.15em;"> <?php echo unScreenData($_smarty_tpl->tpl_vars['arData']->value['firstname']);?>
 <?php if (!empty($_smarty_tpl->tpl_vars['arData']->value['surname'])){?> <?php echo unScreenData($_smarty_tpl->tpl_vars['arData']->value['surname']);?>
-<?php }?><br/>
+<?php }?> </td>
+                        </tr>
 <?php }?>
-                                Тел: <?php echo $_smarty_tpl->tpl_vars['arData']->value['phone'];?>
-
+                        <tr>
+                            <td style="padding-bottom:0.1cm;padding-top:0.1cm; font-size:1.15em;" align="left" valign="top" width="30%"> Телефон </td>
+                            <td width="1.25em"></td>
+                            <td style="padding-bottom:0.1cm;padding-top:0.1cm; font-size:1.15em;"> <?php echo $_smarty_tpl->tpl_vars['arData']->value['phone'];?>
+ </td>
+                        </tr>
 <?php if (isset($_smarty_tpl->tpl_vars['arData']->value['email'])){?>
-                                <br/>
-                                E-mail: <?php echo $_smarty_tpl->tpl_vars['arData']->value['email'];?>
-
+                        <tr>
+                            <td style="padding-bottom:0.1cm;padding-top:0.1cm; font-size:1.15em;" align="left" valign="top" width="30%"> Эл. почта </td>
+                            <td width="1.25em"></td>
+                            <td style="padding-bottom:0.1cm;padding-top:0.1cm; font-size:1.15em;"> <?php echo $_smarty_tpl->tpl_vars['arData']->value['email'];?>
+ </td>
+                        </tr>
 <?php }?>
-                                </p>
-                                <p style="font-size:14px; font-family:Verdana, Geneva, sans-serif;">
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
+                        </tr>
 <?php if (isset($_smarty_tpl->tpl_vars['arData']->value['shipping'])){?>
-                                Доставка: <?php echo $_smarty_tpl->tpl_vars['arData']->value['shipping']['title'];?>
-
+                        <tr>
+                            <td style="padding-bottom:0.1cm;padding-top:0.1cm; font-size:1.15em;" align="left" valign="top" width="30%"> Способ доставки </td>
+                            <td width="1.25em"></td>
+                            <td style="padding-bottom:0.1cm;padding-top:0.1cm; font-size:1.15em;"> <?php echo $_smarty_tpl->tpl_vars['arData']->value['shipping']['title'];?>
+ </td>
+                        </tr>
 <?php }?>
 <?php if (isset($_smarty_tpl->tpl_vars['arData']->value['city'])){?>
-                                <br/>
-                                Город: <?php echo unScreenData($_smarty_tpl->tpl_vars['arData']->value['city']);?>
-
+                        <tr>
+                            <td style="padding-bottom:0.1cm;padding-top:0.1cm; font-size:1.15em;" align="left" valign="top" width="30%"> Город </td>
+                            <td width="1.25em"></td>
+                            <td style="padding-bottom:0.1cm;padding-top:0.1cm; font-size:1.15em;"> <?php echo unScreenData($_smarty_tpl->tpl_vars['arData']->value['city']);?>
+ </td>
+                        </tr>
 <?php }?>
 <?php if (isset($_smarty_tpl->tpl_vars['arData']->value['address'])){?>
-                                <br/>
-                                Адрес: <?php echo unScreenData($_smarty_tpl->tpl_vars['arData']->value['address']);?>
-
+                        <tr>
+                            <td style="padding-bottom:0.1cm;padding-top:0.1cm; font-size:1.15em;" align="left" valign="top" width="30%"> Адрес доставки </td>
+                            <td width="1.25em"></td>
+                            <td style="padding-bottom:0.1cm;padding-top:0.1cm; font-size:1.15em;"> <?php echo unScreenData($_smarty_tpl->tpl_vars['arData']->value['address']);?>
+ </td>
+                        </tr>
 <?php }?>
 <?php if (isset($_smarty_tpl->tpl_vars['arData']->value['ext_firstname'])&&!empty($_smarty_tpl->tpl_vars['arData']->value['ext_firstname'])){?>
-                                <br/>
-                                Получатель: <?php echo unScreenData($_smarty_tpl->tpl_vars['arData']->value['ext_firstname']);?>
+                        <tr>
+                            <td style="padding-bottom:0.1cm;padding-top:0.1cm; font-size:1.15em;" align="left" valign="top" width="30%"> Адрес доставки </td>
+                            <td width="1.25em"></td>
+                            <td style="padding-bottom:0.1cm;padding-top:0.1cm; font-size:1.15em;"> <?php echo unScreenData($_smarty_tpl->tpl_vars['arData']->value['ext_firstname']);?>
 <?php if (!empty($_smarty_tpl->tpl_vars['arData']->value['ext_surname'])){?> <?php echo unScreenData($_smarty_tpl->tpl_vars['arData']->value['ext_surname']);?>
-<?php }?>
-<?php }?>
-                                </p>
-                            </td>
-                            <td width="20"></td>
+<?php }?> </td>
                         </tr>
-                    </table>
-                </td>
-            </tr>
-            <tr>
-            	<td height="20" style="height:20px;"></td>
-            </tr>
-            <tr>
-            	<td bgcolor="#ededed" style="background-color:#ededed;">
-                    <table cellpadding="10" cellspacing="10" border="0" width="100%">
-                    	<tr>
-                            <td width="200" style="width:200px;">
-                            	<a href="#" style="font-family:Verdana, Geneva, sans-serif; font-size:18px; color:#000; text-decoration:none;">099 0549540</a> <img src="<?php echo $_smarty_tpl->tpl_vars['arData']->value['server'];?>
-/images/public/viber-sm.png" alt="" valign="top"/><br/>
-                                <a href="#" style="font-family:Verdana, Geneva, sans-serif; font-size:18px; color:#000; text-decoration:none;">096 0549540</a><br/>
-                                <a href="#" style="font-family:Verdana, Geneva, sans-serif; font-size:18px; color:#000; text-decoration:none;">093 0549540</a><br/>
-                                <span style="font-family:Verdana, Geneva, sans-serif; font-size: 12px;">с 8:00 до 20:00. Без выходных</span>
-                            </td>
-                            <td width="300" valign="top" style="font-family:Verdana, Geneva, sans-serif; font-size: 12px;">
-                            	<h3 style="font-family:Verdana, Geneva, sans-serif; font-weight:400; margin-top: 0; margin-bottom:0.5em;">Покупателю</h3>
-                            	<a href="#" style="color:#06C;">Гарантия качества продукции</a><br/>
-                            	<a href="#" style="color:#06C;">Условия возврата и обмена товара</a><br/>
-                            	<a href="#" style="color:#06C;">Доставка и оплата заказа</a>
-                            </td>
-                            <td valign="bottom" align="right" style="text-align:right">
-                            	<a href="<?php echo $_smarty_tpl->tpl_vars['arData']->value['server'];?>
-" style="font-size:12px; color:#06C;">silverado.com.ua</a>&emsp;&emsp;&emsp;
-                            	<span style="font-family:'Courier New', Courier, monospace; font-size:10px; color:#999;"><?php echo smarty_modifier_date_format(time(),"%d.%m.%Y %H:%M");?>
-</span>
+<?php }?>
+<?php if (isset($_smarty_tpl->tpl_vars['arData']->value['payment'])){?>
+                        <tr>
+                            <td style="padding-bottom:0.1cm;padding-top:0.1cm; font-size:1.15em;" align="left" valign="top" width="30%"> Способ оплаты </td>
+                            <td width="1.25em"></td>
+                            <td style="padding-bottom:0.1cm;padding-top:0.1cm; font-size:1.15em;"> 
+                                <?php echo $_smarty_tpl->tpl_vars['arData']->value['payment']['title'];?>
+ 
+<?php if ($_smarty_tpl->tpl_vars['arData']->value['payment']['id']==3){?>
+                                <br/>
+                                <span style="font-size:0.81em;">Внимание! Заказ оплачивается только после вашего подтверждения по телефону</span>
+<?php }?>
                             </td>
                         </tr>
+<?php }?>
+<?php if (isset($_smarty_tpl->tpl_vars['arData']->value['descr'])){?>
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-bottom:0.1cm;padding-top:0.1cm; font-size:1.15em;" align="left" valign="top" width="30%"> Комментарий к заказу </td>
+                            <td width="1.25em"></td>
+                            <td style="padding-bottom:0.1cm;padding-top:0.1cm; font-size:1.15em;"> <?php echo unScreenData($_smarty_tpl->tpl_vars['arData']->value['descr']);?>
+ </td>
+                        </tr>
+<?php }?>
                     </table>
-                </td>
-            </tr>
-        </table>
+                </div>
+                <div class="print-shedule" style="padding:1cm 0 0">
+                    <div class="print-shedule-phone" style="font-size:1.38em; letter-spacing:-0.025em; padding-bottom:0.1cm">
+                        <nobr><b><a href="tel:+380973057697" style="color:inherit; text-decoration:none">097 305-76-97</a></b>,</nobr>&nbsp;
+                        <nobr style="margin-left:6px"><a href="tel:+380956227572" style="color:inherit; text-decoration:none">095 622-75-72</a>,</nobr>&nbsp;
+                        <nobr style="margin-left:6px"><a href="tel:+380638216588" style="color:inherit; text-decoration:none">063 821-65-88</a></nobr>
+                    </div>
+                    <div class="print-shedule-time" style="font-size:1em; letter-spacing:0.015em">с 8:00 до 20:00 <strong>без выходных</strong></div>
+                </div>
+            </div>
+        </div>
     </body>
-</html>
-<?php }} ?>
+</html><?php }} ?>

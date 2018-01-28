@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-11-18 22:30:49
+<?php /* Smarty version Smarty-3.1.14, created on 2018-01-08 20:43:12
          compiled from "tpl/frontend/smart/core/buy_button.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:18818668865a06b2665ad134-17408847%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '6d873d2148fc68ad66d7a87a812b3a7fe7c49910' => 
     array (
       0 => 'tpl/frontend/smart/core/buy_button.tpl',
-      1 => 1511037046,
+      1 => 1515436880,
       2 => 'file',
     ),
   ),
@@ -35,7 +35,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
         <div class="btn-wrap">
 <?php }?>
-        <button class="btn btn-<?php if (!$_smarty_tpl->tpl_vars['list']->value){?>l btn-danger<?php }else{ ?>s btn-link<?php }?> add-to-cart<?php if ($_smarty_tpl->tpl_vars['Basket']->value->isSetKey($_smarty_tpl->tpl_vars['item']->value['idKey'])){?> in-cart<?php }?>" 
+        <button class="btn btn-<?php if (!$_smarty_tpl->tpl_vars['list']->value){?>m btn-danger<?php }else{ ?>s btn-link<?php }?> add-to-cart<?php if ($_smarty_tpl->tpl_vars['Basket']->value->isSetKey($_smarty_tpl->tpl_vars['item']->value['idKey'])){?> in-cart<?php }?>" 
             data-key="<?php echo $_smarty_tpl->tpl_vars['item']->value['idKey'];?>
 " 
             data-url="<?php echo $_smarty_tpl->getSubTemplate ('core/href_item.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('arCategory'=>$_smarty_tpl->tpl_vars['item']->value['arCategory'],'arItem'=>$_smarty_tpl->tpl_vars['item']->value), 0);?>

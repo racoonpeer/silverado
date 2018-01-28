@@ -83,10 +83,10 @@ if ($itemID and $item = getSimpleItemRow($itemID, CATALOG_TABLE) and !empty($ite
                 $errors = $Validator->getErrors();
             } else {
                 $arPostData = $_POST;
-                $arPostData["module"] = $module;
-                $arPostData["pid"]    = $itemID;
-                $arPostData["isnew"]  = 1;
-                $arPostData["active"] = 0;
+                $arPostData["module"]  = $module;
+                $arPostData["pid"]     = $itemID;
+                $arPostData["isnew"]   = 1;
+                $arPostData["active"]  = 0;
                 $arPostData["created"] = date("Y-m-d H:i:s");
                 if ($DB->postToDB($arPostData, COMMENTS_TABLE)) {
                     $messages[] = "Спасибо за ваш отзыв!";
@@ -101,8 +101,7 @@ if ($itemID and $item = getSimpleItemRow($itemID, CATALOG_TABLE) and !empty($ite
             $smarty->assign("errors",   $errors);
             $smarty->assign("result",   $result);
             $json["output"] = $smarty->fetch("ajax/comment-form.tpl");
-            echo json_encode(PHPHelper::dataConv($json));
-            exit;
+            die(json_encode(PHPHelper::dataConv($json)));
         }
         // Get comments list by ajax
         if (!empty($_GET["action"]) and $_GET["action"]=="loadComments") {
@@ -112,8 +111,8 @@ if ($itemID and $item = getSimpleItemRow($itemID, CATALOG_TABLE) and !empty($ite
             $total = intval(getValueFromDB(COMMENTS_TABLE, "COUNT(*)", "WHERE `active`>0 AND `module`='catalog' AND `pid`={$itemID} AND `cid`=0", "cnt"));
             $pages_total = $total ? ceil($total / $limit) : 0;
             PHPHelper::getProductComments($item, $offset, $limit);
-            $smarty->assign("ajax",         true);
-            $smarty->assign("pager",        array(
+            $smarty->assign("ajax",  true);
+            $smarty->assign("pager", array(
                 "pages" => $pages_total,
                 "page"  => $npage,
                 "url"   => $UrlWL->buildItemUrl($item["arCategory"], $item, "action=loadComments")
@@ -125,8 +124,7 @@ if ($itemID and $item = getSimpleItemRow($itemID, CATALOG_TABLE) and !empty($ite
             $smarty->assign("IS_AJAX",     $IS_AJAX);
             $smarty->assign("HTMLHelper",  $HTMLHelper);
             $json["output"] = $smarty->fetch("core/product-comments.tpl");
-            echo json_encode(PHPHelper::dataConv($json));
-            exit;
+            die(json_encode(PHPHelper::dataConv($json)));
         }
         // Get comments list by ajax
         if (!empty($_GET["action"]) and $_GET["action"]=="basketDialog") {
@@ -140,16 +138,16 @@ if ($itemID and $item = getSimpleItemRow($itemID, CATALOG_TABLE) and !empty($ite
             $smarty->assign("arrPageData", $arrPageData);
             $smarty->assign("arrModules",  $arrModules);
             $json["output"] = $smarty->fetch("core/product-dialog.tpl");
-            echo json_encode(PHPHelper::dataConv($json));
-            exit;
+            die(json_encode(PHPHelper::dataConv($json)));
         }
     } else {
         // global page variables
-        $arrPageData['headTitle']     = $item['title'];
-        $arCategory['seo_title']      = $item['seo_title'];
-        $arCategory['meta_descr']     = $item['meta_descr'];
+        $arrPageData['headTitle']     = "Купить {$item['title']} {$item['pcode']} купить в Киеве &#10023; SILVERADO";
+        $arCategory['seo_title']      = $arrPageData['headTitle'];
+        $arCategory['meta_descr']     = "Купить {$item['title']} {$item['pcode']} в интернет-магазине &#10023; SILVERADO &#10023; Звоните &#9742; 096-05-49-542 &#10004; Доступные цены &#9992; Доставка по Киеву и Украине";
         $arCategory['meta_key']       = $item['meta_key'];
         $arCategory['meta_robots']    = $item['meta_robots'];
+        $arrPageData["headCss"][]     = "/css/public/product.css";
         $arrPageData['headScripts'][] = "/js/libs/slick-carousel/slick.min.js";
         $arrPageData['headScripts'][] = "/js/libs/cshare/cshare.js";
         $arrPageData['headScripts'][] = "/js/public/product.js";
@@ -176,6 +174,7 @@ if ($itemID and $item = getSimpleItemRow($itemID, CATALOG_TABLE) and !empty($ite
 // List Items
 } else {
     
+    $arrPageData["headCss"][]     = "/css/public/catalog.css";
     $arrPageData['headScripts'][] = "/js/libs/history.js/bundled/html4+html5/jquery.history.min.js";
     $arrPageData['headScripts'][] = "/js/libs/noUiSlider/nouislider.min.js";
     $arrPageData['headScripts'][] = "/js/public/{$module}.js";
@@ -244,7 +243,7 @@ if ($itemID and $item = getSimpleItemRow($itemID, CATALOG_TABLE) and !empty($ite
             "meta_key"         => $arCategory["meta_key"],
             "seo_title"        => $arCategory["seo_title"],
             "h_title"          => $arCategory["title"],
-        ); exit(json_encode(PHPHelper::dataConv($json)));
+        ); die(json_encode(PHPHelper::dataConv($json)));
     }
 }
 

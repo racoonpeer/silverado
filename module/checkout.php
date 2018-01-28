@@ -7,6 +7,7 @@ $term                         = $UrlWL->getParam("term");
 $purchases                    = $Basket->getItems();
 $arrPageData['arPayment']     = Checkout::getPaymentTypes();
 $arrPageData['arShipping']    = Checkout::getShippingTypes();
+$arrPageData["headCss"][]     = "/css/public/checkout.css";
 $arrPageData['headScripts'][] = "/js/libs/jquery.validate/jquery.validate.min.js";
 $arrPageData['headScripts'][] = "/js/libs/jquery.validate/additional-methods.min.js";
 $arrPageData['headScripts'][] = "/js/libs/jquery.validate/localization/messages_ru.min.js";
@@ -50,7 +51,7 @@ if (!empty($_POST) and !empty($purchases)) {
             $payment  = getItemRow(PAYMENT_TYPES_TABLE, '*', 'WHERE `id`='.$arPostData['payment_id']);
             $shipping = getItemRow(SHIPPING_TYPES_TABLE, '*', 'WHERE `id`='.$arPostData['shipping_id']);
             // Start Google Conversion 
-            $GoogleConversion = new GoogleConversion($orderID, $arPostData['price'], $objSettingsInfo->websiteName, $shipping['price']);
+            $GoogleConversion = new GoogleConversion($orderID, $arPostData['price'], $objSettingsInfo->websiteName, $shipping['price'], 0, "UAH");
             // Write order products
             foreach ($purchases as $purchase) {
                 $arOptions = array();
@@ -60,7 +61,8 @@ if (!empty($_POST) and !empty($purchases)) {
                 $data = [
                     'order_id' => $orderID,
                     'pid'      => $purchase['id'],
-                    'title'    => $purchase['title'],
+                    'title'    => "{$purchase['title']} {$purchase['pcode']}",
+                    'pcode'    => $purchase['pcode'],
                     'qty'      => $purchase['quantity'],
                     'price'    => $purchase['price'],
                     'discount' => $purchase['discount'],
@@ -68,7 +70,7 @@ if (!empty($_POST) and !empty($purchases)) {
                 ];
                 $data["options"] = serialize($arOptions);
                 // Add Google Conversion Item
-                $GoogleConversion->addItem(new GoogleConversionItem($GoogleConversion->id, $purchase['pcode'], $purchase['price'], $purchase['quantity'], htmlspecialchars_decode($purchase['title'])));
+                $GoogleConversion->addItem(new GoogleConversionItem($GoogleConversion->id, $purchase['pcode'], $purchase['price'], $purchase['quantity'], htmlspecialchars_decode("{$purchase['title']} {$purchase['pcode']}")));
                 $DB->postToDB($data, ORDER_PRODUCTS_TABLE);
             }
             // email notifications
@@ -81,16 +83,16 @@ if (!empty($_POST) and !empty($purchases)) {
             $smarty->assign('arData', $arData);
             $smarty->assign('UrlWL', $UrlWL);
             $text    = $smarty->fetch('mail/order_admin.tpl');
-            $subject = $objSettingsInfo->websiteName.': '.sprintf(NEW_ORDER_NUMBER, $orderID);
+            $subject = sprintf(NEW_ORDER_NUMBER, $orderID);
             if (sendMail($objSettingsInfo->notifyEmail, $subject, $text, $objSettingsInfo->siteEmail, 'html')){
                 $text = $smarty->fetch('mail/order_user.tpl');
-                $subject = $objSettingsInfo->websiteName.': '.sprintf(NEW_ORDER_COMPLETED, $orderID);
+                $subject = sprintf(NEW_ORDER_COMPLETED, $orderID);
                 sendMail($arData['email'], $subject, $text, $objSettingsInfo->siteEmail, 'html');
-                $GoogleConversion->setPurchased(true);
             }
-            $Basket->dropBasket();
-            TrackingEcommerce::save($GoogleConversion, true);
+            $GoogleConversion->setPurchased(true);
+            TrackingEcommerce::save($GoogleConversion, false);
             Checkout::saveOrderID($orderID);
+            $Basket->dropBasket();
             Redirect($UrlWL->buildCategoryUrl($arrModules["thanks"]));
         }
     }

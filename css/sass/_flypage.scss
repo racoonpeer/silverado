@@ -32,21 +32,21 @@ and open the template in the editor.
         padding-top: 20px;
         padding-bottom: 30px;
         .price {
-            margin-bottom: 24px;
-            font-size: 2.8rem;
-            line-height: 4.8rem;
+            margin-bottom: 14px;
+            font-size: 2.2rem;
+            line-height: 4rem;
             &:after {
-                font-size: 2rem;
+                font-size: 1.5rem;
                 content: "грн.";
             }
             strong {
                 font-weight: inherit;
             }
             &.stock {
-                line-height: 4.2rem;
+                line-height: 3rem;
             }
             .strike {
-                font-size: 2rem;
+                font-size: 1.6rem;
                 display: inline-block;
                 vertical-align: middle;
                 position: relative;
@@ -61,37 +61,27 @@ and open the template in the editor.
                         right: -3px;
                         top: 51%;
                         height: 1px;
-                        background-color: $peach;
+                        background-color: $purple;
                         content: "";
                     }
                 }
                 &:after {
-                    font-size: 1.5rem;
+                    font-size: 1.3rem;
                     content: "грн.";
                 }
             }
         }
         .btn-wrap {
-            @include breakpoint_min_max(991, 1280){
-                text-align: center;
-                display: inline-block;
-                width: 200px;
-            }
-            @include breakpoint_min_max(641, 850){
-                text-align: center;
-                display: inline-block;
-                width: 200px;
-            }
-            @include breakpoint(400){
-                text-align: center;
-                display: inline-block;
-                width: 200px;
+            max-width: 360px;
+            @include breakpoint(640){
+                margin-left: auto;
+                margin-right: auto;
             }
         }
         .add-to-cart {
             padding-left: 0;
             padding-right: 0;
-            min-width: 200px;
+            width: 100%;
             &:before {
                 content: "купить";
             }
@@ -104,24 +94,13 @@ and open the template in the editor.
         .buy-quick {
             display: inline-block;
             vertical-align: middle;
-            margin-left: 20px;
+            margin-top: 15px;
             text-decoration: none;
-            color: $dark-grey;
+            color: $deep-grey;
             border-bottom: 1px dotted;
+            font-size: 1.2rem;
             &:hover {
-                color: $peach;
-            }
-            @include breakpoint_min_max(991, 1280){
-                margin-left: 0;
-                margin-top: 20px;
-            }
-            @include breakpoint_min_max(641, 850){
-                margin-left: 0;
-                margin-top: 20px;
-            }
-            @include breakpoint(400){
-                margin-left: 0;
-                margin-top: 20px;
+                color: $black;
             }
         }
     }
@@ -213,7 +192,7 @@ and open the template in the editor.
         display: flex;
         flex-wrap: nowrap;
         justify-content: space-evenly;
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         color: $dark-grey;
         .feature-item {
             text-align: center;

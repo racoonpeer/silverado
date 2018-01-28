@@ -51,14 +51,4 @@ if (!empty($RUri)) {
         $RUri = $SeoManager->RemoveSlashes($RUri);
         $SeoManager->Redirect301($RUri);
     }
-    // redirect from old to new product uri
-//    if (preg_match("/^\/\d+\-/", $RUri)) {
-//        $seo_path = ltrim(rtrim(preg_replace("/^\/\d+\-/", "/", $RUri), "/"), "/");
-//        $product  = getItemRow(CATALOG_TABLE, "*", "WHERE `active`=1 AND `seo_path`='{$seo_path}'");
-//        if (!empty($product)) {
-//            $product["arCategory"] = $UrlWL->getCategoryById($product["cid"]);
-//            $RUri = $UrlWL->buildItemUrl($product["arCategory"], $product);
-//            $SeoManager->Redirect301($RUri);
-//        }
-//    }
 }

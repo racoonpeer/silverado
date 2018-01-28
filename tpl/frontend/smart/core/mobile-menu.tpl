@@ -1,6 +1,9 @@
 <div class="mobile-menu" off-canvas="mobile-menu left shift" id="mobileMenu">
-    <a class="m-logo <{if $arCategory.module=="home"}>noclick<{/if}>" href="<{if $arCategory.module=="home"}>#<{else}>/<{/if}>"></a>
+    <div class="m-title">Каталог товаров</div>
     <div class="menu-wrap">
-        <{include file="menu/catalog.tpl" arItems=$catalogMenu marginLevel=0}>
+        <div class="catalog">
+            <{include file="menu/mobile.tpl" arItems=$catalogMenu marginLevel=0}>
+        </div>
     </div>
+    <a href="javascript:MobileMenu.close();" class="m-close" onclick="">&times;</a>
 </div>

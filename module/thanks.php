@@ -1,6 +1,6 @@
 <?php defined('WEBlife') or die( 'Restricted access' );
 
-$itemID    = Checkout::getOrderID(false);
+$itemID    = Checkout::getOrderID(!$IS_DEV);
 $item      = array();
 $purchases = array();
 $files_url = UPLOAD_URL_DIR.'catalog/';
@@ -43,19 +43,5 @@ if ($itemID and $item = getSimpleItemRow($itemID, ORDERS_TABLE)) {
     Redirect("/");
 }
 
-$smarty->assign("item",                     $item);
-$smarty->assign("purchases",                $purchases);
-$smarty->assign("UrlWL",                    $UrlWL);
-$smarty->assign('lang',                     $lang);
-$smarty->assign('arLangsUrls',              $arLangsUrls);
-$smarty->assign('arAcceptLangs',            $arAcceptLangs);
-$smarty->assign('arrLangs',                 SystemComponent::getAcceptLangs());
-$smarty->assign('arCategory',               $arCategory);
-$smarty->assign("arrModules",               $arrModules);
-$smarty->assign("arrPageData",              $arrPageData);
-$smarty->assign('objUserInfo',              $objUserInfo);
-$smarty->assign('objSettingsInfo',          $objSettingsInfo);
-$smarty->assign('HTMLHelper',               $HTMLHelper);
-$smarty->assign('trackingEcommerceJS',      TrackingEcommerce::OutputJS(ENABLE_TRACKING_ECOMMERCE));
-$smarty->assign('IS_DEV',                   $IS_DEV);
-$smarty->assign('IS_AJAX',                  $IS_AJAX);
+$smarty->assign("item",      $item);
+$smarty->assign("purchases", $purchases);

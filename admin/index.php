@@ -34,6 +34,7 @@ require_once('include/classes/mySmarty.php');       // 5. Include mySmarty class
 require_once('include/classes/DbConnector.php');    // 6. Include DB class
 require_once('include/classes/Validator.php');      // 7. Include Text Validator class
 require_once('include/classes/IValidator.php');     // 8. Include Image IValidator class
+require_once('include/classes/Basket.php');     // 8. Include Image IValidator class
 require_once('include/helpers/PHPHelper.php');      // 9. Custom PHP functions
 require_once('include/helpers/HTMLHelper.php');     //10. Custom HTML functions
 require_once('include/classes/wideimage/WideImage.php');

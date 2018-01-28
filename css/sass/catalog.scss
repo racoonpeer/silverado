@@ -23,6 +23,7 @@ and open the template in the editor.
     margin-top: 0;
 }
 .column-left {
+    padding-bottom: 50px;
     width: (100% / 5);
     @include breakpoint(960) {
         width: (100% / 4);

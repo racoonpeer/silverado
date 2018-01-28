@@ -93,15 +93,6 @@
     </tbody>
     <tr>
         <td align="right" colspan="5">
-            <strong>Стоимость доставки:</strong>
-        </td>
-        <td align="center">
-            <strong><{$sPrice}> грн.</strong>
-        </td>
-        <td></td>
-    </tr>
-    <tr>
-        <td align="right" colspan="5">
             <strong>Сумма к оплате:</strong>
         </td>
         <td align="center">
@@ -110,3 +101,150 @@
         <td></td>
     </tr>
 </table>
+<script type="text/javascript">
+    $(function(){
+        OP.setup();
+    });
+    var OP = {
+        update: function() {
+            var _self = this;
+            $.ajax({
+                url: '/interactive/ajax.php',
+                type: 'GET',
+                dataType: 'json',
+                data: {
+                    zone: 'admin',
+                    action: 'orderProducts',
+                    option: 'update',
+                    itemID: <{$item.id}>
+                }, 
+                success: function(json) {
+                    if(json.output) {
+                        $('#orderProducts').replaceWith(json.output);
+                        _self.setup();
+                    }
+                    if(json.history) {
+                        $('#history').html(json.history);
+                    }
+                }
+            });
+        },
+        setup: function() {
+            var _self = this;
+            var arExItems = new Array();
+            $.each($('#orderProducts').children('tbody').find('tr'), function(i, tr){
+                arExItems.push($(tr).data('pid'));
+            });
+            $("#orderProductsSearch").autocomplete({
+                minLength: 3,
+                source: function(request, response) {
+                    $.ajax({
+                        url: "/interactive/ajax.php",
+                        type: 'GET',
+                        dataType: "json",
+                        data: {
+                            zone: 'admin',
+                            action: 'orderProducts',
+                            option: 'search',
+                            itemID: <{$item.id}>,
+                            stext: request.term,
+                            exItems: arExItems
+                        },
+                        success: function(json) {
+                            if(json.items) {
+                                response($.map(json.items, function(item) {
+                                    return {
+                                        label: item.title + ' (' + item.ctitle + ')',
+                                        value: item.title,
+                                        id: item.id,
+                                        type: item.type
+                                    }
+                                }));
+                            }
+                        }
+                    });
+                },
+                select: function(event, ui) {
+                    _self.add(ui.item.id, ui.item.type);
+                }
+            }); 
+        },
+        add: function(PID, TYPE) {
+            var _self = this;
+            $.ajax({
+                url: "/interactive/ajax.php",
+                type: 'GET',
+                dataType: "json",
+                data: {
+                    zone: 'admin',
+                    action: 'orderProducts',
+                    option: 'add',
+                    itemID: <{$item.id}>,
+                    pid: PID,
+                    type: TYPE
+                },
+                complete: function(){
+                    _self.update();
+                }
+            });
+        },
+        delete: function(PID) {
+            var _self = this;
+            $.ajax({
+                url: "/interactive/ajax.php",
+                type: 'GET',
+                dataType: "json",
+                data: {
+                    zone: 'admin',
+                    action: 'orderProducts',
+                    option: 'delete',
+                    itemID: <{$item.id}>,
+                    pid: PID
+                },
+                complete: function(){
+                    _self.update();
+                }
+            });
+        },
+        recalc: function(PID) {
+            var _self = this;
+            var QTY = $('#orderProducts').children('tbody').find('input#qty_'+PID).val(),
+                Inputs = $('#orderProducts').children('tbody').children('tr#product_' + PID).children("td:nth-of-type(3)").find("select, input[type='checkbox']:checked"),
+                Options = {};
+            if (Inputs.length) {
+                $.each(Inputs, function (j, input) {
+                    var pid = $(input).data("pid"),
+                        oid = $(input).data("oid"),
+                        similar = $(Inputs).parent().find("input[data-oid='" + oid + "']:checked"),
+                        arVal   = new Array();
+                    if (!array_key_exists(pid, Options)) Options[pid] = {};
+                    if (similar.length) {
+                        $.each(similar, function (j, cb) {
+                            arVal.push(cb.value)
+                        });
+                        Options[pid][oid] = arVal;
+                    } else {
+                        Options[pid][oid] = parseInt(input.value);
+                    }
+                });
+            }
+            $.ajax({
+                url: "/interactive/ajax.php",
+                type: 'GET',
+                dataType: "json",
+                data: {
+                    zone: 'admin',
+                    action: 'orderProducts',
+                    option: 'recalc',
+                    itemID: <{$item.id}>,
+                    pid: PID,
+                    qty: QTY,
+                    options: Options
+                },
+                complete: function () {
+                    _self.update();
+                }
+            });
+        }
+    }
+</script>

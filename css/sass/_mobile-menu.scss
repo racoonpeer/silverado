@@ -9,65 +9,158 @@ and open the template in the editor.
 */
 
 .mobile-menu {
-    background-color: $black;
-    padding-top: 20px;
-    width: 85%;
-    @include breakpoint(460){
-        width: 83%;
-    }
-    @include breakpoint(390){
-        width: 82%;
-    }
-    @include breakpoint(340){
-        width: 81%;
-        padding-top: 16px;
-    }
-    @include breakpoint(330){
+    background-color: $white;
+    width: 320px;
+    @include box-shadow(0 0 10px 0 rgba(0,0,0,0.15));
+    @include breakpoint(380){
         width: 80%;
     }
-    .m-logo {
-        display: block;
-        width: 230px;
-        height: 35px;
-        margin-left: 32px;
-        background-image: $sprite;
-        background-position: 0px -284px;
-        @include breakpoint(360){
-            margin-left: 8px;
-            @include transform(scale(0.8));
-        }
-        &.noclick {
-            cursor: default;
-            pointer-events: none;
+    &.shift {
+        .catalog {
+            @include transform(translateX(-100%));
         }
     }
-    .menu-wrap{
+    .m-title {
+        font-weight: 700;
+        text-align: center;
+        height: 50px;
+        line-height: 50px;
+    }
+    .m-close {
+        width: 50px;
+        height: 50px;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: 32px;
+        line-height: 5rem;
+        color: $black;
+        font-weight: 300;
+        text-align: center;
+        text-decoration: none;
+    }
+    .menu-wrap {
         overflow: auto;
-        margin-top: 15px;
-        @include breakpoint(340){
-            margin-top: 11px;
-        }
+        overflow-x: hidden;
+    }
+    .catalog {
+        position: relative;
+        @include transition(all 0.2s ease-out);
+        @include transform(translateX(0px));
     }
     .main-menu {
-        font-size: 1.6rem;
+        margin: 0;
+        padding: 0;
         list-style: none;
-        padding-left: 32px;
-        padding-right: 15px;
         li {
-            border-top: 1px solid $deep-grey;
-            &:first-child {
-                border-top: none;
+            border-top: 1px solid #dbdbdb;
+            &.hover-in {
+                .dropdown {
+                    display: block;
+                }
+            }
+            &.sublevels {
+                > a {
+                    position: relative;
+                    &:after {
+                        display: inline-block;
+                        position: absolute;
+                        right: 15px;
+                        top: 50%;
+                        margin-top: -8px;
+                        width: 12px;
+                        height: 15px;
+                        background-image: url("/images/public/icons/turn-right.svg");
+                        background-size: contain;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        content: "";
+                    }
+                }
             }
             a {
                 text-decoration: none;
-                color: $white;
+                color: $deep-grey;
                 display: block;
                 font-weight: 500;
-                padding-top: 15px;
-                padding-bottom: 15px;
-                padding-right: 20px;
+                padding-top: 14px;
+                padding-bottom: 14px;
+                padding-left: 30px;
+                padding-right: 50px;
                 &.bold {
-                    color: $purple;
+                    font-weight: 700;
+                }
+                &.stock {
+                    color: $deep-purple;
+                }
+            }
+        }
+        .dropdown {
+            display: none;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background-color: #fcfcfc;
+            @include transform(translateX(100%));
+            .container {
+                min-width: none;
+                padding-left: 0;
+                padding-right: 0;
+                padding-bottom: 15px;
+            }
+            .return {
+                display: block;
+                padding-top: 14px;
+                padding-bottom: 14px;
+                padding-left: 19px;
+                font-weight: 700;
+                border-top: 1px solid #dbdbdb;
+                &:before {
+                    display: inline-block;
+                    vertical-align: -2px;
+                    width: 12px;
+                    height: 15px;
+                    margin-right: 8px;
+                    background-image: url("/images/public/icons/turn-right.svg");
+                    background-size: contain;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    @include transform(rotate(180deg));
+                    content: "";
+                }
+            }
+            ul {
+                background-color: $white;
+                padding-left: 0;
+                font-size: 1.2rem;
+                margin: 0;
+                list-style: none;
+                li {
+                    padding-left: 39px;
+                    padding-right: 20px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    height: 40px;
+                    width: 100%;
+                    &.separator {
+                        text-transform: uppercase;
+                        color: $dark-grey;
+                        background-color: #fafafa;
+                    }
+                    a {
+                        padding-left: 0;
+                        padding-right: 0;
+                        padding-top: 0;
+                        padding-bottom: 0;
+                        &.bold {
+                            font-size: 1.4rem;
+                            color: $deep-purple;
+                        }
+                    }
                 }
             }
         }

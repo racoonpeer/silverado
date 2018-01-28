@@ -1208,14 +1208,13 @@ function getSettings() {
     $items = getRowItemsInKeyValue('name', 'value', SETTINGS_TABLE, '*');
     if(!empty($items)){
         $item  = (object)$items;
-        $item->ownerEmail   = parseEmailString($item, 'ownerEmail', trim("{$item->ownerLastName} {$item->ownerFirstName}"));
-        $item->notifyEmail  = parseEmailString($item, 'notifyEmail', $item->websiteName);
-        $item->siteEmail    = parseEmailString($item, 'siteEmail', $item->websiteName);
-        $item->copyright    = preg_replace("/(\d{4}\s?)[-|Ц](\s?\d{4})/", '\1-'.date('Y'), $item->copyright);
+        $item->ownerEmail   = unScreenData(parseEmailString($item, 'ownerEmail', trim("{$item->ownerLastName} {$item->ownerFirstName}")));
+        $item->notifyEmail  = unScreenData(parseEmailString($item, 'notifyEmail', $item->websiteName));
+        $item->siteEmail    = unScreenData(parseEmailString($item, 'siteEmail', $item->websiteName));
+        $item->copyright    = unScreenData(preg_replace("/(\d{4}\s?)[-|Ц](\s?\d{4})/", '\1-'.date('Y'), $item->copyright));
     } else {
         $item = new stdClass();
-    }
-    return $item;
+    } return $item;
 }
 
 function parseEmailString(stdClass $objSettings, $objkey, $name=''){
@@ -1293,23 +1292,23 @@ function getSqlListFilterField($key, $value, $type, $prefix='') {
 # ##############################################################################
 //SEND EMAIL FUNCTIONS
 function sendMail($recipients, $subject, $text, $from = '', $contentType = 'plain', $replyTo = '', $cc = '', $bcc = '') {
-    if(empty($from)){ $from = 'info@'.$_SERVER['SERVER_NAME']; }
-    
+    if (empty($from)) $from = 'info@'.$_SERVER['SERVER_NAME'];
+    else $from = mb_convert_encoding($from, "utf-8", WLCMS_SYSTEM_ENCODING);
+    $subject = mb_convert_encoding($subject, "utf-8", WLCMS_SYSTEM_ENCODING);
     // HEADERS
     $headers = '';
-    if($contentType == 'plain'){
-        $headers .= "Content-Type: text/plain; charset=\"windows-1251\"\r\n";
+    if ($contentType == 'plain'){
+        $headers .= "Content-Type: text/plain; charset=\"" . WLCMS_SYSTEM_ENCODING . "\"\r\n";
     } else {
     /* ƒл€ отправки HTML-почты вы можете установить шапку Content-type. */
         $headers .= "MIME-Version: 1.0\r\n";
-        $headers .= "Content-type: text/html; charset=\"windows-1251\"\r\n";
+        $headers .= "Content-type: text/html; charset=\"" . WLCMS_SYSTEM_ENCODING . "\"\r\n";
     }
-
     /* дополнительные шапки */
     $headers .= "From: $from\r\n";
-    if($replyTo) { $headers .= "Reply-To: $replyTo\r\n"; }
-    if($cc) {      $headers .= "Cc: $cc\r\n"; }
-    if($bcc) {     $headers .= "Bcc: $bcc\r\n"; }
+    if ($replyTo) { $headers .= "Reply-To: $replyTo\r\n"; }
+    if ($cc) {      $headers .= "Cc: $cc\r\n"; }
+    if ($bcc) {     $headers .= "Bcc: $bcc\r\n"; }
     return mail($recipients, $subject, $text, $headers);
 }
 

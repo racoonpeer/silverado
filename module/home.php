@@ -1,5 +1,6 @@
 <?php defined('WEBlife') or die( 'Restricted access' ); // no direct access
 
+$arrPageData["headCss"][]     = "/css/public/home.css";
 $arrPageData['headScripts'][] = "/js/libs/slick-carousel/slick.min.js";
 $arrPageData['headScripts'][] = "/js/public/home.js";
 

@@ -79,6 +79,8 @@ and open the template in the editor.
     }
     .basket-items {
         border: 1px solid rgb(233, 233, 233);
+        border-left: none;
+        border-right: none;
         .item {
             padding-left: 5px;
             padding-right: 10px;

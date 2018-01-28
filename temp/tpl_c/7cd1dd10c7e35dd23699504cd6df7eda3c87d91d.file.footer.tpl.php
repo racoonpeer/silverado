@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-11-11 10:18:46
+<?php /* Smarty version Smarty-3.1.14, created on 2018-01-28 15:37:49
          compiled from "tpl/frontend/smart/core/footer.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:19011907195a06b26678de56-88227097%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '7cd1dd10c7e35dd23699504cd6df7eda3c87d91d' => 
     array (
       0 => 'tpl/frontend/smart/core/footer.tpl',
-      1 => 1509297534,
+      1 => 1517146655,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_5a06b2667eee49_94353510',
   'variables' => 
   array (
     'bottomMenu' => 0,
@@ -22,8 +24,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'arrModules' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_5a06b2667eee49_94353510',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5a06b2667eee49_94353510')) {function content_5a06b2667eee49_94353510($_smarty_tpl) {?><div class="footer-container">
     <div class="container clearfix">
@@ -39,9 +39,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 <strong>Работаем без выходных!</strong><br/>
                 <em>с 8:00 до 20:00</em>
                 <div class="phones">
-                    <a href="tel:+380960549540">096 0549540</a><br/>
-                    <a href="tel:+380930549540">093 0549540</a><br/>
-                    <a href="tel:+380990549540">099 0549540</a>
+                    <a href="tel:+380973057697">097 30 57 697</a><br>
+                    <a href="tel:+380956227572">095 62 27 572</a><br>
+                    <a href="tel:+380638216588">063 82 16 588</a>
                 </div>
                 <p>Вы также можете <a href="mailto:<?php echo $_smarty_tpl->tpl_vars['objSettingsInfo']->value->siteEmail;?>
 ">написать нам</a><br/>
@@ -52,8 +52,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     </div>
 </div>
 <div class="bottom-container">
-    <?php echo $_smarty_tpl->getSubTemplate ('core/footer-links.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
-
+    
     <?php echo $_smarty_tpl->getSubTemplate ('core/copyrights.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
 </div><?php }} ?>

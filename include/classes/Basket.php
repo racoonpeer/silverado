@@ -387,9 +387,9 @@ class Basket {
             }
         }
         $this->items    = $items;
-        $this->price    = $total_price;
-        $this->amount   = $quantity;
-        $this->products_count   = $products_count;
+        $this->price    = $total_price*1;
+        $this->amount   = $quantity*1;
+        $this->products_count   = $products_count*1;
         $this->bIsEmpty = !($this->amount>0);
     }
 

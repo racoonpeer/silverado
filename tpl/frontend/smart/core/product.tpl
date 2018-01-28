@@ -5,7 +5,7 @@
         <div class="fade"></div>
         <div class="img">
             <a href="<{include file='core/href_item.tpl' arCategory=$item.arCategory arItem=$item}>">
-                <img data-original="<{if isset($item.image.middle_image)}><{$item.image.middle_image}><{/if}>" class="lazy" alt="<{$item.title}> <{$item.pcode}>" title="<{$item.title}> <{$item.pcode}>"/>
+                <img src="<{if isset($item.image.middle_image)}><{$item.image.middle_image}><{/if}>" alt="<{$item.title}> <{$item.pcode}>" title="<{$item.title}> <{$item.pcode}>"/>
             </a>
             <{include file="core/product-sticker.tpl"}>
             <div class="box-overlay"></div>

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-11-14 22:49:39
+<?php /* Smarty version Smarty-3.1.14, created on 2018-01-21 23:01:39
          compiled from "tpl/backend/weblife/module/orders.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1103525045a0b54c79534d3-48849796%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '6fd98535ac37372c4bf48837a4d8cf6c8565a074' => 
     array (
       0 => 'tpl/backend/weblife/module/orders.tpl',
-      1 => 1510692576,
+      1 => 1516568489,
       2 => 'file',
     ),
   ),
@@ -78,36 +78,52 @@ Form"  enctype="multipart/form-data">
                                     <tr>
                                         <td>Имя</td>
                                         <td>
-                                            <input type="text" name="firstname" value="<?php echo $_smarty_tpl->tpl_vars['item']->value['firstname'];?>
-"/>
+                                            <input type="text" name="firstname" value="<?php echo unScreenData($_smarty_tpl->tpl_vars['item']->value['firstname']);?>
+" size="28"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Фамилия</td>
+                                        <td>
+                                            <input type="text" name="surname" value="<?php echo unScreenData($_smarty_tpl->tpl_vars['item']->value['surname']);?>
+" size="28"/>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>E-mail</td>
                                         <td>
                                             <input type="text" name="email" value="<?php echo $_smarty_tpl->tpl_vars['item']->value['email'];?>
-"/>
+" size="28"/>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Телефон</td>
                                         <td>
                                             <input type="text" name="phone" value="<?php echo $_smarty_tpl->tpl_vars['item']->value['phone'];?>
-"/>
+" size="28"/>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Город</td>
                                         <td>
-                                            <textarea name="address" rows="4" style="height: 60px;"><?php echo $_smarty_tpl->tpl_vars['item']->value['city'];?>
+                                            <textarea name="address" rows="4" style="height: 60px;"><?php echo unScreenData($_smarty_tpl->tpl_vars['item']->value['city']);?>
 </textarea>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Адрес</td>
                                         <td>
-                                            <textarea name="address" rows="4" style="height: 60px;"><?php echo $_smarty_tpl->tpl_vars['item']->value['address'];?>
+                                            <textarea name="address" rows="4" style="height: 60px;"><?php echo unScreenData($_smarty_tpl->tpl_vars['item']->value['address']);?>
 </textarea>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Получатель</td>
+                                        <td>
+                                            <input type="text" name="ext_firstname" value="<?php echo unScreenData($_smarty_tpl->tpl_vars['item']->value['ext_firstname']);?>
+" size="12"/>
+                                            <input type="text" name="ext_surname" value="<?php echo unScreenData($_smarty_tpl->tpl_vars['item']->value['ext_surname']);?>
+" size="13"/>
                                         </td>
                                     </tr>
                                     <tr>
@@ -123,7 +139,7 @@ Form"  enctype="multipart/form-data">
                                     <tr>
                                         <td>Комментарий к заказу</td>
                                         <td>
-                                            <textarea name="descr" rows="4" style="height: 60px;"><?php echo $_smarty_tpl->tpl_vars['item']->value['descr'];?>
+                                            <textarea name="descr" rows="4" style="height: 60px;"><?php echo unScreenData($_smarty_tpl->tpl_vars['item']->value['descr']);?>
 </textarea>
                                         </td>
                                     </tr>
@@ -132,16 +148,17 @@ Form"  enctype="multipart/form-data">
                             <br/>
                             <br/>
                             <div>
-                                <a class="buttons left" data-option='confirm' data-confirm="1" onclick="UpdateOrder(this);" style="width:200px;">
+                                <a class="buttons left" onclick="Orders.sendConfirmation();" style="width:200px;">
                                     &nbsp;Отправить подтверждение заказа&nbsp;
                                 </a>
-                                <span id="confirm" class="left" style="margin:10px;"><?php if ($_smarty_tpl->tpl_vars['item']->value['confirmed']==1){?>
+                                <span id="confirm" class="left" style="margin:10px;">
+<?php if ($_smarty_tpl->tpl_vars['item']->value['confirmed']==1){?>
                                     <?php echo @constant('ORDER_CONFIRM_LETTER_SEND');?>
 
-                                <?php }else{ ?>
+<?php }else{ ?>
                                     <?php echo @constant('ORDER_CONFIRM_LETTER_NOT_SEND');?>
 
-                                <?php }?>
+<?php }?>
                                 </span>
                             </div>
                         </td>
@@ -149,168 +166,14 @@ Form"  enctype="multipart/form-data">
                             <strong>Товары</strong><br/><br/>
                             <?php echo $_smarty_tpl->getSubTemplate ('ajax/order_products.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('arItems'=>$_smarty_tpl->tpl_vars['item']->value['children'],'price'=>$_smarty_tpl->tpl_vars['item']->value['price'],'sPrice'=>$_smarty_tpl->tpl_vars['item']->value['shipping_price']), 0);?>
 
-                            <script type="text/javascript">
-                                
-                                $(function(){
-                                    OP.setup();
-                                });
-                                
-                                var OP = {
-                                    update: function() {
-                                        var _self = this;
-                                        $.ajax({
-                                            url: '/interactive/ajax.php',
-                                            type: 'GET',
-                                            dataType: 'json',
-                                            data: {
-                                                zone: 'admin',
-                                                action: 'orderProducts',
-                                                option: 'update',
-                                                itemID: <?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-
-                                            }, 
-                                            success: function(json) {
-                                                if(json.output) {
-                                                    $('#orderProducts').replaceWith(json.output);
-                                                    _self.setup();
-                                                }
-                                                if(json.history) {
-                                                    $('#history').html(json.history);
-                                                }
-                                            }
-                                        });
-                                    },
-                                    setup: function() {
-                                        var _self = this;
-                                        var arExItems = new Array();
-                                        $.each($('#orderProducts').children('tbody').find('tr'), function(i, tr){
-                                            arExItems.push($(tr).data('pid'));
-                                        });
-                                        $("#orderProductsSearch").autocomplete({
-                                            minLength: 3,
-                                            source: function(request, response) {
-                                                $.ajax({
-                                                    url: "/interactive/ajax.php",
-                                                    type: 'GET',
-                                                    dataType: "json",
-                                                    data: {
-                                                        zone: 'admin',
-                                                        action: 'orderProducts',
-                                                        option: 'search',
-                                                        itemID: <?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-,
-                                                        stext: request.term,
-                                                        exItems: arExItems
-                                                    },
-                                                    success: function(json) {
-                                                        if(json.items) {
-                                                            response($.map(json.items, function(item) {
-                                                                return {
-                                                                    label: item.title + ' (' + item.ctitle + ')',
-                                                                    value: item.title,
-                                                                    id: item.id,
-                                                                    type: item.type
-                                                                }
-                                                            }));
-                                                        }
-                                                    }
-                                                });
-                                            },
-                                            select: function(event, ui) {
-                                                _self.add(ui.item.id, ui.item.type);
-                                            }
-                                        }); 
-                                    },
-                                    add: function(PID, TYPE) {
-                                        var _self = this;
-                                        $.ajax({
-                                            url: "/interactive/ajax.php",
-                                            type: 'GET',
-                                            dataType: "json",
-                                            data: {
-                                                zone: 'admin',
-                                                action: 'orderProducts',
-                                                option: 'add',
-                                                itemID: <?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-,
-                                                pid: PID,
-                                                type: TYPE
-                                            },
-                                            complete: function(){
-                                                _self.update();
-                                            }
-                                        });
-                                    },
-                                    delete: function(PID) {
-                                        var _self = this;
-                                        $.ajax({
-                                            url: "/interactive/ajax.php",
-                                            type: 'GET',
-                                            dataType: "json",
-                                            data: {
-                                                zone: 'admin',
-                                                action: 'orderProducts',
-                                                option: 'delete',
-                                                itemID: <?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-,
-                                                pid: PID
-                                            },
-                                            complete: function(){
-                                                _self.update();
-                                            }
-                                        });
-                                    },
-                                    recalc: function(PID) {
-                                        var _self = this;
-                                        var QTY = $('#orderProducts').children('tbody').find('input#qty_'+PID).val(),
-                                            Inputs = $('#orderProducts').children('tbody').children('tr#product_' + PID).children("td:nth-of-type(3)").find("select, input[type='checkbox']:checked"),
-                                            Options = {};
-                                        if (Inputs.length) {
-                                            $.each(Inputs, function (j, input) {
-                                                var pid = $(input).data("pid"),
-                                                    oid = $(input).data("oid"),
-                                                    similar = $(Inputs).parent().find("input[data-oid='" + oid + "']:checked"),
-                                                    arVal   = new Array();
-                                                if (!array_key_exists(pid, Options)) Options[pid] = {};
-                                                if (similar.length) {
-                                                    $.each(similar, function (j, cb) {
-                                                        arVal.push(cb.value)
-                                                    });
-                                                    Options[pid][oid] = arVal;
-                                                } else {
-                                                    Options[pid][oid] = parseInt(input.value);
-                                                }
-                                            });
-                                        }
-                                        $.ajax({
-                                            url: "/interactive/ajax.php",
-                                            type: 'GET',
-                                            dataType: "json",
-                                            data: {
-                                                zone: 'admin',
-                                                action: 'orderProducts',
-                                                option: 'recalc',
-                                                itemID: <?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-,
-                                                pid: PID,
-                                                qty: QTY,
-                                                options: Options
-                                            },
-                                            complete: function () {
-                                                _self.update();
-                                            }
-                                        });
-                                    }
-                                }
-                            </script>
                             <div class="loader hidden"><img src="/images/loader.gif"/></div>
                             <table width="100%" cellspacing="0" cellpadding="1" class="list">
                                 <tr>
                                    <td style="padding:10px;">
                                        <strong>Комментарий администратора</strong><br/><br/>
-                                       <textarea class="nosize_field" style="width: 440px; height: 36px" name="admin_comment" ><?php echo $_smarty_tpl->tpl_vars['item']->value['admin_comment'];?>
+                                       <textarea class="nosize_field" style="width: 440px; height: 36px" name="admin_comment"><?php echo $_smarty_tpl->tpl_vars['item']->value['admin_comment'];?>
 </textarea>
-                                       <a class="buttons right"  data-option="admin_comment" onclick="UpdateOrder(this);">Сохранить комментарий</a>
+                                       <a class="buttons right" data-option="admin_comment" onclick="Orders.updateOrder(this);">Сохранить комментарий</a>
                                    </td>
                                 </tr>
                             </table>
@@ -323,7 +186,7 @@ Form"  enctype="multipart/form-data">
                     <tr>
                         <td  width="100">Статус заказа:</td>
                         <td width="150">
-                            <select name="id" class="nosize_field" style="width: 140px;" onchange="unsetDisabled(this)">       
+                            <select name="id" class="nosize_field" style="width: 140px;" onchange="Orders.unsetDisabled(this)">       
 <?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['i'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['i']);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['name'] = 'i';
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['loop'] = is_array($_loop=$_smarty_tpl->tpl_vars['arrPageData']->value['arStatus']) ? count($_loop) : max(0, (int)$_loop); unset($_loop);
@@ -348,11 +211,9 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['index_next'] = $_smarty
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['first']      = ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'] == 1);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'] == $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['total']);
 ?>
-                                    <option value="<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['arStatus'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id'];?>
-" <?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['arStatus'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id']==$_smarty_tpl->tpl_vars['item']->value['arStatus']['id']){?>selected<?php }?>>
-                                        <?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['arStatus'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['title'];?>
-
-                                    </option>
+                                <option value="<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['arStatus'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id'];?>
+" <?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['arStatus'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id']==$_smarty_tpl->tpl_vars['item']->value['arStatus']['id']){?>selected<?php }?>><?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['arStatus'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['title'];?>
+</option>
 <?php endfor; endif; ?>
                             </select>
                         </td>
@@ -361,13 +222,13 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smart
                         </td>
                         <td width="90">
                             <a class="buttons disabled" data-status="<?php echo $_smarty_tpl->tpl_vars['item']->value['status'];?>
-" data-option="status" onclick="UpdateOrder(this);">Сохранить</a>
+" data-option="status" onclick="Orders.updateOrder(this);">Сохранить</a>
                         </td>
                     </tr>
                     <tr>
                         <td>Оплата:</td>
                         <td>
-                            <select name="id" class="nosize_field" style="width: 140px;" onchange="unsetDisabled(this)">       
+                            <select name="id" class="nosize_field" style="width: 140px;" onchange="Orders.unsetDisabled(this);">       
 <?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['i'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['i']);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['name'] = 'i';
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['loop'] = is_array($_loop=$_smarty_tpl->tpl_vars['arrPageData']->value['arPayments']) ? count($_loop) : max(0, (int)$_loop); unset($_loop);
@@ -392,26 +253,24 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['index_next'] = $_smarty
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['first']      = ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'] == 1);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'] == $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['total']);
 ?>
-                                    <option value="<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['arPayments'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id'];?>
-" <?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['arPayments'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id']==$_smarty_tpl->tpl_vars['item']->value['arPayment']['id']){?>selected<?php }?>>
-                                        <?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['arPayments'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['title'];?>
-
-                                    </option>
+                                <option value="<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['arPayments'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id'];?>
+" <?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['arPayments'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id']==$_smarty_tpl->tpl_vars['item']->value['arPayment']['id']){?>selected<?php }elseif(!$_smarty_tpl->tpl_vars['arrPageData']->value['arPayments'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['active']){?>disabled<?php }?>><?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['arPayments'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['title'];?>
+</option>
 <?php endfor; endif; ?>
                             </select>
                         </td>
-                        <td  style="padding:10px;">
+                        <td style="padding:10px;">
                             <textarea class="nosize_field" disabled style="width: 100%; height: 50px" name="comment"></textarea>
                         </td>
-                        <td >
+                        <td>
                             <a class="buttons disabled" data-payment="<?php echo $_smarty_tpl->tpl_vars['item']->value['payment_id'];?>
-" data-option="payment" onclick="UpdateOrder(this);">Сохранить</a>
+" data-option="payment" onclick="Orders.updateOrder(this);">Сохранить</a>
                         </td>
                     </tr>
                     <tr>
-                        <td >Доставка:</td>
-                        <td >
-                            <select name="id" class="nosize_field" style="width: 140px;" onchange="unsetDisabled(this)">       
+                        <td>Доставка:</td>
+                        <td>
+                            <select name="id" class="nosize_field" style="width: 140px;" onchange="Orders.unsetDisabled(this)">       
 <?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['i'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['i']);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['name'] = 'i';
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['loop'] = is_array($_loop=$_smarty_tpl->tpl_vars['arrPageData']->value['arShippings']) ? count($_loop) : max(0, (int)$_loop); unset($_loop);
@@ -436,31 +295,31 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['index_next'] = $_smarty
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['first']      = ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'] == 1);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'] == $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['total']);
 ?>
-                                    <option value="<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['arShippings'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id'];?>
-" <?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['arShippings'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id']==$_smarty_tpl->tpl_vars['item']->value['arShipping']['id']){?>selected<?php }?>><?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['arShippings'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['title'];?>
+                                <option value="<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['arShippings'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id'];?>
+" <?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['arShippings'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id']==$_smarty_tpl->tpl_vars['item']->value['arShipping']['id']){?>selected<?php }elseif(!$_smarty_tpl->tpl_vars['arrPageData']->value['arShippings'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['active']){?>disabled<?php }?>><?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['arShippings'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['title'];?>
 </option>
 <?php endfor; endif; ?>
                             </select>
                         </td>
-                        <td  style="padding:10px;">
+                        <td style="padding:10px;">
                             <textarea class="nosize_field" style="width: 100%; height: 50px" name="comment" disabled></textarea>
                         </td>
-                        <td >
+                        <td>
                             <a class="buttons disabled" data-shipping="<?php echo $_smarty_tpl->tpl_vars['item']->value['shipping_id'];?>
-" data-option="shipping" onclick="UpdateOrder(this);">Сохранить</a>
+" data-option="shipping" onclick="Orders.updateOrder(this);">Сохранить</a>
                         </td>
                     </tr>
                 </table>
                 <div style="text-align: center; margin: 15px 0;">
                     <input type="submit" name="submit" class="buttons" style="display: inline-block;" value="Сохранить заказ"/>
-                    <input class="buttons" name="submit_cancel" type="submit" style="display: inline-block;"  value="<?php echo @constant('BUTTON_CANCEL');?>
+                    <input class="buttons" name="submit_cancel" type="submit" style="display: inline-block;" value="<?php echo @constant('BUTTON_CANCEL');?>
 " onclick="return userConfirm('cancel', '<?php echo @constant('CONFIRM_NOT_SAVE');?>
-')" />
+');"/>
                     <input class="buttons" name="submit_delete" type="submit" style="display: inline-block;" value="<?php echo @constant('BUTTON_DELETE');?>
 " onclick="return userConfirm('delete', '<?php echo @constant('CONFIRM_DELETE');?>
-')" />
+');"/>
                 </div>
-                <div id="history">                    
+                <div id="history">
                     <?php echo $_smarty_tpl->getSubTemplate ('common/object_actions_log.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('arHistoryData'=>$_smarty_tpl->tpl_vars['item']->value['arHistory']), 0);?>
 
                 </div>
@@ -468,144 +327,80 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smart
         </ul>
     </div>
 </form>                
-
 <script type="text/javascript">
+    $(function(){
+        Orders.init(<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
+);
+    });
     function userConfirm(task, message) {
-        if(window.confirm(message)) {
+        if (window.confirm(message)) {
             switch (task) {
-              case 'copy':
-                window.location='<?php echo (($_smarty_tpl->tpl_vars['arrPageData']->value['current_url']).("&task=addItem&copyID=")).($_smarty_tpl->tpl_vars['item']->value['id']);?>
+                case 'copy':
+                    window.location='<?php echo (($_smarty_tpl->tpl_vars['arrPageData']->value['current_url']).("&task=addItem&copyID=")).($_smarty_tpl->tpl_vars['item']->value['id']);?>
 ';
-                break
-              case 'clear':
-                document.forms[0].reset();
-                $.each(tinyMCE.editors, function() {
-                    this.setContent('');
-                }); 
-
-                $.each($('input:text, textarea'), function() {
-                    $(this).val('');
-                });
-                if($('select').length>0){
-                    $.each($('select'), function(){
-                        $('option', this).removeAttr("selected");
-                        $('option:nth(0)', this).attr("selected", "selected");
+                    break;
+                case 'clear':
+                    document.forms[0].reset();
+                    $.each(tinyMCE.editors, function() {
+                        this.setContent('');
+                    }); 
+                    $.each($('input:text, textarea'), function() {
+                        $(this).val('');
                     });
-                }
-                // catalog clear
-                if($('#attrTable').length > 0) {
-                    $('#attrTable tbody').html('');
-                }
-                if($('#list_settings_selected_related').length >0 ) {
-                    $('#list_settings_selected_related').html('');
-                }
-                if($('#list_settings_all_related').length >0 ) {
-                    $('#list_settings_all_related').html('');
-                }
-                if($('#list_settings_all_kits').length >0 ) {
-                    $('#list_settings_all_kits').html('');
-                }
-                if($('#list_settings_selected_kits').length >0 ) {
-                    $('#list_settings_selected_kits').html('');
-                }
-                // main clear
-                if($('#attrGroupsList').length>0) {
-                    $.each($('#attrGroupsList').find('input:checkbox'), function() {
-                        $(this).removeAttr('checked');
-                        updateAttributesList(this);
-                    });
-                }
-                if($('#filtersAllList').length>0) {
-                    $.each($('#filtersAllList').find('input:checkbox'), function() {
-                        $(this).removeAttr('checked');
-                        updateFiltersList(this);
-                    });
-                }
-                //attributes
-                if($('#defaultVals').length>0) {
-                    $('#defaultVals').html('');
-                }
-
-                break
-              case 'cancel':
-                window.location='<?php echo ($_smarty_tpl->tpl_vars['arrPageData']->value['current_url']).($_smarty_tpl->tpl_vars['arrPageData']->value['filter_url']);?>
-';
-                break
-              case 'delete':
-                window.location='<?php echo (($_smarty_tpl->tpl_vars['arrPageData']->value['current_url']).("&task=deleteItem&itemID=")).($_smarty_tpl->tpl_vars['item']->value['id']);?>
-';
-                break
-            }   
-        }
-        return false; 
-    }
-    
-    function UpdateOrder(link) { 
-        var option = $(link).attr('data-option');
-        var optionID = $(link).closest('tr').find('select option:selected').val();
-        var value = $(link).closest('tr').find('textarea').val();
-        var loader = $(link).closest('table').prev('.loader');
-
-        if((typeof optionID != "undefined" && $(link).attr('data-'+option) != optionID) || 
-           (option=='admin_comment' && value.length!=0 && window.confirm('Сохранить комментарий?')) ||
-            option=='confirm' 
-        ) {
-            if($(loader).length>0) {
-                $(loader).css('width', $(loader).next('table').width());
-                $(loader).css('height', $(loader).next('table').height());
-                $(loader).find('img').css('margin-top', ($(loader).next('table').height()/2 - 10));
-                $(loader).removeClass('hidden');
-            }
-            $.ajax({
-                url: '/interactive/ajax.php',
-                type: 'GET',
-                dataType: 'json',
-                data: {
-                    zone: 'admin',
-                    action: 'editOrder',
-                    orderID: '<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-',
-                    option: option,
-                    optionID: optionID,
-                    optionComment: value
-                },
-                success: function(json){
-                    if(json){
-                        if(json.option_title) $('#'+option).text(json.option_title);
-                        if(json.history) $('#history').html(json.history);
-                        
-                        $(link).closest('tr').find('select option:selected').removeAttr('selected');
-                        $(link).closest('tr').find('select option[value="'+optionID+'"]').prop('selected', 'true');
-                        if(option!='admin_comment' && option!='confirm') $(link).closest('tr').find('textarea').val('');
-                        $(link).attr('data-'+option, optionID);
-                        
-                        unsetDisabled($(link).closest('tr').find('select'));
-                        if($(loader).length>0) {
-                            $(loader).addClass('hidden');
-                        }
+                    if($('select').length>0){
+                        $.each($('select'), function(){
+                            $('option', this).removeAttr("selected");
+                            $('option:nth(0)', this).attr("selected", "selected");
+                        });
                     }
-                }
-            });
-        }
-    }
-    
-    function unsetDisabled(item) {
-        var option = $(item).closest('tr').find('a').attr('data-option');
-        if($(item).closest('tr').find('a').attr('data-'+option) != $('option:selected', item).val()) { 
-             $(item).closest('tr').find('textarea').removeAttr('disabled');
-             $(item).closest('tr').find('a').removeClass('disabled');
-        } else {
-             $(item).closest('tr').find('textarea').attr('disabled', 'true');
-             $(item).closest('tr').find('a').addClass('disabled');
-        }
+                    // catalog clear
+                    if($('#attrTable').length > 0) {
+                        $('#attrTable tbody').html('');
+                    }
+                    if($('#list_settings_selected_related').length >0 ) {
+                        $('#list_settings_selected_related').html('');
+                    }
+                    if($('#list_settings_all_related').length >0 ) {
+                        $('#list_settings_all_related').html('');
+                    }
+                    if($('#list_settings_all_kits').length >0 ) {
+                        $('#list_settings_all_kits').html('');
+                    }
+                    if($('#list_settings_selected_kits').length >0 ) {
+                        $('#list_settings_selected_kits').html('');
+                    }
+                    // main clear
+                    if($('#attrGroupsList').length>0) {
+                        $.each($('#attrGroupsList').find('input:checkbox'), function() {
+                            $(this).removeAttr('checked');
+                            updateAttributesList(this);
+                        });
+                    }
+                    if($('#filtersAllList').length>0) {
+                        $.each($('#filtersAllList').find('input:checkbox'), function() {
+                            $(this).removeAttr('checked');
+                            updateFiltersList(this);
+                        });
+                    }
+                    //attributes
+                    if($('#defaultVals').length>0) {
+                        $('#defaultVals').html('');
+                    }
+                    break;
+                case 'cancel':
+                    window.location='<?php echo ($_smarty_tpl->tpl_vars['arrPageData']->value['current_url']).($_smarty_tpl->tpl_vars['arrPageData']->value['filter_url']);?>
+';
+                    break;
+                case 'delete':
+                    window.location='<?php echo (($_smarty_tpl->tpl_vars['arrPageData']->value['current_url']).("&task=deleteItem&itemID=")).($_smarty_tpl->tpl_vars['item']->value['id']);?>
+';
+                    break;
+            }
+        } return false; 
     }
 </script>
 
 <?php }else{ ?>
-<?php echo $_smarty_tpl->getSubTemplate ('common/new_page_btn.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('title'=>"Новый заказ"), 0);?>
-
-<?php echo $_smarty_tpl->getSubTemplate ('common/order_links.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('arrOrderLinks'=>$_smarty_tpl->tpl_vars['arrPageData']->value['arrOrderLinks']), 0);?>
-
 <div class="clear"></div>       
 <form method="GET" id="filtersForm" action="<?php echo ($_smarty_tpl->tpl_vars['arrPageData']->value['current_url']).($_smarty_tpl->tpl_vars['arrPageData']->value['filter_url']);?>
 ">
@@ -621,7 +416,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['name']->key => $_smarty_tpl->tpl_vars
 $_smarty_tpl->tpl_vars['name']->_loop = true;
  $_smarty_tpl->tpl_vars['value']->value = $_smarty_tpl->tpl_vars['name']->key;
 ?>
-            <input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['name']->value;?>
+    <input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['name']->value;?>
 " name="<?php echo $_smarty_tpl->tpl_vars['value']->value;?>
 "/>
 <?php } ?>
@@ -712,52 +507,6 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smart
     </table>
 </form>
 
-<script type="text/javascript">
-<!--
-    var dateFrom = $('#date_from');
-    var dateTo = $('#date_to');
-
-    $(dateFrom).datepicker({timeFormat: "HH:mm:ss",dateFormat: "yy-mm-dd"});
-    $(dateTo).datepicker({timeFormat: "HH:mm:ss",dateFormat: "yy-mm-dd"});
-    
-    $(dateFrom).on('change', function(){ 
-        $(dateTo).datepicker('option', 'minDate', $(dateFrom).val()); 
-    });    
-              
-    $(function() {        
-        $('#categorySearch').autocomplete({
-            source: function(request, response) {
-                $.ajax({
-                    url: '/interactive/ajax.php',
-                    type: 'GET',
-                    dataType: 'json',
-                    data: {
-                        zone: 'admin',
-                        action: 'liveSearch',
-                        module: '<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['module'];?>
-',
-                        cid: <?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['cid'];?>
-,
-                        searchStr: request.term
-                    }, 
-                    success: function(json) {
-                        response($.map(json.items, function(item) {
-                            return {
-                                label: item.title,
-                                value: item.title,
-                                category: item.ctitle
-                            }
-                        }));
-                    }
-                });
-            },
-            select: function(event, ui) {},
-            minLength: 2
-        });
-    });
-//-->
-</script>
-
 <form method="post" action="<?php echo ($_smarty_tpl->tpl_vars['arrPageData']->value['current_url']).("&task=reorderItems");?>
 " name="reorderItems">
     <table width="100%" border="0" cellspacing="1" cellpadding="0" class="list">
@@ -769,7 +518,6 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smart
             <td id="headb" align="center" width="100">Телефон</td>
             <td id="headb" align="center" width="95"><?php echo @constant('HEAD_DATE_ADDED');?>
 </td>
-            
             <td id="headb" align="center" width="38"><?php echo @constant('HEAD_EDIT');?>
 </td>
             <td id="headb" align="center" width="38"><?php echo @constant('HEAD_DELETE');?>
@@ -800,7 +548,6 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['first']      = ($_smart
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'] == $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['total']);
 ?>
          <tr>
-             
             <td align="center"><?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id'];?>
 </td>
             <td align="center">
@@ -865,9 +612,11 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['last']       = ($_smart
 <?php }?>
 <?php endfor; endif; ?>
             </td>
-            <td><a href="<?php echo ((($_smarty_tpl->tpl_vars['arrPageData']->value['current_url']).($_smarty_tpl->tpl_vars['arrPageData']->value['filter_url'])).("&task=editItem&itemID=")).($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id']);?>
+            <td>
+                <a href="<?php echo ((($_smarty_tpl->tpl_vars['arrPageData']->value['current_url']).($_smarty_tpl->tpl_vars['arrPageData']->value['filter_url'])).("&task=editItem&itemID=")).($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id']);?>
 "><?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['title'];?>
-</a></td>
+</a>
+            </td>
             <td align="center"><?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['phone'];?>
 </td>
             <td align="center"><?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['created'],"%d.%m.%y %H:%M");?>
@@ -879,7 +628,7 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['last']       = ($_smart
 ">
                     <img src="<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['system_images'];?>
 edit.png" alt="<?php echo @constant('LABEL_EDIT');?>
-" />
+"/>
                 </a>
             </td>
             <td align="center">
@@ -890,7 +639,7 @@ edit.png" alt="<?php echo @constant('LABEL_EDIT');?>
                    <img src="<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['system_images'];?>
 delete.png" alt="<?php echo @constant('LABEL_DELETE');?>
 " title="<?php echo @constant('LABEL_DELETE');?>
-" />
+"/>
                 </a>
             </td>
         </tr>
@@ -907,9 +656,7 @@ delete.png" alt="<?php echo @constant('LABEL_DELETE');?>
                 <!-- ++++++++++ End PAGER ++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 <?php }?>
             </td>
-            <td align="right">
-              
-            </td>
+            <td align="right"></td>
         </tr>
     </table>
 </form>

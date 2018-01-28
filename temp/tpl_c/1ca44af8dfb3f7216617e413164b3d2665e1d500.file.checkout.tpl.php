@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-12-10 15:52:58
+<?php /* Smarty version Smarty-3.1.14, created on 2018-01-03 00:19:54
          compiled from "tpl/frontend/smart/module/checkout.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:5316462635a06c53bc91ec1-45223186%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '1ca44af8dfb3f7216617e413164b3d2665e1d500' => 
     array (
       0 => 'tpl/frontend/smart/module/checkout.tpl',
-      1 => 1512913969,
+      1 => 1514926069,
       2 => 'file',
     ),
   ),
@@ -40,14 +40,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                         </div>
                         <div class="f-body">
                             <div class="f-row">
-                                <div class="f-column">
-                                    <input type="text" class="input-m required <?php if (isset($_smarty_tpl->tpl_vars['arrPageData']->value['errors']['firstname'])){?>error<?php }?>" name="firstname" value="<?php if (isset($_smarty_tpl->tpl_vars['item']->value['firstname'])){?><?php echo $_smarty_tpl->tpl_vars['item']->value['firstname'];?>
-<?php }?>" placeholder="Èìÿ"/>
-                                </div>
-                                <div class="f-column">
-                                    <input type="text" class="input-m required <?php if (isset($_smarty_tpl->tpl_vars['arrPageData']->value['errors']['surname'])){?>error<?php }?>" name="surname" value="<?php if (isset($_smarty_tpl->tpl_vars['item']->value['surname'])){?><?php echo $_smarty_tpl->tpl_vars['item']->value['surname'];?>
-<?php }?>" placeholder="Ôàìèëèÿ"/>
-                                </div>
+                                <input type="text" class="input-m required <?php if (isset($_smarty_tpl->tpl_vars['arrPageData']->value['errors']['firstname'])){?>error<?php }?>" name="firstname" value="<?php if (isset($_smarty_tpl->tpl_vars['item']->value['firstname'])){?><?php echo $_smarty_tpl->tpl_vars['item']->value['firstname'];?>
+<?php }?>" placeholder="ÔÈÎ"/>
                             </div>
                             <div class="f-row">
                                 <div class="f-column">

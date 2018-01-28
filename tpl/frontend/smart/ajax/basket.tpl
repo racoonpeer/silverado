@@ -46,8 +46,8 @@
         </strong>
     </div>
     <div class="buttons clearfix">
-        <a href="<{include file="core/href.tpl" arCategory=$arrModules.checkout}>" class="btn btn-l btn-danger btn-block">Оформить заказ</a><br/>
-        <a href="#" onclick="Basket.close();" class="btn btn-l btn-link btn-block">Продолжить покупки</a>
+        <a href="<{include file="core/href.tpl" arCategory=$arrModules.checkout}>" class="btn btn-m btn-danger btn-block">Оформить заказ</a><br/>
+        <a href="#" onclick="Basket.close();" class="btn btn-m btn-link btn-block">Продолжить покупки</a>
     </div>
 </div>
 <{else}>
@@ -83,7 +83,7 @@
         </div>
     </div>
     <div class="buttons clearfix">
-        <a href="#" onclick="Basket.close();" class="btn btn-xl btn-link btn-block">Продолжить покупки</a>
+        <a href="#" onclick="Basket.close();" class="btn btn-m btn-link btn-block">Продолжить покупки</a>
     </div>
 </div>
 <{/if}>

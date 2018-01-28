@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-12-10 18:07:18
+<?php /* Smarty version Smarty-3.1.14, created on 2018-01-28 18:42:20
          compiled from "tpl/frontend/smart/module/thanks.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:21001103625a0b42aaa00fb2-87616539%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c864a0138c52c5a2300782dfff277621827bb6d3' => 
     array (
       0 => 'tpl/frontend/smart/module/thanks.tpl',
-      1 => 1512922031,
+      1 => 1517157684,
       2 => 'file',
     ),
   ),
@@ -113,7 +113,7 @@ $_smarty_tpl->tpl_vars['value']->_loop = true;
             </div>
             <div class="hr"></div>
             <div class="user-info">
-                <div class="h3">Информация о покупателе</div>
+                <div class="h3">Информация о заказе</div>
                 <p>
 <?php if (!empty($_smarty_tpl->tpl_vars['item']->value['firstname'])){?>
                     Имя: <?php echo unScreenData($_smarty_tpl->tpl_vars['item']->value['firstname']);?>
@@ -149,6 +149,19 @@ $_smarty_tpl->tpl_vars['value']->_loop = true;
 <?php if (!empty($_smarty_tpl->tpl_vars['item']->value['ext_surname'])){?> <?php echo unScreenData($_smarty_tpl->tpl_vars['item']->value['ext_surname']);?>
 <?php }?>
 <?php }?>
+<?php if (!empty($_smarty_tpl->tpl_vars['item']->value['descr'])){?>
+                    <br/>
+                    Комментарий к заказу: <?php echo unScreenData($_smarty_tpl->tpl_vars['item']->value['descr']);?>
+
+<?php }?>
+                </p>
+                <p>
+<?php if (!empty($_smarty_tpl->tpl_vars['item']->value['payment'])){?>
+                    Способ оплаты: <?php echo $_smarty_tpl->tpl_vars['item']->value['payment']['title'];?>
+<br/>
+<?php }?>
+                    Сумма к оплате: <?php echo number_format($_smarty_tpl->tpl_vars['item']->value['price'],0,'.',' ');?>
+ грн.
                 </p>
             </div>
         </div>

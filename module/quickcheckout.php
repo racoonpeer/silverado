@@ -39,12 +39,13 @@ if ($itemID and $item=getSimpleItemRow($itemID, CATALOG_TABLE)) {
                     ActionsLog::getAuthInstance(ActionsLog::SYSTEM_USER, getRealIp())->save(ActionsLog::ACTION_CREATE, 'Создан новый заказ', $key, 'Заказ №'.$orderID, $orderID, 'orders');
                 }
                 // Start Google Conversion 
-                $GoogleConversion = new GoogleConversion($orderID, $arPostData['price'], $objSettingsInfo->websiteName, 0);
+                $GoogleConversion = new GoogleConversion($orderID, $arPostData['price'], $objSettingsInfo->websiteName, 0, 0, "UAH");
                 // Write order products
                 $data = [
                     'order_id' => $orderID,
                     'pid'      => $item['id'],
-                    'title'    => $item['title'],
+                    'title'    => "{$item['title']} {$item['pcode']}",
+                    'pcode'    => $item['pcode'],
                     'qty'      => 1,
                     'price'    => $item['price'],
                     'discount' => $item['discount'],
@@ -57,7 +58,7 @@ if ($itemID and $item=getSimpleItemRow($itemID, CATALOG_TABLE)) {
                 // email notifications
                 $arData             = $arPostData;
                 $arData['oid']      = $orderID;
-                $arData['server']   = 'http://'.$_SERVER['HTTP_HOST'];
+                $arData['server']   = WLCMS_HTTP_PREFIX.$_SERVER['HTTP_HOST'];
                 $data["image"]      = $item["image"];
                 $data["pcode"]      = $item["pcode"];
                 $data["seo_path"]   = $item["seo_path"];
@@ -68,9 +69,10 @@ if ($itemID and $item=getSimpleItemRow($itemID, CATALOG_TABLE)) {
                 $smarty->assign('UrlWL', $UrlWL);
                 $text    = $smarty->fetch('mail/order_admin.tpl');
                 $subject = "Новый заказ №{$orderID}";
-                $subject = $objSettingsInfo->websiteName.': '.sprintf(NEW_ORDER_NUMBER, $orderID);
+                $subject = sprintf(NEW_ORDER_NUMBER, $orderID);
                 if (sendMail($objSettingsInfo->notifyEmail, $subject, $text, $objSettingsInfo->siteEmail, 'html')){
                     $GoogleConversion->setPurchased(true);
+                    TrackingEcommerce::save($GoogleConversion, false);
                     $arrPageData["result"]  = "success";
                     $arrPageData["orderID"] = $orderID;
                 } $smarty->assign('trackingEcommerceJS', TrackingEcommerce::OutputJS(ENABLE_TRACKING_ECOMMERCE));
@@ -81,6 +83,7 @@ if ($itemID and $item=getSimpleItemRow($itemID, CATALOG_TABLE)) {
 
 $arrPageData["itemID"] = $itemID;
 
+$smarty->assign("item",            $item);
 $smarty->assign("formData",        $formData);
 $smarty->assign("arrPageData",     $arrPageData);
 $smarty->assign('arCategory',      $arCategory);

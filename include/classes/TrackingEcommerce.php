@@ -216,15 +216,13 @@ class GoogleConversion implements EcommerceConversionInterface {
      * @return string
      */
     public function ToTransactionJs() {
-        return <<<HTML
-    ga('ecommerce:addTransaction', {
-      id: '{$this->id}',
-      affiliation: '{$this->affiliation}',
-      revenue: '{$this->revenue}',
-      shipping: '{$this->shipping}',
-      tax: '{$this->tax}'
-    });
-HTML;
+        return "ga('ecommerce:addTransaction', {
+                    id: '{$this->id}',
+                    affiliation: '{$this->affiliation}',
+                    revenue: '{$this->revenue}',
+                    shipping: '{$this->shipping}',
+                    tax: '{$this->tax}'
+                });";
     }
 
     /**
@@ -241,9 +239,7 @@ HTML;
      *   ]);
      */
     public function ToTransactionAsyncJs() {
-        return <<<HTML
-     _gaq.push(['_addTrans', '{$this->id}', '{$this->affiliation}', '{$this->revenue}', '{$this->tax}', '{$this->shipping}', '{$this->city}', '{$this->state}', '{$this->country}']);
-HTML;
+        return "_gaq.push(['_addTrans', '{$this->id}', '{$this->affiliation}', '{$this->revenue}', '{$this->tax}', '{$this->shipping}', '{$this->city}', '{$this->state}', '{$this->country}']);";
     }
 
     /**
@@ -374,16 +370,14 @@ class GoogleConversionItem implements EcommerceConversionItemInterface {
      * @return string
      */
     public function ToJs() {
-        return <<<HTML
-     ga('ecommerce:addItem', {
-        id: '{$this->id}',
-        name: '{$this->name}',
-        sku: '{$this->sku}',
-        category: '{$this->category}',
-        price: '{$this->price}',
-        quantity: '{$this->quantity}'
-     });
-HTML;
+        return "ga('ecommerce:addItem', {
+                    id: '{$this->id}',
+                    name: '{$this->name}',
+                    sku: '{$this->sku}',
+                    category: '{$this->category}',
+                    price: '{$this->price}',
+                    quantity: '{$this->quantity}'
+                });";
     }
 
     /**
@@ -401,9 +395,7 @@ HTML;
      *  ]);
      */
     public function ToAsyncJs() {
-        return <<<HTML
-     _gaq.push(['_addItem', '{$this->id}', '{$this->sku}', '{$this->name}', '{$this->category}', '{$this->price}', '{$this->quantity}']);
-HTML;
+        return "_gaq.push(['_addItem', '{$this->id}', '{$this->sku}', '{$this->name}', '{$this->category}', '{$this->price}', '{$this->quantity}']);";
     }
     
     public static function GetInstance(array $data) {

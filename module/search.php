@@ -62,6 +62,7 @@ $arrPageData['items_on_page']   = 12;
 $arrPageData['selectedFilters'] = $UrlWL->getFilters()->getSelected();
 $arrPageData['filters']         = array();
 $arrPageData['stext']         = $searchtext;
+$arrPageData["headCss"][]     = "/css/public/search.css";
 $arrPageData['headScripts'][] = "/js/libs/noUiSlider/nouislider.min.js";
 $arrPageData['headScripts'][] = "/js/public/catalog.js";
 

@@ -5,9 +5,13 @@
         Номер вашей заявки <{$arrPageData.orderID}>!<br/>
         Ожидайте звонок
     </div>
-    <script><{$trackingEcommerceJS}></script>
+    <{$trackingEcommerceJS}>
 <{else}>
     <form action="<{include file="core/href.tpl" arCategory=$arrModules.callback}>" method="POST" id="quickCheckoutForm">
+        <div class="image">
+            <img src="<{$item.image.middle_image}>" alt="<{$item.title}> <{$item.pcode}>"/>
+        </div>
+        <div class="title">Купить <strong><{$item.title}> <{$item.pcode}></strong> в 1 клик</div>
         <div class="hint">Не нужно заполнять никаких форм<br/>
             просто оставьте свой номер<br/>
             <strong>Мы сами перезвоним вам</strong>

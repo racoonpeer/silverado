@@ -26,7 +26,6 @@ require_once('include/classes/Basket.php');         //11. Include Banners class
 require_once('include/helpers/PHPHelper.php');      //12. Custom PHP functions
 require_once('include/helpers/HTMLHelper.php');     //13. Custom HTML functions
 require_once('include/classes/TrackingEcommerce.php');
-require_once('include/classes/Ulogin.php');
 require_once('include/classes/yuicompressor/YUICompressor.php');
 $DB         = new DbConnector(); //Initialize DbConnector class
 $Captcha    = new Captcha(getIValidatorPefix(), CAPTCHA_TABLE, false);  //Initialize Captcha class
@@ -37,7 +36,6 @@ $Banners    = new Banners($UrlWL, true);  //Initialize Banners class
 $Basket     = new Basket();  //Initialize Basket class
 $PHPHelper  = new PHPHelper();  //Initialize PHPHelper class with Custom PHP functions
 $HTMLHelper = new HTMLHelper();  //Initialize HTMLHelper class with Custom HTML functions
-$Ulogin     = new Ulogin($DB, $UrlWL);
 $IS_DEV     = getenv("IS_DEV");
 $IS_MAC     = getenv("IS_MAC");
 $IS_AJAX    = UrlWL::isAjaxRequest();
@@ -59,7 +57,7 @@ $ajax   = $UrlWL->getAjaxMode();
 $module = $UrlWL->getModuleName();
 $Basket->setupKitParams(PRODUCT_KIT_PREFIX);
 // Minify output
-if (!$IS_DEV) $smarty->loadFilter('output', 'trimwhitespace');
+//if (!$IS_DEV) $smarty->loadFilter('output', 'trimwhitespace');
 // Seo redirects
 require_once 'seo/redirect.php';
 // Seo adwords
@@ -119,9 +117,9 @@ $arrPageData     = array( //Page data array
         "/js/libs/jquery.inputmask/inputmask/jquery.inputmask.min.js",
         "/js/libs/jquery.inputmask/inputmask/inputmask.regex.extensions.min.js",
         "/js/libs/jquery-steps/jquery.steps.min.js",
-        "/js/libs/jquery.lazyload/jquery.lazyload.min.js",
+//        "/js/libs/jquery.lazyload/jquery.lazyload.min.js",
         "/js/libs/jquery-zoom/jquery.zoom.min.js",
-//        "/js/libs/jquery-nice-select/js/jquery.nice-select.min.js",
+        "/js/libs/jquery.touchswipe/jquery.touchSwipe.min.js",
         "/js/libs/Swiper/js/swiper.jquery.min.js",
         "/js/libs/remodal/remodal.min.js",
         "/js/libs/verge/verge.min.js",
@@ -137,7 +135,7 @@ $arrPageData     = array( //Page data array
     'compare'       => array(),
 );
 $arrPageData['offset']     = ($page-1)*$arrPageData['items_on_page'];
-$arrPageData['path_arrow'] = '<img src="'.$arrPageData['images_dir'].'arrow.gif" alt="" />';
+$arrPageData['path_arrow'] = '<img src="'.$arrPageData['images_dir'].'arrow.gif" alt=""/>';
 // \\\\\\\\\\\\\\\\\ END IMPORTANT GLOBAL VARIABLES ////////////////////////////
 ################################################################################
 
@@ -194,7 +192,7 @@ if($arCategory['id'] != UrlWL::ERROR_CATID) {
 if (file_exists("include".DS.getAuthFileName().".php")) include("include".DS.getAuthFileName().".php");
 else die("Файл аутентификации невозможно подключить. Проверьте наличие файла, пути и правильность его подключения!");
 // Check User can Accsess to this page
-if(!$arCategory['access'] && !$arrPageData['auth']){
+if (!$arCategory['access'] and !$arrPageData['auth']){
     $ajax
         ? RedirectAjax($UrlWL->buildCategoryUrl($arrModules['authorize']), $_SERVER['REQUEST_URI'])
         : Redirect($UrlWL->buildCategoryUrl($arrModules['authorize']), $_SERVER['REQUEST_URI'])
@@ -219,9 +217,9 @@ if(!in_array($arCategory['module'], array('catalog', 'search', 'basket', 'newest
     if(isset($_SESSION['basket_pagesall']))  unset($_SESSION['basket_pagesall']);
 }
 // Prepare styles & scripts for entire page
-$mdname = ($module=="catalog" and !empty($item)) ? "product" : $module;
-if ($mdname and file_exists("css/public/{$mdname}.css")) $arrPageData["headCss"][] = "/css/public/{$mdname}.css";
-else $arrPageData["headCss"][] = "/css/public/common.css";
+if (empty($arrPageData["headCss"])) {
+    $arrPageData["headCss"][] = "/css/public/common.css";
+}
 //$pageScriptName = !$mdname ? "common" : $mdname;
 //if (!file_exists("js/min/{$pageScriptName}.js")) {
 //    $yui = new YUICompressor("include/classes/yuicompressor/yuicompressor-2.4.8.jar", "js/min", array("semi"=>true));

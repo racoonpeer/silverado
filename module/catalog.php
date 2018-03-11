@@ -224,6 +224,7 @@ if ($itemID and $item = getSimpleItemRow($itemID, CATALOG_TABLE) and !empty($ite
         $smarty->assign('arrPageData',  $arrPageData);
         $smarty->assign('arrModules',   $arrModules);
         $smarty->assign('Basket',       $Basket);
+        $smarty->assign('Banners',      $Banners);
         $smarty->assign('UrlWL',        $UrlWL);
         $smarty->assign('IS_AJAX',      $IS_AJAX);
         $smarty->assign('IS_DEV',       $IS_DEV);

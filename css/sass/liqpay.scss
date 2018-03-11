@@ -1,0 +1,45 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 17, 2018, 6:47:16 PM
+    Author     : yyyaaazzz
+*/
+@import "common";
+@import "ext/slick";
+@import "selections";
+
+.page-container {
+    padding-top: 40px;
+}
+.heading-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+.messages,
+.errors {
+    text-align: center;
+    padding-bottom: 40px;
+    &:before {
+        display: block;
+        width: 48px;
+        height: 48px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 25px;
+        background-image: $sprite;
+        background-position: -132px -325px;
+        background-repeat: no-repeat;
+        @include border-radius(50%);
+        content: "";
+    }
+}
+.errors {
+    &:before {
+        background-position: -182px -325px;
+    }
+}

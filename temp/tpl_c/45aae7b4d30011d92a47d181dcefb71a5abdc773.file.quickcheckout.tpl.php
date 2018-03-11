@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2018-01-08 19:00:34
+<?php /* Smarty version Smarty-3.1.14, created on 2018-02-13 21:35:36
          compiled from "tpl/frontend/smart/module/quickcheckout.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:21443800735a1099004455e3-74739265%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '45aae7b4d30011d92a47d181dcefb71a5abdc773' => 
     array (
       0 => 'tpl/frontend/smart/module/quickcheckout.tpl',
-      1 => 1515430670,
+      1 => 1518550419,
       2 => 'file',
     ),
   ),
@@ -63,7 +63,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         $(function(){
             var form = $("#quickCheckoutForm");
             form.find("input[name=\"phone\"]").inputmask({
-                mask: "+380999999999",
+                mask: "+38 999 999 99 99",
                 greedy: false,
                 definitions: {
                     '*': {

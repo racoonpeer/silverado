@@ -24,9 +24,9 @@
         <div class="phones">
             <div class="stack">
                 <div class="wrap">
-                    <a href="tel:+380973057697">097 30 57 697</a>
-                    <a href="tel:+380956227572">095 62 27 572</a>
-                    <a href="tel:+380638216588">063 82 16 588</a>
+                    <a href="tel:+380973057697">097 305 76 97</a>
+                    <a href="tel:+380956227572">095 622 75 72</a>
+                    <a href="tel:+380638216588">063 821 65 88</a>
                 </div>
             </div>
 <{if isset($arrModules.callback)}>

@@ -4,6 +4,22 @@
  * and open the template in the editor.
  */
 
+$(function() {
+    var dateFrom = $('#date_from'),
+        dateTo = $('#date_to');
+    $(dateFrom).datepicker({
+        timeFormat: "HH:mm:ss",
+        dateFormat: "yy-mm-dd"
+    });
+    $(dateTo).datepicker({
+        timeFormat: "HH:mm:ss",
+        dateFormat: "yy-mm-dd"
+    });
+    $(dateFrom).on('change', function() {
+        $(dateTo).datepicker('option', 'minDate', $(dateFrom).val());
+    });
+});
+
 var Orders = {
     orderID: null,
     init: function(orderID){

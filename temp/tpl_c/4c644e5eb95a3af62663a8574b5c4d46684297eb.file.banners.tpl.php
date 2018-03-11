@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-11-11 10:18:46
+<?php /* Smarty version Smarty-3.1.14, created on 2018-02-12 21:40:42
          compiled from "tpl/frontend/smart/core/banners.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:8493792615a06b26628a712-72864889%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '4c644e5eb95a3af62663a8574b5c4d46684297eb' => 
     array (
       0 => 'tpl/frontend/smart/core/banners.tpl',
-      1 => 1508266895,
+      1 => 1518119368,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_5a06b26630ca96_62667227',
   'variables' => 
   array (
     'position' => 0,
@@ -23,8 +25,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'arrItems' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_5a06b26630ca96_62667227',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5a06b26630ca96_62667227')) {function content_5a06b26630ca96_62667227($_smarty_tpl) {?>
 <?php $_smarty_tpl->tpl_vars['arrItems'] = new Smarty_variable($_smarty_tpl->tpl_vars['Banners']->value->getBanners($_smarty_tpl->tpl_vars['position']->value,$_smarty_tpl->tpl_vars['maxitems']->value), null, 0);?>
@@ -64,5 +64,8 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smart
     <?php echo $_smarty_tpl->tpl_vars['arrItems']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['content'];?>
 
 </div>
+<?php }else{ ?>
+<?php echo $_smarty_tpl->tpl_vars['arrItems']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['content'];?>
+
 <?php }?>
 <?php endfor; endif; ?><?php }} ?>

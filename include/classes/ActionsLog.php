@@ -61,7 +61,6 @@ class ActionsLog {
      * 4 - Удаление  
      */
     const ACTION_DELETE = 4;
-
     /**
      * 10 - Отправка уведомления о подтверждении  
      */
@@ -74,6 +73,10 @@ class ActionsLog {
      * 12 - Смена способа оплаты  
      */
     const ACTION_ORDER_PAYMENT = 12;
+    /**
+     * 12 - Смена способа оплаты  
+     */
+    const ACTION_ORDER_PAYMENT_STATUS = 17;
     /**
      * 13 - Смена способа доставки  
      */
@@ -100,12 +103,11 @@ class ActionsLog {
             self::ACTION_EDIT => "Редактирование",
             self::ACTION_PUBLICATION => "Публикация",
             self::ACTION_DELETE => "Удаление",
-            
             self::ACTION_ORDER_CONFIRM => "Подтверждение",
             self::ACTION_ORDER_STATUS => "Смена статуса",
             self::ACTION_ORDER_PAYMENT => "Смена оплаты",
             self::ACTION_ORDER_SHIPPING => "Смена доставки",
-            
+            self::ACTION_ORDER_PAYMENT_STATUS => "Смена статуса оплаты",
             self::ACTION_ORDER_EDIT_PRODUCT_COUNT => "Смена кол-ва",
             self::ACTION_ORDER_ADD_PRODUCT => "Добавление товара",
             self::ACTION_ORDER_DELETE_PRODUCT => "Удаление товара",

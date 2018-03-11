@@ -77,6 +77,7 @@
 <{* DISPLAY ITEMS LIST IF NOT EMPTY *}>
 <{elseif !empty($items)}>
     <h1 class="heading-title"><{$arCategory.title}></h1>
+    <{include file='core/banners.tpl' position=3 maxitems=1}>
     <div class="controlbar clearfix">
         <{include file="ajax/control_filter.tpl"}>
         <{include file="ajax/control_limit.tpl"}>

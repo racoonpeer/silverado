@@ -10,7 +10,22 @@ and open the template in the editor.
 @import "common";
 
 .page-container {
+    position: relative;
     padding-top: 40px;
+    &.progress {
+        &:after {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255,255,255,0.85);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-image: url("/images/public/loading-32.gif");
+            content: "";
+        }
+    }
 }
 .heading-title {
     text-align: center;

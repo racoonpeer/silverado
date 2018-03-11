@@ -397,6 +397,7 @@ class UrlWL extends Url {
     
     const LANG_KEY_NAME  = 'lang';
     const USER_SEOPREFIX = 'user';
+    const ORDER_SEOPREFIX = 'order';
     const CATEGORY_SEOPREFIX = 'category';
     const CAT_KEY_NAME   = 'catid';
     const SORT_KEY_NAME  = 'sort';
@@ -584,8 +585,17 @@ class UrlWL extends Url {
 //                        if(count($arCategory['arPath']) == 1 && (count(self::buildCategoryPath($row)) != 1 || reset($arCategory['arPath']) != reset($row['arPath']))){
 //                            $founded = false;
 //                        }
-                } elseif ($arCategory && $this->module && ($tbl = strtoupper($this->module).'_TABLE') && defined($tbl)){
+                } elseif ($arCategory && $this->module && $tbl = strtoupper($this->module).'_TABLE'){
                     switch ($this->module) {
+                        case "liqpay":
+                            $query = 'SELECT *, CONCAT(\''.self::ORDER_SEOPREFIX.'\', `id`) AS `seo_path`, CONCAT("Заказ №", `id`) AS `title`, "1" AS `active` FROM `'.ORDERS_TABLE.'` WHERE `id`=\''.intval(str_replace(self::ORDER_SEOPREFIX, '', $part)).'\' LIMIT 1';
+                            if(strpos($part, self::ORDER_SEOPREFIX)!==FALSE and $DB->Query($query) and ($row = $DB->fetchAssoc()) and !empty($row['id'])){
+                                $founded      = true;
+                                $arItem       = $row;
+                                $this->itemID = intval($row['id']);
+                                $this->addToBreadCrumbs($this->buildItemUrl(array_merge($arCategory, array('arPath'=>$this->getNavPath())), $row), $row['title']);
+                                $this->addToNavPath($row['seo_path']);
+                            } break;
                         case 'users':
                             $query = 'SELECT *, CONCAT(\''.self::USER_SEOPREFIX.'\', `id`) `seo_path` FROM `'.constant($tbl).'` WHERE `id`=\''.intval(str_replace(self::USER_SEOPREFIX, '', $part)).'\' LIMIT 1';
                             if(strpos($part, self::USER_SEOPREFIX)!==FALSE && $DB->Query($query) && ($row = $DB->fetchAssoc()) && !empty($row['id']) && $row['active']){
@@ -770,15 +780,13 @@ class UrlWL extends Url {
      */
     public function buildItemUrl(array $arCategory, array $arItem, $params=null, $anchor='', $page=1, $forPager=false, UrlFilters $Filters = null) {
         $data = self::prepareCategoryData($arCategory, $params, true);
-        
         if(empty($data['url'])){
             if(!empty($arItem['id'])){
                 $data['arPath'][] = $arItem['seo_path'];
             }
             $data = self::prepareUrlData($data, $page, $forPager, $Filters);
             $data['url'] = self::toUrl($data['arPath'], $this->showLang, $this->lang, ($forPager ? false : $this->incSuffix), $this->suffix, $data['arParams'], $anchor);
-        }
-        return $data['url'];
+        } return $data['url'];
     }
 
     /**
@@ -798,8 +806,7 @@ class UrlWL extends Url {
         if(empty($data['url'])){
             $data = self::prepareUrlData($data, $page, $forPager, $Filters);
             $data['url'] = self::toUrl($data['arPath'], $this->showLang, $this->lang, ($forPager ? false : $this->incSuffix), $this->suffix, $data['arParams'], $anchor);
-        }
-        return $data['url'];
+        } return $data['url'];
     }
 
     /**
@@ -832,8 +839,7 @@ class UrlWL extends Url {
             if($arCategory['pagetype'] == self::PAGE_TYPE_AJAX) {
                 $data['arParams']['ajax']='';
             }
-        }
-        return $data;
+        } return $data;
     }
 
     /**

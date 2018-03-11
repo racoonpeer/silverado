@@ -60,7 +60,7 @@ function CCheckout(){
             });
             $.validator.addMethod("ukrPhone", function(value, element) {
                 // allow any non-whitespace characters as the host part
-                return this.optional( element ) || /^\+380([0-9]{9})$/.test(value);
+                return this.optional( element ) || /^\+38([0-9\s]{14})$/.test(value);
             }, 'Please enter a valid phone number');
             self.form.validate({
                 errorPlacement: function (error, element) {
@@ -126,7 +126,7 @@ function CCheckout(){
             self.setUpRecepient(true);
             // Phone mask
             self.form.find("input[name=\"phone\"]").inputmask({
-                mask: "+380999999999",
+                mask: "+38 999 999 99 99",
                 greedy: false,
                 definitions: {
                     '*': {

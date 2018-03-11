@@ -311,9 +311,11 @@ textarea {
     padding-left:12px;
 }
 
-.form td{
-    height:25px;
-}
+.form {
+    td {
+        height:25px;
+    }
+} 
 
 .linkBg{
     background-color: #64a9d5;
@@ -354,30 +356,32 @@ textarea {
     padding-left:10px; 
     font-weight: bold; 
     float: left;
+    select{ 
+        border:1px ridge #DCDEDF; 
+    }
 }
+.settingsmenu {
+    a { 
+        color: #0075b1; 
+        font-size: 12px; 
+        font-weight: bold; 
+        text-decoration: none;
+    }
+} 
 
-.filter_box select{ 
-    border:1px ridge #DCDEDF; 
+#content {
+    a {
+        &.settings{
+            font-weight: bold;
+            color: #000;
+            text-decoration: underline;
+            margin-right: 10px;
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
 }
-
-.settingsmenu a{ 
-    color: #0075b1; 
-    font-size: 12px; 
-    font-weight: bold; 
-    text-decoration: none;
-}
-
-#content a.settings{
-    font-weight: bold;
-    color: #000;
-    text-decoration: underline;
-    margin-right: 10px;
-}
-
-#content a.settings:hover {
-    text-decoration: none;
-}
-
 .userinfobox{
     float:right; 
     width:350px; 
@@ -386,13 +390,12 @@ textarea {
 }
 
 .subchildrens{
-  /*  float:right; */
-  font-weight:bold;
-}
-
-.subchildrens.new_comment{
-    color: red;
+    /*  float:right; */
     font-weight:bold;
+    &.new_comment{
+      color: red;
+      font-weight:bold;
+  }
 }
 
 /* Module Spec Start  */
@@ -1554,6 +1557,39 @@ ul.inline li{
             -ms-transform: rotate(-180deg);
             -o-transform: rotate(-180deg);
             transform: rotate(-180deg);
+        }
+    }
+}
+
+.orders-list {
+    tbody {
+        tr {
+            &.order_new {
+                td {
+                    background-color: #FFC1C1;
+                }
+            }
+            &.order_progress {
+                td {
+                    background-color: #FFFFD5; 
+                }
+            }
+            &.order_sent {
+                td {
+                    background-color: #D1DFFF; 
+                }
+            }
+            &.order_completed {
+                td {
+                    background-color: #d4edda; 
+                }
+            }
+            &.order_cancelled {
+                td {
+                    background-color: #B6B6B6; 
+                    opacity: 0.5;
+                }
+            }
         }
     }
 }

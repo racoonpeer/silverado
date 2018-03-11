@@ -14,9 +14,10 @@ $formData = array();
 if (!empty($_POST)) {
     $_POST = PHPHelper::dataConv($_POST, "utf-8", WLCMS_SYSTEM_ENCODING);
     $Validator->validateGeneral($_POST["firstname"], "Введите имя", "firstname");
-    $Validator->validatePhone($_POST["phone"], "Введите номер телефона", "phone");
+    $Validator->validateGeneral($_POST["phone"], "Введите номер телефона", "phone");
     if ($Validator->foundErrors()) $arrPageData["errors"] = $Validator->getErrors();
     else {
+        $_POST['phone']   = preg_replace("/\s/", "", $_POST['phone']);
         $smarty->assign("arData", $_POST);
         $text    = $smarty->fetch("mail/callback_admin.tpl");
         $subject = "Новый заказ обратного звонка с сайта {$_SERVER["HTTP_HOST"]}";
@@ -38,5 +39,4 @@ $smarty->assign('IS_DEV',          $IS_DEV);
 $smarty->assign('IS_AJAX',         $IS_AJAX);
 $json["output"] = $smarty->fetch("module/{$module}.tpl");
 
-echo json_encode(PHPHelper::dataConv($json));
-exit;
+die(json_encode(PHPHelper::dataConv($json)));

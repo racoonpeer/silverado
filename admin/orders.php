@@ -27,8 +27,8 @@ $arrPageData['current_url']   = $arrPageData['admin_url'].$arrPageData['page_url
 $arrPageData['headTitle']     = ORDERS.$arrPageData['seo_separator'].$arrPageData['headTitle'];
 $arrPageData['items_on_page'] = 20;
 $arrPageData['arStatus']      = getComplexRowItems(ORDER_STATUS_TABLE, '*', '', 'id');
-$arrPageData['arPayments']    = getComplexRowItems(PAYMENT_TYPES_TABLE, '*');
-$arrPageData['arShippings']   = getComplexRowItems(SHIPPING_TYPES_TABLE, '*');
+$arrPageData['arPayments']    = getComplexRowItems(PAYMENT_TYPES_TABLE, '*', "WHERE `active`>0");
+$arrPageData['arShippings']   = getComplexRowItems(SHIPPING_TYPES_TABLE, '*', "WHERE `active`>0");
 $arrPageData['arTypes']       = getComplexRowItems(ORDER_TYPES_TABLE, '*');
 $arrPageData['filters']       = $filters;
 $arrPageData['orders_url']    = $arrOrder['get'] ? $arrOrder['get'] : array();
@@ -210,29 +210,24 @@ if ($itemID and ($task=='editItem' or $task=='sendConfirm')) {
             $arrPageData['filter_url'] .= '&filters[date][to]='.$filters['date']['to'];
         }
     }
-    $arrPageData['arrOrderLinks'] = getOrdersLinks(
-        array (
-            'default'   => HEAD_LINK_SORT_DEFAULT, 
-            'firstname' => 'Имени', 
-            'status'    => 'Статус',
-            'created'   => 'По дате'
-        ), $arrOrder['get'], $arrPageData['admin_url'].$arrPageData['filter_url'], 'pageorder', '_');
     // Total pages and Pager
-    $orders_url = '';
-    if ($arrPageData['orders_url']) {
-        foreach ($arrPageData['orders_url'] as $k=> $value) {
-            $orders_url .= '&'.$k.'='.$value;
-        }
-    }
     $arrPageData['total_items'] = intval(getValueFromDB(ORDERS_TABLE." t", 'COUNT(*)', $where, 'count'));
-    $arrPageData['pager']       = getPager($page, $arrPageData['total_items'], $arrPageData['items_on_page'], $arrPageData['admin_url'].$arrPageData['filter_url'].$orders_url);
+    $arrPageData['pager']       = getPager($page, $arrPageData['total_items'], $arrPageData['items_on_page'], $arrPageData['admin_url'].$arrPageData['filter_url']);
     $arrPageData['total_pages'] = $arrPageData['pager']['count'];
     $arrPageData['offset']      = ($page-1)*$arrPageData['items_on_page'];
     // END Total pages and Pager
-
-    $order  = "ORDER BY ".(!empty($arrOrder['mysql']) ? 't.'.implode(', t.', $arrOrder['mysql']) : "t.`created` DESC, t.`id`");
+    $order  = "ORDER BY t.`created` DESC, t.`id`";
     $limit  = "LIMIT {$arrPageData['offset']}, {$arrPageData['items_on_page']}";
-    $query  = "SELECT t.* FROM `".ORDERS_TABLE."` t $where $order $limit";
+    $query  = "SELECT t.*, "
+            . "(SELECT `title` FROM `".ORDER_STATUS_TABLE."` WHERE `id`=t.`status`) AS `statusname`, "
+            . "(SELECT `title` FROM `".ORDER_TYPES_TABLE."` WHERE `id`=t.`type`) AS `typename`, "
+            . "(CASE WHEN (t.`status`=2) THEN 'order_progress' "
+            . "     WHEN (t.`status`=3) THEN 'order_sent' "
+            . "     WHEN (t.`status`=4) THEN 'order_completed' "
+            . "     WHEN (t.`status`=5) THEN 'order_cancelled' "
+            . "     ELSE 'order_new'"
+            . "END) AS `classname` "
+            . "FROM `".ORDERS_TABLE."` t $where $order $limit";
     $result = mysql_query($query);
     if (!$result) {
         $arrPageData['errors'][] = "SELECT OPERATIONS: " . mysql_error();
@@ -244,11 +239,11 @@ if ($itemID and ($task=='editItem' or $task=='sendConfirm')) {
     }
 }
 // Include Need CSS and Scripts For This Page To Array
-$arrPageData['headCss'][]     = '<link href="/js/libs/highslide/highslide.css" type="text/css" rel="stylesheet" />';
+$arrPageData['headCss'][]     = '<link href="/js/libs/highslide/highslide.css" type="text/css" rel="stylesheet"/>';
+$arrPageData['headCss'][]     = '<link href="/js/jquery/themes/smoothness/jquery.ui.all.css" type="text/css" rel="stylesheet"/>';
 $arrPageData['headScripts'][] = '<script src="/js/libs/highslide/highslide-full.packed.js" type="text/javascript"></script>';
 $arrPageData['headScripts'][] = '<script src="/js/libs/highslide/langs/'.$lang.'.js" type="text/javascript"></script>';
 $arrPageData['headScripts'][] = '<script src="/js/libs/highslide/highslide.config.admin.js" type="text/javascript"></script>';
-$arrPageData['headCss'][]     = '<link href="/js/jquery/themes/smoothness/jquery.ui.all.css" type="text/css" rel="stylesheet" />';
 $arrPageData['headScripts'][] = '<script src="/js/jquery/ui/jquery.ui.core.js" type="text/javascript"></script>';
 $arrPageData['headScripts'][] = '<script src="/js/jquery/ui/jquery.ui.autocomplete.js" type="text/javascript"></script>';
 $arrPageData['headScripts'][] = '<script src="/js/jquery/ui/jquery.ui.widget.js" type="text/javascript"></script>';

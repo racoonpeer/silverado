@@ -28,6 +28,10 @@ class Filters {
     private $_UrlWL = null;
     // array of filters by categories
     private $_categoriesFilters = array();
+    // array of filters by categories
+    private $stopWords = array(
+        "имитация","синтетический","гидротермальный"
+    );
     /**
      * 
      * @param UrlWL $UrlWL
@@ -288,6 +292,7 @@ class Filters {
         $row['url'] = $this->getUrl($Filters);
         if (isset($row["image"]) and file_exists($this->filters_files_path.$row["image"])) $row["image"] = $this->filters_files_url.$row["image"];
         else $row["image"] = $this->filters_files_url."noimage.jpg";
+        $row["title"] = $this->preareFilterItemTitle($row["title"]);
         unset($Filters);
     }
     /**
@@ -393,5 +398,11 @@ class Filters {
     
     public function setSearchText($searchtext = "") {
         $this->searchtext = $searchtext;
+    }
+    
+    public function preareFilterItemTitle($title = "") {
+        $title = str_replace($this->stopWords, "", $title);
+        $title = preg_replace("/\(\s?\)/", "", $title);
+        return trim($title);
     }
 }

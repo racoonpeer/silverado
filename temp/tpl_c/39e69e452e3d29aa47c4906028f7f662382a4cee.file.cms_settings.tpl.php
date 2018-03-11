@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-11-14 21:30:44
+<?php /* Smarty version Smarty-3.1.14, created on 2018-02-13 21:07:15
          compiled from "tpl/backend/weblife/module/cms_settings.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:20744555635a0b4464d0b468-99917358%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '39e69e452e3d29aa47c4906028f7f662382a4cee' => 
     array (
       0 => 'tpl/backend/weblife/module/cms_settings.tpl',
-      1 => 1510389148,
+      1 => 1517155751,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_5a0b44654d6d35_50917211',
   'variables' => 
   array (
     'arrPageData' => 0,
@@ -22,8 +24,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'arItem' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_5a0b44654d6d35_50917211',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5a0b44654d6d35_50917211')) {function content_5a0b44654d6d35_50917211($_smarty_tpl) {?><div id="sectionTitle">Сверх секретные настройки</div>
 <div id="messages" class="<?php if (!empty($_smarty_tpl->tpl_vars['arrPageData']->value['errors'])){?>error<?php }elseif(!empty($_smarty_tpl->tpl_vars['arrPageData']->value['messages'])){?>info<?php }else{ ?>hidden_block<?php }?>">
@@ -54,10 +54,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 " name="tab" id="currentTab"/>
     <div class="tabsContainer">
         <ul class="nav">
-            <li><a href="javascript:void(0);" data-target="main" <?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['tab']=='main'){?>class="active"<?php }?>>Настройки базы</a></li>
-            <li><a href="javascript:void(0);" data-target="images" <?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['tab']=='images'){?>class="active"<?php }?>>Настройки изображений</a></li>
-            <li><a href="javascript:void(0);" data-target="modules" <?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['tab']=='modules'){?>class="active"<?php }?>>Управление модулями</a></li>
-            <li><a href="javascript:void(0);" data-target="users" <?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['tab']=='users'){?>class="active"<?php }?>>Управление доступами</a></li>
+            <li><a href="#main" data-target="main" <?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['tab']=='main'){?>class="active"<?php }?>>Настройки базы</a></li>
+            <li><a href="#images" data-target="images" <?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['tab']=='images'){?>class="active"<?php }?>>Настройки изображений</a></li>
+            <li><a href="#modules" data-target="modules" <?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['tab']=='modules'){?>class="active"<?php }?>>Управление модулями</a></li>
+            <li><a href="#users" data-target="users" <?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['tab']=='users'){?>class="active"<?php }?>>Управление доступами</a></li>
         </ul>
         <div class="tab_line"></div>
         <ul class="tabs">

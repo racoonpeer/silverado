@@ -64,7 +64,7 @@ $arrPageData['files_path']    = prepareDirPath($arrPageData['files_url'], true);
 $arrPageData['catalogfiles_url']  = UPLOAD_URL_DIR.$module.'/'.$itemID.'/';
 $arrPageData['catalogfiles_path'] = prepareDirPath($arrPageData['catalogfiles_url'], true);
 $arrPageData['items_on_page'] = 20;
-$arrPageData['arBrands']      = array();
+$arrPageData['arBrands']      = getComplexRowItems(BRANDS_TABLE, '*', '', '`title`');
 $arrPageData['attrGroups']    = getComplexRowItems(ATTRIBUTE_GROUPS_TABLE.' ag', 'ag.*', 'WHERE ag.`active`=1', 'ag.`order`');
 if(!empty($arrPageData['attrGroups'])) {
     foreach ($arrPageData['attrGroups'] as $key => $value) {

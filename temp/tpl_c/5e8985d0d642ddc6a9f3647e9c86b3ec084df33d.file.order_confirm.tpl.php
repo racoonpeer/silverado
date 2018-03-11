@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2018-01-28 17:48:08
+<?php /* Smarty version Smarty-3.1.14, created on 2018-02-18 20:02:41
          compiled from "tpl/backend/weblife/mail/order_confirm.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:4964817815a64ffba3e8d38-80751636%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '5e8985d0d642ddc6a9f3647e9c86b3ec084df33d' => 
     array (
       0 => 'tpl/backend/weblife/mail/order_confirm.tpl',
-      1 => 1517152478,
+      1 => 1518976851,
       2 => 'file',
     ),
   ),
@@ -29,7 +29,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <?php if ($_valid && !is_callable('content_5a64ffba65c5f9_33295075')) {function content_5a64ffba65c5f9_33295075($_smarty_tpl) {?><!DOCTYPE html>
 <html style='color:#212121; font-family:"OpenSans", Tahoma, Geneva, sans-serif; font-size:15px; margin:0; min-width:794px; padding:0; scroll-behavior:smooth; width:100%' width="100%">
     <head>
-        <title>Заказ №<?php echo $_smarty_tpl->tpl_vars['arData']->value['oid'];?>
+        <title>Заказ №<?php echo $_smarty_tpl->tpl_vars['arData']->value['id'];?>
 </title>
         <meta name="viewport" content="width=794"/>
         <meta http-equiv="Content-Type" content="text/html; charset=windows-1251"/>
@@ -39,19 +39,18 @@ $_valid = $_smarty_tpl->decodeProperties(array (
             <div class="print-page" style="padding:3.5em 5em">
                 <div class="print-head clearfix" style="padding-bottom:1.4cm">
                     <div class="print-logo" style="text-align: center;">
-                        <a href="<?php echo $_smarty_tpl->tpl_vars['arData']->value['server'];?>
+                        <a href="<?php echo @constant('WLCMS_HTTP_HOST');?>
 " style="color:#09719C; text-decoration:none">
-                            <img src="<?php echo $_smarty_tpl->tpl_vars['arData']->value['server'];?>
-/images/public/logo-top.png" alt="Silverado" title="Silverado"/>
+                            <img src="<?php echo @constant('WLCMS_HTTP_HOST');?>
+/images/public/logo-top.png" alt="SILVERADO" title="SILVERADO"/>
                         </a>
                     </div>
                 </div>
                 <div class="print-order">
-                    <h2 class="print-order-title" style="margin-bottom:1em; margin-top:0; font-size:2em; font-weight:400">Подтверждение заказа № <?php echo $_smarty_tpl->tpl_vars['arData']->value['oid'];?>
-!</h2>
+                    <h2 class="print-order-title" style="margin-bottom:1em; margin-top:0; font-size:2em; font-weight:400">Подтверждение заказа № <?php echo $_smarty_tpl->tpl_vars['arData']->value['id'];?>
+</h2>
                     <p style="font-size: 1.5em;"><?php if (!empty($_smarty_tpl->tpl_vars['arData']->value['firstname'])){?>Здравствуйте, <?php echo $_smarty_tpl->tpl_vars['arData']->value['firstname'];?>
-!<br/><?php }?>
-                        Ваш заказ подтвержден. Спасибо что выбрали нас!</p>
+!<br/><?php }?>Ваш заказ подтвержден. Спасибо что выбрали нас!</p>
                     <div class="print-cart">
                         <table style="border-collapse:collapse; border-spacing:0" width="100%" cellspacing="0" cellpadding="0">
                             <tr>
@@ -70,10 +69,10 @@ $_smarty_tpl->tpl_vars['arItem']->_loop = true;
                             <tr>
                                 <td width="17%" rowspan="2" align="left" valign="top" style="padding-top:1.25em; padding-bottom:1.25em; border-bottom:1px solid #b9b9b9;">
 <?php if (!empty($_smarty_tpl->tpl_vars['arItem']->value['image'])){?>
-                                    <a href="<?php echo $_smarty_tpl->tpl_vars['arData']->value['server'];?>
+                                    <a href="<?php echo @constant('WLCMS_HTTP_HOST');?>
 <?php echo $_smarty_tpl->tpl_vars['arItem']->value['link'];?>
 " target="_blank" style="color:#09719C; text-decoration:none">
-                                        <img src="<?php echo $_smarty_tpl->tpl_vars['arData']->value['server'];?>
+                                        <img src="<?php echo @constant('WLCMS_HTTP_HOST');?>
 <?php echo $_smarty_tpl->tpl_vars['arItem']->value['image']['small_image'];?>
 " alt="<?php echo $_smarty_tpl->tpl_vars['arItem']->value['ptitle'];?>
 " title="<?php echo $_smarty_tpl->tpl_vars['arItem']->value['ptitle'];?>
@@ -82,7 +81,7 @@ $_smarty_tpl->tpl_vars['arItem']->_loop = true;
 <?php }?>
                                 </td>
                                 <td align="left" valign="top" colspan="4" style="font-size:1.25em; line-height:1.538em; padding-bottom:0.5em; padding-top:1.25em;">
-                                    <a href="<?php echo $_smarty_tpl->tpl_vars['arData']->value['server'];?>
+                                    <a href="<?php echo @constant('WLCMS_HTTP_HOST');?>
 <?php echo $_smarty_tpl->tpl_vars['arItem']->value['link'];?>
 " target="_blank" style="color:#09719C; text-decoration:none"> <?php echo $_smarty_tpl->tpl_vars['arItem']->value['title'];?>
  <?php echo $_smarty_tpl->tpl_vars['arItem']->value['pcode'];?>
@@ -128,6 +127,23 @@ $_smarty_tpl->tpl_vars['value']->_loop = true;
                             </tr>
                         </table>
                     </div>
+<?php if ($_smarty_tpl->tpl_vars['arData']->value['payment_id']==Checkout::LP_PAYMENT_ID){?>
+                    <br/>
+                    <br/>
+                    <div style="max-width:240px;height:50px;line-height:50px;border-radius:2px;background-color:#7ab72b; margin: 0 auto;">
+                        <a href="<?php echo $_smarty_tpl->tpl_vars['arData']->value['liqpay_url'];?>
+" style="font-weight:600;font-size: 1.5em;text-align:center;color:#ffffff;display:block;text-decoration:none;outline:none" target="_blank"> Оплатить заказ </a>
+                    </div>
+                    <br/>
+                    <p style="text-align: center;">
+                        <img src="<?php echo @constant('WLCMS_HTTP_HOST');?>
+/images/public/mastercard.png" alt="MasterCard"/>&emsp;&emsp;
+                        <img src="<?php echo @constant('WLCMS_HTTP_HOST');?>
+/images/public/visa.png" alt="Visa"/>&emsp;&emsp;
+                        <img src="<?php echo @constant('WLCMS_HTTP_HOST');?>
+/images/public/privatbank.png" alt="PrivatBank"/>
+                    </p>
+<?php }?>
                 </div>
                 <div class="print-shedule" style="padding:1cm 0 0 0;">
                     <div class="print-shedule-phone" style="font-size:1.38em; letter-spacing:-0.025em; padding-bottom:0.1cm">

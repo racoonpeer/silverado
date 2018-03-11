@@ -22,10 +22,11 @@ if ($itemID and $item=getSimpleItemRow($itemID, CATALOG_TABLE)) {
     if (!empty($_POST)) {
         $_POST = PHPHelper::dataConv($_POST, "utf-8", WLCMS_SYSTEM_ENCODING);
         $Validator->validateGeneral($_POST["firstname"], "Введите имя", "firstname");
-        $Validator->validatePhone($_POST["phone"], "Введите номер телефона", "phone");
+        $Validator->validateGeneral($_POST["phone"], "Введите номер телефона", "phone");
         if ($Validator->foundErrors()) $arrPageData["errors"] = $Validator->getErrors();
         else {
             $arPostData = $_POST;
+            $arPostData['phone']   = preg_replace("/\s/", "", $arPostData['phone']);
             $arPostData['created'] = date('Y-m-d H:i:s');
             $arPostData['price']   = $item["price"];
             $arPostData['qty']     = 1;

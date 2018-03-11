@@ -2,11 +2,11 @@
 # php_value magic_quotes_gpc 1
 #php_value display_errors 1
 #php_value error_reporting 7
-AuthType Basic
-AuthName "Private zone. Only for administrator!"
+#AuthType Basic
+#AuthName "Private zone. Only for administrator!"
 #AuthUserFile /volumes/k2/htdocs/silverado/www/.htpasswd
-AuthUserFile /home/silveradocom/public_html/.htpasswd
-require valid-user
+#AuthUserFile /home/silveradocom/public_html/.htpasswd
+#require valid-user
 
 ##### Additional configuration #################################################
 DirectoryIndex index.php index.html
@@ -18,17 +18,19 @@ AddType text/css .css
 AddType text/xml .xml
 AddType application/octet-stream .doc .mov .avi .xls
 AddType application/pdf .pdf
+AddType image/svg+xml svg svgz
 
 ##### Rewrite Rules ############################################################
 <IfModule mod_rewrite.c>
-    Options +FollowSymLinks
+    Options +SymLinksIfOwnerMatch
     RewriteEngine On
     RewriteBase /
+
+#    RewriteCond %{HTTP:SSL} !=1 [NC]
+#    RewriteRule ^(.*)$ https://silverado.com.ua/$1 [R=301,L]
+
     RewriteCond %{HTTP_HOST} ^www\.silverado\.com\.ua$ [NC]
-    RewriteRule ^(.*)$ http://silverado.com.ua/$1 [R=301,L]
-    RewriteCond %{REQUEST_URI} ^/([ruaen]{2})$ [NC]
-    RewriteRule ^(.*)$ http://%{HTTP_HOST}/$1/ [R=301,L]
-    #RewriteRule ^index\.php$ - [L]
+    RewriteRule ^(.*)$ https://silverado.com.ua/$1 [R=301,L]
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule . index.php [L]
@@ -63,7 +65,7 @@ AddType application/pdf .pdf
         Header set Cache-Control "max-age=604800, must-revalidate"
     </FilesMatch>
     #кэшировать флэш и изображени¤ на мес¤ц
-    <FilesMatch "\.(flv|swf|ico|gif|jpg|jpeg|png)$">
+    <FilesMatch "\.(flv|swf|ico|gif|jpg|jpeg|png|svg)$">
         Header set Cache-Control "max-age=604800, must-revalidate"
     </FilesMatch>
     #отключить кэширование
@@ -83,6 +85,7 @@ AddType application/pdf .pdf
     ExpiresByType image/jpeg "access plus 2592000 seconds"
     ExpiresByType image/png "access plus 2592000 seconds"
     ExpiresByType image/gif "access plus 2592000 seconds"
+    ExpiresByType image/svg+xml "access plus 2592000 seconds"
     ExpiresByType application/x-shockwave-flash "access plus 2592000 seconds"
     #кэшировать css, javascript и текстовые файлы на одну неделю
     ExpiresByType text/css "access plus 604800 seconds"
@@ -96,8 +99,8 @@ AddType application/pdf .pdf
 </ifModule>
 
 <IfModule mod_gzip.c>
-    mod_gzip_on         Yes
-    mod_gzip_dechunk    Yes
+    mod_gzip_on           Yes
+    mod_gzip_dechunk      Yes
     mod_gzip_item_include file		\.(html?|txt|css|js|php|pl)$
     mod_gzip_item_include mime		^text\.*
     mod_gzip_item_include mime		^application/x-javascript.*

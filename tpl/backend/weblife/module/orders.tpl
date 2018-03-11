@@ -111,8 +111,8 @@
                             <br/>
                             <br/>
                             <div>
-                                <a class="buttons left" onclick="Orders.sendConfirmation();" style="width:200px;">
-                                    &nbsp;Отправить подтверждение заказа&nbsp;
+                                <a class="buttons left" data-option='confirm' data-confirm="1" onclick="Orders.updateOrder(this);" style="width:200px;">
+                                    &nbsp;Отправить подтверждение&nbsp;
                                 </a>
                                 <span id="confirm" class="left" style="margin:10px;">
 <{if $item.confirmed==1}>
@@ -139,25 +139,8 @@
                         </td>
                     </tr>
                 </table>
-
                 <div class="loader hidden"><img src="/images/loader.gif"/></div>
                 <table width="100%" border="0" cellspacing="0" cellpadding="1" class="list order" id="editarea">
-                    <tr>
-                        <td  width="100">Статус заказа:</td>
-                        <td width="150">
-                            <select name="id" class="nosize_field" style="width: 140px;" onchange="Orders.unsetDisabled(this)">       
-<{section name=i loop=$arrPageData.arStatus}>
-                                <option value="<{$arrPageData.arStatus[i].id}>" <{if $arrPageData.arStatus[i].id==$item.status}>selected<{/if}>><{$arrPageData.arStatus[i].title}></option>
-<{/section}>
-                            </select>
-                        </td>
-                        <td style="padding:10px;">
-                            <textarea class="nosize_field" disabled style="width: 100%; height: 50px" name="comment"></textarea>
-                        </td>
-                        <td width="90">
-                            <a class="buttons disabled" data-status="<{$item.status}>" data-option="status" onclick="Orders.updateOrder(this);">Сохранить</a>
-                        </td>
-                    </tr>
                     <tr>
                         <td>Оплата:</td>
                         <td>
@@ -188,6 +171,37 @@
                         </td>
                         <td>
                             <a class="buttons disabled" data-shipping="<{$item.shipping_id}>" data-option="shipping" onclick="Orders.updateOrder(this);">Сохранить</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td  width="100">Статус выполнения:</td>
+                        <td width="150">
+                            <select name="id" class="nosize_field" style="width: 140px;" onchange="Orders.unsetDisabled(this)">       
+<{section name=i loop=$arrPageData.arStatus}>
+                                <option value="<{$arrPageData.arStatus[i].id}>" <{if $arrPageData.arStatus[i].id==$item.status}>selected<{/if}>><{$arrPageData.arStatus[i].title}></option>
+<{/section}>
+                            </select>
+                        </td>
+                        <td style="padding:10px;">
+                            <textarea class="nosize_field" disabled style="width: 100%; height: 50px" name="comment"></textarea>
+                        </td>
+                        <td width="90">
+                            <a class="buttons disabled" data-status="<{$item.status}>" data-option="status" onclick="Orders.updateOrder(this);">Сохранить</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td  width="100">Статус оплаты:</td>
+                        <td width="150">
+                            <select name="id" class="nosize_field" style="width: 140px;" onchange="Orders.unsetDisabled(this)">       
+                                <option value="0" <{if $item.payment_status==0}>selected<{/if}>>Неоплачен</option>
+                                <option value="1" <{if $item.payment_status==1}>selected<{/if}>>Оплачен</option>
+                            </select>
+                        </td>
+                        <td style="padding:10px;">
+                            <textarea class="nosize_field" disabled style="width: 100%; height: 50px" name="comment"></textarea>
+                        </td>
+                        <td width="90">
+                            <a class="buttons disabled" data-status="<{$item.payment_status}>" data-option="payment_status" onclick="Orders.updateOrder(this);">Сохранить</a>
                         </td>
                     </tr>
                 </table>
@@ -275,32 +289,28 @@
 <{else}>
 <div class="clear"></div>       
 <form method="GET" id="filtersForm" action="<{$arrPageData.current_url|cat:$arrPageData.filter_url}>">
-    <input type="hidden" name="module" value="<{$arrPageData.module}>" />
-    <input type="hidden" name="cid" value="<{$arrPageData.cid}>" />
-<{if !empty($arrPageData.orders_url)}>
-<{foreach name=i from=$arrPageData.orders_url item=name key=value}>
-    <input type="hidden" value="<{$name}>" name="<{$value}>"/>
-<{/foreach}>
-<{/if}>
+    <input type="hidden" name="module" value="<{$arrPageData.module}>"/>
     <table width="100%" border="0" cellspacing="1" cellpadding="0" class="list">
         <tr style="height:35px">
-            <td width="150">Показать:</td> 
+            <td>за период: 
+                c <input type="text" class="nosize_field" id="date_from" size="10" name="filters[date][from]" value="<{if isset($arrPageData.filters.date.from) && $arrPageData.filters.date.from}><{$arrPageData.filters.date.from}><{/if}>"/> <a href="javascript:void(0)" onclick="$('#date_from').val('')">x</a>
+                по <input type="text" size="10" class="nosize_field" id="date_to" name="filters[date][to]" value="<{if isset($arrPageData.filters.date.to) && $arrPageData.filters.date.to}><{$arrPageData.filters.date.to}><{/if}>"/> <a href="javascript:void(0)" onclick="$('#date_to').val('')">x</a>
+            </td>
+            <td>
 <{section name=j loop=$arrPageData.arStatus}>
-            <td align="center"><label><input type="checkbox" <{if isset($arrPageData.filters.status) && in_array($arrPageData.arStatus[j].id, $arrPageData.filters.status)}>checked<{/if}> value="<{$arrPageData.arStatus[j].id}>" name="filters[status][]"/> <{$arrPageData.arStatus[j].title}></label></td>
+                <input type="checkbox" name="filters[status][]" id="status_<{$arrPageData.arStatus[j].id}>" value="<{$arrPageData.arStatus[j].id}>" <{if isset($arrPageData.filters.status) and in_array($arrPageData.arStatus[j].id, $arrPageData.filters.status)}>checked<{/if}>/>
+                <label for="status_<{$arrPageData.arStatus[j].id}>"><{$arrPageData.arStatus[j].title}></label>&emsp;
 <{/section}>
-            <td >за период: 
-                c <input type="text" class="nosize_field" id="date_from" size="7" name="filters[date][from]" value="<{if isset($arrPageData.filters.date.from) && $arrPageData.filters.date.from}><{$arrPageData.filters.date.from}><{/if}>"/> <a href="javascript:void(0)" onclick="$('#date_from').val('')">x</a>
-                по <input type="text" size="7" class="nosize_field" id="date_to" name="filters[date][to]" value="<{if isset($arrPageData.filters.date.to) && $arrPageData.filters.date.to}><{$arrPageData.filters.date.to}><{/if}>"/> <a href="javascript:void(0)" onclick="$('#date_to').val('')">x</a></td> 
-            <td  width="150" align="right" rowspan="2">
+            </td>
+            <td width="150" align="right" rowspan="2">
                 <button type="submit" class="buttons"><{$smarty.const.SITE_FOUND}></button>
+                <button type="reset" class="buttons" onclick="window.location.assign('<{$arrPageData.admin_url}>');">Сбросить фильтр</button>
             </td>
         </tr>
         <tr style="height:35px">
-            <td>Поиск по заказам:</td>
-            <td colspan="<{$arrPageData.arStatus|count}>">
-                <input size="67" type="text" placeholder="введите имя и/или фамилию или номер заказа" class="field" id="categorySearch" name="filters[title]" value="<{if isset($arrPageData.filters.title)}><{$arrPageData.filters.title}><{/if}>" />
-            </td>
-            <td>
+            <td colspan="2">
+                <input size="48" type="text" placeholder="введите имя и/или фамилию или номер заказа" class="field" id="categorySearch" name="filters[title]" value="<{if isset($arrPageData.filters.title)}><{$arrPageData.filters.title}><{/if}>" />
+                <{str_repeat("&emsp;", 2)}>
                 Тип заказа: &nbsp;
                 <select name="filters[type]">
                     <option value=""> -- Не выбрано -- </option>
@@ -314,52 +324,43 @@
 </form>
 
 <form method="post" action="<{$arrPageData.current_url|cat:"&task=reorderItems"}>" name="reorderItems">
-    <table width="100%" border="0" cellspacing="1" cellpadding="0" class="list">
-        <tr>
-            <td id="headb" align="center" width="20">id</td>
-            <td id="headb" align="center" width="90">Тип заказа</td>
-            <td id="headb" align="center" width="90">Статус заказа</td>
-            <td id="headb" align="left">Клиент</td>
-            <td id="headb" align="center" width="100">Телефон</td>
-            <td id="headb" align="center" width="95"><{$smarty.const.HEAD_DATE_ADDED}></td>
-            <td id="headb" align="center" width="38"><{$smarty.const.HEAD_EDIT}></td>
-            <td id="headb" align="center" width="38"><{$smarty.const.HEAD_DELETE}></td>
-        </tr>       
+    <table width="100%" border="0" cellspacing="1" cellpadding="0" class="list orders-list">
+        <thead>
+            <tr>
+                <td id="headb" align="center" width="20">№</td>
+                <td id="headb" align="center" width="95"><{$smarty.const.HEAD_DATE_ADDED}></td>
+                <td id="headb" align="left">Клиент</td>
+                <td id="headb" align="center" width="100">Телефон</td>
+                <td id="headb" align="center" width="90">Тип заказа</td>
+                <td id="headb" align="center" width="120">Статус</td>
+                <td id="headb" align="center" width="90">Оплачен</td>
+                <td id="headb" align="center" width="38"><{$smarty.const.HEAD_EDIT}></td>
+                <td id="headb" align="center" width="38"><{$smarty.const.HEAD_DELETE}></td>
+            </tr>
+        </thead>
+        <tbody>
 <{section name=i loop=$items}>
-         <tr>
-            <td align="center"><{$items[i].id}></td>
-            <td align="center">
-<{section name=j loop=$arrPageData.arTypes}>
-<{if $arrPageData.arTypes[j].id==$items[i].type}>
-                <{$arrPageData.arTypes[j].title}>
-<{/if}>
+            <tr class="<{$items[i].classname}>">
+               <td align="center"><{$items[i].id}></td>
+               <td align="center"><{$items[i].created|date_format:"%d.%m.%y %H:%M"}></td>
+               <td><{$items[i].title}></td>
+               <td align="center"><{$items[i].phone}></td>
+               <td align="center"><{$items[i].typename}></td>
+               <td align="center"><{$items[i].statusname}></td>
+               <td align="center"><{if $items[i].payment_status>0}>Да<{else}>Нет<{/if}></td>
+               <td align="center">
+                   <a href="<{$arrPageData.current_url|cat:$arrPageData.filter_url|cat:"&task=editItem&itemID="|cat:$items[i].id}>" title="<{$smarty.const.LABEL_EDIT}>">
+                       <img src="<{$arrPageData.system_images}>edit.png" alt="<{$smarty.const.LABEL_EDIT}>"/>
+                   </a>
+               </td>
+               <td align="center">
+                   <a href="<{$arrPageData.current_url|cat:$arrPageData.filter_url|cat:"&task=deleteItem&itemID="|cat:$items[i].id}>" onclick="return confirm('<{$smarty.const.CONFIRM_DELETE}>');" title="<{$smarty.const.LABEL_DELETE}>">
+                      <img src="<{$arrPageData.system_images}>delete.png" alt="<{$smarty.const.LABEL_DELETE}>" title="<{$smarty.const.LABEL_DELETE}>"/>
+                   </a>
+               </td>
+           </tr>
 <{/section}>
-            </td>
-            <td align="center">
-<{section name=j loop=$arrPageData.arStatus}>
-<{if $arrPageData.arStatus[j].id==$items[i].status}>
-                <{$arrPageData.arStatus[j].title}>
-<{/if}>
-<{/section}>
-            </td>
-            <td>
-                <a href="<{$arrPageData.current_url|cat:$arrPageData.filter_url|cat:"&task=editItem&itemID="|cat:$items[i].id}>"><{$items[i].title}></a>
-            </td>
-            <td align="center"><{$items[i].phone}></td>
-            <td align="center"><{$items[i].created|date_format:"%d.%m.%y %H:%M"}></td>
-
-            <td align="center" >
-                <a href="<{$arrPageData.current_url|cat:$arrPageData.filter_url|cat:"&task=editItem&itemID="|cat:$items[i].id}>" title="<{$smarty.const.LABEL_EDIT}>">
-                    <img src="<{$arrPageData.system_images}>edit.png" alt="<{$smarty.const.LABEL_EDIT}>"/>
-                </a>
-            </td>
-            <td align="center">
-                <a href="<{$arrPageData.current_url|cat:$arrPageData.filter_url|cat:"&task=deleteItem&itemID="|cat:$items[i].id}>" onclick="return confirm('<{$smarty.const.CONFIRM_DELETE}>');" title="<{$smarty.const.LABEL_DELETE}>">
-                   <img src="<{$arrPageData.system_images}>delete.png" alt="<{$smarty.const.LABEL_DELETE}>" title="<{$smarty.const.LABEL_DELETE}>"/>
-                </a>
-            </td>
-        </tr>
-<{/section}>
+        </tbody>
     </table>
     <table width="100%" border="0" cellspacing="1" cellpadding="0">
         <tr>

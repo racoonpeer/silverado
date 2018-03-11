@@ -6,7 +6,7 @@
 defined('WEBlife') or die( 'Restricted access' ); // no direct access
 
 require_once('include/classes/Banners.php');
-Banners::deActivatePositions(array(3,4));
+Banners::deActivatePositions(array(4));
 
 # ##############################################################################
 // //////////////////////// OPERATION PAGE VARIABLE \\\\\\\\\\\\\\\\\\\\\\\\\\\\

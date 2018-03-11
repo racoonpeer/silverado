@@ -24,7 +24,7 @@
         $(function(){
             var form = $("#quickCheckoutForm");
             form.find("input[name=\"phone\"]").inputmask({
-                mask: "+380999999999",
+                mask: "+38 999 999 99 99",
                 greedy: false,
                 definitions: {
                     '*': {

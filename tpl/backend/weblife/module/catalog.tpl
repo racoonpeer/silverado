@@ -75,6 +75,18 @@
                     </tr>
 <{/if}>
                     <tr>
+                        <td id="headb" align="left">Коллекция</td>
+                        <td align="left">
+                            <select name="bid" style="min-width: 150px">
+                                <option value="0"> -- <{$smarty.const.LABEL_SELECT}> -- </option>
+<{section name=i loop=$arrPageData.arBrands}>
+                                <option value="<{$arrPageData.arBrands[i].id}>" <{if $item.bid==$arrPageData.arBrands[i].id}>selected<{/if}>><{$arrPageData.arBrands[i].title}></option>
+<{/section}>
+                            </select>
+                        </td>
+                        <td class="buttons_row"></td>
+                    </tr>
+                    <tr>
                         <td id="headb" align="left"><{$smarty.const.HEAD_PRODUCT_CODE}></td>
                         <td align="left">
                             <input  name="pcode" id="pcode" size="20" type="text" value="<{$item.pcode}>" />

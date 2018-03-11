@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2018-01-21 23:01:39
+<?php /* Smarty version Smarty-3.1.14, created on 2018-02-17 20:47:41
          compiled from "tpl/backend/weblife/module/orders.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1103525045a0b54c79534d3-48849796%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '6fd98535ac37372c4bf48837a4d8cf6c8565a074' => 
     array (
       0 => 'tpl/backend/weblife/module/orders.tpl',
-      1 => 1516568489,
+      1 => 1518893250,
       2 => 'file',
     ),
   ),
@@ -21,8 +21,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   array (
     'arrPageData' => 0,
     'item' => 0,
-    'name' => 0,
-    'value' => 0,
     'items' => 0,
   ),
   'has_nocache_code' => false,
@@ -128,13 +126,25 @@ Form"  enctype="multipart/form-data">
                                     </tr>
                                     <tr>
                                         <td>Доставка</td>
-                                        <td><strong id="shipping"><?php echo $_smarty_tpl->tpl_vars['item']->value['arShipping']['title'];?>
-</strong></td>
+                                        <td>
+                                            <strong id="shipping">
+<?php if (!empty($_smarty_tpl->tpl_vars['item']->value['arShipping'])){?>
+                                                <?php echo $_smarty_tpl->tpl_vars['item']->value['arShipping']['title'];?>
+
+<?php }?>
+                                            </strong>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Оплата</td>
-                                        <td><strong id="payment"><?php echo $_smarty_tpl->tpl_vars['item']->value['arPayment']['title'];?>
-</strong></td>
+                                        <td>
+                                            <strong id="payment">
+<?php if (!empty($_smarty_tpl->tpl_vars['item']->value['arPayment'])){?>
+                                                <?php echo $_smarty_tpl->tpl_vars['item']->value['arPayment']['title'];?>
+
+<?php }?>
+                                            </strong>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Комментарий к заказу</td>
@@ -148,8 +158,8 @@ Form"  enctype="multipart/form-data">
                             <br/>
                             <br/>
                             <div>
-                                <a class="buttons left" onclick="Orders.sendConfirmation();" style="width:200px;">
-                                    &nbsp;Отправить подтверждение заказа&nbsp;
+                                <a class="buttons left" data-option='confirm' data-confirm="1" onclick="Orders.updateOrder(this);" style="width:200px;">
+                                    &nbsp;Отправить подтверждение&nbsp;
                                 </a>
                                 <span id="confirm" class="left" style="margin:10px;">
 <?php if ($_smarty_tpl->tpl_vars['item']->value['confirmed']==1){?>
@@ -180,51 +190,8 @@ Form"  enctype="multipart/form-data">
                         </td>
                     </tr>
                 </table>
-
                 <div class="loader hidden"><img src="/images/loader.gif"/></div>
                 <table width="100%" border="0" cellspacing="0" cellpadding="1" class="list order" id="editarea">
-                    <tr>
-                        <td  width="100">Статус заказа:</td>
-                        <td width="150">
-                            <select name="id" class="nosize_field" style="width: 140px;" onchange="Orders.unsetDisabled(this)">       
-<?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['i'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['i']);
-$_smarty_tpl->tpl_vars['smarty']->value['section']['i']['name'] = 'i';
-$_smarty_tpl->tpl_vars['smarty']->value['section']['i']['loop'] = is_array($_loop=$_smarty_tpl->tpl_vars['arrPageData']->value['arStatus']) ? count($_loop) : max(0, (int)$_loop); unset($_loop);
-$_smarty_tpl->tpl_vars['smarty']->value['section']['i']['show'] = true;
-$_smarty_tpl->tpl_vars['smarty']->value['section']['i']['max'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['loop'];
-$_smarty_tpl->tpl_vars['smarty']->value['section']['i']['step'] = 1;
-$_smarty_tpl->tpl_vars['smarty']->value['section']['i']['start'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['step'] > 0 ? 0 : $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['loop']-1;
-if ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['show']) {
-    $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['total'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['loop'];
-    if ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['total'] == 0)
-        $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['show'] = false;
-} else
-    $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['total'] = 0;
-if ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['show']):
-
-            for ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['index'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['start'], $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'] = 1;
-                 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'] <= $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['total'];
-                 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['index'] += $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['step'], $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration']++):
-$_smarty_tpl->tpl_vars['smarty']->value['section']['i']['rownum'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'];
-$_smarty_tpl->tpl_vars['smarty']->value['section']['i']['index_prev'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['index'] - $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['step'];
-$_smarty_tpl->tpl_vars['smarty']->value['section']['i']['index_next'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['index'] + $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['step'];
-$_smarty_tpl->tpl_vars['smarty']->value['section']['i']['first']      = ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'] == 1);
-$_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'] == $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['total']);
-?>
-                                <option value="<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['arStatus'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id'];?>
-" <?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['arStatus'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id']==$_smarty_tpl->tpl_vars['item']->value['arStatus']['id']){?>selected<?php }?>><?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['arStatus'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['title'];?>
-</option>
-<?php endfor; endif; ?>
-                            </select>
-                        </td>
-                        <td style="padding:10px;">
-                            <textarea class="nosize_field" disabled style="width: 100%; height: 50px" name="comment"></textarea>
-                        </td>
-                        <td width="90">
-                            <a class="buttons disabled" data-status="<?php echo $_smarty_tpl->tpl_vars['item']->value['status'];?>
-" data-option="status" onclick="Orders.updateOrder(this);">Сохранить</a>
-                        </td>
-                    </tr>
                     <tr>
                         <td>Оплата:</td>
                         <td>
@@ -254,7 +221,7 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['first']      = ($_smart
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'] == $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['total']);
 ?>
                                 <option value="<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['arPayments'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id'];?>
-" <?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['arPayments'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id']==$_smarty_tpl->tpl_vars['item']->value['arPayment']['id']){?>selected<?php }elseif(!$_smarty_tpl->tpl_vars['arrPageData']->value['arPayments'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['active']){?>disabled<?php }?>><?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['arPayments'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['title'];?>
+" <?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['arPayments'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id']==$_smarty_tpl->tpl_vars['item']->value['payment_id']){?>selected<?php }elseif(!$_smarty_tpl->tpl_vars['arrPageData']->value['arPayments'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['active']){?>disabled<?php }?>><?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['arPayments'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['title'];?>
 </option>
 <?php endfor; endif; ?>
                             </select>
@@ -296,7 +263,7 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['first']      = ($_smart
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'] == $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['total']);
 ?>
                                 <option value="<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['arShippings'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id'];?>
-" <?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['arShippings'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id']==$_smarty_tpl->tpl_vars['item']->value['arShipping']['id']){?>selected<?php }elseif(!$_smarty_tpl->tpl_vars['arrPageData']->value['arShippings'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['active']){?>disabled<?php }?>><?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['arShippings'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['title'];?>
+" <?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['arShippings'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id']==$_smarty_tpl->tpl_vars['item']->value['shipping_id']){?>selected<?php }elseif(!$_smarty_tpl->tpl_vars['arrPageData']->value['arShippings'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['active']){?>disabled<?php }?>><?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['arShippings'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['title'];?>
 </option>
 <?php endfor; endif; ?>
                             </select>
@@ -307,6 +274,64 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smart
                         <td>
                             <a class="buttons disabled" data-shipping="<?php echo $_smarty_tpl->tpl_vars['item']->value['shipping_id'];?>
 " data-option="shipping" onclick="Orders.updateOrder(this);">Сохранить</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td  width="100">Статус выполнения:</td>
+                        <td width="150">
+                            <select name="id" class="nosize_field" style="width: 140px;" onchange="Orders.unsetDisabled(this)">       
+<?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['i'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['i']);
+$_smarty_tpl->tpl_vars['smarty']->value['section']['i']['name'] = 'i';
+$_smarty_tpl->tpl_vars['smarty']->value['section']['i']['loop'] = is_array($_loop=$_smarty_tpl->tpl_vars['arrPageData']->value['arStatus']) ? count($_loop) : max(0, (int)$_loop); unset($_loop);
+$_smarty_tpl->tpl_vars['smarty']->value['section']['i']['show'] = true;
+$_smarty_tpl->tpl_vars['smarty']->value['section']['i']['max'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['loop'];
+$_smarty_tpl->tpl_vars['smarty']->value['section']['i']['step'] = 1;
+$_smarty_tpl->tpl_vars['smarty']->value['section']['i']['start'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['step'] > 0 ? 0 : $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['loop']-1;
+if ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['show']) {
+    $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['total'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['loop'];
+    if ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['total'] == 0)
+        $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['show'] = false;
+} else
+    $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['total'] = 0;
+if ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['show']):
+
+            for ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['index'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['start'], $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'] = 1;
+                 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'] <= $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['total'];
+                 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['index'] += $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['step'], $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration']++):
+$_smarty_tpl->tpl_vars['smarty']->value['section']['i']['rownum'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'];
+$_smarty_tpl->tpl_vars['smarty']->value['section']['i']['index_prev'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['index'] - $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['step'];
+$_smarty_tpl->tpl_vars['smarty']->value['section']['i']['index_next'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['index'] + $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['step'];
+$_smarty_tpl->tpl_vars['smarty']->value['section']['i']['first']      = ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'] == 1);
+$_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'] == $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['total']);
+?>
+                                <option value="<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['arStatus'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id'];?>
+" <?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['arStatus'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id']==$_smarty_tpl->tpl_vars['item']->value['status']){?>selected<?php }?>><?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['arStatus'][$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['title'];?>
+</option>
+<?php endfor; endif; ?>
+                            </select>
+                        </td>
+                        <td style="padding:10px;">
+                            <textarea class="nosize_field" disabled style="width: 100%; height: 50px" name="comment"></textarea>
+                        </td>
+                        <td width="90">
+                            <a class="buttons disabled" data-status="<?php echo $_smarty_tpl->tpl_vars['item']->value['status'];?>
+" data-option="status" onclick="Orders.updateOrder(this);">Сохранить</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td  width="100">Статус оплаты:</td>
+                        <td width="150">
+                            <select name="id" class="nosize_field" style="width: 140px;" onchange="Orders.unsetDisabled(this)">       
+                                <option value="0" <?php if ($_smarty_tpl->tpl_vars['item']->value['payment_status']==0){?>selected<?php }?>>Неоплачен</option>
+                                <option value="1" <?php if ($_smarty_tpl->tpl_vars['item']->value['payment_status']==1){?>selected<?php }?>>Оплачен</option>
+                            </select>
+                        </td>
+                        <td style="padding:10px;">
+                            <textarea class="nosize_field" disabled style="width: 100%; height: 50px" name="comment"></textarea>
+                        </td>
+                        <td width="90">
+                            <a class="buttons disabled" data-status="<?php echo $_smarty_tpl->tpl_vars['item']->value['payment_status'];?>
+" data-option="payment_status" onclick="Orders.updateOrder(this);">Сохранить</a>
                         </td>
                     </tr>
                 </table>
@@ -405,25 +430,16 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smart
 <form method="GET" id="filtersForm" action="<?php echo ($_smarty_tpl->tpl_vars['arrPageData']->value['current_url']).($_smarty_tpl->tpl_vars['arrPageData']->value['filter_url']);?>
 ">
     <input type="hidden" name="module" value="<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['module'];?>
-" />
-    <input type="hidden" name="cid" value="<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['cid'];?>
-" />
-<?php if (!empty($_smarty_tpl->tpl_vars['arrPageData']->value['orders_url'])){?>
-<?php  $_smarty_tpl->tpl_vars['name'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['name']->_loop = false;
- $_smarty_tpl->tpl_vars['value'] = new Smarty_Variable;
- $_from = $_smarty_tpl->tpl_vars['arrPageData']->value['orders_url']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
-foreach ($_from as $_smarty_tpl->tpl_vars['name']->key => $_smarty_tpl->tpl_vars['name']->value){
-$_smarty_tpl->tpl_vars['name']->_loop = true;
- $_smarty_tpl->tpl_vars['value']->value = $_smarty_tpl->tpl_vars['name']->key;
-?>
-    <input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['name']->value;?>
-" name="<?php echo $_smarty_tpl->tpl_vars['value']->value;?>
 "/>
-<?php } ?>
-<?php }?>
     <table width="100%" border="0" cellspacing="1" cellpadding="0" class="list">
         <tr style="height:35px">
-            <td width="150">Показать:</td> 
+            <td>за период: 
+                c <input type="text" class="nosize_field" id="date_from" size="10" name="filters[date][from]" value="<?php if (isset($_smarty_tpl->tpl_vars['arrPageData']->value['filters']['date']['from'])&&$_smarty_tpl->tpl_vars['arrPageData']->value['filters']['date']['from']){?><?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['filters']['date']['from'];?>
+<?php }?>"/> <a href="javascript:void(0)" onclick="$('#date_from').val('')">x</a>
+                по <input type="text" size="10" class="nosize_field" id="date_to" name="filters[date][to]" value="<?php if (isset($_smarty_tpl->tpl_vars['arrPageData']->value['filters']['date']['to'])&&$_smarty_tpl->tpl_vars['arrPageData']->value['filters']['date']['to']){?><?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['filters']['date']['to'];?>
+<?php }?>"/> <a href="javascript:void(0)" onclick="$('#date_to').val('')">x</a>
+            </td>
+            <td>
 <?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['j'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['j']);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['name'] = 'j';
 $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['loop'] = is_array($_loop=$_smarty_tpl->tpl_vars['arrPageData']->value['arStatus']) ? count($_loop) : max(0, (int)$_loop); unset($_loop);
@@ -448,28 +464,27 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['index_next'] = $_smarty
 $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['first']      = ($_smarty_tpl->tpl_vars['smarty']->value['section']['j']['iteration'] == 1);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['last']       = ($_smarty_tpl->tpl_vars['smarty']->value['section']['j']['iteration'] == $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['total']);
 ?>
-            <td align="center"><label><input type="checkbox" <?php if (isset($_smarty_tpl->tpl_vars['arrPageData']->value['filters']['status'])&&in_array($_smarty_tpl->tpl_vars['arrPageData']->value['arStatus'][$_smarty_tpl->getVariable('smarty')->value['section']['j']['index']]['id'],$_smarty_tpl->tpl_vars['arrPageData']->value['filters']['status'])){?>checked<?php }?> value="<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['arStatus'][$_smarty_tpl->getVariable('smarty')->value['section']['j']['index']]['id'];?>
-" name="filters[status][]"/> <?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['arStatus'][$_smarty_tpl->getVariable('smarty')->value['section']['j']['index']]['title'];?>
-</label></td>
+                <input type="checkbox" name="filters[status][]" id="status_<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['arStatus'][$_smarty_tpl->getVariable('smarty')->value['section']['j']['index']]['id'];?>
+" value="<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['arStatus'][$_smarty_tpl->getVariable('smarty')->value['section']['j']['index']]['id'];?>
+" <?php if (isset($_smarty_tpl->tpl_vars['arrPageData']->value['filters']['status'])&&in_array($_smarty_tpl->tpl_vars['arrPageData']->value['arStatus'][$_smarty_tpl->getVariable('smarty')->value['section']['j']['index']]['id'],$_smarty_tpl->tpl_vars['arrPageData']->value['filters']['status'])){?>checked<?php }?>/>
+                <label for="status_<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['arStatus'][$_smarty_tpl->getVariable('smarty')->value['section']['j']['index']]['id'];?>
+"><?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['arStatus'][$_smarty_tpl->getVariable('smarty')->value['section']['j']['index']]['title'];?>
+</label>&emsp;
 <?php endfor; endif; ?>
-            <td >за период: 
-                c <input type="text" class="nosize_field" id="date_from" size="7" name="filters[date][from]" value="<?php if (isset($_smarty_tpl->tpl_vars['arrPageData']->value['filters']['date']['from'])&&$_smarty_tpl->tpl_vars['arrPageData']->value['filters']['date']['from']){?><?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['filters']['date']['from'];?>
-<?php }?>"/> <a href="javascript:void(0)" onclick="$('#date_from').val('')">x</a>
-                по <input type="text" size="7" class="nosize_field" id="date_to" name="filters[date][to]" value="<?php if (isset($_smarty_tpl->tpl_vars['arrPageData']->value['filters']['date']['to'])&&$_smarty_tpl->tpl_vars['arrPageData']->value['filters']['date']['to']){?><?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['filters']['date']['to'];?>
-<?php }?>"/> <a href="javascript:void(0)" onclick="$('#date_to').val('')">x</a></td> 
-            <td  width="150" align="right" rowspan="2">
+            </td>
+            <td width="150" align="right" rowspan="2">
                 <button type="submit" class="buttons"><?php echo @constant('SITE_FOUND');?>
 </button>
+                <button type="reset" class="buttons" onclick="window.location.assign('<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['admin_url'];?>
+');">Сбросить фильтр</button>
             </td>
         </tr>
         <tr style="height:35px">
-            <td>Поиск по заказам:</td>
-            <td colspan="<?php echo count($_smarty_tpl->tpl_vars['arrPageData']->value['arStatus']);?>
-">
-                <input size="67" type="text" placeholder="введите имя и/или фамилию или номер заказа" class="field" id="categorySearch" name="filters[title]" value="<?php if (isset($_smarty_tpl->tpl_vars['arrPageData']->value['filters']['title'])){?><?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['filters']['title'];?>
+            <td colspan="2">
+                <input size="48" type="text" placeholder="введите имя и/или фамилию или номер заказа" class="field" id="categorySearch" name="filters[title]" value="<?php if (isset($_smarty_tpl->tpl_vars['arrPageData']->value['filters']['title'])){?><?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['filters']['title'];?>
 <?php }?>" />
-            </td>
-            <td>
+                <?php echo str_repeat("&emsp;",2);?>
+
                 Тип заказа: &nbsp;
                 <select name="filters[type]">
                     <option value=""> -- Не выбрано -- </option>
@@ -509,20 +524,24 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smart
 
 <form method="post" action="<?php echo ($_smarty_tpl->tpl_vars['arrPageData']->value['current_url']).("&task=reorderItems");?>
 " name="reorderItems">
-    <table width="100%" border="0" cellspacing="1" cellpadding="0" class="list">
-        <tr>
-            <td id="headb" align="center" width="20">id</td>
-            <td id="headb" align="center" width="90">Тип заказа</td>
-            <td id="headb" align="center" width="90">Статус заказа</td>
-            <td id="headb" align="left">Клиент</td>
-            <td id="headb" align="center" width="100">Телефон</td>
-            <td id="headb" align="center" width="95"><?php echo @constant('HEAD_DATE_ADDED');?>
+    <table width="100%" border="0" cellspacing="1" cellpadding="0" class="list orders-list">
+        <thead>
+            <tr>
+                <td id="headb" align="center" width="20">№</td>
+                <td id="headb" align="center" width="95"><?php echo @constant('HEAD_DATE_ADDED');?>
 </td>
-            <td id="headb" align="center" width="38"><?php echo @constant('HEAD_EDIT');?>
+                <td id="headb" align="left">Клиент</td>
+                <td id="headb" align="center" width="100">Телефон</td>
+                <td id="headb" align="center" width="90">Тип заказа</td>
+                <td id="headb" align="center" width="120">Статус</td>
+                <td id="headb" align="center" width="90">Оплачен</td>
+                <td id="headb" align="center" width="38"><?php echo @constant('HEAD_EDIT');?>
 </td>
-            <td id="headb" align="center" width="38"><?php echo @constant('HEAD_DELETE');?>
+                <td id="headb" align="center" width="38"><?php echo @constant('HEAD_DELETE');?>
 </td>
-        </tr>       
+            </tr>
+        </thead>
+        <tbody>
 <?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['i'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['i']);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['name'] = 'i';
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['loop'] = is_array($_loop=$_smarty_tpl->tpl_vars['items']->value) ? count($_loop) : max(0, (int)$_loop); unset($_loop);
@@ -547,103 +566,44 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['index_next'] = $_smarty
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['first']      = ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'] == 1);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'] == $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['total']);
 ?>
-         <tr>
-            <td align="center"><?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id'];?>
+            <tr class="<?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['classname'];?>
+">
+               <td align="center"><?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id'];?>
 </td>
-            <td align="center">
-<?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['j'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['j']);
-$_smarty_tpl->tpl_vars['smarty']->value['section']['j']['name'] = 'j';
-$_smarty_tpl->tpl_vars['smarty']->value['section']['j']['loop'] = is_array($_loop=$_smarty_tpl->tpl_vars['arrPageData']->value['arTypes']) ? count($_loop) : max(0, (int)$_loop); unset($_loop);
-$_smarty_tpl->tpl_vars['smarty']->value['section']['j']['show'] = true;
-$_smarty_tpl->tpl_vars['smarty']->value['section']['j']['max'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['loop'];
-$_smarty_tpl->tpl_vars['smarty']->value['section']['j']['step'] = 1;
-$_smarty_tpl->tpl_vars['smarty']->value['section']['j']['start'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['step'] > 0 ? 0 : $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['loop']-1;
-if ($_smarty_tpl->tpl_vars['smarty']->value['section']['j']['show']) {
-    $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['total'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['loop'];
-    if ($_smarty_tpl->tpl_vars['smarty']->value['section']['j']['total'] == 0)
-        $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['show'] = false;
-} else
-    $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['total'] = 0;
-if ($_smarty_tpl->tpl_vars['smarty']->value['section']['j']['show']):
-
-            for ($_smarty_tpl->tpl_vars['smarty']->value['section']['j']['index'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['start'], $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['iteration'] = 1;
-                 $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['iteration'] <= $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['total'];
-                 $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['index'] += $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['step'], $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['iteration']++):
-$_smarty_tpl->tpl_vars['smarty']->value['section']['j']['rownum'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['iteration'];
-$_smarty_tpl->tpl_vars['smarty']->value['section']['j']['index_prev'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['index'] - $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['step'];
-$_smarty_tpl->tpl_vars['smarty']->value['section']['j']['index_next'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['index'] + $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['step'];
-$_smarty_tpl->tpl_vars['smarty']->value['section']['j']['first']      = ($_smarty_tpl->tpl_vars['smarty']->value['section']['j']['iteration'] == 1);
-$_smarty_tpl->tpl_vars['smarty']->value['section']['j']['last']       = ($_smarty_tpl->tpl_vars['smarty']->value['section']['j']['iteration'] == $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['total']);
-?>
-<?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['arTypes'][$_smarty_tpl->getVariable('smarty')->value['section']['j']['index']]['id']==$_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['type']){?>
-                <?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['arTypes'][$_smarty_tpl->getVariable('smarty')->value['section']['j']['index']]['title'];?>
-
-<?php }?>
-<?php endfor; endif; ?>
-            </td>
-            <td align="center">
-<?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['j'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['j']);
-$_smarty_tpl->tpl_vars['smarty']->value['section']['j']['name'] = 'j';
-$_smarty_tpl->tpl_vars['smarty']->value['section']['j']['loop'] = is_array($_loop=$_smarty_tpl->tpl_vars['arrPageData']->value['arStatus']) ? count($_loop) : max(0, (int)$_loop); unset($_loop);
-$_smarty_tpl->tpl_vars['smarty']->value['section']['j']['show'] = true;
-$_smarty_tpl->tpl_vars['smarty']->value['section']['j']['max'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['loop'];
-$_smarty_tpl->tpl_vars['smarty']->value['section']['j']['step'] = 1;
-$_smarty_tpl->tpl_vars['smarty']->value['section']['j']['start'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['step'] > 0 ? 0 : $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['loop']-1;
-if ($_smarty_tpl->tpl_vars['smarty']->value['section']['j']['show']) {
-    $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['total'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['loop'];
-    if ($_smarty_tpl->tpl_vars['smarty']->value['section']['j']['total'] == 0)
-        $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['show'] = false;
-} else
-    $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['total'] = 0;
-if ($_smarty_tpl->tpl_vars['smarty']->value['section']['j']['show']):
-
-            for ($_smarty_tpl->tpl_vars['smarty']->value['section']['j']['index'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['start'], $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['iteration'] = 1;
-                 $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['iteration'] <= $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['total'];
-                 $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['index'] += $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['step'], $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['iteration']++):
-$_smarty_tpl->tpl_vars['smarty']->value['section']['j']['rownum'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['iteration'];
-$_smarty_tpl->tpl_vars['smarty']->value['section']['j']['index_prev'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['index'] - $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['step'];
-$_smarty_tpl->tpl_vars['smarty']->value['section']['j']['index_next'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['index'] + $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['step'];
-$_smarty_tpl->tpl_vars['smarty']->value['section']['j']['first']      = ($_smarty_tpl->tpl_vars['smarty']->value['section']['j']['iteration'] == 1);
-$_smarty_tpl->tpl_vars['smarty']->value['section']['j']['last']       = ($_smarty_tpl->tpl_vars['smarty']->value['section']['j']['iteration'] == $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['total']);
-?>
-<?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['arStatus'][$_smarty_tpl->getVariable('smarty')->value['section']['j']['index']]['id']==$_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['status']){?>
-                <?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['arStatus'][$_smarty_tpl->getVariable('smarty')->value['section']['j']['index']]['title'];?>
-
-<?php }?>
-<?php endfor; endif; ?>
-            </td>
-            <td>
-                <a href="<?php echo ((($_smarty_tpl->tpl_vars['arrPageData']->value['current_url']).($_smarty_tpl->tpl_vars['arrPageData']->value['filter_url'])).("&task=editItem&itemID=")).($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id']);?>
-"><?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['title'];?>
-</a>
-            </td>
-            <td align="center"><?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['phone'];?>
+               <td align="center"><?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['created'],"%d.%m.%y %H:%M");?>
 </td>
-            <td align="center"><?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['created'],"%d.%m.%y %H:%M");?>
+               <td><?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['title'];?>
 </td>
-
-            <td align="center" >
-                <a href="<?php echo ((($_smarty_tpl->tpl_vars['arrPageData']->value['current_url']).($_smarty_tpl->tpl_vars['arrPageData']->value['filter_url'])).("&task=editItem&itemID=")).($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id']);?>
+               <td align="center"><?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['phone'];?>
+</td>
+               <td align="center"><?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['typename'];?>
+</td>
+               <td align="center"><?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['statusname'];?>
+</td>
+               <td align="center"><?php if ($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['payment_status']>0){?>Да<?php }else{ ?>Нет<?php }?></td>
+               <td align="center">
+                   <a href="<?php echo ((($_smarty_tpl->tpl_vars['arrPageData']->value['current_url']).($_smarty_tpl->tpl_vars['arrPageData']->value['filter_url'])).("&task=editItem&itemID=")).($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id']);?>
 " title="<?php echo @constant('LABEL_EDIT');?>
 ">
-                    <img src="<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['system_images'];?>
+                       <img src="<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['system_images'];?>
 edit.png" alt="<?php echo @constant('LABEL_EDIT');?>
 "/>
-                </a>
-            </td>
-            <td align="center">
-                <a href="<?php echo ((($_smarty_tpl->tpl_vars['arrPageData']->value['current_url']).($_smarty_tpl->tpl_vars['arrPageData']->value['filter_url'])).("&task=deleteItem&itemID=")).($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id']);?>
+                   </a>
+               </td>
+               <td align="center">
+                   <a href="<?php echo ((($_smarty_tpl->tpl_vars['arrPageData']->value['current_url']).($_smarty_tpl->tpl_vars['arrPageData']->value['filter_url'])).("&task=deleteItem&itemID=")).($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['id']);?>
 " onclick="return confirm('<?php echo @constant('CONFIRM_DELETE');?>
 ');" title="<?php echo @constant('LABEL_DELETE');?>
 ">
-                   <img src="<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['system_images'];?>
+                      <img src="<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['system_images'];?>
 delete.png" alt="<?php echo @constant('LABEL_DELETE');?>
 " title="<?php echo @constant('LABEL_DELETE');?>
 "/>
-                </a>
-            </td>
-        </tr>
+                   </a>
+               </td>
+           </tr>
 <?php endfor; endif; ?>
+        </tbody>
     </table>
     <table width="100%" border="0" cellspacing="1" cellpadding="0">
         <tr>

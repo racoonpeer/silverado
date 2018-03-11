@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-12-02 22:41:52
+<?php /* Smarty version Smarty-3.1.14, created on 2018-02-12 21:40:56
          compiled from "tpl/backend/weblife/module/main.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:12023036675a06b9c0cf59b4-60571435%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'd99904badc013225c4417a9a72fb16fcc00a3109' => 
     array (
       0 => 'tpl/backend/weblife/module/main.tpl',
-      1 => 1512247291,
+      1 => 1517155714,
       2 => 'file',
     ),
   ),
@@ -59,13 +59,13 @@ Form" onsubmit="return formCheck(this);" enctype="multipart/form-data">
 " />
         <div class="tabsContainer">
             <ul class="nav">
-                <li><a href="javascript:void(0);" data-target="main" class="active">Основные</a></li>
+                <li><a href="#main" data-target="main" class="active">Основные</a></li>
 <?php if ($_smarty_tpl->tpl_vars['item']->value['module']=='catalog'){?>
-                <li><a href="javascript:void(0);" data-target="attributes" >Характеристики</a></li>
+                <li><a href="#attributes" data-target="attributes" >Характеристики</a></li>
 <?php }?>
-                <li><a href="javascript:void(0);" data-target="seo">SEO</a></li>
-                <li><a href="javascript:void(0);" data-target="settings">Настройки</a></li>
-                <li><a href="javascript:void(0);" data-target="history">История</a></li>
+                <li><a href="#seo" data-target="seo">SEO</a></li>
+                <li><a href="#settings" data-target="settings">Настройки</a></li>
+                <li><a href="#history" data-target="history">История</a></li>
             </ul>
             <div class="tab_line"></div>
             <ul class="tabs">

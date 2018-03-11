@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2018-01-28 15:37:48
+<?php /* Smarty version Smarty-3.1.14, created on 2018-02-17 20:51:35
          compiled from "tpl/frontend/smart/core/header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:6066972515a06b265ed78b1-08383906%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '47ac7692d30846f574104e6574337127c77cca4d' => 
     array (
       0 => 'tpl/frontend/smart/core/header.tpl',
-      1 => 1517146634,
+      1 => 1518892774,
       2 => 'file',
     ),
   ),
@@ -53,9 +53,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <div class="phones">
             <div class="stack">
                 <div class="wrap">
-                    <a href="tel:+380973057697">097 30 57 697</a>
-                    <a href="tel:+380956227572">095 62 27 572</a>
-                    <a href="tel:+380638216588">063 82 16 588</a>
+                    <a href="tel:+380973057697">097 305 76 97</a>
+                    <a href="tel:+380956227572">095 622 75 72</a>
+                    <a href="tel:+380638216588">063 821 65 88</a>
                 </div>
             </div>
 <?php if (isset($_smarty_tpl->tpl_vars['arrModules']->value['callback'])){?>

@@ -742,7 +742,7 @@ define('ORDER_STATUS_CHANGED', 'статус');
 define('ORDER_SHIPPING_CHANGED', 'доставка');
 define('ORDER_PAYMENT_CHANGED', 'способ оплаты');
 define('ORDER_SEND_CONFIRM', 'отправка уведомления');
-define('ORDER_CONFIRMATION_SUBJECT', 'подтверждение заказа');
+define('ORDER_CONFIRMATION_SUBJECT', 'Подтверждение заказа');
 
 define('COMPILE_SYSTEM_ERROR', 'Произошла ошибка при генерации "%s"!');
 define('ACCESS_SYSTEM_ERROR', 'Ошибка доступа');
@@ -852,3 +852,6 @@ define('IN_CART', 'уже в корзине');
 define('LABEL_ON', 'включить');
 define('SELECTED_FILTERS', 'Выбранные фильтры');
 define('REMOVE_ALL_FILTERS', 'Удалить все фильтры');
+
+define('LIQPAY_PAYMENT_COMPLETE', 'Оплата заказа прошла успешно!<br>Спасибо за ваш выбор');
+define('LIQPAY_PAYMENT_ERROR', 'Оплата не прошла!<br>Платеж был отклонен банком. Попробуйте <a href="%s">еще раз</a>');

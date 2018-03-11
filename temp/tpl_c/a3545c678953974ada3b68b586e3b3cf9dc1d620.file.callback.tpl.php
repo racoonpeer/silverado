@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-11-11 11:31:18
+<?php /* Smarty version Smarty-3.1.14, created on 2018-02-17 19:45:04
          compiled from "tpl/frontend/smart/module/callback.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:18914339605a06c3662556a3-31287571%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a3545c678953974ada3b68b586e3b3cf9dc1d620' => 
     array (
       0 => 'tpl/frontend/smart/module/callback.tpl',
-      1 => 1508266895,
+      1 => 1518550402,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_5a06c3663eb750_10327086',
   'variables' => 
   array (
     'arrPageData' => 0,
@@ -22,8 +24,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'formData' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_5a06c3663eb750_10327086',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5a06c3663eb750_10327086')) {function content_5a06c3663eb750_10327086($_smarty_tpl) {?><div class="callback-form">
 <?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['result']=="success"){?>
@@ -47,7 +47,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         $(function(){
             var form = $("#callbackForm");
             form.find("input[name=\"phone\"]").inputmask({
-                mask: "+380999999999",
+                mask: "+38 999 999 99 99",
                 greedy: false,
                 definitions: {
                     '*': {

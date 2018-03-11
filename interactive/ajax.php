@@ -623,24 +623,29 @@ if($site_zone){
                 $json = array();
                 $option = !empty($_GET['option'])? trim($_GET['option']): '';
                 $orderID = (!empty($_GET['orderID']) && intval($_GET['orderID']))? intval($_GET['orderID']) : FALSE;
-                $optionID = (!empty($_GET['optionID'])) ? intval($_GET['optionID']) : array();
+                $optionID = (!empty($_GET['optionID'])) ? intval($_GET['optionID']) : 0;
                 $optionComment = (!empty($_GET['optionComment'])) ? PHPHelper::dataConv($_GET['optionComment'], 'utf-8', 'windows-1251') : '';
                 
                 require_once('include/classes/mySmarty.php');
                 $smarty = new mySmarty(TPL_BACKEND_NAME, WLCMS_DEBUG, WLCMS_SMARTY_ERROR_REPORTING, TPL_BACKEND_FORSE_COMPILE, TPL_BACKEND_CACHING);
                 if($UserAccess->getAccessToModule('orders')) {          
                     if($orderID) {
-                        if ($option == 'status'){
+                        if ($option == 'status') {
                             $option_title = getValueFromDB(ORDER_STATUS_TABLE, 'title', 'WHERE `id`='.$optionID, 'title');
                             $arHistoryData['action'] = ActionsLog::ACTION_ORDER_STATUS;
                             $arHistoryData['comment'] = 'Изменено на "'.$option_title.'". '.screenData($optionComment);
                         }
-                        else if($option == 'payment') {
+                        else if ($option == 'payment_status') {
+                            $option_title = $optionID ? "Оплачен" : "Неоплачен";
+                            $arHistoryData['action'] = ActionsLog::ACTION_ORDER_PAYMENT_STATUS;
+                            $arHistoryData['comment'] = 'Изменено на "'.$option_title.'". '.screenData($optionComment);
+                        }
+                        else if ($option == 'payment') {
                             $option_title = getValueFromDB(PAYMENT_TYPES_TABLE, 'title', 'WHERE `id`='.$optionID, 'title');
                             $arHistoryData['action'] = ActionsLog::ACTION_ORDER_PAYMENT;
                             $arHistoryData['comment'] = 'Изменено на "'.$option_title.'". '.screenData($optionComment);
                         }
-                        else if($option == 'shipping') {
+                        else if ($option == 'shipping') {
                             $option_title = getValueFromDB(SHIPPING_TYPES_TABLE, 'title', 'WHERE `id`='.$optionID, 'title');
                             $arHistoryData['action'] = ActionsLog::ACTION_ORDER_SHIPPING;
                             $arHistoryData['comment'] = 'Изменено на "'.$option_title.'". '.screenData($optionComment);
@@ -649,27 +654,57 @@ if($site_zone){
                             $option_title = '';
                             $arHistoryData['comment'] = 'Изменен комментарий на "'.$optionComment.'"';
                             $arHistoryData['action'] = ActionsLog::ACTION_EDIT;
-                        } else if($option ==  'confirm') {
-                            $item = getItemRow(ORDERS_TABLE, '*', 'WHERE `id`='.$orderID);
-
-                            $arSendData = $item;
-                            $arSendData['oid']      = $orderID;
-                            $arSendData['payment']  = getItemRow(PAYMENT_TYPES_TABLE, '*', 'WHERE `id`='.(int)$item['payment']);
-                            $arSendData['shipping'] = getItemRow(SHIPPING_TYPES_TABLE, '*', 'WHERE `id`='.(int)$item['status']);
-                            $arSendData['price'] = ($item['price'] + intval(getValueFromDB(SHIPPING_TYPES_TABLE, 'price', 'WHERE `id`='.(int)$item['shipping'], 'price')));
-                            $arSendData['children'] = getRowItems(ORDER_PRODUCTS_TABLE, '*', '`oid`='.$orderID );
-
-                            $smarty->assign('arData', $arSendData);
-                            $text    = $smarty->fetch('mail/order_confirm.tpl');
-                            $subject = $objSettingsInfo->websiteName.': '.ORDER_CONFIRMATION_SUBJECT;
-
-                            if(sendMail($item['email'], $subject, $text, $objSettingsInfo->siteEmail, 'html')){
-                                $DB->postToDB(array('confirmed' => 1), ORDERS_TABLE, 'WHERE `id`='.$orderID,  array(), 'update');
-                                $optionComment = ($item['confirmed']==1) ? ORDER_CONFIRM_LETTER_RESEND.' на '.$item['email'] : ORDER_CONFIRM_LETTER_SEND.' на '.$item['email'];
+                        } else if ($option == 'confirm') {
+                            require_once('include/classes/Basket.php');         
+                            $Basket     = new Basket();
+                            $Basket->setupKitParams(PRODUCT_KIT_PREFIX);
+                            $item = getSimpleItemRow($orderID, ORDERS_TABLE);
+                            if (!empty($item)) {
+                                $item["seo_path"]   = UrlWL::ORDER_SEOPREFIX.$orderID;
+                                // order products
+                                $item['children'] = array();
+                                $query = 'SELECT * FROM `'.ORDER_PRODUCTS_TABLE.'` WHERE `order_id`='.$orderID;
+                                $result = mysql_query($query);
+                                if (mysql_num_rows($result) > 0) {
+                                    while ($row = mysql_fetch_assoc($result)) {
+                                        $row["price"]  = $row["price"]*1;
+                                        $row["amount"] = $row["price"]*$row["qty"];
+                                        $arOptions = unserialize(unScreenData($row["options"]));
+                                        $product = getSimpleItemRow($row['pid'], CATALOG_TABLE);
+                                        if (!empty($product)) {
+                                            $row['link']            = $UrlWL->buildItemUrl($UrlWL->getCategoryById($product['cid']), $product);
+                                            $row['ptitle']          = "{$product['title']} {$product['pcode']}";
+                                            $row['pcode']           = $product['pcode'];
+                                            $row["selectedOptions"] = isset($arOptions[$product["id"]]) ? $arOptions[$product["id"]] : array();
+                                            $row["options"]         = PHPHelper::getProductOptions($product["id"], $row["selectedOptions"]);
+                                            $row["productItem"]     = PHPHelper::getProductItem($product, $UrlWL, UPLOAD_URL_DIR."catalog/", SystemComponent::prepareImagesParams(getValueFromDB(IMAGES_PARAMS_TABLE, 'aliases', 'WHERE `module`="catalog"')));
+                                            $row["image"]           = $row["productItem"]["image"];
+                                        } else {
+                                            $row['link']            = null;
+                                            $row['ptitle']          = $row['title'];
+                                            $row['pcode']           = "";
+                                            $row["selectedOptions"] = array();
+                                            $row["options"]         = array();
+                                            $row["productItem"]     = array();
+                                            $row["image"]           = array();
+                                        } $item['children'][]       = $row;
+                                    }
+                                }
+                                $item['liqpay_url'] = WLCMS_HTTP_HOST.$UrlWL->buildItemUrl($arrModules["liqpay"], $item);
+                                $smarty->assign('arData', $item);
+                                $smarty->assign('UrlWL',  $UrlWL);
+                                $text    = $smarty->fetch('mail/order_confirm.tpl');
+                                $subject = ORDER_CONFIRMATION_SUBJECT;
+                                $Validator->validateEmail($item["email"], "Не указан e-mail клиента!");
+                                if ($Validator->foundErrors()) $json["errors"] = $Validator->getErrors();
+                                elseif (sendMail($item['email'], $subject, $text, $objSettingsInfo->siteEmail, 'html')){
+                                    updateRecords(ORDERS_TABLE, "`confirmed`=1", "WHERE `id`=$orderID");
+                                    $optionComment = ($item['confirmed']==1) ? ORDER_CONFIRM_LETTER_RESEND.' на '.$item['email'] : ORDER_CONFIRM_LETTER_SEND.' на '.$item['email'];
+                                    $arHistoryData['action'] = ActionsLog::ACTION_ORDER_CONFIRM;
+                                    $option_title = $optionComment;
+                                    $arHistoryData['comment'] = $optionComment;
+                                }
                             }
-                            $arHistoryData['action'] = ActionsLog::ACTION_ORDER_CONFIRM;
-                            $option_title = $optionComment;
-                            $arHistoryData['comment'] = $optionComment;
                         }
 
                         ActionsLog::getAuthInstance($objUserInfo->id, getRealIp())->save($arHistoryData['action'], $arHistoryData['comment'], $lang, 'Заказ №'.$orderID, $orderID, 'orders',  (isset($text) ? $text : ''));
@@ -680,9 +715,7 @@ if($site_zone){
                         $DB->postToDB(array($option => ($option != 'admin_comment' ? $optionID : $optionComment)), ORDERS_TABLE, 'WHERE `id`='.$orderID,  array(), 'update');   
                         $json['option_title'] = PHPHelper::dataConv($option_title);
                     }
-                }
-                echo json_encode($json);
-                
+                } echo json_encode($json);
                 break;
                 
             case 'getCommentForm':

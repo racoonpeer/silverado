@@ -15,9 +15,9 @@
     <input type="hidden" name="order"   value="<{$item.order}>"   />
     <div class="tabsContainer">
         <ul class="nav">
-            <li><a href="javascript:void(0);" data-target="main" class="active">Основные</a></li>
-            <li><a href="javascript:void(0);" data-target="settings">Настройки</a></li>
-            <li><a href="javascript:void(0);" data-target="history">История</a></li>
+            <li><a href="#main" data-target="main" class="active">Основные</a></li>
+            <li><a href="#settings" data-target="settings">Настройки</a></li>
+            <li><a href="#history" data-target="history">История</a></li>
         </ul>
         <div class="tab_line"></div>
         <ul class="tabs">
@@ -82,7 +82,7 @@
                                                <{if !empty($item.redirecturl)}> checked<{/if}> />
                                    </td>
                                    <td align="center">
-                                        <input id="redirecturl" name="redirecturl" type="text" size="70"
+                                        <input id="redirecturl" name="redirecturl" type="text" size="60"
                                                value="<{$item.redirecturl}>"  class="field"
                                                <{if empty($item.redirecturl)}> disabled<{/if}> />
                                    </td>
@@ -126,9 +126,9 @@
                         </td>
                         <td class="buttons_row"></td>
                     </tr>
-<!-- ++++++++++ Start Attach Files ++++++++++++++++++++++++++++++++++++++++++++++ -->
-<{include file='common/attach_files.tpl' item=$item attachFile=false attachImages=true}>
-<!-- ++++++++++ End Attach Files ++++++++++++++++++++++++++++++++++++++++++++++++ -->
+                    <!-- ++++++++++ Start Attach Files ++++++++++++++++++++++++++++++++++++++++++++++ -->
+                    <{include file='common/attach_files.tpl' item=$item attachFile=false attachImages=true}>
+                    <!-- ++++++++++ End Attach Files ++++++++++++++++++++++++++++++++++++++++++++++++ -->
                     <tr id="textBlock">
                         <td colspan="2" align="left">  
                             <strong><{$smarty.const.HEAD_CONTENT}></strong>
@@ -179,7 +179,7 @@
                             <strong><{$smarty.const.HEAD_AVAILABLE_ON_PAGES}></strong><br/><br/>
                             <label class="lbl" style="text-align:left;"><input type="radio" onclick="changeDisabledSelections(true);" value="all" name="page_selector" id="page_selector_all" checked /> <{$smarty.const.LABEL_ALL}> </label>&nbsp; 
                             <label class="lbl" style="text-align:left;"><input type="radio" onclick="enableSelections();" value="selected" name="page_selector" id="page_selector_selected"> <{$smarty.const.HEAD_SELECT_FROM_LIST}> </label>&nbsp; 
-                            <select id="selections" class="inputbox" name="cids[]" multiple="multiple" style="border-top:1px solid #DCDEDF; width:100%; height:227px !important; overflow:hidden;">
+                            <select id="selections" class="inputbox" name="cids[]" multiple="multiple" style="border-top:1px solid #DCDEDF; width:100%; height:227px !important;">
 <{section name=i loop=$categoryTree}>
                                 <option value="<{$categoryTree[i].id}>"
                                         <{if in_array($categoryTree[i].id, $item.cids)}>  selected<{/if}>>

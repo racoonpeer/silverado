@@ -38,6 +38,7 @@ if (!empty($_POST) and !empty($purchases)) {
         $arrPageData['errors'][] = "<font color='#990033'>".ORDER_ERROR_INPUT_STRING."</font>".$Validator->getListedErrors();
     } else {
         $arPostData            = screenData($_POST);
+        $arPostData['phone']   = preg_replace("/\s/", "", $arPostData['phone']);
         $arPostData['created'] = date('Y-m-d H:i:s');
         $arPostData['price']   = $Basket->getTotalPrice();
         $arPostData['qty']     = $Basket->getTotalAmount();

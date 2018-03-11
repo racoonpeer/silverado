@@ -475,7 +475,7 @@ input[type="password"],
 input[type="tel"],
 textarea,
 select {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     border: 1px solid #c6c6c6;
     &.error {
         border-color: $purple;
@@ -744,6 +744,25 @@ input[type="radio"] {
             top: 0;
             @include transform(rotate(180deg));
         }
+    }
+}
+.alert {
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    padding: 10px 20px;
+    border-width: 1px;
+    border-style: solid;
+    @include border-radius(2px);
+    &.warning {
+        color: $black;
+        background-color: $white;
+        border-color: $peach;
+    }
+    &.danger {
+        color: $black;
+        background-color: $white;
+        border-color: $purple;
     }
 }
 .badge {

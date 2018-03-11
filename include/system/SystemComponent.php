@@ -97,6 +97,7 @@ define('WLCMS_SMARTY_ERROR_REPORTING',  E_ALL); // [ E_ALL | 0 ] SET WAY TO SHOW
 define('WLCMS_USE_HTTPS',               ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') or (isset($_SERVER["HTTP_X_FORWARDED_PROTO"]) and $_SERVER["HTTP_X_FORWARDED_PROTO"]=="https"))); // [ E_ALL | 0 ] SET WAY TO SHOW ERRORS
 define('WLCMS_HTTP_PROTOCOL',           "http".(WLCMS_USE_HTTPS ? "s" : "")); // [ E_ALL | 0 ] SET WAY TO SHOW ERRORS
 define('WLCMS_HTTP_PREFIX',             WLCMS_HTTP_PROTOCOL."://"); // [ E_ALL | 0 ] SET WAY TO SHOW ERRORS
+define('WLCMS_HTTP_HOST',               WLCMS_HTTP_PREFIX.$_SERVER["HTTP_HOST"]); // [ E_ALL | 0 ] SET WAY TO SHOW ERRORS
 
 define('WLCMS_DEBUG',                   0); // [1 - true | 0 - false ] SET Script Debug Status
 define('WLCMS_USE_CACHE',               1); // [1 - true | 0 - false ] SET Script Debug Status
@@ -154,8 +155,9 @@ define('USER_TYPE_MEMBER',              'Member');
 define('USER_TYPE_REGISTERED',          'Registered');
 define('USER_TYPE_ANONIMOUS',           'Anonimous');
 
-define('LIQPAY_PUBLIC_KEY',             'i21224482971');
-define('LIQPAY_PRIVATE_KEY',            'sJ7wsGj8oHrP1qhQBvyPAGuPeqPVXlz2dAt4YwNY');
+define('LIQPAY_SANDBOX_MODE',           getenv("IS_DEV"));
+define('LIQPAY_PUBLIC_KEY',             'i39316161985');
+define('LIQPAY_PRIVATE_KEY',            'hb3nd0h4sPIK5An8Ph6b8veg369L1lGpKj3OolrW');
 
 ///////////////// CHECK SYSTEM \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 require_once(WLCMS_ABS_ROOT.'include/sys_verifications.php');

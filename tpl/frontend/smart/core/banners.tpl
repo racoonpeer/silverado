@@ -9,5 +9,7 @@
 <div class="item right-side">
     <{$arrItems[i].content}>
 </div>
+<{else}>
+<{$arrItems[i].content}>
 <{/if}>
 <{/section}>

@@ -4,5 +4,6 @@
 # Ignore smarty compiled templates
 temp/cache/*
 temp/tpl_c/*
+temp/runtime/*
 *.tpl.php
 *.log

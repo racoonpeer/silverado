@@ -595,6 +595,9 @@ class PHPHelper {
         $where     = "WHERE t.`active`=1 AND (t.`cid` IN(".implode(',', $arCatsIDX).") %s)";
         if (!$essential and !empty($facet)) {
             switch ($facet["type_id"]) :
+                case CatalogMainProperty::TYPE_BRAND : 
+                        $subwhere .= "OR t.`bid`='{$facet["value_id"]}'";
+                    break;
                 case CatalogMainProperty::TYPE_SALE : 
                         $subwhere .= "OR t.`is_sale`>0";
                     break;

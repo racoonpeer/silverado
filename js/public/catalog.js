@@ -98,7 +98,6 @@ function AjaxUpdatePage(url) {
                 }
                 Filters.removeClass('load');
                 $('.scroll-top').trigger('click');
-                LazyLoadImages();
             }
         }
     });

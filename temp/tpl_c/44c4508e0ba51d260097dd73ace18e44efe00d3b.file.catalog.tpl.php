@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-12-10 13:12:16
+<?php /* Smarty version Smarty-3.1.14, created on 2018-02-13 21:35:33
          compiled from "tpl/frontend/smart/module/catalog.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:18082036695a06bf92b83198-41150439%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '44c4508e0ba51d260097dd73ace18e44efe00d3b' => 
     array (
       0 => 'tpl/frontend/smart/module/catalog.tpl',
-      1 => 1512904296,
+      1 => 1518119944,
       2 => 'file',
     ),
   ),
@@ -165,6 +165,8 @@ $_smarty_tpl->tpl_vars['arItem']->_loop = true;
 <?php }elseif(!empty($_smarty_tpl->tpl_vars['items']->value)){?>
     <h1 class="heading-title"><?php echo $_smarty_tpl->tpl_vars['arCategory']->value['title'];?>
 </h1>
+    <?php echo $_smarty_tpl->getSubTemplate ('core/banners.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('position'=>3,'maxitems'=>1), 0);?>
+
     <div class="controlbar clearfix">
         <?php echo $_smarty_tpl->getSubTemplate ("ajax/control_filter.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 

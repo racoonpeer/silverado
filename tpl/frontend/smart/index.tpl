@@ -2,6 +2,7 @@
 <html lang="<{$lang}>">
     <{include file="core/head.tpl"}>
     <body>
+        <{include file="core/seo-text.tpl"}>
         <div id="sbIndex" canvas="container">
             <{include file='core/header.tpl'}>
 <{if !empty($arCategory.module)}>

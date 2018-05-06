@@ -201,7 +201,7 @@ class PHPHelper {
         $images_params = getRowItems(IMAGES_PARAMS_TABLE, '*', '`module`="'.$module.'"');
         foreach($images_params as $param) {
             $aliases = SystemComponent::prepareImagesParams($param['aliases']);
-            if($param['ftable']) {
+            if ($param['ftable']) {
                 unlinkImageLangsSynchronize($itemID, constant($param['ftable']), $files_path, $aliases, $param['column']);
                 deleteRecords(constant($param['ftable']), 'WHERE `pid`='.$itemID);
             } else {

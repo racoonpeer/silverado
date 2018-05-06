@@ -14,6 +14,7 @@ Disallow: /cronjobs/
 Disallow: /dumper.php
 Disallow: /phptest.php
 Disallow: /phpinfo.php
+Disallow: /js/public/dom-extra.js
 
 Disallow: /*filter
 Disallow: /*gclid
@@ -25,6 +26,3 @@ Disallow: /*&ajax
 Disallow: /*_pages
 
 Host: silverado.com.ua
-
-User-agent: *
-Disallow: /

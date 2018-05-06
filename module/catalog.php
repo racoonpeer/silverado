@@ -142,7 +142,7 @@ if ($itemID and $item = getSimpleItemRow($itemID, CATALOG_TABLE) and !empty($ite
         }
     } else {
         // global page variables
-        $arrPageData['headTitle']     = "Купить {$item['title']} {$item['pcode']} купить в Киеве &#10023; SILVERADO";
+        $arrPageData['headTitle']     = "{$item['title']} {$item['pcode']} купить в Киеве &#10023; SILVERADO";
         $arCategory['seo_title']      = $arrPageData['headTitle'];
         $arCategory['meta_descr']     = "Купить {$item['title']} {$item['pcode']} в интернет-магазине &#10023; SILVERADO &#10023; Звоните &#9742; 096-05-49-542 &#10004; Доступные цены &#9992; Доставка по Киеву и Украине";
         $arCategory['meta_key']       = $item['meta_key'];
@@ -218,6 +218,8 @@ if ($itemID and $item = getSimpleItemRow($itemID, CATALOG_TABLE) and !empty($ite
         $arCategory["meta_descr"] = !empty($arCategory["filter_meta_descr"])? PHPHelper::BuildFilterMetaData($arCategory["filter_meta_descr"], $seoFilters): $arCategory["meta_descr"];
         $arCategory["meta_key"]   = !empty($arCategory["filter_meta_key"])  ? PHPHelper::BuildFilterMetaData($arCategory["filter_meta_key"], $seoFilters)  : $arCategory["meta_key"];
     }
+    // disable pages indexation
+    if ($page > 1) $arCategory["meta_robots"] = "noindex,follow";
     // return output via ajax
     if ($IS_AJAX and !empty($_POST) and isset($_POST["ajaxUpdate"])) {
         $smarty->assign('HTMLHelper',   $HTMLHelper);

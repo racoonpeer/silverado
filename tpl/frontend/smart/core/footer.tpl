@@ -1,3 +1,6 @@
+<div class="container seo-text-container">
+    <a href="#" class="readmore"></a>
+</div>
 <div class="footer-container">
     <div class="container clearfix">
         <{include file="ajax/subscribe.tpl"}>

@@ -1,24 +1,12 @@
-/*@font-face {
-    font-family:GothamPro;
-    src:url("/fonts/gotham_ssm/Gotham SSm Book Regular.eot");
-    src:url("/fonts/gotham_ssm/Gotham SSm Book Regular.eot?#iefix") format("embedded-opentype"),
-        url("/fonts/gotham_ssm/Gotham SSm Book Regular.woff") format("woff"),
-        url("/fonts/gotham_ssm/Gotham SSm Book Regular.woff2") format("woff2"),
-        url("/fonts/gotham_ssm/Gotham SSm Book Regular.svg#GothamPro") format("svg");
-    font-weight:normal;
-    font-style:normal;
-    font-stretch:normal
-}
-
 @font-face {
     font-family:GothamPro;
-    src:url("/fonts/gotham_ssm/Gotham SSm Book Italic.eot");
-    src:url("/fonts/gotham_ssm/Gotham SSm Book Italic.eot?#iefix") format("embedded-opentype"),
-        url("/fonts/gotham_ssm/Gotham SSm Book Italic.woff") format("woff"),
-        url("/fonts/gotham_ssm/Gotham SSm Book Italic.woff2") format("woff2"),
-        url("/fonts/gotham_ssm/Gotham SSm Book Italic.svg#GothamPro") format("svg");
+    src:url("/fonts/gotham_pro.eot");
+    src:url("/fonts/gotham_pro.eot?#iefix") format("embedded-opentype"),
+        url("/fonts/gotham_pro.woff") format("woff"),
+        url("/fonts/gotham_pro.ttf") format("truetype"),
+        url("/fonts/gotham_pro.svg#GothamProRegular") format("svg");
     font-weight:normal;
-    font-style:italic;
+    font-style:normal;
     font-stretch:normal
 }
 
@@ -28,7 +16,7 @@
     src:url("/fonts/gotham_pro_bold.eot?#iefix") format("embedded-opentype"),
         url("/fonts/gotham_pro_bold.woff") format("woff"),
         url("/fonts/gotham_pro_bold.ttf") format("truetype"),
-        url("/fonts/gotham_pro_bold.svg#GothamPro-Bold") format("svg");
+        url("/fonts/gotham_pro_bold.svg#GothamProBold") format("svg");
     font-weight:bold;
     font-style:normal;
     font-stretch:normal
@@ -36,22 +24,11 @@
 
 @font-face {
     font-family:GothamPro;
-    src:url("/fonts/gotham_pro_bold_italic.eot");
-    src:url("/fonts/gotham_pro_bold_italic.eot?#iefix") format("embedded-opentype"),
-        url("/fonts/gotham_pro_bold_italic.woff") format("woff"),
-        url("/fonts/gotham_pro_bold_italic.ttf") format("truetype"),
-        url("/fonts/gotham_pro_bold_italic.svg#GothamPro-BoldItalic") format("svg");
-    font-weight:bold;
-    font-style:italic
-}
-
-@font-face {
-    font-family:GothamPro;
-    src:url("/fonts/gotham_ssm/Gotham SSm Medium Regular.eot");
-    src:url("/fonts/gotham_ssm/Gotham SSm Medium Regular.eot?#iefix") format("embedded-opentype"),
-        url("/fonts/gotham_ssm/Gotham SSm Medium Regular.woff") format("woff"),
-        url("/fonts/gotham_ssm/Gotham SSm Medium Regular.woff2") format("woff2"),
-        url("/fonts/gotham_ssm/Gotham SSm Medium Regular.svg#GothamPro") format("svg");
+    src:url("/fonts/gotham_pro_medium.eot");
+    src:url("/fonts/gotham_pro_medium.eot?#iefix") format("embedded-opentype"),
+        url("/fonts/gotham_pro_medium.woff") format("woff"),
+        url("/fonts/gotham_pro_medium.ttf") format("truetype"),
+        url("/fonts/gotham_pro_medium.svg#GothamProMedium") format("svg");
     font-weight:500;
     font-style:normal;
     font-stretch:normal
@@ -59,58 +36,31 @@
 
 @font-face {
     font-family:GothamPro;
-    src:url("/fonts/gotham_ssm/Gotham SSm Medium Italic.eot");
-    src:url("/fonts/gotham_ssm/Gotham SSm Medium Italic.eot?#iefix") format("embedded-opentype"),
-        url("/fonts/gotham_ssm/Gotham SSm Medium Italic.woff") format("woff"),
-        url("/fonts/gotham_ssm/Gotham SSm Medium Italic.woff2") format("woff2"),
-        url("/fonts/gotham_ssm/Gotham SSm Medium Italic.svg#GothamPro") format("svg");
-    font-weight:500;
-    font-style:italic;
+    src:url("/fonts/gotham_pro_light.eot");
+    src:url("/fonts/gotham_pro_light.eot?#iefix") format("embedded-opentype"),
+        url("/fonts/gotham_pro_light.woff") format("woff"),
+        url("/fonts/gotham_pro_light.ttf") format("truetype"),
+        url("/fonts/gotham_pro_light.svg#GothamProLight") format("svg");
+    font-weight:300;
+    font-style:normal;
     font-stretch:normal
 }
 
 @font-face {
-    font-family:GothamPro;
-    src:url("/fonts/gotham_ssm/Gotham SSm Light Regular.eot");
-    src:url("/fonts/gotham_ssm/Gotham SSm Light Regular.eot?#iefix") format("embedded-opentype"),
-        url("/fonts/gotham_ssm/Gotham SSm Light Regular.woff") format("woff"),
-        url("/fonts/gotham_ssm/Gotham SSm Light Regular.woff2") format("woff2"),
-        url("/fonts/gotham_ssm/Gotham SSm Light Regular.svg#GothamPro") format("svg");
-    font-weight:300;
-    font-style:normal
-}
-
-@font-face {
-    font-family:GothamPro;
-    src:url("/fonts/gotham_ssm/Gotham SSm Light Italic.eot");
-    src:url("/fonts/gotham_ssm/Gotham SSm Light Italic.eot?#iefix") format("embedded-opentype"),
-        url("/fonts/gotham_ssm/Gotham SSm Light Italic.woff") format("woff"),
-        url("/fonts/gotham_ssm/Gotham SSm Light Italic.woff2") format("woff2"),
-        url("/fonts/gotham_ssm/Gotham SSm Light Italic.svg#GothamPro") format("svg");
-    font-weight:300;
-    font-style:italic;
-    font-stretch:normal
-}
-*/
-
-
-
-
-
-@font-face {
-    font-family:GothamPro;
+    font-family:GothamProSSm;
     src:url("/fonts/gotham_ssm/Gotham SSm Light Regular.eot");
     src:url("/fonts/gotham_ssm/Gotham SSm Light Regular.eot?#iefix") format("embedded-opentype"),
         url("/fonts/gotham_ssm/Gotham SSm Light Regular.woff2") format("woff2"),
         url("/fonts/gotham_ssm/Gotham SSm Light Regular.woff") format("woff"),
         url("/fonts/gotham_ssm/Gotham SSm Light Regular.otf") format("opentype"),
         url("/fonts/gotham_ssm/Gotham SSm Light Regular.svg#Book") format("svg");
-    font-weight:400;
+    font-weight:300;
     font-style:normal;
     font-stretch:normal
 }
+
 @font-face {
-    font-family:GothamPro;
+    font-family:GothamProSSm;
     src:url("/fonts/gotham_ssm/Gotham SSm Light Italic.eot");
     src:url("/fonts/gotham_ssm/Gotham SSm Light Italic.eot?#iefix") format("embedded-opentype"),
         url("/fonts/gotham_ssm/Gotham SSm Light Italic.woff2") format("woff2"),
@@ -121,8 +71,9 @@
     font-style:italic;
     font-stretch:normal
 }
+
 @font-face {
-    font-family:GothamPro;
+    font-family:GothamProSSm;
     src:url("/fonts/gotham_ssm/Gotham SSm Medium Regular.eot");
     src:url("/fonts/gotham_ssm/Gotham SSm Medium Regular.eot?#iefix") format("embedded-opentype"),
         url("/fonts/gotham_ssm/Gotham SSm Medium Regular.woff2") format("woff2"),
@@ -133,8 +84,9 @@
     font-style:normal;
     font-stretch:normal
 }
+
 @font-face {
-    font-family:GothamPro;
+    font-family:GothamProSSm;
     src:url("/fonts/gotham_ssm/Gotham SSm Medium Italic.eot");
     src:url("/fonts/gotham_ssm/Gotham SSm Medium Italic.eot?#iefix") format("embedded-opentype"),
         url("/fonts/gotham_ssm/Gotham SSm Medium Italic.woff2") format("woff2"),
@@ -144,8 +96,9 @@
     font-weight:bold;
     font-style:italic
 }
+
 @font-face {
-    font-family:GothamPro;
+    font-family:GothamProSSm;
     src:url("/fonts/gotham_ssm/Gotham SSm Book Regular.eot");
     src:url("/fonts/gotham_ssm/Gotham SSm Book Regular.eot?#iefix") format("embedded-opentype"),
         url("/fonts/gotham_ssm/Gotham SSm Book Regular.woff2") format("woff2"),
@@ -156,8 +109,9 @@
     font-style:normal;
     font-stretch:normal
 }
+
 @font-face {
-    font-family:GothamPro;
+    font-family:GothamProSSm;
     src:url("/fonts/gotham_ssm/Gotham SSm Book Italic.eot");
     src:url("/fonts/gotham_ssm/Gotham SSm Book Italic.eot?#iefix") format("embedded-opentype"),
         url("/fonts/gotham_ssm/Gotham SSm Book Italic.woff2") format("woff2"),
@@ -168,8 +122,9 @@
     font-style:italic;
     font-stretch:normal
 }
+
 @font-face {
-    font-family:GothamPro;
+    font-family:GothamProSSm;
     src:url("/fonts/gotham_ssm/Gotham SSm Extra Light Regular.eot");
     src:url("/fonts/gotham_ssm/Gotham SSm Extra Light Regular.eot?#iefix") format("embedded-opentype"),
         url("/fonts/gotham_ssm/Gotham SSm Extra Light Regular.woff2") format("woff2"),
@@ -179,8 +134,9 @@
     font-weight:300;
     font-style:normal
 }
+
 @font-face {
-    font-family:GothamPro;
+    font-family:GothamProSSm;
     src:url("/fonts/gotham_ssm/Gotham SSm Extra Light Italic.eot");
     src:url("/fonts/gotham_ssm/Gotham SSm Extra Light Italic.eot?#iefix") format("embedded-opentype"),
         url("/fonts/gotham_ssm/Gotham SSm Extra Light Italic.woff2") format("woff2"),

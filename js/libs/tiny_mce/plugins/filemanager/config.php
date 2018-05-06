@@ -110,7 +110,7 @@
         $mcFileManagerConfig['unzip.allow_override'] = "*";
 
         // Authenication
-        $mcFileManagerConfig['authenticator'] = "ExternalAuthenticator"; //"BaseAuthenticator";
+        $mcFileManagerConfig['authenticator'] = "BaseAuthenticator"; //"BaseAuthenticator";
         $mcFileManagerConfig['authenticator.login_page'] = "login_session_auth.php";
         $mcFileManagerConfig['authenticator.allow_override'] = "*";
 

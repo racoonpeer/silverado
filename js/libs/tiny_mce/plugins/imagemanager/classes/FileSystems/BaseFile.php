@@ -151,7 +151,7 @@ class Moxiecode_BaseFile {
 	 * @param MCE_File $dest File to copy to.
 	 * @return boolean true - success, false - failure
 	 */
-	function copyTo($dest) {
+	function copyTo(&$dest) {
 	}
 
 	/**
@@ -212,7 +212,7 @@ class Moxiecode_BaseFile {
 	 * @param MCE_File $dest File to rename/move to.
 	 * @return boolean true- success, false - failure
 	 */
-	function renameTo($dest) {
+	function renameTo(&$dest) {
 	}
 
 	/**

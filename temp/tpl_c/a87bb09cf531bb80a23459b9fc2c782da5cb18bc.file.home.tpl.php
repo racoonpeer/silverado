@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-11-12 13:35:08
+<?php /* Smarty version Smarty-3.1.14, created on 2018-04-25 22:08:47
          compiled from "tpl/frontend/smart/module/home.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1836835115a06b2661a0c67-33304707%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a87bb09cf531bb80a23459b9fc2c782da5cb18bc' => 
     array (
       0 => 'tpl/frontend/smart/module/home.tpl',
-      1 => 1510395289,
+      1 => 1524679466,
       2 => 'file',
     ),
   ),
@@ -45,8 +45,7 @@ $_smarty_tpl->tpl_vars['coltitle']->_loop = true;
  $_smarty_tpl->tpl_vars['colname']->value = $_smarty_tpl->tpl_vars['coltitle']->key;
 ?>
 <?php if (isset($_smarty_tpl->tpl_vars['selections']->value[$_smarty_tpl->tpl_vars['colname']->value])&&!empty($_smarty_tpl->tpl_vars['selections']->value[$_smarty_tpl->tpl_vars['colname']->value])){?>
-        <?php echo $_smarty_tpl->getSubTemplate ("core/product-selections.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('arItems'=>$_smarty_tpl->tpl_vars['selections']->value[$_smarty_tpl->tpl_vars['colname']->value],'title'=>$_smarty_tpl->tpl_vars['coltitle']->value), 0);?>
-
+    <?php echo $_smarty_tpl->getSubTemplate ("core/product-selections.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('arItems'=>$_smarty_tpl->tpl_vars['selections']->value[$_smarty_tpl->tpl_vars['colname']->value],'title'=>$_smarty_tpl->tpl_vars['coltitle']->value), 0);?>
 
     <?php $_smarty_tpl->tpl_vars['int'] = new Smarty_variable(($_smarty_tpl->tpl_vars['int']->value+1), null, 0);?>
 <?php }?>

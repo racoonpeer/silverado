@@ -76,6 +76,10 @@ if ($itemID and $item=getSimpleItemRow($itemID, CATALOG_TABLE)) {
                     TrackingEcommerce::save($GoogleConversion, false);
                     $arrPageData["result"]  = "success";
                     $arrPageData["orderID"] = $orderID;
+                    // send admin sms notification
+                    require_once('include/classes/TurboSms.php');
+                    $TurboSms = new TurboSms();
+                    $TurboSms->send("SILVERADO", $objSettingsInfo->ownerPhone, "Noviy zakaz N$orderID", WLCMS_HTTP_HOST."/admin/index.php?module=orders&task=editItem&itemID=$orderID");
                 } $smarty->assign('trackingEcommerceJS', TrackingEcommerce::OutputJS(ENABLE_TRACKING_ECOMMERCE));
             }
         } $formData = array_merge($formData, $_POST);

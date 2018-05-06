@@ -146,6 +146,7 @@ $arrPageData['path_arrow'] = '<img src="'.$arrPageData['images_dir'].'arrow.gif"
 $arCategory = getItemRow(MAIN_TABLE, '*', "WHERE id={$catid}");
 //Anscreen Data From DB
 $arCategory['text'] = unScreenData($arCategory['text']);
+$arCategory['seo_text'] = unScreenData($arCategory['seo_text']);
 // Set to Category array accsess variable taked recursively by parent
 $arCategory['access'] = canAccess($catid, true);
 // Set arPath to Category

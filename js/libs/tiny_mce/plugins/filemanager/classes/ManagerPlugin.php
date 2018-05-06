@@ -222,7 +222,7 @@ class Moxiecode_ManagerPlugin {
 	 * @param BaseFile $file Implementation of the BaseFile class that was inserted/returned to external system.
 	 * @return bool true/false if the execution of the event chain should continue.
 	 */
-	function onInsertFile(&$man, &$file) {
+	function onInsertFile(&$man, $file) {
 		return true;
 	}
 

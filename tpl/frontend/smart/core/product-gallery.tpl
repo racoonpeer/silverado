@@ -2,7 +2,7 @@
     <div class="screen">
 <{foreach name=i from=$item.images item=image}>
         <div class="slick-slide <{if $smarty.foreach.i.first}>slick-active<{/if}>" data-original="<{$image.image}>">
-            <img src="<{$image.big_image}>" alt="<{$item.title}> <{$item.pcode}> - фото <{$smarty.foreach.i.iteration}>" title="<{$item.title}> <{$item.pcode}>"/>
+            <img src="<{$image.big_image}>" alt="<{$item.title}> <{$item.pcode}> - фото <{$smarty.foreach.i.iteration}>" title="<{$item.title}> <{$item.pcode}>"<{if $smarty.foreach.i.first}> itemprop="image" src="<{$smarty.const.WLCMS_HTTP_HOST}><{$image.big_image}>"<{/if}>/>
         </div>
 <{/foreach}>
     </div>

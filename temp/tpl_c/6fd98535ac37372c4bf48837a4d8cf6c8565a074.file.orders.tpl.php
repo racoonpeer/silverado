@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2018-02-17 20:47:41
+<?php /* Smarty version Smarty-3.1.14, created on 2018-04-18 21:14:04
          compiled from "tpl/backend/weblife/module/orders.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1103525045a0b54c79534d3-48849796%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '6fd98535ac37372c4bf48837a4d8cf6c8565a074' => 
     array (
       0 => 'tpl/backend/weblife/module/orders.tpl',
-      1 => 1518893250,
+      1 => 1524075225,
       2 => 'file',
     ),
   ),
@@ -33,6 +33,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <div id="right_block">
 
 <?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['task']=='editItem'){?>
+    <div class="noticePanel">
+        Не забудь ознакомиться с <a href="https://irn5p8.axshare.com/" target="_blank">Картой бизнес-процесса</a>
+    </div>
 <form method="post" id="orderForm" action="<?php echo ((($_smarty_tpl->tpl_vars['arrPageData']->value['current_url']).($_smarty_tpl->tpl_vars['arrPageData']->value['filter_url'])).("&task=")).($_smarty_tpl->tpl_vars['arrPageData']->value['task']);?>
 <?php if ($_smarty_tpl->tpl_vars['arrPageData']->value['itemID']>0){?><?php echo (('').("&itemID=")).($_smarty_tpl->tpl_vars['arrPageData']->value['itemID']);?>
 <?php }?>" name="<?php echo $_smarty_tpl->tpl_vars['arrPageData']->value['task'];?>

@@ -38,6 +38,8 @@ if(!defined('CATEGORY_FILTERS_TABLE')){
 if(!defined('PRODUCT_OPTIONS_VALUES_TABLE')){
     define('PRODUCT_OPTIONS_VALUES_TABLE',      'product_options_values');
 }
+if(!defined('NP_CITY_TABLE')){              define('NP_CITY_TABLE',             'np_city');}
+if(!defined('NP_WAREHOUSE_TABLE')){         define('NP_WAREHOUSE_TABLE',        'np_warehouse');}
 if(!defined('SUBSCRIBERS_TABLE')){          define('SUBSCRIBERS_TABLE',         'subscribers'); }
 if(!defined('ORDER_TYPES_TABLE')){          define('ORDER_TYPES_TABLE',         'order_types'); }
 if(!defined('ORDER_STATUS_TABLE')){         define('ORDER_STATUS_TABLE',        'order_status'); }

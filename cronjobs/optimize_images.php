@@ -57,7 +57,7 @@ try {
 //        $_SERVER['DOCUMENT_ROOT'].'/uploads/attributes', 
 //        $_SERVER['DOCUMENT_ROOT'].'/uploads/brands', 
         $_SERVER['DOCUMENT_ROOT'].'/uploads/banners',
-//        $_SERVER['DOCUMENT_ROOT'].'/uploads/catalog', 
+        $_SERVER['DOCUMENT_ROOT'].'/uploads/catalog', 
 //        $_SERVER['DOCUMENT_ROOT'].'/uploads/files',
 //        $_SERVER['DOCUMENT_ROOT'].'/uploads/gallery',
 //        $_SERVER['DOCUMENT_ROOT'].'/uploads/homeslider',
@@ -67,7 +67,7 @@ try {
 //        $_SERVER['DOCUMENT_ROOT'].'/uploads/options',
 //        $_SERVER['DOCUMENT_ROOT'].'/uploads/stocks',
 //        $_SERVER['DOCUMENT_ROOT'].'/uploads/users',
-        $_SERVER['DOCUMENT_ROOT'].'/images/site/smart', 
+        $_SERVER['DOCUMENT_ROOT'].'/images/public', 
     );
     $log_message .= 'на дату: '.$checkdate.'; в папках: '.implode(', ', $dirs).PHP_EOL;
     while(NULL !== ($dir = array_pop($dirs))) {
@@ -102,8 +102,7 @@ try {
                         }
                     }
                 }
-            }
-            closedir($dh);
+            } closedir($dh);
         }
     }
 } catch (Exception $e) {

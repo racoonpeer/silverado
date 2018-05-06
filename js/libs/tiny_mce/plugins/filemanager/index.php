@@ -1,18 +1,15 @@
 <?php
 
-/*
-// Use specified session instead
-if (isset($_REQUEST['sessionid']))
-        session_id($_REQUEST['sessionid']);
-*/
 
-ini_set('error_reporting', 0);
-ini_set('display_errors', 0);
+// Use specified session instead
+if (isset($_REQUEST['sessionid']))  session_id($_REQUEST['sessionid']);
+
+error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT & ~E_WARNING & ~E_PARSE);
 
 // Use install
 if (file_exists("install")) {
-        header("location: install/index.php");
-        die();
+    header("location: install/index.php");
+    die();
 }
 
 require_once("includes/general.php");
@@ -32,8 +29,8 @@ $domain = getRequestParam("domain");
 $type = preg_replace ("/[^a-z]/i", "", $type);
 
 if (!$type) {
-        header('location: examples.html');
-        die();
+    header('location: examples.html');
+    die();
 }
 
 // Include Base and Core and Config.
@@ -54,8 +51,7 @@ $config = $man->getConfig();
 
 $suffix = "";
 
-if ($domain)
-        $suffix .= "?domain=" . $domain;
+if ($domain) $suffix .= "?domain=" . $domain;
 
 // Dispatch onInit event
 if ($man->isAuthenticated()) {
@@ -63,8 +59,8 @@ if ($man->isAuthenticated()) {
         header("Location: pages/". $config["general.theme"] ."/" . $page . $suffix);
         die();
 } else {
-        header("Location: ". $config["authenticator.login_page"] . "?return_url=" . urlencode($_SERVER['REQUEST_URI']));
-        die();
+    header("Location: ". $config["authenticator.login_page"] . "?return_url=" . urlencode($_SERVER['REQUEST_URI']));
+    die();
 }
 
 ?>

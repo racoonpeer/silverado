@@ -290,8 +290,7 @@ elseif (!empty($_POST) AND ($task=='addItem' OR $task=='editItem')) {
                             'pid'       => $itemID,
                             'rid'       => (int)$value,
                             'type'      => 0
-                        );                            
-                        $DB->postToDB($arData, CATALOG_RELATED_TABLE);
+                        ); $DB->postToDB($arData, CATALOG_RELATED_TABLE);
                     }
                 }
                 if (!empty($arPostData['similar'])) {
@@ -301,8 +300,7 @@ elseif (!empty($_POST) AND ($task=='addItem' OR $task=='editItem')) {
                             'pid'       => $itemID,
                             'rid'       => (int)$value,
                             'type'      => 1
-                        );                            
-                        $DB->postToDB($arData, CATALOG_RELATED_TABLE);
+                        ); $DB->postToDB($arData, CATALOG_RELATED_TABLE);
                     }
                 }
                 if (!empty($arPostData['additions'])) {
@@ -312,8 +310,7 @@ elseif (!empty($_POST) AND ($task=='addItem' OR $task=='editItem')) {
                             'pid'       => $itemID,
                             'rid'       => (int)$value,
                             'type'      => 2
-                        );                            
-                        $DB->postToDB($arData, CATALOG_RELATED_TABLE);
+                        ); $DB->postToDB($arData, CATALOG_RELATED_TABLE);
                     }
                 }
                 // operation with product kits
@@ -324,8 +321,7 @@ elseif (!empty($_POST) AND ($task=='addItem' OR $task=='editItem')) {
                         $arData = array(
                             'pid'   => $itemID,
                             'kid'   => $kid
-                        );
-                        $DB->postToDB($arData, CATALOG_KITS_TABLE);
+                        ); $DB->postToDB($arData, CATALOG_KITS_TABLE);
                     }
                 }
                 // operation with product options
@@ -361,12 +357,9 @@ elseif (!empty($_POST) AND ($task=='addItem' OR $task=='editItem')) {
                             }
                         }
                     }
-                }
-
-                Redirect($arrPageData['current_url'].(isset($_POST['submit_add']) ? '&task=addItem' : ((isset($_POST['submit_apply']) AND $itemID) ? '&task=editItem&itemID='.$itemID : '')) );
+                } Redirect($arrPageData['current_url'].(isset($_POST['submit_add']) ? '&task=addItem' : ((isset($_POST['submit_apply']) AND $itemID) ? '&task=editItem&itemID='.$itemID : '')) );
             } else {
                 $arrPageData['errors'][] = 'Запись <font color="red">НЕ была сохранена</font>!';
-            //    unlinkUnUsedImage($arPostData['image'], $arrPageData['files_url'], $arrPageData['images_params']);
                 unlinkFile($arPostData['filename'], $arrPageData['files_path']);            
             }
         }
@@ -423,11 +416,9 @@ if ($task=='addItem' OR $task=='editItem') {
         }
         // related & similar items
         $item['related'] = $item['similar'] = $item['additions'] = array();
-        $select = 'SELECT c.*, m.`title` AS `ctitle`, cr.`type` FROM `'.CATALOG_RELATED_TABLE.'` cr ';
-        $join = 'LEFT JOIN `'.CATALOG_TABLE.'` c ON(c.`id` = cr.`rid`) LEFT JOIN `'.MAIN_TABLE.'` m ON(m.`id` = c.`cid`) ';
-        $where = 'WHERE cr.`pid`='.$itemID.' ';
-        $order = 'ORDER BY cr.`id`';
-        $query = $select.$join.$where.$order;
+        $query  = "SELECT c.*, cr.`type` FROM `".CATALOG_RELATED_TABLE."` cr "
+                . "LEFT JOIN `".CATALOG_TABLE."` c ON(c.`id` = cr.`rid`) "
+                . "WHERE cr.`pid`=$itemID";
         $result = mysql_query($query);
         if ($result and mysql_num_rows($result) > 0) {
             while ($row = mysql_fetch_assoc($result)) {

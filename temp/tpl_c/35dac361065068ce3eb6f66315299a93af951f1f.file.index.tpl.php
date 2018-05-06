@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-12-03 16:13:05
+<?php /* Smarty version Smarty-3.1.14, created on 2018-04-25 22:08:47
          compiled from "tpl/frontend/smart/index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:5573142215a06b2658e7d04-00015835%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '35dac361065068ce3eb6f66315299a93af951f1f' => 
     array (
       0 => 'tpl/frontend/smart/index.tpl',
-      1 => 1512310374,
+      1 => 1524679390,
       2 => 'file',
     ),
   ),
@@ -31,6 +31,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     <?php echo $_smarty_tpl->getSubTemplate ("core/head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
     <body>
+        <?php echo $_smarty_tpl->getSubTemplate ("core/seo-text.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+
         <div id="sbIndex" canvas="container">
             <?php echo $_smarty_tpl->getSubTemplate ('core/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 

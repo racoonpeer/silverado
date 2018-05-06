@@ -94,7 +94,7 @@
         $mcImageManagerConfig['edit.format'] = "";
 
         // Authenication
-        $mcImageManagerConfig['authenticator'] = "ExternalAuthenticator"; //"BaseAuthenticator";
+        $mcImageManagerConfig['authenticator'] = "BaseAuthenticator"; //"BaseAuthenticator";
         $mcImageManagerConfig['authenticator.login_page'] = "login_session_auth.php";
         $mcImageManagerConfig['authenticator.allow_override'] = "*";
 
@@ -114,8 +114,8 @@
         $mcImageManagerConfig['ExternalAuthenticator.check_sitezone'] = true;
 
         // Local filesystem options
-        $mcImageManagerConfig['filesystem.local.file_mask'] = "0777"; // 0777 for full access
-        $mcImageManagerConfig['filesystem.local.directory_mask'] = "0777"; // 0777 for full access
+        $mcImageManagerConfig['filesystem.local.file_mask'] = "0644"; // 0777 for full access
+        $mcImageManagerConfig['filesystem.local.directory_mask'] = "0644"; // 0777 for full access
         $mcImageManagerConfig['filesystem.local.file_template'] = '${rootpath}/templates/file.htm'; // not yet implemented, always forced
         $mcImageManagerConfig['filesystem.local.access_file_name'] = "mc_access";
         $mcImageManagerConfig['filesystem.local.allow_override'] = "*";

@@ -167,7 +167,7 @@ foreach ($arSpreadSheets as $spreadID) {
                                     $query  = "SELECT m.`id` FROM `".MAIN_TABLE."` m "
                                             . "INNER JOIN `".CATEGORY_PROPERTIES_TABLE."` cp ON(cp.`category_id`=m.`id` AND cp.`attribute_id`=$aid AND cp.`value_id`=$exVal) "
                                             . "INNER JOIN `".CATEGORY_PROPERTIES_TYPES_TABLE."` cpt ON(cpt.`id`=cp.`type_id` AND cpt.`typename`='attribute') "
-                                            . "WHERE m.`module`='catalog' AND m.`pid`=".CATALOG_ROOT_ID." LIMIT 1";
+                                            . "WHERE m.`module`='catalog' AND cp.`attribute_id`=15 AND m.`pid`=".CATALOG_ROOT_ID." LIMIT 1";
                                     $result = mysql_query($query);
                                     if ($result and mysql_num_rows($result)>0) {
                                         $row = mysql_fetch_assoc($result);

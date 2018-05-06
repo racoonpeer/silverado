@@ -17,15 +17,37 @@ $arrPageData['headScripts'][] = "/js/libs/select2/js/i18n/ru.js";
 $arrPageData['headScripts'][] = "/js/public/checkout.js";
 // Search cities
 if ($IS_AJAX and !empty($term) and $task=="getCities") {
-    $term = PHPHelper::dataConv($term, "utf-8", WLCMS_SYSTEM_ENCODING);
-    $json["items"] = Checkout::getInstance()->np_getCities($term);
-    exit(json_encode(PHPHelper::dataConv($json)));
+    $json = ["items"=>[]];
+    $term = PHPHelper::prepareSearchText($term, true);
+    if ($term and strlen($term)>2) {
+        $query  = "SELECT DISTINCT * FROM `".NP_CITY_TABLE."` WHERE `title_ru` LIKE '%{$term}%' ORDER BY `title_ru`";
+        $result = mysql_query($query);
+        if ($result and mysql_num_rows($result)>0) {
+            while ($row = mysql_fetch_assoc($result)) {
+                $row["id"]   = unScreenData($row["title_ru"]);
+                $row["text"] = $row["id"];
+                $json["items"][] = $row;
+            }
+        }
+    } die (json_encode(PHPHelper::dataConv($json)));
 }
 // Search warehouses
 if ($IS_AJAX and !empty($term) and $task=="getAddress") {
-    $term = PHPHelper::dataConv($term, "utf-8", WLCMS_SYSTEM_ENCODING);
-    $json["items"] = Checkout::getInstance()->np_getWareHouses($term);
-    exit(json_encode(PHPHelper::dataConv($json)));
+    $json = ["items"=>[]];
+    $term = PHPHelper::prepareSearchText($term, true);
+    if ($term and strlen($term)>2) {
+        $query  = "SELECT DISTINCT nw.* FROM `".NP_WAREHOUSE_TABLE."` nw "
+                . "LEFT JOIN `".NP_CITY_TABLE."` nc ON(nc.`ref`=nw.`city_ref`) "
+                . "WHERE nc.`title_ru`='{$term}'";
+        $result = mysql_query($query);
+        if ($result and mysql_num_rows($result)>0) {
+            while ($row = mysql_fetch_assoc($result)) {
+                $row["id"]   = unScreenData($row["title_ru"]);
+                $row["text"] = $row["id"];
+                $json["items"][] = $row;
+            }
+        }
+    } die (json_encode(PHPHelper::dataConv($json)));
 }
 if (!empty($_POST) and !empty($purchases)) {
     $_POST['descr'] = cleanText($_POST['descr']);
@@ -89,6 +111,10 @@ if (!empty($_POST) and !empty($purchases)) {
                 $text = $smarty->fetch('mail/order_user.tpl');
                 $subject = sprintf(NEW_ORDER_COMPLETED, $orderID);
                 sendMail($arData['email'], $subject, $text, $objSettingsInfo->siteEmail, 'html');
+                // send admin sms notification
+                require_once('include/classes/TurboSms.php');
+                $TurboSms = new TurboSms();
+                $TurboSms->send("SILVERADO", $objSettingsInfo->ownerPhone, "Noviy zakaz N$orderID", WLCMS_HTTP_HOST."/admin/index.php?module=orders&task=editItem&itemID=$orderID");
             }
             $GoogleConversion->setPurchased(true);
             TrackingEcommerce::save($GoogleConversion, false);

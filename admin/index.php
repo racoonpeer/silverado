@@ -88,6 +88,8 @@ $arrPageData     = array( //Page data array
     'items_on_page' => 10,
     'total_items'   => 0,
     'total_pages'   => 1,
+    'new_orders'    => (int)getValueFromDB(ORDERS_TABLE, "COUNT(*)", "WHERE `status`=1", "cnt"),
+    'new_comments'  => (int)getValueFromDB(COMMENTS_TABLE, "COUNT(*)", "WHERE `isnew`>0", "cnt"),
     'seo_separator' => ' - ',
     'system_images' => '/images/operation/',
     'images_dir'    => '/images/admin/',

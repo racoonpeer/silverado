@@ -143,7 +143,7 @@
                         <td colspan="2">  
                             <strong><{$smarty.const.HEAD_CONTENT}></strong>
                             <a href="javascript:toggleEditor('fulldescription');"><{$smarty.const.HEAD_SWITCH_TEXT_EDITOR}></a><br/><br/>
-                            <textarea style="width:640px; height: 500px;" id="fulldescription" name="fulldescr" ><{$item.fulldescr}></textarea>
+                            <textarea style="width:640px; height: 480px;" id="fulldescription" name="fulldescr" ><{$item.fulldescr}></textarea>
                         </td>
                         <td class="buttons_row"></td>
                     </tr>
@@ -660,23 +660,23 @@
                         </td>
                     </tr>
                     <tr valign="top">
-                        <td >
+                        <td>
                             <select onChange="this.form.related_add.disabled=(this.selectedIndex == -1);jsSelectUtils.addExtraOptionsParams(this.form.selected_related, {ondblclick: 'openTab(\'/admin/?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" multiple="" size="10" id="list_settings_all_related" name="all_related" class="jsSelectUtils_select"></select>
                         </td>
-                        <td  valign="middle">
+                        <td valign="middle">
                             <input type="button" onClick="jsSelectUtils.addSelectedOptions(this.form.all_related, 'list_settings_selected_related', 0);jsSelectUtils.addExtraOptionsParams(this.form.selected_related, {ondblclick: 'openTab(\'/admin/?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" disabled="" title="Выбрать отмеченные колонки" value="&nbsp; &gt; &nbsp;" name="related_add" class="buttons green" style="min-width: 30px;"/>
                             <br/>
                             <input type="button" onClick="jsSelectUtils.addSelectedOptions(this.form.selected_related, 'list_settings_all_related');jsSelectUtils.addExtraOptionsParams(this.form.all_related, {ondblclick: 'openTab(\'/admin/?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" disabled="" title="Выбрать отмеченные колонки" value="&nbsp; &lt; &nbsp;" name="related_del" class="buttons green" style="min-width: 30px;"/>
                         </td>
-                        <td >
-                            <input type="hidden" name="related" id="related" value=""/>
+                        <td>
+                            <input type="hidden" name="related" value=""/>
                             <select onChange="var frm=this.form; frm.related_up.disabled=frm.related_down.disabled=frm.related_del.disabled=(this.selectedIndex == -1);jsSelectUtils.addExtraOptionsParams(this.form.all_related, {ondblclick: 'openTab(\'/admin/?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" multiple="" size="10" id="list_settings_selected_related" name="selected_related" class="jsSelectUtils_select">
 <{section name=i loop=$item.related}>
                                 <option value="<{$item.related[i].id}>" ondblclick="openTab('/admin/?module=catalog&task=editItem&itemID=' + this.value);" style="color: blue; text-decoration: underline;"><{$item.related[i].title|cat:" "|cat:$item.related[i].pcode}></option>
 <{/section}>
                             </select>
                         </td>
-                        <td  valign="middle">
+                        <td valign="middle">
                             <input type="button" onClick="jsSelectUtils.moveOptionsUp(this.form.selected_related);jsSelectUtils.addExtraOptionsParams(this.form.selected_related, {ondblclick: 'openTab(\'/admin/?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" disabled="" title="Порядок показа колонок (выше)" value="Выше" class="buttons" name="related_up" style="min-width: 30px;"/>
                             <br/>
                             <input type="button" onClick="jsSelectUtils.moveOptionsDown(this.form.selected_related);jsSelectUtils.addExtraOptionsParams(this.form.selected_related, {ondblclick: 'openTab(\'/admin/?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" disabled="" title="Порядок показа колонок: ниже" value="Ниже" class="buttons" name="related_down" style="min-width: 30px;"/>
@@ -688,95 +688,6 @@
                         <td class="buttons_row"></td>
                     </tr>
                 </table>
-<{*                            
-                <br/>
-                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="list" id="similarTable">
-                    <tr>
-                        <td colspan="4">     
-                            <strong>Похожие товары</strong><br/><br/>
-                            <select id="similarCats" onchange="updateSimilarOptions(this.value);" class="field">
-                                <option> --- Выберите категорию из списка --- </option>
-<{foreach name=i from=$arrPageData.arRelatedCats key=arKey item=arItem}>
-                                <option value="<{$arItem.id}>"><{$arItem.title}></option>
-<{/foreach}>
-                            </select>
-                        </td>
-                        <td class="buttons_row" valign="top" width="145" align="center">
-                        </td>
-                    </tr>
-                    <tr valign="top">
-                        <td>
-                            <select onChange="this.form.similar_add.disabled=(this.selectedIndex == -1);jsSelectUtils.addExtraOptionsParams(this.form.selected_similar, {ondblclick: 'openTab(\'/admin/?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" multiple="" size="10" id="list_settings_all_similar" name="all_similar" class="jsSelectUtils_select"></select>
-                        </td>
-                        <td valign="middle">
-                            <input type="button" onClick="jsSelectUtils.addSelectedOptions(this.form.all_similar, 'list_settings_selected_similar', 0);jsSelectUtils.addExtraOptionsParams(this.form.selected_similar, {ondblclick: 'openTab(\'/admin/?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" disabled="" title="Выбрать отмеченные колонки" value="&nbsp; &gt; &nbsp;" name="similar_add" class="buttons green" style="min-width: 30px;"/>
-                            <br/>
-                            <input type="button" onClick="jsSelectUtils.addSelectedOptions(this.form.selected_similar, 'list_settings_all_similar');jsSelectUtils.addExtraOptionsParams(this.form.all_similar, {ondblclick: 'openTab(\'/admin/?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" disabled="" title="Выбрать отмеченные колонки" value="&nbsp; &lt; &nbsp;" name="similar_del" class="buttons green" style="min-width: 30px;"/>
-                        </td>
-                        <td>
-                            <input type="hidden" name="similar" id="similar" value=""/>
-                            <select onChange="var frm=this.form; frm.similar_up.disabled=frm.similar_down.disabled=frm.similar_del.disabled=(this.selectedIndex == -1);jsSelectUtils.addExtraOptionsParams(this.form.all_similar, {ondblclick: 'openTab(\'/admin/?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" multiple="" size="10" id="list_settings_selected_similar" name="selected_similar" class="jsSelectUtils_select">
-<{section name=i loop=$item.similar}>
-                                <option value="<{$item.similar[i].id}>" ondblclick="openTab('/admin/?module=catalog&task=editItem&itemID=' + this.value);" style="color: blue; text-decoration: underline;"><{$item.similar[i].title|cat:" "|cat:$item.similar[i].pcode}></option>
-<{/section}>
-                            </select>
-                        </td>
-                        <td valign="middle">
-                            <input type="button" onClick="jsSelectUtils.moveOptionsUp(this.form.selected_similar);jsSelectUtils.addExtraOptionsParams(this.form.selected_similar, {ondblclick: 'openTab(\'/admin/?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" disabled="" title="Порядок показа колонок (выше)" value="Выше" class="buttons" name="similar_up" style="min-width: 30px;"/>
-                            <br/>
-                            <input type="button" onClick="jsSelectUtils.moveOptionsDown(this.form.selected_similar);jsSelectUtils.addExtraOptionsParams(this.form.selected_similar, {ondblclick: 'openTab(\'/admin/?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" disabled="" title="Порядок показа колонок: ниже" value="Ниже" class="buttons" name="similar_down" style="min-width: 30px;"/>
-                        </td>
-                        <td class="buttons_row"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="padding: 0 5px;font-style:italic;">Двойной клик по элементу для перехода на товар</td>
-                        <td class="buttons_row"></td>
-                    </tr>
-                </table>
-                <br/>
-                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="list" id="additionsTable">
-                    <tr>
-                        <td colspan="4">     
-                            <strong>Дополнения</strong><br/><br/>
-                            <select id="additionsCats" onchange="updateAdditionsOptions(this.value);" class="field">
-                                <option> --- Выберите категорию из списка --- </option>
-<{foreach name=i from=$arrPageData.arRelatedCats key=arKey item=arItem}>
-                                <option value="<{$arItem.id}>"><{$arItem.title}></option>
-<{/foreach}>
-                            </select>
-                        </td>
-                        <td class="buttons_row" valign="top" width="145" align="center"></td>
-                    </tr>
-                    <tr valign="top">
-                        <td>
-                            <select onChange="this.form.additions_add.disabled=(this.selectedIndex == -1);jsSelectUtils.addExtraOptionsParams(this.form.selected_additions, {ondblclick: 'openTab(\'/admin/?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" multiple="" size="10" id="list_settings_all_additions" name="all_additions" class="jsSelectUtils_select"></select>
-                        </td>
-                        <td valign="middle">
-                            <input type="button" onClick="jsSelectUtils.addSelectedOptions(this.form.all_additions, 'list_settings_selected_additions', 0);jsSelectUtils.addExtraOptionsParams(this.form.selected_additions, {ondblclick: 'openTab(\'/admin/?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" disabled="" title="Выбрать отмеченные колонки" value="&nbsp; &gt; &nbsp;" name="additions_add" class="buttons green" style="min-width: 30px;"/>
-                            <br/>
-                            <input type="button" onClick="jsSelectUtils.addSelectedOptions(this.form.selected_additions, 'list_settings_all_additions');jsSelectUtils.addExtraOptionsParams(this.form.all_additions, {ondblclick: 'openTab(\'/admin/?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" disabled="" title="Выбрать отмеченные колонки" value="&nbsp; &lt; &nbsp;" name="additions_del" class="buttons green" style="min-width: 30px;"/>
-                        </td>
-                        <td>
-                            <input type="hidden" name="additions" id="additions" value=""/>
-                            <select onChange="var frm=this.form; frm.additions_up.disabled=frm.additions_down.disabled=frm.additions_del.disabled=(this.selectedIndex == -1);jsSelectUtils.addExtraOptionsParams(this.form.all_additions, {ondblclick: 'openTab(\'/admin/?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" multiple="" size="10" id="list_settings_selected_additions" name="selected_additions" class="jsSelectUtils_select">
-<{section name=i loop=$item.additions}>
-                                <option value="<{$item.additions[i].id}>" ondblclick="openTab('/admin/?module=catalog&task=editItem&itemID=' + this.value);" style="color: blue; text-decoration: underline;"><{$item.additions[i].title|cat:" "|cat:$item.additions[i].pcode}></option>
-<{/section}>
-                            </select>
-                        </td>
-                        <td valign="middle">
-                            <input type="button" onClick="jsSelectUtils.moveOptionsUp(this.form.selected_additions);jsSelectUtils.addExtraOptionsParams(this.form.selected_additions, {ondblclick: 'openTab(\'/admin/?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" disabled="" title="Порядок показа колонок (выше)" value="Выше" class="buttons" name="additions_up" style="min-width: 30px;"/>
-                            <br/>
-                            <input type="button" onClick="jsSelectUtils.moveOptionsDown(this.form.selected_additions);jsSelectUtils.addExtraOptionsParams(this.form.selected_additions, {ondblclick: 'openTab(\'/admin/?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" disabled="" title="Порядок показа колонок: ниже" value="Ниже" class="buttons" name="additions_down" style="min-width: 30px;"/>
-                        </td>
-                        <td class="buttons_row"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="padding: 0 5px;font-style:italic;">Двойной клик по элементу для перехода на товар</td>
-                        <td class="buttons_row"></td>
-                    </tr>
-                </table>
-*}>            
 <{if $arrPageData.task=="addItem" OR ($arrPageData.task=="editItem" AND !$item.has_kit)}>
                 <br/>
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="list" id="kitsTable">
@@ -802,7 +713,7 @@
                             <input type="button" onClick="jsSelectUtils.addSelectedOptions(this.form.selected_kits, 'list_settings_all_kits', 0, false, false);jsSelectUtils.addExtraOptionsParams(this.form.all_kits, {ondblclick: 'openTab(\'/admin/?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" disabled="" title="Выбрать отмеченные колонки" value="&nbsp; &lt; &nbsp;" name="kit_del" class="buttons green" style="min-width: 30px;"/>
                         </td>
                         <td align="center">
-                            <input type="hidden" name="arKits" value="" />
+                            <input type="hidden" name="arKits" value=""/>
                             <select onChange="var frm=this.form; frm.kit_up.disabled=frm.kit_down.disabled=frm.kit_del.disabled=(this.selectedIndex == -1);jsSelectUtils.addExtraOptionsParams(this.form.all_kits, {ondblclick: 'openTab(\'/admin/?module=catalog&task=editItem&itemID=\' + this.value);', style: 'color: blue; text-decoration: underline;'});" multiple="" size="10" id="list_settings_selected_kits" name="selected_kits" class="jsSelectUtils_select">
 <{section name=i loop=$item.arKits}>
                                 <option value="<{$item.arKits[i].id}>" ondblclick="openTab('/admin/?module=catalog&task=editItem&itemID=' + this.value);" style="color: blue; text-decoration: underline;"><{$item.arKits[i].title|cat:" "|cat:$item.arKits[i].pcode}></option>
@@ -839,35 +750,32 @@
 
 <script type="text/javascript">
     function formCheck(form) {
-        if(form.title.value.length == 0){
+        if (form.title.value.length == 0) {
            alert('<{$smarty.const.ALERT_EMPTY_PAGE_TITLE}>'); 
            return false;
         }
-                
         $.each($('.attributes'), function() {
-            var attrParent = $(this).find('.selectedAttr');
-            var attrValues = $(this).find('.arAttrValues');
-            
-            var vidx = [];
+            var attrParent = $(this).find('.selectedAttr'),
+                attrValues = $(this).find('.arAttrValues'),
+                vidx = new Array();
             $.each($(attrParent).find('.attr'), function() {
                 vidx.push($(this).attr('data-value'));
-            });
-            $(attrValues).val(vidx);
+            }); $(attrValues).val(vidx);
         });
-        
         // product kits input filling
-        var arIdx = new Array();
-        for (var i = 0; i < form.selected_kits.length; i++) {
-            arIdx.push(form.selected_kits[i].value);
+        if (typeof form.selected_kits != "undefined") {
+            var arIdx = new Array();
+            for (var i = 0; i < form.selected_kits.length; i++) {
+                arIdx.push(form.selected_kits[i].value);
+            } form.arKits.value = arIdx.join(',');
         }
-        form.arKits.value = arIdx.join(',');
-        
         // related products input filling
-        var arIdx = new Array();
-        for (var i = 0; i < form.selected_related.length; i++) {
-            arIdx.push(form.selected_related[i].value);
+        if (typeof form.selected_related != "undefined") {
+            var arIdx = new Array();
+            for (var i = 0; i < form.selected_related.length; i++) {
+                arIdx.push(form.selected_related[i].value);
+            } form.related.value = arIdx.join(',');
         }
-        form.related.value = arIdx.join(',');
         // similar products input filling
         // var arIdx = new Array();
         // for (var i = 0; i < form.selected_similar.length; i++) {
@@ -880,15 +788,13 @@
         //     arIdx.push(form.selected_additions[i].value);
         // }
         // form.additions.value = arIdx.join(',');
-        
         return true;
     }
     
     function togglePriceOptions(cb) {
-        var checked = cb.checked || false;
-        var cprice = document.getElementById('cprice');
-        var discount = document.getElementById('discount');
-
+        var checked = cb.checked || false,
+            cprice = document.getElementById('cprice'),
+            discount = document.getElementById('discount');
         if(checked) {
             $(cprice).attr('disabled', true);
             $(discount).removeAttr('disabled'); 
@@ -958,8 +864,7 @@
                         var html = '';
                         for (var i in json.items){
                             html += '<option value="' + json.items[i].id + '" ondblclick="openTab(\'/admin/?module=catalog&task=editItem&itemID=\' + this.value);" style="color: blue; text-decoration: underline;">' + json.items[i].name + '</option>';
-                        }
-                        $('#list_settings_all_related').html(html);
+                        } $('#list_settings_all_related').html(html);
                     }
                 }
             });

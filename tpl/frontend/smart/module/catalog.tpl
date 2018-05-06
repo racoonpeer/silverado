@@ -3,7 +3,13 @@
 <{* DISPLAY ITEM FIRST IF NOT EMPTY *}>
 <{if !empty($item)}>
     <h1 class="product-title"><{$item.title}> <{$item.pcode}></h1>
-    <div class="product-card clearfix">
+    <div class="product-card clearfix" itemscope itemtype="http://schema.org/Product">
+        <meta itemprop="name" content="<{$item.title}> <{$item.pcode}>">
+        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+            <meta itemprop="priceCurrency" content="UAH">
+            <meta itemprop="price" content="<{$item.price|number_format:0:'.':''}>">
+            <link itemprop="availability" href="http://schema.org/InStock"/>
+        </div>
         <{include file="core/product-gallery.tpl"}>
         <div class="product-flypage details clearfix">
             <{include file="core/product-sticker.tpl"}>

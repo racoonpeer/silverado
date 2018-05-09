@@ -186,6 +186,34 @@ and open the template in the editor.
                 }
             }
         }
+        .hint {
+            display: inline-block;
+            height: 32px;
+            line-height: 32px;
+            vertical-align: 0px;
+            text-decoration: none;
+            color: #262626;
+            font-size: 1.2rem;
+            cursor: pointer;
+            &:hover {
+                color: $black;
+            }
+            &:before {
+                display: inline-block;
+                vertical-align: -1px;
+                width: 22px;
+                height: 9px;
+                margin-right: 7px;
+                background-image: $sprite;
+                background-position: -258px -23px;
+                content: "";
+            }
+            span {
+                border-bottom: 1px dotted;
+                display: inherit;
+                line-height: 1.4;
+            }
+        }
     }
     .product-features {
         margin-top: 30px;

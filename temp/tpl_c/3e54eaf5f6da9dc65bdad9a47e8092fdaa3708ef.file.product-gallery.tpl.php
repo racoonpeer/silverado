@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2018-01-28 15:41:55
+<?php /* Smarty version Smarty-3.1.14, created on 2018-05-06 21:03:16
          compiled from "tpl/frontend/smart/core/product-gallery.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:11118015665a06bfaa3f2940-33695262%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '3e54eaf5f6da9dc65bdad9a47e8092fdaa3708ef' => 
     array (
       0 => 'tpl/frontend/smart/core/product-gallery.tpl',
-      1 => 1515532218,
+      1 => 1525547182,
       2 => 'file',
     ),
   ),
@@ -47,7 +47,9 @@ $_smarty_tpl->tpl_vars['image']->_loop = true;
  - фото <?php echo $_smarty_tpl->getVariable('smarty')->value['foreach']['i']['iteration'];?>
 " title="<?php echo $_smarty_tpl->tpl_vars['item']->value['title'];?>
  <?php echo $_smarty_tpl->tpl_vars['item']->value['pcode'];?>
-"/>
+"<?php if ($_smarty_tpl->getVariable('smarty')->value['foreach']['i']['first']){?> itemprop="image" src="<?php echo @constant('WLCMS_HTTP_HOST');?>
+<?php echo $_smarty_tpl->tpl_vars['image']->value['big_image'];?>
+"<?php }?>/>
         </div>
 <?php } ?>
     </div>

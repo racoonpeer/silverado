@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2017-11-11 11:15:22
+<?php /* Smarty version Smarty-3.1.14, created on 2018-05-09 14:42:06
          compiled from "tpl/frontend/smart/core/_option.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2347720765a06bfaa54d230-73959469%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '219d18b0c5520df614dc45c660e7bf2b6c17502a' => 
     array (
       0 => 'tpl/frontend/smart/core/_option.tpl',
-      1 => 1508688469,
+      1 => 1525866103,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_5a06bfaa71fc70_35736787',
   'variables' => 
   array (
     'option' => 0,
@@ -23,10 +25,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'item' => 0,
     'valueID' => 0,
     'list' => 0,
+    'arrModules' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.14',
-  'unifunc' => 'content_5a06bfaa71fc70_35736787',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5a06bfaa71fc70_35736787')) {function content_5a06bfaa71fc70_35736787($_smarty_tpl) {?>
 <?php if (in_array($_smarty_tpl->tpl_vars['option']->value['typename'],$_smarty_tpl->tpl_vars['types']->value)&&!empty($_smarty_tpl->tpl_vars['option']->value['values'])&&count($_smarty_tpl->tpl_vars['option']->value['values'])>1){?>
@@ -70,5 +71,9 @@ _<?php echo $_smarty_tpl->tpl_vars['valueID']->value;?>
 ');"<?php }?>><?php echo $_smarty_tpl->tpl_vars['value']->value['title'];?>
 </label>
 <?php } ?>
+<?php if ($_smarty_tpl->tpl_vars['option']->value['id']==12){?>
+    <a class="hint" href="#" onclick="return Modal.open('<?php echo $_smarty_tpl->getSubTemplate ("core/href.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('arCategory'=>$_smarty_tpl->tpl_vars['arrModules']->value['measure']), 0);?>
+');"><span>примерить онлайн</span></a>
+<?php }?>
 </div>
 <?php }?><?php }} ?>

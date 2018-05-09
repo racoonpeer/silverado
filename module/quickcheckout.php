@@ -54,7 +54,7 @@ if ($itemID and $item=getSimpleItemRow($itemID, CATALOG_TABLE)) {
                     "options"  => serialize($item['selectedOptions'])
                 ];
                 // Add Google Conversion Item
-                $GoogleConversion->addItem(new GoogleConversionItem($GoogleConversion->id, $item['pcode'], $item['price'], 1, htmlspecialchars_decode($item['title'])));
+                $GoogleConversion->addItem(new GoogleConversionItem($GoogleConversion->id, $item['pcode'], $item['price'], 1, htmlspecialchars_decode("{$item['title']} {$item['pcode']}")));
                 $DB->postToDB($data, ORDER_PRODUCTS_TABLE);
                 // email notifications
                 $arData             = $arPostData;

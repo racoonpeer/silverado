@@ -23,9 +23,14 @@ if (!empty($_POST)) {
         $subject = "Новый заказ обратного звонка с сайта {$_SERVER["HTTP_HOST"]}";
         $from    = "noreply@silverado.com.ua";
         $to      = $objSettingsInfo->notifyEmail;
-        if (sendMail($to, $subject, $text, $from)) $arrPageData["result"] = "success";
-    }
-    $formData = array_merge($formData, $_POST);
+        if (sendMail($to, $subject, $text, $from)) {
+            $arrPageData["result"] = "success";
+            // send admin sms notification
+            require_once('include/classes/TurboSms.php');
+            $TurboSms = new TurboSms();
+            $TurboSms->send("SILVERADO", $objSettingsInfo->ownerPhone, "Zakaz obratnogo zvonka s sayta. Perezvonite po nomeru ".$_POST['phone']." (".$_POST["firstname"].")");
+        }
+    } $formData = array_merge($formData, $_POST);
 }
 
 $smarty->assign("formData",        $formData);

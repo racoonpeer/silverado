@@ -10,5 +10,8 @@
     <input type="radio" id="options_<{$item.id}>_<{$option.id}>_<{$valueID}>" name="options[<{$item.id}>][<{$option.id}>]" value="<{$valueID}>" data-label="<{$value.title}>" data-optionid="<{$option.id}>" data-valueid="<{$valueID}>" onchange="return Basket.changeOptions(<{$item.id}>, $(this).closest('.product-flypage'), <{$list|intval}>);" <{if $value.selected}>checked<{/if}>/>
     <label for="options_<{$item.id}>_<{$option.id}>_<{$valueID}>"<{if $option.typename=="image"}> style="background-image: url('<{$value.image}>');"<{/if}>><{$value.title}></label>
 <{/foreach}>
+<{if $option.id==12}>
+    <a class="hint" href="#" onclick="return Modal.open('<{include file="core/href.tpl" arCategory=$arrModules.measure}>');"><span>примерить онлайн</span></a>
+<{/if}>
 </div>
 <{/if}>

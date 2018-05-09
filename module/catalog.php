@@ -144,7 +144,7 @@ if ($itemID and $item = getSimpleItemRow($itemID, CATALOG_TABLE) and !empty($ite
         // global page variables
         $arrPageData['headTitle']     = "{$item['title']} {$item['pcode']} купить в Киеве &#10023; SILVERADO";
         $arCategory['seo_title']      = $arrPageData['headTitle'];
-        $arCategory['meta_descr']     = "Купить {$item['title']} {$item['pcode']} в интернет-магазине &#10023; SILVERADO &#10023; Звоните &#9742; 096-05-49-542 &#10004; Доступные цены &#9992; Доставка по Киеву и Украине";
+        $arCategory['meta_descr']     = "Купить {$item['title']} {$item['pcode']} в интернет-магазине &#10023; SILVERADO &#10023; Звоните &#9742; 097-305-76-97 &#10004; Доступные цены &#9992; Доставка по Киеву и Украине";
         $arCategory['meta_key']       = $item['meta_key'];
         $arCategory['meta_robots']    = $item['meta_robots'];
         $arrPageData["headCss"][]     = "/css/public/product.css";

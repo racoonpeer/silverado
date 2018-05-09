@@ -10,6 +10,7 @@ Disallow: /tpl/
 Disallow: /seo/
 Disallow: /flash/
 Disallow: /cronjobs/
+Disallow: /error/
 
 Disallow: /dumper.php
 Disallow: /phptest.php

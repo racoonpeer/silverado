@@ -1,0 +1,97 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 6, 2018, 8:50:39 PM
+    Author     : yyyaaazzz
+*/
+.measure-info-title {
+    text-align: center;
+    margin-top: 0;
+    @include breakpoint(390){
+        margin-left: -20px;
+        margin-right: -20px;
+        min-width: 100%;
+    }
+}
+.measure-info {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    text-align: left;
+    @include breakpoint(390){
+        margin-left: -20px;
+        margin-right: -20px;
+        min-width: 100%;
+    }
+    table {
+        td {
+            @include breakpoint(570){
+                display: block;
+            }
+        }
+    }
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+.measure-calculator {
+    text-align: left;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #fafafa;
+    padding: 20px;
+    @include breakpoint(390){
+        max-width: 9999px;
+        margin-left: -45px;
+        margin-right: -45px;
+        margin-bottom: -45px;
+        min-width: 100%;
+    }
+    .result {
+        margin-top: 15px;
+        text-align: center;
+        font-size: 2.2rem;
+        font-weight: 300;
+        line-height: 3.2rem;
+        white-space: nowrap;
+        color: $black;
+        &:before {
+            font-weight: 400;
+            font-size: 1.4rem;
+            color: $dark-grey;
+            content: "Мой размер: ";
+        }
+    }
+    .f-label {
+        text-align: center;
+        display: block;
+        font-size: 1.3rem;
+        color: $dark-grey;
+        margin-bottom: 15px;
+    }
+    .radiobox {
+        font-size: 1.3rem;
+        + .radiobox {
+            margin-top: 4px;
+        }
+    }
+    input[type="text"] {
+        width: 100px;
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 300;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 20px;
+    }
+    .btn {
+        margin-top: 20px;
+    }
+}

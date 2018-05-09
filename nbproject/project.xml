@@ -94,7 +94,7 @@
                 <file localPath="js/libs/jQuery.print/jQuery.print.min.js" path="jQuery.print.min.js"/>
                 <file localPath="js/libs/jQuery.print/jQuery.print.min.js.map" path="jQuery.print.min.js.map"/>
             </library>
-            <library name="jquery-zoom" version="1.7.20">
+            <library name="jquery-zoom" version="1.7.21">
                 <file localPath="js/libs/jquery-zoom/jquery.zoom.js" path="jquery.zoom.js"/>
                 <file localPath="js/libs/jquery-zoom/jquery.zoom.min.js" path="jquery.zoom.min.js"/>
             </library>
@@ -102,7 +102,7 @@
                 <file localPath="js/libs/jquery.touchswipe/jquery.touchSwipe.js" path="jquery.touchSwipe.js"/>
                 <file localPath="js/libs/jquery.touchswipe/jquery.touchSwipe.min.js" path="jquery.touchSwipe.min.js"/>
             </library>
-            <library name="twitter-bootstrap" version="4.1.0">
+            <library name="twitter-bootstrap" version="4.1.1">
                 <file localPath="js/libs/twitter-bootstrap/css/bootstrap-grid.css" path="css/bootstrap-grid.css"/>
                 <file localPath="js/libs/twitter-bootstrap/css/bootstrap-grid.css.map" path="css/bootstrap-grid.css.map"/>
                 <file localPath="js/libs/twitter-bootstrap/css/bootstrap-grid.min.css" path="css/bootstrap-grid.min.css"/>

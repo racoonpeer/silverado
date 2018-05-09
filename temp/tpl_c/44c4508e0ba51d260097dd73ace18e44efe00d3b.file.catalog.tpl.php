@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2018-02-13 21:35:33
+<?php /* Smarty version Smarty-3.1.14, created on 2018-05-06 21:03:15
          compiled from "tpl/frontend/smart/module/catalog.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:18082036695a06bf92b83198-41150439%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '44c4508e0ba51d260097dd73ace18e44efe00d3b' => 
     array (
       0 => 'tpl/frontend/smart/module/catalog.tpl',
-      1 => 1518119944,
+      1 => 1525547622,
       2 => 'file',
     ),
   ),
@@ -36,7 +36,16 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     <h1 class="product-title"><?php echo $_smarty_tpl->tpl_vars['item']->value['title'];?>
  <?php echo $_smarty_tpl->tpl_vars['item']->value['pcode'];?>
 </h1>
-    <div class="product-card clearfix">
+    <div class="product-card clearfix" itemscope itemtype="http://schema.org/Product">
+        <meta itemprop="name" content="<?php echo $_smarty_tpl->tpl_vars['item']->value['title'];?>
+ <?php echo $_smarty_tpl->tpl_vars['item']->value['pcode'];?>
+">
+        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+            <meta itemprop="priceCurrency" content="UAH">
+            <meta itemprop="price" content="<?php echo number_format($_smarty_tpl->tpl_vars['item']->value['price'],0,'.','');?>
+">
+            <link itemprop="availability" href="http://schema.org/InStock"/>
+        </div>
         <?php echo $_smarty_tpl->getSubTemplate ("core/product-gallery.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
         <div class="product-flypage details clearfix">

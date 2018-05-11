@@ -14,3 +14,26 @@
 
 </script>
 *}>
+<script type='application/ld+json'>
+{
+  "@context": "http://www.schema.org",
+  "@type": "Organization",
+  "name": "SILVERADO.com.ua",
+  "logo": "https://silvarado.com.ua/images/public/mail/logo.png",
+  "url": "https://silverado.com.ua/",
+  "email": "shop@silverado.com.ua",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "ул. Павличенко 29А",
+    "addressLocality": "Белая Церковь",
+    "addressRegion": "Киевская область",
+    "postalCode": "09100",
+    "addressCountry": "Украина"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+38 097 305 76 97",
+	"contactType": "customer service"
+  }
+}
+ </script>

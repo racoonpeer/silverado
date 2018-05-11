@@ -40,7 +40,7 @@ if ($limit) {
     unset($_SESSION[MDATA_KNAME][$module][UrlWL::LIMIT_KEY_NAME]);
 }
 // Manipulation with Page Number
-if ($page > 1) {                                                         
+if ($page > 1) {
     $_SESSION[MDATA_KNAME][$module]['page'] = &$page;
 } elseif ($itemID AND isset($_SESSION[MDATA_KNAME][$module]['page']) ) {
     $page = &$_SESSION[MDATA_KNAME][$module]['page'];
@@ -68,7 +68,7 @@ $arrPageData['filters']         = array();
 if ($itemID and $item = getSimpleItemRow($itemID, CATALOG_TABLE) and !empty($item)) {
     // Get item
     $item = PHPHelper::getProductItem($item, $UrlWL, $arrPageData['files_url'], $images_params, false);
-    // Ajax 
+    // Ajax
     if ($IS_AJAX) {
         // comment
         if (isset($_POST["comment"])) {
@@ -158,7 +158,7 @@ if ($itemID and $item = getSimpleItemRow($itemID, CATALOG_TABLE) and !empty($ite
                 . "WHERE c.`active`>0 AND cr.`pid`={$itemID}";
         $result = mysql_query($query);
         if (mysql_num_rows($result) > 0) {
-            while ($row = mysql_fetch_assoc($result)) {                  
+            while ($row = mysql_fetch_assoc($result)) {
                 if ($row['type'] == 0) {
                     $item['related'][] = PHPHelper::getProductItem($row, $UrlWL, $arrPageData['files_url'], $images_params, true, $catid);
                 } elseif ($row['type'] == 1) {
@@ -173,23 +173,23 @@ if ($itemID and $item = getSimpleItemRow($itemID, CATALOG_TABLE) and !empty($ite
     PHPHelper::addToLastWatched($itemID);
 // List Items
 } else {
-    
+
     $arrPageData["headCss"][]     = "/css/public/catalog.css";
     $arrPageData['headScripts'][] = "/js/libs/history.js/bundled/html4+html5/jquery.history.min.js";
     $arrPageData['headScripts'][] = "/js/libs/noUiSlider/nouislider.min.js";
     $arrPageData['headScripts'][] = "/js/public/{$module}.js";
-    
+
     require_once('include/classes/Filters.php');
-    
+
     //IF you want to show all subcategories  products  - uncomment below line
     $arCatIdSet = CatalogHelper::getAllChildrenIDByID($catid, true, false);
     $Filters = new Filters($UrlWL, $catid, $arCatIdSet);
-    
+
     $where = $Filters->generateWhereState($arrPageData['selectedFilters']);
-    
+
     $itemsIDX = PHPHelper::getCatalogItems($catid, $arCatIdSet, $lang, $module, '', '', '', true);
     $itemsFIDX = PHPHelper::getCatalogItems($catid, $arCatIdSet, $lang, $module, $where,'', '', true);
-    
+
     $arrPageData['sort']      = ($sort = PHPHelper::getCorrectCatalogSort($sort));
     $arrPageData['limit']     = ($limit = PHPHelper::getCorrectCatalogLimit($limit));
     $arrPageData['arSorting'] = PHPHelper::getCatalogSorting($UrlWL, $sort);
@@ -219,7 +219,11 @@ if ($itemID and $item = getSimpleItemRow($itemID, CATALOG_TABLE) and !empty($ite
         $arCategory["meta_key"]   = !empty($arCategory["filter_meta_key"])  ? PHPHelper::BuildFilterMetaData($arCategory["filter_meta_key"], $seoFilters)  : $arCategory["meta_key"];
     }
     // disable pages indexation
-    if ($page > 1) $arCategory["meta_robots"] = "noindex,follow";
+    if ($page > 1) {
+		$arCategory["meta_robots"] = "noindex,follow";
+		$arCategory["seo_title"]  .= " - Страница {$page}";
+		$arCategory["meta_descr"] .= " - Страница {$page}";
+	}
     // return output via ajax
     if ($IS_AJAX and !empty($_POST) and isset($_POST["ajaxUpdate"])) {
         $smarty->assign('HTMLHelper',   $HTMLHelper);

@@ -23,6 +23,8 @@ Disallow: /*?utm
 Disallow: /*sort=
 Disallow: /*limit=
 Disallow: /*?ajax
+Disallow: /*?q=
+Disallow: /*&q=
 Disallow: /*&ajax
 Disallow: /*_pages
 

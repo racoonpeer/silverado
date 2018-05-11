@@ -1,5 +1,7 @@
 <{*include file='core/header.tpl'*}>
-<div class="header-container">
+<div class="header-container" itemscope itemtype="http://schema.org/WebSite">
+    <meta itemprop="name" content="SILVERADO.com.ua"/>
+    <meta itemprop="url" content="<{$smarty.const.WLCMS_HTTP_HOST}>/"/>
     <div class="section-top">
         <div class="container clearfix">
             <{include file="menu/top.tpl" arItems=$mainMenu}>

@@ -73,13 +73,12 @@ class SystemComponent {
     
     public static function prepareImagesParams($images_params) {
         $params = array();
-        if(!empty($images_params)){
+        if (!empty($images_params)) {
             $images_params = unserialize(unScreenData($images_params));
-            foreach($images_params as $alias => $param) {
-               $params[] = array($alias.'_', $param['width'], $param['height']);
+            foreach ($images_params as $alias => $param) {
+                $params[] = array($alias.'_', $param['width'], $param['height']);
             }
-        }
-       return $params;
+        } return $params;
     } 
 }
 
@@ -94,7 +93,7 @@ define('WLCMS_WRITABLE_CHMOD',          '0775'); // [ 0775 | 0777 ] SET Chmod to
 
 define('WLCMS_ERROR_REPORTING',         E_ALL); // [ E_ALL | 0 ] SET WAY TO SHOW ERRORS
 define('WLCMS_SMARTY_ERROR_REPORTING',  E_ALL); // [ E_ALL | 0 ] SET WAY TO SHOW ERRORS
-define('WLCMS_USE_HTTPS',               ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') or (isset($_SERVER["HTTP_X_FORWARDED_PROTO"]) and $_SERVER["HTTP_X_FORWARDED_PROTO"]=="https"))); // [ E_ALL | 0 ] SET WAY TO SHOW ERRORS
+define('WLCMS_USE_HTTPS',               ((!empty($_SERVER['HTTPS']) and $_SERVER['HTTPS'] != 'off') or (isset($_SERVER["HTTP_X_FORWARDED_PROTO"]) and $_SERVER["HTTP_X_FORWARDED_PROTO"]=="https"))); // [ E_ALL | 0 ] SET WAY TO SHOW ERRORS
 define('WLCMS_HTTP_PROTOCOL',           "http".(WLCMS_USE_HTTPS ? "s" : "")); // [ E_ALL | 0 ] SET WAY TO SHOW ERRORS
 define('WLCMS_HTTP_PREFIX',             WLCMS_HTTP_PROTOCOL."://"); // [ E_ALL | 0 ] SET WAY TO SHOW ERRORS
 define('WLCMS_HTTP_HOST',               WLCMS_HTTP_PREFIX.$_SERVER["HTTP_HOST"]); // [ E_ALL | 0 ] SET WAY TO SHOW ERRORS

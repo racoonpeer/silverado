@@ -148,7 +148,7 @@ $(function(){
                 type: 'GET',
                 dataType: 'json',
                 data: {
-                    stext: request.term
+                    q: request.term
                 }, 
                 success: function(json) {
                     $(".live-search").remove();

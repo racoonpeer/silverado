@@ -10,7 +10,7 @@ defined('WEBlife') or die( 'Restricted access' ); // no direct access
 $sort          = intval($UrlWL->getParam(UrlWL::SORT_KEY_NAME, 0));
 $limit         = intval($UrlWL->getParam(UrlWL::LIMIT_KEY_NAME, 0));
 $pages         = trim(addslashes($UrlWL->getParam(UrlWL::PAGES_KEY_NAME, '')));
-$searchtext    = empty($_GET['stext']) ? "" : PHPHelper::prepareSearchText($_GET['stext'], $IS_AJAX, false);
+$searchtext    = PHPHelper::prepareSearchText($UrlWL->getParam(UrlWL::SEARCH_KEY_NAME, ''), $IS_AJAX, false);
 $searchwhere   = !empty($_POST['swhere']) ? addslashes(trim($_POST['swhere'])) : 'catalog';
 $items         = array(); // Items Array of items Info arrays
 $images_params = SystemComponent::prepareImagesParams(getValueFromDB(IMAGES_PARAMS_TABLE, 'aliases', 'WHERE `module`="catalog"'));
@@ -66,7 +66,7 @@ $arrPageData["headCss"][]     = "/css/public/search.css";
 $arrPageData['headScripts'][] = "/js/libs/noUiSlider/nouislider.min.js";
 $arrPageData['headScripts'][] = "/js/public/catalog.js";
 
-if ($searchtext and strlen($searchtext)>1) {
+if ($searchtext and strlen($searchtext)>2) {
     // Include filters class
     require_once('include/classes/Filters.php');
     

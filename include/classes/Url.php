@@ -404,6 +404,7 @@ class UrlWL extends Url {
     const LIMIT_KEY_NAME = 'limit';
     const VIEW_KEY_NAME  = 'view';
     const PAGES_KEY_NAME = 'pages';
+    const SEARCH_KEY_NAME = 'q';
     const PAGES_ALL_VAL  = 'all';
     
     const LANG_PATH_IDX  = 0;

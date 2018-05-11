@@ -15,6 +15,6 @@
         </div>
 <{/section}>
     </div>
-    <a class="show-all" href="<{include file='core/href.tpl' arCategory=$arrModules.search}>?stext=<{$searchtext}>" class="results">Все результаты</a>
+    <a class="show-all" href="<{include file='core/href.tpl' arCategory=$arrModules.search}>?q=<{$searchtext}>" class="results">Все результаты</a>
 </div>
 <{/if}>

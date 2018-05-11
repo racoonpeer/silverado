@@ -2,6 +2,18 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/E:/OSPanel/domains/silverado/www/tpl/frontend/smart/core/header.tpl</file>
+            <file>file:/E:/OSPanel/domains/silverado/www/include/classes/Cache.php</file>
+            <file>file:/E:/OSPanel/domains/silverado/www/module/search.php</file>
+            <file>file:/E:/OSPanel/domains/silverado/www/tpl/frontend/smart/core/footer-extra.tpl</file>
+            <file>file:/E:/OSPanel/domains/silverado/www/include/system/SystemComponent.php</file>
+            <file>file:/E:/OSPanel/domains/silverado/www/js/public/common.js</file>
+            <file>file:/E:/OSPanel/domains/silverado/www/include/classes/Url.php</file>
+            <file>file:/E:/OSPanel/domains/silverado/www/tpl/frontend/smart/core/search-form.tpl</file>
+            <file>file:/E:/OSPanel/domains/silverado/www/tpl/frontend/smart/ajax/live-search.tpl</file>
+            <file>file:/E:/OSPanel/domains/silverado/www/robots.txt</file>
+            <file>file:/E:/OSPanel/domains/silverado/www/include/helpers/PHPHelper.php</file>
+        </group>
     </open-files>
 </project-private>

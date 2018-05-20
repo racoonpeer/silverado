@@ -395,6 +395,7 @@ class Url {
  */
 class UrlWL extends Url {
     
+    const AJAX_KEY_NAME  = 'ajax';
     const LANG_KEY_NAME  = 'lang';
     const USER_SEOPREFIX = 'user';
     const ORDER_SEOPREFIX = 'order';

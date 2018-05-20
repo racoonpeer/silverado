@@ -133,6 +133,9 @@ $arrPageData     = array( //Page data array
     'success'       => false,
     'wishlist'      => array(),
     'compare'       => array(),
+    'canonical'     => false,
+    "link_prev"     => false,
+    "link_next"     => false,
 );
 $arrPageData['offset']     = ($page-1)*$arrPageData['items_on_page'];
 $arrPageData['path_arrow'] = '<img src="'.$arrPageData['images_dir'].'arrow.gif" alt=""/>';

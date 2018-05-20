@@ -11,6 +11,12 @@ Disallow: /seo/
 Disallow: /flash/
 Disallow: /cronjobs/
 Disallow: /error/
+Disallow: /subscribe/
+Disallow: /oformit_zakaz/
+Disallow: /oformit-zakaz/
+Disallow: /search/
+Disallow: /zakazat-obratniy-zvonok/
+Disallow: /liqpay/
 
 Disallow: /dumper.php
 Disallow: /phptest.php
@@ -23,9 +29,11 @@ Disallow: /*?utm
 Disallow: /*sort=
 Disallow: /*limit=
 Disallow: /*?ajax
+Disallow: /*&ajax
 Disallow: /*?q=
 Disallow: /*&q=
-Disallow: /*&ajax
+Disallow: /*?itemID
+Disallow: /*&itemID
 Disallow: /*_pages
 
 Host: silverado.com.ua

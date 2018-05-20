@@ -220,10 +220,11 @@ if ($itemID and $item = getSimpleItemRow($itemID, CATALOG_TABLE) and !empty($ite
     }
     // disable pages indexation
     if ($page > 1) {
-		$arCategory["meta_robots"] = "noindex,follow";
-		$arCategory["seo_title"]  .= " - Страница {$page}";
-		$arCategory["meta_descr"] .= " - Страница {$page}";
-	}
+        $arCategory["meta_robots"] = "noindex,follow";
+        $arCategory["title"]      .= " - Страница {$page}";
+        $arCategory["seo_title"]  .= " - Страница {$page}";
+        $arCategory["meta_descr"] .= " - Страница {$page}";
+    }
     // return output via ajax
     if ($IS_AJAX and !empty($_POST) and isset($_POST["ajaxUpdate"])) {
         $smarty->assign('HTMLHelper',   $HTMLHelper);

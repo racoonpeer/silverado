@@ -1,8 +1,11 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=<{$arrLangs.$lang.charset}>"/>
     <title><{$HTMLHelper->prepareHeadTitle($arCategory)|unScreenData}></title>
-    <meta name="keywords" content="<{$arCategory.meta_key}>"/>
     <meta name="description" content="<{$arCategory.meta_descr|unScreenData}>"/>
+    <meta name="keywords" content="<{$arCategory.meta_key}>"/>
+<{if !empty($arCategory.meta_robots)}>
+    <meta name="robots" content="<{$arCategory.meta_robots}>" id="meta_robots"/>
+<{/if}>
 <{if $arCategory.module=="catalog" AND !empty($item)}>
     <meta property="og:type" content="product"/>
     <meta property="og:image" content="<{$smarty.const.WLCMS_HTTP_PREFIX|cat:$smarty.server.HTTP_HOST|cat:$item.image.big_image}>">
@@ -11,9 +14,6 @@
     <meta property="og:url" content="<{$smarty.const.WLCMS_HTTP_PREFIX|cat:$smarty.server.HTTP_HOST|cat:$UrlWL->getUrl()}>"/>
     <meta property="og:title" content="<{$HTMLHelper->prepareHeadTitle($arCategory)}>"/>
     <meta property="og:description" content="<{$arCategory.meta_descr|unScreenData}>">
-<{if $arCategory.meta_robots}>
-    <meta name="robots" content="<{$arCategory.meta_robots}>" id="meta_robots"/>
-<{/if}>
 <{if $objSettingsInfo->logo}>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <link rel="apple-touch-icon" sizes="120x120" href="/images/icons/apple-touch-icon.png">

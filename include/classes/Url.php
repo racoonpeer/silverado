@@ -395,6 +395,7 @@ class Url {
  */
 class UrlWL extends Url {
     
+    const AJAX_KEY_NAME  = 'ajax';
     const LANG_KEY_NAME  = 'lang';
     const USER_SEOPREFIX = 'user';
     const ORDER_SEOPREFIX = 'order';
@@ -404,6 +405,7 @@ class UrlWL extends Url {
     const LIMIT_KEY_NAME = 'limit';
     const VIEW_KEY_NAME  = 'view';
     const PAGES_KEY_NAME = 'pages';
+    const FILTER_KEY_NAME = 'filter';
     const SEARCH_KEY_NAME = 'q';
     const PAGES_ALL_VAL  = 'all';
     

@@ -220,11 +220,20 @@ if ($itemID and $item = getSimpleItemRow($itemID, CATALOG_TABLE) and !empty($ite
     }
     // disable pages indexation
     if ($page > 1) {
-        $arCategory["meta_robots"] = "noindex,follow";
-        $arCategory["title"]      .= " - Страница {$page}";
+//        $arCategory["meta_robots"] = "noindex,follow";
         $arCategory["seo_title"]  .= " - Страница {$page}";
         $arCategory["meta_descr"] .= " - Страница {$page}";
+        $arrPageData["link_prev"]  = WLCMS_HTTP_HOST.$arrPageData["pager"]->getUrl($arrPageData["pager"]->getPrev());
     }
+    if ($page < $arrPageData['pager']->getCount()) {
+        $arrPageData["link_next"]  = WLCMS_HTTP_HOST.$arrPageData["pager"]->getUrl($arrPageData["pager"]->getNext());
+    }
+    // prepare canonical url
+    $_UrlWL = $UrlWL->copy();
+    if ($_UrlWL->issetParam(UrlWL::SORT_KEY_NAME))  $_UrlWL->unsetParam(UrlWL::SORT_KEY_NAME);
+    if ($_UrlWL->issetParam(UrlWL::LIMIT_KEY_NAME)) $_UrlWL->unsetParam(UrlWL::LIMIT_KEY_NAME);
+    $arrPageData["canonical"] = WLCMS_HTTP_HOST.$_UrlWL->buildUrl();
+    unset($_UrlWL);
     // return output via ajax
     if ($IS_AJAX and !empty($_POST) and isset($_POST["ajaxUpdate"])) {
         $smarty->assign('HTMLHelper',   $HTMLHelper);

@@ -14,7 +14,7 @@ $arrPageData['headScripts'][] = "/js/libs/jquery.validate/localization/messages_
 $arrPageData['headScripts'][] = "/js/libs/jquery-steps/jquery.steps.min.js";
 $arrPageData['headScripts'][] = "/js/libs/select2/js/select2.full.min.js";
 $arrPageData['headScripts'][] = "/js/libs/select2/js/i18n/ru.js";
-$arrPageData['headScripts'][] = "/js/public/checkout.js";
+$arrPageData['headScripts'][] = "/js/public/{$modulename}".(!$IS_DEV ? ".min" : "").".js";
 // Search cities
 if ($IS_AJAX and !empty($term) and $task=="getCities") {
     $json = ["items"=>[]];

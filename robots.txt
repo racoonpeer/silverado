@@ -17,6 +17,7 @@ Disallow: /oformit-zakaz/
 Disallow: /search/
 Disallow: /zakazat-obratniy-zvonok/
 Disallow: /liqpay/
+Disallow: /cdn-cgi/
 
 Disallow: /dumper.php
 Disallow: /phptest.php

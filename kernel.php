@@ -123,8 +123,7 @@ $arrPageData     = array( //Page data array
         "/js/libs/Swiper/js/swiper.jquery.min.js",
         "/js/libs/remodal/remodal.min.js",
         "/js/libs/verge/verge.min.js",
-        "/js/public/common.js",
-        "/js/public/dom-extra.js"
+        "/js/public/common".(!$IS_DEV ? ".min" : "").".js"
     ),
     'headCss'       => array(),
     'messages'      => getSessionMessages(),
@@ -158,6 +157,7 @@ $arCategory['arPath'] = $UrlWL->getCategoryNavPath();
 $arrPageData['arrBreadCrumb'] = $UrlWL->getBreadCrumbs();
 // Set current category module
 $module = $arCategory['module'];
+$modulename = $module;
 // Init Banners By Current Category ID
 $Banners->init($catid);
 // Set Root Menu ID
@@ -221,9 +221,10 @@ if(!in_array($arCategory['module'], array('catalog', 'search', 'basket', 'newest
     if(isset($_SESSION['basket_pagesall']))  unset($_SESSION['basket_pagesall']);
 }
 // Prepare styles & scripts for entire page
-if (empty($arrPageData["headCss"])) {
-    $arrPageData["headCss"][] = "/css/public/common.css";
-}
+if (empty($arrPageData["headCss"])) $arrPageData["headCss"][] = "/css/public/common.css";
+if ($IS_DEV) PHPHelper::generatePageScripts ($arrPageData["headScripts"], (!empty($modulename) ? $modulename : "common").".js");
+$arrPageData["headScripts"][] = "/js/public/dom-extra".(!$IS_DEV ? ".min" : "").".js";
+
 //$pageScriptName = !$mdname ? "common" : $mdname;
 //if (!file_exists("js/min/{$pageScriptName}.js")) {
 //    $yui = new YUICompressor("include/classes/yuicompressor/yuicompressor-2.4.8.jar", "js/min", array("semi"=>true));

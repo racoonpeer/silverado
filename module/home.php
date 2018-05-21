@@ -2,7 +2,7 @@
 
 $arrPageData["headCss"][]     = "/css/public/home.css";
 $arrPageData['headScripts'][] = "/js/libs/slick-carousel/slick.min.js";
-$arrPageData['headScripts'][] = "/js/public/home.js";
+$arrPageData['headScripts'][] = "/js/public/{$modulename}".(!$IS_DEV ? ".min" : "").".js";
 
 // необходимые переменные
 $selections = PHPHelper::getCache()->get(CacheWL::KEY_HOME_SELECTIONS);

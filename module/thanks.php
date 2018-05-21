@@ -9,7 +9,7 @@ $arAliases = SystemComponent::prepareImagesParams(getValueFromDB(IMAGES_PARAMS_T
 $arrPageData["headingTitle"]  = "Заказ оформлен! Спасибо что выбрали нас";
 $arrPageData["headCss"][]     = "/css/public/thanks.css";
 $arrPageData["headScripts"][] = "/js/libs/jQuery.print/jQuery.print.min.js";
-$arrPageData["headScripts"][] = "/js/public/thanks.js";
+$arrPageData["headScripts"][] = "/js/public/{$modulename}".(!$IS_DEV ? ".min" : "").".js";
 
 // Process order
 if ($itemID and $item = getSimpleItemRow($itemID, ORDERS_TABLE)) {

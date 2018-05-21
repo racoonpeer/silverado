@@ -64,7 +64,7 @@ $arrPageData['filters']         = array();
 $arrPageData['stext']         = $searchtext;
 $arrPageData["headCss"][]     = "/css/public/search.css";
 $arrPageData['headScripts'][] = "/js/libs/noUiSlider/nouislider.min.js";
-$arrPageData['headScripts'][] = "/js/public/catalog.js";
+$arrPageData['headScripts'][] = "/js/public/catalog".(!$IS_DEV ? ".min" : "").".js";
 
 if ($searchtext and strlen($searchtext)>2) {
     // Include filters class

@@ -141,6 +141,8 @@ if ($itemID and $item = getSimpleItemRow($itemID, CATALOG_TABLE) and !empty($ite
             die(json_encode(PHPHelper::dataConv($json)));
         }
     } else {
+        // define module key name
+        $modulename = "product";
         // global page variables
         $arrPageData['headTitle']     = "{$item['title']} {$item['pcode']} купить в Киеве &#10023; SILVERADO";
         $arCategory['seo_title']      = $arrPageData['headTitle'];
@@ -149,8 +151,8 @@ if ($itemID and $item = getSimpleItemRow($itemID, CATALOG_TABLE) and !empty($ite
         $arCategory['meta_robots']    = $item['meta_robots'];
         $arrPageData["headCss"][]     = "/css/public/product.css";
         $arrPageData['headScripts'][] = "/js/libs/slick-carousel/slick.min.js";
-        $arrPageData['headScripts'][] = "/js/libs/cshare/cshare.js";
-        $arrPageData['headScripts'][] = "/js/public/product.js";
+        $arrPageData['headScripts'][] = "/js/libs/cshare/cshare.min.js";
+        $arrPageData['headScripts'][] = "/js/public/product".(!$IS_DEV ? ".min" : "").".js";
         // related items
         $item['related'] = $item['similar'] = $item['additions'] = array();
         $query  = "SELECT DISTINCT c.*, cr.`type` FROM `".CATALOG_RELATED_TABLE."` cr "
@@ -177,7 +179,7 @@ if ($itemID and $item = getSimpleItemRow($itemID, CATALOG_TABLE) and !empty($ite
     $arrPageData["headCss"][]     = "/css/public/catalog.css";
     $arrPageData['headScripts'][] = "/js/libs/history.js/bundled/html4+html5/jquery.history.min.js";
     $arrPageData['headScripts'][] = "/js/libs/noUiSlider/nouislider.min.js";
-    $arrPageData['headScripts'][] = "/js/public/{$module}.js";
+    $arrPageData['headScripts'][] = "/js/public/{$modulename}".(!$IS_DEV ? ".min" : "").".js";
 
     require_once('include/classes/Filters.php');
 
@@ -221,6 +223,7 @@ if ($itemID and $item = getSimpleItemRow($itemID, CATALOG_TABLE) and !empty($ite
     // disable pages indexation
     if ($page > 1) {
 //        $arCategory["meta_robots"] = "noindex,follow";
+        $arCategory["title"]      .= " - страница {$page}";
         $arCategory["seo_title"]  .= " - Страница {$page}";
         $arCategory["meta_descr"] .= " - Страница {$page}";
         $arrPageData["link_prev"]  = WLCMS_HTTP_HOST.$arrPageData["pager"]->getUrl($arrPageData["pager"]->getPrev());

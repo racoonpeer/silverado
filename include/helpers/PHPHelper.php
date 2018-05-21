@@ -8,6 +8,7 @@
 defined('WEBlife') or die('Restricted access'); // no direct access
 
 require(dirname(__FILE__).'/../classes/Cache.php');
+include (dirname(__FILE__).'/../classes/yuicompressor/YUICompressor.php');
 require('CatalogHelper.php');
 
 /**
@@ -836,6 +837,35 @@ class PHPHelper {
         if($addslashes) $stext = addslashes($stext);
         $stext = mb_strtolower($stext, "CP1251");
         return $stext;
+    }
+    
+    public static function generatePageScripts (&$scripts, $filename = "common.js") {
+        if (file_exists(YUI_TMP_PATH.DS.$filename)) {
+            $filename = ltrim(cleanDirPath(YUI_TMP_PATH.DS.$filename, "/"), "/");
+            $strlen   = mb_strlen($filename);
+            $filename = str_pad($filename, $strlen+1, "/", STR_PAD_LEFT);
+            $scripts  = [$filename];
+            return;
+        } else {
+            $js = [];
+            foreach ($scripts as $script) {
+    //            $yui = new YUICompressor(YUI_JAR_PATH, YUI_TMP_PATH);
+                $prefix = !preg_match("/^http/", $script) ? $_SERVER["DOCUMENT_ROOT"] : "";
+    //            $yui->addFile($prefix.$script);
+                $js[] = file_get_contents($prefix.$script);
+    //            $js[] = $yui->compress();
+    //            unset($yui);
+            }
+            $fh = fopen(YUI_TMP_PATH.DS.$filename, 'w') or die("Can't create new file");
+            fwrite($fh, implode("\n\r\n\r", $js));
+            fclose($fh);
+            if (file_exists(YUI_TMP_PATH.DS.$filename)) {
+                $filename = ltrim(cleanDirPath(YUI_TMP_PATH.DS.$filename, "/"), "/");
+                $strlen   = mb_strlen($filename);
+                $filename = str_pad($filename, $strlen+1, "/", STR_PAD_LEFT);
+                $scripts  = [$filename];
+            } return;
+        }
     }
 }
 

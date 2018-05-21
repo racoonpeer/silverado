@@ -1,26 +1,21 @@
-<?php
+<?php defined('WEBlife') or die( 'Restricted access' ); // no direct access
 
-/**
- * 
- */
 class YUICompressor {
 
     // absolute path to YUI jar file.
     protected $JAR_PATH;
     protected $TEMP_FILES_DIR;
-    protected $options = array(
-        'type'      => 'js',
+    protected $options = array('type' => 'js',
         'linebreak' => false,
-        'verbose'   => false,
-        'nomunge'   => false,
-        'semi'      => false,
-        'nooptimize' => false
-    );
+        'verbose' => false,
+        'nomunge' => false,
+        'semi' => false,
+        'nooptimize' => false);
     protected $files = array();
     protected $string = '';
 
     // construct with a path to the YUI jar and a path to a place to put temporary files
-    function __construct($JAR_PATH, $TEMP_FILES_DIR, $options = array()) {
+    function __construct ($JAR_PATH, $TEMP_FILES_DIR, $options = array()) {
         $this->JAR_PATH = $JAR_PATH;
         $this->TEMP_FILES_DIR = $TEMP_FILES_DIR;
         foreach ($options as $option => $value) {
@@ -29,22 +24,22 @@ class YUICompressor {
     }
 
     // set one of the YUI compressor options
-    function setOption($option, $value) {
+    function setOption ($option, $value) {
         $this->options[$option] = $value;
     }
 
     // add a file (absolute path) to be compressed
-    function addFile($file) {
+    function addFile ($file) {
         array_push($this->files, $file);
     }
 
     // add a strong to be compressed
-    function addString($string) {
+    function addString ($string) {
         $this->string .= ' ' . $string;
     }
 
     // the meat and potatoes, executes the compression command in shell
-    function compress() {
+    function compress () {
         // read the input
         foreach ($this->files as $file) {
             $this->string .= file_get_contents($file) or die("Cannot read from uploaded file");
@@ -56,7 +51,7 @@ class YUICompressor {
         fwrite($fh, $this->string);
         fclose($fh);
         // start with basic command
-        $cmd = "java -Xmx32m -jar " . escapeshellarg($this->JAR_PATH) . ' ' . escapeshellarg($file) . " --charset cp1251";
+        $cmd = "java -Xmx256m -jar " . escapeshellarg($this->JAR_PATH) . ' ' . escapeshellarg($file) . " --charset ".WLCMS_DB_ENCODING;
         // set the file type
         $cmd .= " --type " . (strtolower($this->options['type']) == "css" ? "css" : "js");
         // and add options as needed
@@ -72,18 +67,21 @@ class YUICompressor {
         if ($this->options['semi']) {
             $cmd .= ' --preserve-semi';
         }
+
         if ($this->options['nooptimize']) {
             $cmd .= ' --disable-optimizations';
         }
         // execute the command
         exec($cmd . ' 2>&1', $raw_output);
         // add line breaks to show errors in an intelligible manner
-        $flattened_output = implode("\n", $raw_output);
+        $flattened_output = implode("\n\r", $raw_output);
         // clean up (remove temp file)
-        unlink($file);
+//        unlink($file);
         // return compressed output
         return $flattened_output;
     }
-}
 
-?>
+    public function flush(){
+        $this->files = array();
+    }
+}

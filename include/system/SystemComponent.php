@@ -158,5 +158,10 @@ define('LIQPAY_SANDBOX_MODE',           getenv("IS_DEV"));
 define('LIQPAY_PUBLIC_KEY',             'i39316161985');
 define('LIQPAY_PRIVATE_KEY',            'hb3nd0h4sPIK5An8Ph6b8veg369L1lGpKj3OolrW');
 
+// Yui compressor
+define("YUI_JAR_VERSION",               "2.4.8");
+define("YUI_JAR_PATH",                  $_SERVER["DOCUMENT_ROOT"].DS."includes".DS."classes".DS."yuicompressor".DS."yuicompressor-".YUI_JAR_VERSION.".jar");
+define("YUI_TMP_PATH",                  "js".DS."min");
+
 ///////////////// CHECK SYSTEM \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 require_once(WLCMS_ABS_ROOT.'include/sys_verifications.php');

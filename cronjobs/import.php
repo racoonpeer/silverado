@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 define('WEBlife', 1); // no direct access
 define('WLCMS_EXEC', 1);//Set flag that this process by exec
@@ -42,15 +42,15 @@ $affected = 0;
 $items = array();
 
 $arSpreadSheets = array(
-    "SZgLFBBMmiZrr02YCrRIVJ8TEQizA0XkCS09kKTgDqAjz4FFy0m7y75zpGKbOyZzAGQACXNO3LZO-v", // Водопьян
-    "T0_f5syKKwfUoRRdNoVWlADerk5jSaxWS2ywc_-bLobwZPmtIhqYDJxNnRTUVpKeSIEAgQcTM7H0sr", // Устименко
-    "RgRfF9YkWXJ0hF4c2zeBHwSio6KguhZAjXy7VnRuYraVVe9uWN96mhwswRxoPEy_DHJQqz-x3Rng0K", // Бигсан
+//    "SZgLFBBMmiZrr02YCrRIVJ8TEQizA0XkCS09kKTgDqAjz4FFy0m7y75zpGKbOyZzAGQACXNO3LZO-v", // Водопьян
+//    "T0_f5syKKwfUoRRdNoVWlADerk5jSaxWS2ywc_-bLobwZPmtIhqYDJxNnRTUVpKeSIEAgQcTM7H0sr", // Устименко
+//    "RgRfF9YkWXJ0hF4c2zeBHwSio6KguhZAjXy7VnRuYraVVe9uWN96mhwswRxoPEy_DHJQqz-x3Rng0K", // Бигсан
     "Q3YSxi5UEtzUBy5mxL93eqxcsH7WlbF7fOk3RHZ58Vp9q34PtfCE-xV-RHKTaK_i9kZoUoZbUTiemk", // Silverado
 );
 $pColNames = array(
-    "Артикул"      => "pcode", 
-    "Название"     => "title", 
-    "Цена Продажа" => "price", 
+    "Артикул"      => "pcode",
+    "Название"     => "title",
+    "Цена Продажа" => "price",
     "Цена Акция"   => "cprice"
 );
 // Read data from Google sheets
@@ -75,26 +75,26 @@ foreach ($arSpreadSheets as $spreadID) {
                     if ($key > $rows) break;
                     // fill stacks
                     if ($key==1) {
-                         foreach($row->getCellIterator() as $i=>$cell) {
-                             if ($i > $cols) break;
-                             $cellText = !empty($cell) ? trim(PHPHelper::mb_dataConv($cell->getValue())) : '';
-                             // Search in attributes firstly
-                             $exists = getItemRow(ATTRIBUTES_TABLE, "*", "WHERE `colname`='{$cellText}'");
-                             if (!empty($exists)) {
-                                 $attrStack[$i] = $exists;
-                                 unset($exists);
-                                 continue;
-                             } unset($exists);
-                             // If not found - search in options
-                             $exists2 = getItemRow(OPTIONS_TABLE, "*", "WHERE `colname`='{$cellText}'");
-                             if (!empty($exists2)) {
-                                 $optionStack[$i] = $exists2;
-                                 unset($exists2);
-                                 continue;
-                             } unset($exists2);
-                             // Columns
-                             if (array_key_exists($cellText, $pColNames)) $columnStack[$i] = $pColNames[$cellText];
-                         }
+                        foreach($row->getCellIterator() as $i=>$cell) {
+                            if ($i > $cols) break;
+                            $cellText = !empty($cell) ? trim(PHPHelper::mb_dataConv($cell->getValue())) : '';
+                            // Search in attributes firstly
+                            $exists = getItemRow(ATTRIBUTES_TABLE, "*", "WHERE `colname`='{$cellText}'");
+                            if (!empty($exists)) {
+                                $attrStack[$i] = $exists;
+                                unset($exists);
+                                continue;
+                            } unset($exists);
+                            // If not found - search in options
+                            $exists2 = getItemRow(OPTIONS_TABLE, "*", "WHERE `colname`='{$cellText}'");
+                            if (!empty($exists2)) {
+                                $optionStack[$i] = $exists2;
+                                unset($exists2);
+                                continue;
+                            } unset($exists2);
+                            // Columns
+                            if (array_key_exists($cellText, $pColNames)) $columnStack[$i] = $pColNames[$cellText];
+                        }
                     }
                     // Fill items
                     else {
@@ -109,7 +109,7 @@ foreach ($arSpreadSheets as $spreadID) {
                             if (array_key_exists($i, $columnStack)) {
                                 $colname = $columnStack[$i];
                                 if ($colname=="pcode") $cellText = mb_strtoupper($cellText, WLCMS_SYSTEM_ENCODING);
-                                elseif ($colname=="price" or $colname=="cprice") $cellText = (float)$cell->getOldCalculatedValue();
+                                elseif ($colname=="price" or $colname=="cprice") $cellText = (float)$cell->getValue();
                                 elseif ($columnStack[$i]=="title") $cellText = mb_ucfirst($cellText, WLCMS_SYSTEM_ENCODING);
                                 $item[$colname] = $cellText;
                             }
@@ -165,9 +165,9 @@ foreach ($arSpreadSheets as $spreadID) {
                                     }
                                     if (!$exVal or $item["cid"]>0) continue;
                                     $query  = "SELECT m.`id` FROM `".MAIN_TABLE."` m "
-                                            . "INNER JOIN `".CATEGORY_PROPERTIES_TABLE."` cp ON(cp.`category_id`=m.`id` AND cp.`attribute_id`=$aid AND cp.`value_id`=$exVal) "
-                                            . "INNER JOIN `".CATEGORY_PROPERTIES_TYPES_TABLE."` cpt ON(cpt.`id`=cp.`type_id` AND cpt.`typename`='attribute') "
-                                            . "WHERE m.`module`='catalog' AND cp.`attribute_id`=15 AND m.`pid`=".CATALOG_ROOT_ID." LIMIT 1";
+                                        . "INNER JOIN `".CATEGORY_PROPERTIES_TABLE."` cp ON(cp.`category_id`=m.`id` AND cp.`attribute_id`=$aid AND cp.`value_id`=$exVal) "
+                                        . "INNER JOIN `".CATEGORY_PROPERTIES_TYPES_TABLE."` cpt ON(cpt.`id`=cp.`type_id` AND cpt.`typename`='attribute') "
+                                        . "WHERE m.`module`='catalog' AND cp.`attribute_id`=15 AND m.`pid`=".CATALOG_ROOT_ID." LIMIT 1";
                                     $result = mysql_query($query);
                                     if ($result and mysql_num_rows($result)>0) {
                                         $row = mysql_fetch_assoc($result);
@@ -277,8 +277,8 @@ print("Обновлено {$affected} записей");
 
 function SetPrimaryOptionsValues() {
     $query  = "SELECT po.*, GROUP_CONCAT(pov.`id`) AS `idx` FROM `".PRODUCT_OPTIONS_TABLE."` po "
-            . "INNER JOIN `".PRODUCT_OPTIONS_VALUES_TABLE."` pov ON(pov.`product_id`=po.`pid` AND pov.`option_id`=po.`oid`) "
-            . "GROUP BY po.`id`";
+        . "INNER JOIN `".PRODUCT_OPTIONS_VALUES_TABLE."` pov ON(pov.`product_id`=po.`pid` AND pov.`option_id`=po.`oid`) "
+        . "GROUP BY po.`id`";
     $result = mysql_query($query);
     if ($result AND mysql_num_rows($result) > 0) {
         while ($row = mysql_fetch_assoc($result)) {

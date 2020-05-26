@@ -201,6 +201,9 @@ if ($itemID and $item = getSimpleItemRow($itemID, CATALOG_TABLE) and !empty($ite
     if (!$pages) {
         $arrPageData['total_items'] = count($itemsFIDX);
         $arrPageData['pager']       = new Pager($UrlWL, $page, $arrPageData['total_items'], $arrPageData['limit']);
+        if($arrPageData['pager']->isIncorrectPage()) {
+            $UrlWL->redirectToErrorPage($UrlWL->getCategoryById(UrlWL::ERROR_CATID, false));
+        }
         $arrPageData['total_pages'] = $arrPageData['pager']->getCount();
         $arrPageData['offset']      = ($page-1)*$arrPageData['limit'];
     }

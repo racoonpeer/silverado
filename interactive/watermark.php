@@ -1,16 +1,35 @@
 <?php
-// watermark.php
 
-$watermark          = $_SERVER['DOCUMENT_ROOT']."/images/site/watermark.png";
-$watermark_small    = $_SERVER['DOCUMENT_ROOT']."/images/site/watermark_small.png";
-$placement          = 'middle=0,center=0'; // vertical: top,middle,bottom; horizontal: left,center,right;
-$baseFolder         = "/uploads/";
-$minWidthToUseSmall = array('w'=>150, 'h'=>150);
-$optimalWSize       = true;
+define('WEBlife', 1);
+define('WLCMS_ZONE', "site");
 
-if(!empty($_GET['img']) && !empty($_GET['dir']))
-     waterMark($_SERVER['DOCUMENT_ROOT'].$baseFolder.$_GET['dir'].'/'.$_GET['img'], $watermark, $watermark_small, $minWidthToUseSmall, $placement, $optimalWSize);
-else waterMark($_SERVER['DOCUMENT_ROOT'].$_SERVER['REQUEST_URI'], $watermark, $watermark_small, $minWidthToUseSmall, $placement, $optimalWSize);    
+if (!defined("DS")) define('DS', DIRECTORY_SEPARATOR);
+
+error_reporting(E_ALL);
+
+// change to root dir
+chdir("..".DS);
+
+require_once('include/functions/base.php');
+
+define('WLCMS_WRITABLE_CHMOD',          '0775');
+define('UPLOAD_DIR',          'uploaded'); // set WebLife CMS UPLOAD DIR
+define('UPLOAD_URL_DIR',      '/'.UPLOAD_DIR.'/'); // set WebLife CMS UPLOAD URL DIR
+define('SPOOL_URL_DIR',       UPLOAD_URL_DIR."catalog_spool/"); // set WebLife CMS UPLOAD URL DIR
+define('SPOOL_DIR',           prepareDirPath(SPOOL_URL_DIR, TRUE)); // set WebLife CMS UPLOAD URL DIR
+define('WLCMS_USE_HTTPS',     (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off')); // [ 0 | 1 ] SET Chmod to files and directories to can change them
+define('WLCMS_HTTP_PROTOCOL', "http".(WLCMS_USE_HTTPS ? "s" : "")); // [ 0 | 1 ] SET Chmod to files and directories to can change them
+define('WLCMS_HTTP_PREFIX',   WLCMS_HTTP_PROTOCOL."://"); // [ 0 | 1 ] SET Chmod to files and directories to can change them
+define('WLCMS_HTTP_HOST',     WLCMS_HTTP_PREFIX.$_SERVER["HTTP_HOST"]); // [ 0 | 1 ] SET Chmod to files and directories to can change them
+
+try {
+    $image     = $_SERVER["DOCUMENT_ROOT"].DS.cleanDirPath($_SERVER['REQUEST_URI']);
+    $basename  = @basename($image);
+    $watermark = $_SERVER["DOCUMENT_ROOT"].DS.cleanDirPath("/images/public/watermark".(preg_match("/^big_/", $basename) ? "_small" : "").".png");
+    waterMark($image, $watermark);
+} catch (Exception $e) {
+    print $e->getMessage();
+}
 
 /*
  * You can add file .htaccess to directory to show all files in directory with watermark
@@ -20,7 +39,7 @@ DirectoryIndex index.php
 <FilesMatch "\.(gif|jpg|png|JPG|JPEG|jpeg)$">
    RewriteEngine On
    RewriteCond %{REQUEST_FILENAME} -f
-   RewriteRule ^(.*)$ /include/watermark.php [T=application/x-httpd-php,L,QSA]
+   RewriteRule ^!(middle|small)\.jpg$ /include/watermark_catalog.php [T=application/x-httpd-php,L,QSA]
 </FilesMatch>
 <Files "*.php">
 Deny from all
@@ -36,138 +55,41 @@ Allow from all
 
 ############################ FUNCTIONS #########################################
 /////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-function waterMark($original, $watermark, $watermark_small='', $minWidthToUseSmall = array('w'=>150, 'h'=>150), $placement = 'bottom=5,right=5', $optimalWSize = true, $destination = null) {
-    $original       = urldecode($original);
-    $originalname   = basename($original);
-
-    // Get Images Size
-    $info_o = @getImageSize($original);
-    if (!$info_o)
-        return false;
-    
-    if(!empty($watermark_small) AND ($info_o[0] <= $minWidthToUseSmall['w'] OR $info_o[1] <= $minWidthToUseSmall['h'])){
-        $watermark = $watermark_small;
+function waterMark($filename, $watermark) {
+    $hash = md5(sha1($filename.$watermark));
+    $base = basename($filename);
+    $ext  = getFileExt($base);
+    $spoolname = $hash.".".$ext;
+    if (file_exists(SPOOL_DIR.$spoolname)) {
+        $filename = SPOOL_URL_DIR.$spoolname;
+        header("Content-Type: image/" . $ext);
+        exit(file_get_contents(SPOOL_DIR.$spoolname));
     }
-    
-    $info_w = @getImageSize($watermark);
-    if (!$info_w)
-        return false;
-
-    if($optimalWSize){
-        $newWinfo = getWSizeAndXY($info_o, $info_w, $placement);
-    } else {
-        // Get and Set Image Position
-        list($vertical, $horizontal) = split(',', $placement,2);
-        list($vertical, $sy) = split('=', trim($vertical),2);
-        list($horizontal, $sx) = split('=', trim($horizontal),2);
-        switch (trim($vertical)) { // VERTICAL POSITION OF WATERMARK
-            case 'bottom': $y = $info_o[1] - $info_w[1] - (int)$sy; break;
-            case 'middle': $y = ceil($info_o[1]/2) - ceil($info_w[1]/2) + (int)$sy; break;
-            default: $y = (int)$sy; break;
-        }
-        switch (trim($horizontal)) { // HORIZONTAL POSITION OF WATERMARK
-            case 'right': $x = $info_o[0] - $info_w[0] - (int)$sx; break;
-            case 'center': $x = ceil($info_o[0]/2) - ceil($info_w[0]/2) + (int)$sx; break;
-            default: $x = (int)$sx; break;
-        }
+    $Original = new Imagick();
+    $Stamp  = clone $Original;
+    $Original->readImage($filename);
+    $Stamp->readImage($watermark);
+    // main image dimension
+    $geo = $Original->getImageGeometry();
+    $x   = $geo['width'];
+    $y   = $geo['height'];
+    unset($geo);
+    // stamp image dimension
+    $geo_stamp = $Stamp->getImageGeometry();
+    $sx = $geo_stamp['width'];
+    $sy = $geo_stamp['height'];
+    unset($geo_stamp);
+    // calculate position
+    $center = ($x/2)-($sx/2);
+    $bottom = $y-($sy+20);
+    // create composite image
+    $Original->compositeImage($Stamp, $Stamp->getImageCompose(), $center, $bottom);
+    // write image to spool folder
+    if ($f = fopen(SPOOL_DIR.$spoolname, "w+")) {
+        $Original->writeImageFile($f);
+        fclose($f);
+        header("Content-Type: image/" . $ext);
+        exit(file_get_contents(SPOOL_DIR.$spoolname));
     }
-
-    // Send HEADER of Image type
-    header("Content-Type: ".$info_o['mime']);
-
-    // Create Images from files
-    $original = @imageCreateFromString(file_get_contents($original));
-    $watermark = @imageCreateFromString(file_get_contents($watermark));
-    $out = imageCreateTrueColor($info_o[0],$info_o[1]);
-
-    // Copy Image
-    imageCopy($out, $original, 0, 0, 0, 0, $info_o[0], $info_o[1]);
-
-    // SET TRANSPARENT
-    $trans = imagecolorat($out,0,0);
-    imagecolortransparent($out,$trans);
-
-    // Copy Watermark
-    if($optimalWSize){
-        imagecopyresampled($out, $watermark, $newWinfo['x'], $newWinfo['y'], 0, 0, $newWinfo['w'], $newWinfo['h'], $info_w[0], $info_w[1]);
-    } elseif( ($info_o[0] > 10) && ($info_o[1] > 10) ) {
-        imageCopy($out, $watermark, $x, $y, 0, 0, $info_w[0], $info_w[1]);
-    }
-
-    // create Rezult Image
-    switch ($info_o[2]) {
-        case 1:
-            imageGIF($out);
-            break;
-        case 2:
-            imageJPEG($out);
-            break;
-        case 3:
-            imagePNG($out);
-            break;
-    }
-
-    // Delete temp images
-    imageDestroy($out);
-    imageDestroy($original);
-    imageDestroy($watermark);
-
-    return true;
-}
-
-function getWSizeAndXY($info_o, $info_w, $placement){
-    $placement = trim($placement);
-    if(empty($placement)) return array('w'=>(($info_o[0] < $info_w[0]) ? $info_o[0] : $info_w[0]),'h'=>(($info_o[1] < $info_w[1]) ? $info_o[1] : $info_w[1]), 'x'=>0, 'y'=>0);
-
-    $w = $info_o[0];
-    $h = $info_o[1];
-
-    $oWBig = ($w > $h) ? true : false;
-    $wBig = ($info_w[0] > $info_w[1]) ? true : false;
-    $whWRate = (($wBig) ? floatval($info_w[0]/$info_w[1]) : (($info_w[0] == $info_w[1]) ? 1 : floatval($info_w[1]/$info_w[0])));
-    $placements = array();
-
-    $aligns = split(',', $placement, 2);
-    foreach($aligns as $align){
-        list($align, $px) = split('=', trim($align), 2);
-        $align = trim($align);
-        $px = intval($px);
-        $margins = $px * 2;
-        $placements[$align]=$px;
-        switch ($align) {
-            //// MAX width OF WATERMARK
-            case 'right'    : $wmax = ($wBig) ? $w - $margins : $h/$whWRate; $x = $w - $wmax - $px; break;
-            case 'center'   : $wmax = ($wBig) ? $w - $margins : $h/$whWRate; $x = ceil($w/2) - ceil($wmax/2) + $px; break;
-            case 'left'     : $wmax = ($wBig) ? $w - $margins : $h/$whWRate; $x = $px; break;
-            //// MAX height OF WATERMARK
-            case 'bottom'   : $hmax = ($wBig) ? $w/$whWRate : $h - $margins; $y = $h - $hmax - $px; break;
-            case 'middle'   : $hmax = ($wBig) ? $w/$whWRate : $h - $margins; $y = ceil($h/2) - ceil($hmax/2) + $px; break;
-            case 'top'      : $hmax = ($wBig) ? $w/$whWRate : $h - $margins; $y = $px; break;
-        }
-    }
-
-    if($wmax > $w){
-        $wmax = $w;
-        $hmax = ($wBig) ? $wmax*$whWRate : $wmax/$whWRate;
-    }
-    if($hmax > $h){
-        $hmax = $h;
-        $wmax = ($wBig) ? $hmax/$whWRate : $hmax*$whWRate;
-    }
-
-    foreach($placements as $align=>$px){
-        switch ($align) {
-            //// HORIZONTAL POSITION OF WATERMARK
-            case 'right'    :  $x = $w - $wmax - $px; break;
-            case 'center'   :  $x = ceil($w/2) - ceil($wmax/2) + $px; break;
-            case 'left'     :  $x = $px; break;
-            //// VERTICAL POSITION OF WATERMARK
-            case 'bottom'   :  $y = $h - $hmax - $px; break;
-            case 'middle'   :  $y = ceil($h/2) - ceil($hmax/2) + $px; break;
-            case 'top'      :  $y = $px; break;
-        }
-    }    
-
-    return array('w'=>round($wmax),'h'=>round($hmax), 'x'=>$x, 'y'=>$y);
 }
 ?>

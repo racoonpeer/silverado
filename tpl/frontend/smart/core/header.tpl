@@ -25,11 +25,12 @@
         </div>
         <div class="phones">
             <div class="stack">
-                <div class="wrap">
-                    <a href="tel:+380973057697">097 305 76 97</a>
+                <a href="tel:+380960549540">096 054 95 40</a>
+                <{*<div class="wrap">
+                    <a href="tel:+380960549540">096 054 95 40</a>
                     <a href="tel:+380956227572">095 622 75 72</a>
                     <a href="tel:+380638216588">063 821 65 88</a>
-                </div>
+                </div>*}>
             </div>
 <{if isset($arrModules.callback)}>
             <div class="hint">заказать <a href="#" onclick="return Modal.open('<{include file="core/href.tpl" arCategory=$arrModules.callback}>');">обратный звонок</a></div>

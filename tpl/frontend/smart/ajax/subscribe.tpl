@@ -31,8 +31,7 @@
                     }, 20);
                 }
             }
-        }
-        drawSubscribeResult();
+        } drawSubscribeResult();
     </script>
 <{else}>
     <div class="h2">Подпишись и узнаешь первым</div>
@@ -42,24 +41,27 @@
         <button type="submit">подписаться</button>
     </form>
     <script>
-        $(function(){
-            var form = $("#subscribeForm");
-            // bind to the form's submit event 
-            form.on("submit", function(e) { 
-                e.preventDefault();
-                $.ajax({
-                    url: "<{include file="core/href.tpl" arCategory=$arrModules.subscribe}>",
-                    type: "POST",
-                    dataType: "json",
-                    data: form.serialize(),
-                    success: function(json){
-                        if (json.output && json.result=="success") form.closest(".subscribe").html(json.output);
-                        else if (json.result=="error") form.addClass("form-error");
-                    }
+        function initSubscribeForm(timeout) {
+            if (typeof jQuery != "undefined") {
+                var form = $("#subscribeForm");
+                // bind to the form's submit event 
+                form.on("submit", function(e) { 
+                    e.preventDefault();
+                    $.ajax({
+                        url: "<{include file="core/href.tpl" arCategory=$arrModules.subscribe}>",
+                        type: "POST",
+                        dataType: "json",
+                        data: form.serialize(),
+                        success: function(json){
+                            if (json.output && json.result=="success") form.closest(".subscribe").html(json.output);
+                            else if (json.result=="error") form.addClass("form-error");
+                        }
+                    }); return false; 
                 });
-                return false; 
-            });
-        });
+            } else setTimeout(function(){
+                initSubscribeForm(timeout);
+            }, timeout);
+        } initSubscribeForm(100);
     </script>
 <{/if}>
 </div>

@@ -719,7 +719,8 @@ function fileCheckAndCleanDB($id, $table, $colname, $conditions='', $dir=''){
 function getFileExt($file){
     $file = explode('.', $file);
     $file = end($file);
-    return mb_strtolower($file, WLCMS_SYSTEM_ENCODING);
+    return strtolower($file);
+//    return mb_strtolower($file, WLCMS_SYSTEM_ENCODING);
 }
 
 function checkFileExist($dir, $file){

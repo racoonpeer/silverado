@@ -34,6 +34,9 @@ $(function(){
             if (i==currentSlide) setZoom(slide, 1);
             else unSetZoom(slide);
         });
+    }).on("contextmenu", function(e){
+        e.preventDefault();
+        return false;
     });
     Thumbs.on("mouseenter", function(e){
         var self = $(this),

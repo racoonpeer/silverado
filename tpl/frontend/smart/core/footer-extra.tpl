@@ -19,7 +19,7 @@
     "@context": "http://www.schema.org",
     "@type": "Organization",
     "name": "SILVERADO.com.ua",
-    "logo": "https://silvarado.com.ua/images/public/mail/logo.png",
+    "logo": "https://silverado.com.ua/images/public/logo-top.png",
     "url": "https://silverado.com.ua/",
     "email": "shop@silverado.com.ua",
     "address": {
@@ -33,7 +33,7 @@
     "contactPoint": {
         "@type": "ContactPoint",
         "telephone": "+38 097 305 76 97",
-            "contactType": "customer service"
+        "contactType": "customer service"
     }
 }
 </script>

@@ -1036,7 +1036,7 @@ class UrlWL extends Url {
             }
         } return $filters;
     }
-
+    
     /**
      * UrlWL::initCategory()
      *
@@ -1081,9 +1081,9 @@ class UrlWL extends Url {
             }
         } else {
             $this->addErrorCategory(true);
-        }
-        return $this;
+        } return $this;
     }
+    
     /**
      * UrlWL::addErrorCategory()
      *
@@ -1105,13 +1105,15 @@ class UrlWL extends Url {
             return false;
         }
     }
-    
+    /**
+     * 
+     * @param array $category
+     */
     public function redirectToErrorPage($category) {
         $url = $this->buildCategoryUrl($category);
         Redirect($url);
         exit();
     }
-
     /**
      * UrlWL::getErrorCategory()
      *

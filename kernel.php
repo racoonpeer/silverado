@@ -116,7 +116,7 @@ $arrPageData     = array( //Page data array
         "/js/libs/jquery.inputmask/inputmask/inputmask.min.js",
         "/js/libs/jquery.inputmask/inputmask/jquery.inputmask.min.js",
         "/js/libs/jquery.inputmask/inputmask/inputmask.regex.extensions.min.js",
-        "/js/libs/jquery-steps/jquery.steps.min.js",
+//        "/js/libs/jquery-steps/jquery.steps.min.js",
 //        "/js/libs/jquery.lazyload/jquery.lazyload.min.js",
         "/js/libs/jquery-zoom/jquery.zoom.min.js",
         "/js/libs/jquery.touchswipe/jquery.touchSwipe.min.js",
@@ -222,23 +222,8 @@ if(!in_array($arCategory['module'], array('catalog', 'search', 'basket', 'newest
 }
 // Prepare styles & scripts for entire page
 if (empty($arrPageData["headCss"])) $arrPageData["headCss"][] = "/css/public/common.css";
-if ($IS_DEV) PHPHelper::generatePageScripts ($arrPageData["headScripts"], (!empty($modulename) ? $modulename : "common").".js");
+PHPHelper::generatePageScripts ($arrPageData["headScripts"], (!empty($modulename) ? $modulename : "common").".js");
 $arrPageData["headScripts"][] = "/js/public/dom-extra".(!$IS_DEV ? ".min" : "").".js";
-
-//$pageScriptName = !$mdname ? "common" : $mdname;
-//if (!file_exists("js/min/{$pageScriptName}.js")) {
-//    $yui = new YUICompressor("include/classes/yuicompressor/yuicompressor-2.4.8.jar", "js/min", array("semi"=>true));
-//    foreach ($arrPageData["headScripts"] as $script) {
-//        $scriptName = (!preg_match("/^http/", $script) ? $_SERVER["DOCUMENT_ROOT"] : "").$script;
-//        $yui->addFile($scriptName);
-//    }
-//    $code   = $yui->compress();
-//    $fName  = "js/min/{$pageScriptName}.js";
-//    $fh     = fopen($fName, 'w') or die ("Can't create new file");
-//    fwrite ($fh, $code);
-//    fclose ($fh);
-//}
-//if (!$IS_DEV and file_exists("js/min/{$pageScriptName}.js")) $arrPageData["headScripts"] = array("/js/min/{$pageScriptName}.js");
 // /////////////////////// END LOCAL PAGE OPERATIONS \\\\\\\\\\\\\\\\\\\\\\\\\\\
 # ##############################################################################
 

@@ -1,32 +1,32 @@
 -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
--- ����������� ������ ����. 
--- ���� ���� ������� - ���: 
--- 	* ��������� ������� ���� ����������� �� ����� ������� �� SVN � ������.
--- 	* ��� ����������� ������� � ���������� - �� �������� ������
--- 	* �������� � ���� ��� �������� ������ �����
--- 	* ����� ���� � ���� ����� ����� �������� ��������� ���� �����
--- 	* ���� ��� �������� �������� ������ ������ ������������:
--- 	 	- ���������� ���������� ������ �� ������� � �� ��������
--- 	 	- ������ ����� ������ � ������ ����������� �����
+-- РћР±СЏР·Р°С‚РµР»СЊРЅРѕ СЃС‚Р°РІРёРј РґР°С‚Сѓ. 
+-- РћРґРёРЅ Р±Р»РѕРє Р·Р°РїРёСЃРµР№ - СЌС‚Рѕ: 
+-- 	* РёР·РјРµРЅРµРЅРёСЏ РєРѕС‚РѕСЂС‹Рµ Р±С‹Р»Рё РїСЂРѕРёР·РІРµРґРµРЅС‹ РѕС‚ РѕРґРЅРѕР№ РІС‹РєР°С‡РєРё РЅР° SVN Рє РґСЂСѓРіРѕР№.
+-- 	* РїСЂРё РєРѕРїРёСЂРѕРІР°РЅРёРё Р·Р°РїРёСЃРµР№ Рё РїСЂРёРјРµРЅРµРЅРёРё - РЅРµ РІС‹Р·С‹РІР°Р»Рѕ РѕС€РёР±РѕРє
+-- 	* РІРєР»СЋС‡Р°СЋС‚ РІ СЃРµР±СЏ РІСЃРµ СЏР·С‹РєРѕРІС‹Рµ РІРµСЂСЃРёРё СЃР°Р№С‚Р°
+-- 	* РїРѕСЃР»Рµ РґР°С‚С‹ РІ СЌС‚РѕРј Р±Р»РѕРєРµ РїРёС€РµРј РѕРїРёСЃР°РЅРёРµ РёР·РјРµРЅРµРЅРёР№ РµСЃР»Рё РЅСѓР¶РЅРѕ
+-- 	* РµСЃР»Рё РЅР°Рґ РїСЂРѕРµРєС‚РѕРј С‚СЂСѓРґРёС‚СЃСЏ Р±РѕР»СЊС€Рµ РѕРґРЅРѕРіРѕ РїСЂРѕРіСЂР°РјРјРёСЃС‚Р°:
+-- 	 	- РїСЂРµРґС‹РґСѓС‰РёРµ РІС‹РєР°С‡РµРЅРЅС‹Рµ Р·Р°РїРёСЃРё РЅРµ СѓРґР°Р»СЏС‚СЊ Рё РЅРµ РёР·РјРµРЅСЏС‚СЊ
+-- 	 	- РїРёСЃР°С‚СЊ РЅРѕРІС‹Рµ Р·Р°РїРёСЃРё СЃ СѓС‡РµС‚РѕРј РІС‹РіСЂСѓР¶РµРЅРЅС‹С… СЂР°РЅРµРµ
 -- =====================================================================================
 
 
 
 -- -----------------------------------------------------------------------------
 -- 15.12.2015
--- ���������� ���� �������� � �������� ���������
+-- РґРѕР±Р°РІР»РµРЅРёРµ РїРѕР»СЏ СЃРµРѕРїСѓС‚РµР№ РІ Р·РЅР°С‡РµРЅРёСЏ Р°С‚СЂРёР±СѓС‚РѕРІ
 -- -----------------------------------------------------------------------------
 ALTER TABLE `product_options` ADD `required` tinyint(1) unsigned NOT NULL DEFAULT '0' AFTER `pid`;
 ALTER TABLE `en_attributes_values` ADD `seo_path` varchar(255) NOT NULL DEFAULT '' AFTER `image`;
 ALTER TABLE `ua_attributes_values` ADD `seo_path` varchar(255) NOT NULL DEFAULT '' AFTER `image`;
 ALTER TABLE `ru_attributes_values` ADD `seo_path` varchar(255) NOT NULL DEFAULT '' AFTER `image`;
--- ----------------------------------------------------------------------------- �������
+-- ----------------------------------------------------------------------------- СЃРґРµР»Р°РЅРѕ
 
 
 
 -- -----------------------------------------------------------------------------
 -- 18.12.2015
--- ����� �������
+-- РѕРїС†РёРё С‚РѕРІР°СЂРѕРІ
 -- -----------------------------------------------------------------------------
 DROP TABLE IF EXISTS `ru_options_values`;
 CREATE TABLE IF NOT EXISTS `ru_options_values` (
@@ -61,22 +61,22 @@ CREATE TABLE IF NOT EXISTS `product_options_values` (
   KEY `idx_vid` (`value_id`),
   KEY `idx_primary` (`primary`),
   KEY `idx_order` (`order`)
-) ENGINE=MyISAM DEFAULT CHARSET=cp1251 COMMENT='�������� ����� �������';
+) ENGINE=MyISAM DEFAULT CHARSET=cp1251 COMMENT='Р—РЅР°С‡РµРЅРёСЏ РѕРїС†РёР№ С‚РѕРІР°СЂРѕРІ';
 -- -----------------------------------------------------------------------------
 
 
 
 -- -----------------------------------------------------------------------------
 -- 21.12.2015
--- ���������� � ��������� ����������� ���������� ��������� ��� �������� ������������
+-- РґРѕР±Р°РІР»РµРЅРёРµ РІ РЅР°СЃС‚СЂРѕР№РєРё РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё СѓРїСЂР°РІР»РµРЅРёСЏ СЃРµРѕРїСѓС‚СЏРјРё РґР»СЏ РїСЂРѕРІРµСЂРєРё СѓРЅРёРєР°Р»СЊРЅРѕСЃС‚Рё
 -- -----------------------------------------------------------------------------
-ALTER TABLE `modules_params`  ADD `seotable` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '������� c ��������. ���������' AFTER `short_title`
-    ,  ADD `seogroup` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT '���������� �������: 0-���, 1-����' AFTER `seotable`
-    , CHANGE `images` `images` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT '��������� �����������: 0-���, 1-����'
-    , CHANGE `access` `access` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT '��������� ��������: 0-���, 1-����'
-    , CHANGE `history` `history` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT '��������� �������: 0-���, 1-��'
-    , CHANGE `menu` `menu` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT '���������� � ����: 0-���, 1-��'
-    , CHANGE `order` `order` INT(5) UNSIGNED NOT NULL DEFAULT '0' COMMENT '���������� �������'
+ALTER TABLE `modules_params`  ADD `seotable` VARCHAR(50) NOT NULL DEFAULT '' COMMENT 'РўР°Р±Р»РёС†Р° c СЃРµРѕРїСѓС‚РµРј. РљРѕРЅСЃС‚Р°РЅС‚С‹' AFTER `short_title`
+    ,  ADD `seogroup` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'РЈРЅРёРєР°Р»СЊРЅС‹Р№ СЃРµРѕРїСѓС‚СЊ: 0-РЅРµС‚, 1-РµСЃС‚СЊ' AFTER `seotable`
+    , CHANGE `images` `images` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'РќР°СЃС‚СЂРѕР№РєРё РёР·РѕР±СЂР°Р¶РµРЅРёР№: 0-РЅРµС‚, 1-РµСЃС‚СЊ'
+    , CHANGE `access` `access` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'РќР°СЃС‚СЂРѕР№РєРё РґРѕСЃС‚СѓРїРѕРІ: 0-РЅРµС‚, 1-РµСЃС‚СЊ'
+    , CHANGE `history` `history` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'РЎРѕС…СЂР°РЅСЏС‚СЊ РёСЃС‚РѕСЂРёСЋ: 0-РЅРµС‚, 1-РґР°'
+    , CHANGE `menu` `menu` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'РћС‚РѕР±СЂР°Р¶Р°С‚СЊ РІ РјРµРЅСЋ: 0-РЅРµС‚, 1-РґР°'
+    , CHANGE `order` `order` INT(5) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'РЎРѕСЂС‚РёСЂРѕРІРєР° РјРѕРґСѓР»РµР№'
 ;
 UPDATE `modules_params` SET `seotable` = 'MAIN_TABLE',`seogroup`='1' WHERE `module`='main';
 UPDATE `modules_params` SET `seotable` = 'BRANDS_TABLE',`seogroup`='1' WHERE `module`='brands';
@@ -85,7 +85,7 @@ UPDATE `modules_params` SET `seotable` = 'ATTRIBUTES_VALUES_TABLE',`seogroup`='1
 UPDATE `modules_params` SET `seotable` = 'GALLERY_TABLE',`seogroup`='1' WHERE `module`='gallery';
 UPDATE `modules_params` SET `seotable` = 'NEWS_TABLE',`seogroup`='1' WHERE `module`='news';
 UPDATE `modules_params` SET `seotable` = 'VIDEOS_TABLE',`seogroup`='1' WHERE `module`='video';
--- ������������ ���������� ���������� ��� ������������ �������
+-- РїСЂРѕСЃС‚Р°РІР»РµРЅРёРµ РєРѕСЂСЂРµРєС‚РЅРѕР№ СЃРѕСЂС‚РёСЂРѕРІРєРё РґР»СЏ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёС… Р·Р°РїРёСЃРµР№
 DROP TABLE IF EXISTS `__tmp_modules_params_order`;
 CREATE TABLE IF NOT EXISTS `__tmp_modules_params_order` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -102,7 +102,7 @@ DROP TABLE IF EXISTS `__tmp_modules_params_order`;
 
 -- -----------------------------------------------------------------------------
 -- 23.12.2015
--- ������������� ������ ��
+-- СЃРёРЅС…СЂРѕРЅРёР·Р°С†РёСЏ С‚Р°Р±Р»РёС† Р‘Р”
 -- -----------------------------------------------------------------------------
 UPDATE `ua_main` SET `module`='news' WHERE `id`='72';
 UPDATE `en_main` SET `module`='news' WHERE `id`='72';
@@ -162,9 +162,9 @@ ALTER TABLE `category_filters` CHANGE `type` `type` TINYINT(1) NOT NULL DEFAULT 
 
 -- -----------------------------------------------------------------------------
 -- 23.12.2015
--- ���������� ��� ���������� �����
+-- РїСЂРѕРёР·РІРѕРґРёРј СЃРµРѕ СѓРЅРёС„РёРєР°С†РёСЋ РїСѓС‚РµР№
 -- -----------------------------------------------------------------------------
--- ������� ��������� ������� ��� ���� ������������ �������� 
+-- СЃРѕР·РґР°РµРј РѕС‚РґРµР»СЊРЅСѓСЋ С‚Р°Р±Р»РёС†Сѓ РґР»СЏ РІСЃРµС… СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёС… СЃРµРѕРїСѓС‚РµР№ 
 DROP TABLE IF EXISTS `__tmp_unique_seopathes`;
 CREATE TABLE IF NOT EXISTS `__tmp_unique_seopathes` (
   `seopath` varchar(255) NOT NULL,
@@ -175,11 +175,11 @@ CREATE TABLE IF NOT EXISTS `__tmp_unique_seopathes` (
   `usedmods` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`seopath`)
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
--- ��������� ������� �� ru_main
+-- Р’СЃС‚Р°РІР»СЏРµРј РІРЅР°С‡Р°Р»Рµ РёР· ru_main
 INSERT INTO `__tmp_unique_seopathes`
 SELECT `seo_path` `seopath`, 'ru_main' `tblname`, 'main' `modname`, `id` `rowid`, '1' `cnt`, '' `usedmods` 
 FROM `ru_main` WHERE `seo_path`<>'' GROUP BY `id`, `seo_path`;
--- ��������� ������� ����������
+-- Р·Р°РїРѕР»РЅСЏРµРј РЅСѓР¶РЅС‹РјРё Р·РЅР°С‡РµРЅРёСЏРјРё
 INSERT INTO `__tmp_unique_seopathes` (`seopath`, `tblname`, `modname`, `rowid`, `cnt`)
 SELECT t.`seopath`, t.`tblname`, t.`modname`, t.`rowid`, '1' `cnt` FROM (
     SELECT `seo_path` `seopath`, 'ru_main' `tblname`, 'main' `modname`, `id` `rowid`, (0) `seq` FROM `ru_main` WHERE `seo_path`<>'' UNION ALL
@@ -205,9 +205,9 @@ SELECT t.`seopath`, t.`tblname`, t.`modname`, t.`rowid`, '1' `cnt` FROM (
     SELECT `seo_path` `seopath`, 'en_attributes_values' `tblname`, 'attributes_values' `modname`, `id` `rowid`, (16) `seq` FROM `en_attributes_values` WHERE `seo_path`<>''
 ) t GROUP BY t.`seopath`, t.`modname`, t.`rowid` ORDER BY t.`seq`
 ON DUPLICATE KEY UPDATE `cnt`=`cnt`+IF(`rowid`<>VALUES(`rowid`), 1, 0), `usedmods`=IF(`usedmods`='', VALUES(`modname`), IF(LOCATE(VALUES(`modname`), `usedmods`)>0, `usedmods`, CONCAT(`usedmods`, ',', VALUES(`modname`))));
--- ������� ������ ������� ���������
+-- СѓРґР°Р»СЏРµРј Р·Р°РїРёСЃРё РєРѕС‚РѕСЂС‹Рµ СѓРЅРёРєР°Р»СЊРЅС‹
 DELETE FROM `__tmp_unique_seopathes` WHERE `cnt`<=1;
--- ������� ��������� ��� ������������� ��������
+-- СЃРѕР·РґР°РµРј РїСЂРѕС†РµРґСѓСЂСѓ РґР»СЏ РІРёРґРѕРёР·РјРµРЅРµРЅРёР№ СЃРµРѕРїСѓС‚РµР№
 DELIMITER $$
 DROP PROCEDURE IF EXISTS `tmp_update_seopath`$$
 CREATE PROCEDURE `tmp_update_seopath`()
@@ -296,12 +296,12 @@ DROP PROCEDURE IF EXISTS `tmp_update_seopath`;
 
 -- -----------------------------------------------------------------------------
 -- 26.12.2015
--- ���������� ���� ������� ���������
+-- РґРѕР±Р°РІР»РµРЅРёРµ С‚РёРїР° С„РёР»СЊС‚СЂР° РљР°С‚РµРіРѕСЂРёСЏ
 -- -----------------------------------------------------------------------------
 INSERT IGNORE INTO `en_filter_types` (`id`, `title`, `type`, `colname`) VALUES (5, 'Category', 'varchar', 'cid');
-INSERT IGNORE INTO `ru_filter_types` (`id`, `title`, `type`, `colname`) VALUES (5, '���������', 'varchar', 'cid');
-INSERT IGNORE INTO `en_filter_types` (`id`, `title`, `type`, `colname`) VALUES (5, '��������', 'varchar', 'cid');
--- ���������� ������ �����
+INSERT IGNORE INTO `ru_filter_types` (`id`, `title`, `type`, `colname`) VALUES (5, 'РљР°С‚РµРіРѕСЂРёСЏ', 'varchar', 'cid');
+INSERT IGNORE INTO `en_filter_types` (`id`, `title`, `type`, `colname`) VALUES (5, 'РљР°С‚РµРіРѕСЂС–СЏ', 'varchar', 'cid');
+-- РґРѕР±Р°РІР»РµРЅРёРµ РјРѕРґСѓР»СЏ РђРєС†РёРё
 DROP TABLE IF EXISTS `ru_stocks`;
 CREATE TABLE IF NOT EXISTS `ru_stocks` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -334,10 +334,10 @@ DROP TABLE IF EXISTS `en_stocks`;
 CREATE TABLE IF NOT EXISTS `en_stocks`  LIKE `ru_stocks`;
 DROP TABLE IF EXISTS `ua_stocks`;
 CREATE TABLE IF NOT EXISTS `ua_stocks`  LIKE `ru_stocks`;
--- ���������� ������ � ��������� �������
+-- РґРѕР±Р°РІР»РµРЅРёРµ Р·Р°РїРёСЃРё РІ РїР°СЂР°РјРµС‚СЂС‹ РјРѕРґСѓР»РµР№
 INSERT INTO `modules_params` (`module`, `title`, `short_title`, `seotable`, `seogroup`, `images`, `access`, `history`, `menu`, `order`) VALUES
-('stocks', '�����', '�����', 'STOCKS_TABLE', 1, 1, 1, 1, 1, 3);
--- ������������ ���������� ���������� ��� ������������ �������
+('stocks', 'РђРєС†РёРё', 'РђРєС†РёРё', 'STOCKS_TABLE', 1, 1, 1, 1, 1, 3);
+-- РїСЂРѕСЃС‚Р°РІР»РµРЅРёРµ РєРѕСЂСЂРµРєС‚РЅРѕР№ СЃРѕСЂС‚РёСЂРѕРІРєРё РґР»СЏ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёС… Р·Р°РїРёСЃРµР№
 DROP TABLE IF EXISTS `__tmp_modules_params_order`;
 CREATE TABLE IF NOT EXISTS `__tmp_modules_params_order` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -348,9 +348,9 @@ INSERT INTO `__tmp_modules_params_order` (`id`, `module`)
 SELECT NULL `id`, `module` FROM `modules_params` ORDER BY `order` ASC, `module`;
 UPDATE `modules_params` t JOIN `__tmp_modules_params_order` tt ON tt.`module`=t.`module` SET t.`order`=tt.`id`;
 DROP TABLE IF EXISTS `__tmp_modules_params_order`;
--- ������� ����� ��������� ������� �� ������ � ������ ������
+-- СѓРґР°Р»СЏРµРј СЂР°РЅРµРµ СЃРѕР·РґР°РЅРЅСѓСЋ С‚Р°Р±Р»РёС†Сѓ РїРѕ РѕС€РёР±РєРµ СЃ РґСЂСѓРіРёРј РёРјРµРЅРµРј
 DROP TABLE IF EXISTS `ru_actions`, `en_actions`, `ua_actions`;
--- ���������� ����������� ������� � ua_main, en_main
+-- РґРѕР±Р°РІР»РµРЅРёРµ РїСЂРѕРїСѓС‰РµРЅРЅС‹С… РєРѕР»РѕРЅРѕРє РІ ua_main, en_main
 ALTER TABLE `ru_main` 
   CHANGE `seo_text` `seo_text` text NOT NULL DEFAULT '',
   CHANGE `filter_seo_title` `filter_seo_title` varchar(255) NOT NULL DEFAULT '',
@@ -375,7 +375,7 @@ ALTER TABLE `en_main`
 
 -- -----------------------------------------------------------------------------
 -- 28.12.2015
--- ���������� ������� ��������� �������
+-- Р”РѕР±Р°РІР»РµРЅРёРµ С‚Р°Р±Р»РёС†С‹ Р°РєС†РёРѕРЅРЅС‹С… С‚РѕРІР°СЂРѕРІ
 -- -----------------------------------------------------------------------------
 CREATE TABLE `stocks_related` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -385,7 +385,7 @@ CREATE TABLE `stocks_related` (
   KEY `idx_pid` (`pid`),
   KEY `idx_rid` (`rid`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=cp1251 COMMENT='Stocks relations';
--- ----------------------------------------------------------------------------- �������
+-- ----------------------------------------------------------------------------- СЃРґРµР»Р°РЅРѕ
 -- np_city ---------------------------------------------------------------------
 DROP TABLE IF EXISTS `np_city`;
 CREATE TABLE IF NOT EXISTS `np_city` (

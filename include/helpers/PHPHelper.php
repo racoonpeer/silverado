@@ -1321,6 +1321,11 @@ class Pager {
      * @var UrlWL for url generate
      */
     private $_UrlWL;
+    /**
+     *
+     * @var bool
+     */
+    private $incorretPage;
 
     const PAGES_SEP = '...';
 
@@ -1344,6 +1349,7 @@ class Pager {
     private function calc(&$current, $total, $limit, $separator=false){
         if(!$total) $total = 1;
         $this->count = $this->last = intval(ceil($total / $limit));
+        $this->incorretPage = ($current > $this->count);
         if($current > $this->count) {
             $current = $this->count;
         }
@@ -1412,6 +1418,10 @@ class Pager {
         }
         $this->_UrlWL->setPage($page);
         return $this->_UrlWL->buildUrl();
+    }
+    
+    public function isIncorrectPage() {
+        return $this->incorretPage;
     }
     /**
      * @return string

@@ -1,6 +1,6 @@
 <?php
 $SES = array (
-  'c33782edb502d8502adc7acae2c25ec9' => 
+  'b970a9fb61276a0a12093d34451a6669' => 
   array (
     'cfg' => 
     array (
@@ -12,12 +12,12 @@ $SES = array (
       'backup_url' => 'backup/',
       'only_create' => 'MRG_MyISAM MERGE HEAP MEMORY',
       'globstat' => 0,
-      'my_host' => 'localhost',
+      'my_host' => 'silverad.mysql.tools',
       'my_port' => 3306,
-      'my_user' => 'root',
-      'my_pass' => '',
+      'my_user' => 'silverad_db',
+      'my_pass' => 'rh4BbwGr',
       'my_comp' => 0,
-      'my_db' => 'silverado',
+      'my_db' => 'silverad_db',
       'auth' => 'mysql cfg',
       'user' => '',
       'pass' => '',
@@ -26,7 +26,7 @@ $SES = array (
       'outfile_path' => 'backup/',
       'outfile_size' => '64',
     ),
-    'time' => 1526052370,
+    'time' => 1526051525,
     'lng' => 'ru',
   ),
 );

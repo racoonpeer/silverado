@@ -36,7 +36,7 @@
     <link href="<{$arrPageData.headCss[i]}>" type="text/css" rel="stylesheet"/>
 <{/section}>
 <{section name=i loop=$arrPageData.headScripts}>
-    <script type="text/javascript" src="<{$arrPageData.headScripts[i]}>"></script>
+    <script type="text/javascript" src="<{$arrPageData.headScripts[i]}>" async defer></script>
 <{/section}>
     <{include file='core/header-extra.tpl'}>
 </head>

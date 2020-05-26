@@ -54,6 +54,9 @@ and open the template in the editor.
     -moz-opacity: $opacity;
          opacity: $opacity;
 }
+@mixin blur($blur) {
+    filter: blur(1px * $blur);
+}
 @mixin breakpoint($point) {
     @media (max-width: 1px * $point) {
         @content;

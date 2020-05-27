@@ -1,7 +1,5 @@
 <?php
 
-use http\Exception\InvalidArgumentException;
-
 define('WEBlife', 1); // no direct access
 define('WLCMS_EXEC', 1);//Set flag that this process by exec
 define('WLCMS_ZONE', 'BACKEND'); //Set flag that this is a admin area
@@ -39,7 +37,7 @@ foreach ($directories as $directory) {
     $itemID = (int) $directory;
 
     if (!$itemID) {
-        throw new InvalidArgumentException('Item ID ' . $itemID . ' is invalid!!!');
+        throw new Exception('Item ID ' . $itemID . ' is invalid!!!');
     }
 
     $itemPath = $path . $itemID . '/';
@@ -69,7 +67,7 @@ foreach ($directories as $directory) {
         try {
             $DB->postToDB($image, CATALOGFILES_TABLE);
         } catch (\Exception $e) {
-            throw new InvalidArgumentException($e->getMessage());
+            throw new Exception($e->getMessage());
         }
     }
 }

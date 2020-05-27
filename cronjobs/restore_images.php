@@ -48,11 +48,11 @@ foreach ($directories as $directory) {
         continue;
     }
 
-    deleteDBLangsSync(CATALOGFILES_TABLE, 'WHERE pid = '. $itemID);
+    deleteRecords(CATALOGFILES_TABLE, 'WHERE pid = '. $itemID);
 
     foreach ($files as $i => $file) {
 
-        if (empty($file) || !is_file($itemPath . $file)) {
+        if (empty($file) || !is_file($itemPath . $file) || preg_match('/^(small_|big_|middle_)/', $file)) {
             continue;
         }
 

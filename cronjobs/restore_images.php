@@ -37,7 +37,7 @@ foreach ($directories as $directory) {
     $itemID = (int) $directory;
 
     if (!$itemID) {
-        throw new Exception('Item ID ' . $itemID . ' is invalid!!!');
+        throw new \Exception('Item ID ' . $itemID . ' is invalid!!!');
     }
 
     $itemPath = $path . $itemID . '/';
@@ -67,7 +67,7 @@ foreach ($directories as $directory) {
         try {
             $DB->postToDB($image, CATALOGFILES_TABLE);
         } catch (\Exception $e) {
-            throw new Exception($e->getMessage());
+            throw new \Exception($e->getMessage());
         }
     }
 }

@@ -34,7 +34,7 @@ $directories = glob($path . '*', GLOB_ONLYDIR);
 
 foreach ($directories as $directory) {
 
-    $itemID = (int) $directory;
+    $itemID = (int) basename($directory);
 
     if (!$itemID) {
         throw new \Exception('Item ID ' . $itemID . ' is invalid!!!');
@@ -67,7 +67,7 @@ foreach ($directories as $directory) {
         try {
             $DB->postToDB($image, CATALOGFILES_TABLE);
         } catch (\Exception $e) {
-            throw new \Exception($e->getMessage());
+            echo $e->getMessage() . PHP_EOL;
         }
     }
 }

@@ -48,20 +48,20 @@ $arSpreadSheets = array(
     "Q3YSxi5UEtzUBy5mxL93eqxcsH7WlbF7fOk3RHZ58Vp9q34PtfCE-xV-RHKTaK_i9kZoUoZbUTiemk", // Silverado
 );
 $pColNames = array(
-    "???????"      => "pcode",
-    "????????"     => "title",
-    "???? ???????" => "price",
-    "???? ?????"   => "cprice"
+    "Артикул"      => "pcode",
+    "Название"     => "title",
+    "Цена Продажа" => "price",
+    "Цена Акция"   => "cprice"
 );
 // Read data from Google sheets
 foreach ($arSpreadSheets as $spreadID) {
     $spreadURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1v{$spreadID}/pub?output=xlsx";
     $spreadSourceData = file_get_contents($spreadURL);
-    if (!$spreadSourceData) $Validator->addError("?????? ?????? ?????-?????????!");
+    if (!$spreadSourceData) $Validator->addError("Ошибка чтения файла-источника!");
     else {
         $fpath = $files_path.$spreadID.".xlsx";
         $fput  = file_put_contents($fpath, $spreadSourceData);
-        if (!file_exists($fpath)) $Validator->addError("?????? ?????? ?????-?????????!");
+        if (!file_exists($fpath)) $Validator->addError("Ошибка записи файла-источника!");
         else {
             $PHPExcel = PHPExcel_IOFactory::load($fpath);
             $numSheets = $PHPExcel->getSheetCount();
@@ -273,7 +273,7 @@ if (!empty($items)) {
     SetPrimaryOptionsValues();
 }
 
-print("????????? {$affected} ???????");
+print("Обновлено {$affected} записей");
 
 function SetPrimaryOptionsValues() {
     $query  = "SELECT po.*, GROUP_CONCAT(pov.`id`) AS `idx` FROM `".PRODUCT_OPTIONS_TABLE."` po "

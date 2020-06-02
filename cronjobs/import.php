@@ -42,26 +42,26 @@ $affected = 0;
 $items = array();
 
 $arSpreadSheets = array(
-//    "SZgLFBBMmiZrr02YCrRIVJ8TEQizA0XkCS09kKTgDqAjz4FFy0m7y75zpGKbOyZzAGQACXNO3LZO-v", // Водопьян
-//    "T0_f5syKKwfUoRRdNoVWlADerk5jSaxWS2ywc_-bLobwZPmtIhqYDJxNnRTUVpKeSIEAgQcTM7H0sr", // Устименко
-//    "RgRfF9YkWXJ0hF4c2zeBHwSio6KguhZAjXy7VnRuYraVVe9uWN96mhwswRxoPEy_DHJQqz-x3Rng0K", // Бигсан
+//    "SZgLFBBMmiZrr02YCrRIVJ8TEQizA0XkCS09kKTgDqAjz4FFy0m7y75zpGKbOyZzAGQACXNO3LZO-v", // ????????
+//    "T0_f5syKKwfUoRRdNoVWlADerk5jSaxWS2ywc_-bLobwZPmtIhqYDJxNnRTUVpKeSIEAgQcTM7H0sr", // ?????????
+//    "RgRfF9YkWXJ0hF4c2zeBHwSio6KguhZAjXy7VnRuYraVVe9uWN96mhwswRxoPEy_DHJQqz-x3Rng0K", // ??????
     "Q3YSxi5UEtzUBy5mxL93eqxcsH7WlbF7fOk3RHZ58Vp9q34PtfCE-xV-RHKTaK_i9kZoUoZbUTiemk", // Silverado
 );
 $pColNames = array(
-    "Артикул"      => "pcode",
-    "Название"     => "title",
-    "Цена Продажа" => "price",
-    "Цена Акция"   => "cprice"
+    "???????"      => "pcode",
+    "????????"     => "title",
+    "???? ???????" => "price",
+    "???? ?????"   => "cprice"
 );
 // Read data from Google sheets
 foreach ($arSpreadSheets as $spreadID) {
     $spreadURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1v{$spreadID}/pub?output=xlsx";
     $spreadSourceData = file_get_contents($spreadURL);
-    if (!$spreadSourceData) $Validator->addError("Ошибка чтения файла-источника!");
+    if (!$spreadSourceData) $Validator->addError("?????? ?????? ?????-?????????!");
     else {
         $fpath = $files_path.$spreadID.".xlsx";
         $fput  = file_put_contents($fpath, $spreadSourceData);
-        if (!file_exists($fpath)) $Validator->addError("Ошибка записи файла-источника!");
+        if (!file_exists($fpath)) $Validator->addError("?????? ?????? ?????-?????????!");
         else {
             $PHPExcel = PHPExcel_IOFactory::load($fpath);
             $numSheets = $PHPExcel->getSheetCount();
@@ -273,7 +273,7 @@ if (!empty($items)) {
     SetPrimaryOptionsValues();
 }
 
-print("Обновлено {$affected} записей");
+print("????????? {$affected} ???????");
 
 function SetPrimaryOptionsValues() {
     $query  = "SELECT po.*, GROUP_CONCAT(pov.`id`) AS `idx` FROM `".PRODUCT_OPTIONS_TABLE."` po "

@@ -270,7 +270,7 @@ if (!empty($items)) {
             deleteRecords(PRODUCT_ATTRIBUTE_TABLE, "WHERE `pid`={$itemID} AND `id` NOT IN(".implode(",", $arAttributesValuesIdx).")");
         }
     }
-    SetPrimaryOptionsValues();
+//    SetPrimaryOptionsValues();
 }
 
 print("Обновлено {$affected} записей");

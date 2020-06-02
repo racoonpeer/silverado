@@ -242,8 +242,8 @@ if (!empty($items)) {
                     }
                 }
             }
-//            deleteRecords(PRODUCT_OPTIONS_TABLE, "WHERE `pid`={$itemID} AND `id` NOT IN(".implode(",", $arOptionsIdx).")");
-//            deleteRecords(PRODUCT_OPTIONS_VALUES_TABLE, "WHERE `product_id`={$itemID} AND `id` NOT IN(".implode(",", $arOptionsValuesIdx).")");
+            deleteRecords(PRODUCT_OPTIONS_TABLE, "WHERE `pid`={$itemID} AND `id` NOT IN(".implode(",", $arOptionsIdx).")");
+            deleteRecords(PRODUCT_OPTIONS_VALUES_TABLE, "WHERE `product_id`={$itemID} AND `id` NOT IN(".implode(",", $arOptionsValuesIdx).")");
             // Write attributes
             $arAttributesValuesIdx = array(0);
             if (!empty($item["attributes"])) {

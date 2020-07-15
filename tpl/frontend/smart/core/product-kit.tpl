@@ -1,5 +1,5 @@
 <div class="product-set">
-    <div class="h2">РљСѓРїРёС‚СЊ РєРѕРјРїР»РµРєС‚</div>
+    <div class="h2">Купить комплект</div>
     <div class="product-set-blocks">
 <{foreach name=i from=$item.kits item=kitItem}>
         <div class="product-set-block">
@@ -52,7 +52,7 @@
                     data-key="<{$kitItem.idKey}>" 
                     data-url="<{include file='core/href_item.tpl' arCategory=$kitItem.arCategory arItem=$kitItem}>" 
                     onclick="<{if $Basket->isSetKey($kitItem.idKey)}>Basket.open();<{else}>Basket.openDialog($(this).data('url'));<{/if}>"
-                    data-text="РљСѓРїРёС‚СЊ" data-alt="<{$smarty.const.IN_CART}>">
+                    data-text="Купить" data-alt="<{$smarty.const.IN_CART}>">
                 </button>
             </div>
         </div>

@@ -1,5 +1,5 @@
 <div class="product-set">
-    <div class="h2">В комплекте дешевле</div>
+    <div class="h2">РљСѓРїРёС‚СЊ РєРѕРјРїР»РµРєС‚</div>
     <div class="product-set-blocks">
 <{foreach name=i from=$item.kits item=kitItem}>
         <div class="product-set-block">
@@ -41,7 +41,7 @@
             </div>
             <div class="product-set-summary">
                 <div class="price">
-<{if !empty($kitItem.old_price)}>
+<{if !empty($kitItem.old_price) and $kitItem.old_price > $kitItem.price}>
                     <span class="strike">
                         <strong><{$kitItem.old_price|number_format:0:'.':' '}></strong>
                     </span>
@@ -52,9 +52,8 @@
                     data-key="<{$kitItem.idKey}>" 
                     data-url="<{include file='core/href_item.tpl' arCategory=$kitItem.arCategory arItem=$kitItem}>" 
                     onclick="<{if $Basket->isSetKey($kitItem.idKey)}>Basket.open();<{else}>Basket.openDialog($(this).data('url'));<{/if}>"
-                    data-text="Купить комплект" data-alt="<{$smarty.const.IN_CART}>">
+                    data-text="РљСѓРїРёС‚СЊ" data-alt="<{$smarty.const.IN_CART}>">
                 </button>
-                <div class="eco">Вы экономите <{$kitItem.discount_price|number_format:0:'.':' '}> грн.</div>
             </div>
         </div>
 <{/foreach}>

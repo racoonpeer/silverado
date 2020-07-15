@@ -2,14 +2,11 @@
 <div class="product-item" id="product_<{$item.id}>" data-cid="<{$item.cid}>">
 <{/if}>
     <div class="wrap">
-        <div class="fade"></div>
         <div class="img">
             <a href="<{include file='core/href_item.tpl' arCategory=$item.arCategory arItem=$item}>">
                 <img src="<{if isset($item.image.middle_image)}><{$item.image.middle_image}><{/if}>" alt="<{$item.title}> <{$item.pcode}>" title="<{$item.title}> <{$item.pcode}>"/>
             </a>
             <{include file="core/product-sticker.tpl"}>
-            <div class="box-overlay"></div>
-            <{include file="core/buy_button.tpl" list=true}>
         </div>
 <{if $item.rating > 0}>
         <div class="rating v-<{$item.rating}>"></div>

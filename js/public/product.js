@@ -38,7 +38,7 @@ $(function(){
         e.preventDefault();
         return false;
     });
-    Thumbs.on("mouseenter", function(e){
+    Thumbs.on("click", function(e){
         var self = $(this),
             index = self.data("index");
         Screen.slick("slickGoTo", index);

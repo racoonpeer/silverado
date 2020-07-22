@@ -25,7 +25,7 @@ define('WLCMS_HTTP_HOST',     WLCMS_HTTP_PREFIX.$_SERVER["HTTP_HOST"]); // [ 0 |
 try {
     $image     = $_SERVER["DOCUMENT_ROOT"].DS.cleanDirPath($_SERVER['REQUEST_URI']);
     $basename  = @basename($image);
-    $watermark = $_SERVER["DOCUMENT_ROOT"].DS.cleanDirPath("/images/public/watermark".(preg_match("/^big_/", $basename) ? "_small" : "").".png");
+    $watermark = $_SERVER["DOCUMENT_ROOT"].DS.cleanDirPath("/images/public/privatbank.png");
     waterMark($image, $watermark);
 } catch (Exception $e) {
     print $e->getMessage();

@@ -201,6 +201,9 @@ and open the template in the editor.
     }
     .screen {
         text-align: center;
+        &:after {
+            content: 'silverado.com.ua';
+        }
         @include breakpoint(390){
             height: 240px;
         }

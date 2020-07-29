@@ -201,8 +201,15 @@ and open the template in the editor.
     }
     .screen {
         text-align: center;
+        position: relative;
         &:after {
             content: 'silverado.com.ua';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2.2em;
+            opacity: .25;
         }
         @include breakpoint(390){
             height: 240px;

@@ -759,7 +759,7 @@ and open the template in the editor.
                                 }
                                 &:after {
                                     font-size: 1.3rem;
-                                    content: "грн.";
+                                    content: "пїЅпїЅпїЅ.";
                                     @include breakpoint(480){
                                         font-size: 1.2rem;
                                     }
@@ -861,7 +861,7 @@ and open the template in the editor.
                 white-space: nowrap;
                 font-size: 1.6rem;
                 &:after {
-                    content: "грн."
+                    content: "пїЅпїЅпїЅ."
                 }
                 strong {
                     font-weight: 300;
@@ -873,7 +873,7 @@ and open the template in the editor.
                     margin-right: 7px;
                     font-size: 1.4rem;
                     &:after {
-                        content: "грн.";
+                        content: "пїЅпїЅпїЅ.";
                     }
                     strong {
                         display: inline-block;

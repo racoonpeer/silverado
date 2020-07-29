@@ -37,7 +37,7 @@ and open the template in the editor.
             line-height: 4rem;
             &:after {
                 font-size: 1.5rem;
-                content: "грн.";
+                content: "РіСЂРЅ.";
             }
             strong {
                 font-weight: inherit;
@@ -67,7 +67,7 @@ and open the template in the editor.
                 }
                 &:after {
                     font-size: 1.3rem;
-                    content: "грн.";
+                    content: "РіСЂРЅ.";
                 }
             }
         }
@@ -83,11 +83,11 @@ and open the template in the editor.
             padding-right: 0;
             width: 100%;
             &:before {
-                content: "купить";
+                content: "РєСѓРїРёС‚СЊ";
             }
             &.in-cart {
                 &:before {
-                    content: "уже в корзине";
+                    content: "СѓР¶Рµ РІ РєРѕСЂР·РёРЅРµ";
                 }
             }
         }
@@ -299,7 +299,7 @@ and open the template in the editor.
                 color: $dark-peach;
                 border-color: $peach;
                 &:before {
-                    content: "Товар дня";
+                    content: "РўРѕРІР°СЂ РґРЅСЏ";
                 }
             }
         }

@@ -209,7 +209,7 @@ and open the template in the editor.
                     font-size: 1.4rem;
                 }
                 &:after {
-                    content: "грн.";
+                    content: "РіСЂРЅ.";
                     @include breakpoint(360){
                         font-size: 1.2rem;
                     }
@@ -222,7 +222,7 @@ and open the template in the editor.
                     color: $dark-grey;
                     margin-right: 10px;
                     &:after {
-                        content: "грн.";
+                        content: "РіСЂРЅ.";
                     }
                     strong {
                         position: relative;
@@ -268,7 +268,7 @@ and open the template in the editor.
             &:after {
                 font-weight: 300;
                 font-size: 1.8rem;
-                content: " грн";
+                content: " РіСЂРЅ";
                 @include breakpoint(400){
                     font-size: 1.5rem;
                 }
@@ -390,7 +390,7 @@ and open the template in the editor.
                             }
                             &:after {
                                 font-size: 1.2rem;
-                                content: "грн.";
+                                content: "РіСЂРЅ.";
                             }
                             strong {
                                 font-weight: inherit;
@@ -402,7 +402,7 @@ and open the template in the editor.
                                 font-weight: 400;
                                 &:after {
                                     font-size: 1.2rem;
-                                    content: "грн.";
+                                    content: "РіСЂРЅ.";
                                 }
                                 strong {
                                     position: relative;

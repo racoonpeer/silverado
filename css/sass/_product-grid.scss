@@ -132,7 +132,7 @@ and open the template in the editor.
                 .add-to-cart {
                     font-size: 1.1rem;
                     &:before {
-                        content: "быстрый просмотр";
+                        content: "Р±С‹СЃС‚СЂС‹Р№ РїСЂРѕСЃРјРѕС‚СЂ";
                     }
                 }
             }
@@ -174,7 +174,7 @@ and open the template in the editor.
             }
             &:after {
                 font-size: 1.3rem;
-                content: "грн.";
+                content: "РіСЂРЅ.";
                 @include breakpoint(480){
                     font-size: 1.2rem;
                 }
@@ -190,7 +190,7 @@ and open the template in the editor.
                 font-weight: 400;
                 &:after {
                     font-size: 1.3rem;
-                    content: "грн.";
+                    content: "РіСЂРЅ.";
                     @include breakpoint(480){
                         font-size: 1.2rem;
                     }

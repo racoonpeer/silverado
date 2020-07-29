@@ -51,7 +51,7 @@ and open the template in the editor.
             }
             + .readmore {
                 &:before {
-                    content: "Свернуть";
+                    content: "РЎРІРµСЂРЅСѓС‚СЊ";
                 }
             }
         }
@@ -134,7 +134,7 @@ and open the template in the editor.
         font-size: 1.2rem;
         border-bottom: 1px dotted;
         &:before {
-            content: "Читать полностью";
+            content: "Р§РёС‚Р°С‚СЊ РїРѕР»РЅРѕСЃС‚СЊСЋ";
         }
         &:hover {
             color: $peach;

@@ -209,7 +209,13 @@ and open the template in the editor.
             left: 50%;
             transform: translateX(-50%);
             font-size: 2.2em;
-            opacity: .25;
+            opacity: .27;
+            @include breakpoint(480){
+                font-size: 1.85em;
+            }
+            @include breakpoint(360){
+                font-size: 1.65em;
+            }
         }
         @include breakpoint(390){
             height: 240px;

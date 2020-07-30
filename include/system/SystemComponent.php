@@ -28,8 +28,8 @@ class SystemComponent {
     }
     private static function initAcceptLangs() { //Put your site languages here. Cooment some langs if not need them
         return array(   // First is default
-            "ru"        => array("name"=>"Ðóññêèé",    "title"=>"Ðóññêèé",    "image"=>"ru.gif", "charset"=>"windows-1251"),
-            //"ua"        => array("name"=>"Óêðà¿íñüêà", "title"=>"Óêðà¿íñüêà", "image"=>"ua.gif", "charset"=>"windows-1251"),
+            "ru"        => array("name"=>"Ð ÑƒÑÑÐºÐ¸Ð¹",    "title"=>"Ð ÑƒÑÑÐºÐ¸Ð¹",    "image"=>"ru.gif", "charset"=>"windows-1251"),
+            //"ua"        => array("name"=>"Ð£ÐºÑ€Ð°Ñ—Ð½ÑÑŒÐºÐ°", "title"=>"Ð£ÐºÑ€Ð°Ñ—Ð½ÑÑŒÐºÐ°", "image"=>"ua.gif", "charset"=>"windows-1251"),
             //"en"        => array("name"=>"English",    "title"=>"English",    "image"=>"en.gif", "charset"=>"windows-1251"),
         );
     }
@@ -85,7 +85,7 @@ class SystemComponent {
 ///////////////// OTHER PARAMETERS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 if(!defined('DS')) define('DS',         DIRECTORY_SEPARATOR); // set WebLife CMS DIRECTORY SEPARATOR
 define('WLCMS_ABS_ROOT',                rtrim($_SERVER['DOCUMENT_ROOT'], '/\\').DS); // set WebLife CMS absolute root DIR
-define('WLCMS_VERSION',                 'ÑMS v2.1'); // set WebLife CMS Version
+define('WLCMS_VERSION',                 'Ð¡MS v2.1'); // set WebLife CMS Version
 define('WLCMS_JQUERY_VERSION',          '1.10.1'); // set jQuery Library Version http://jquery.com/download/
 define('WLCMS_DB_ENCODING',             'cp1251'); // DB encoding. This value can not be changed.
 define('WLCMS_SYSTEM_ENCODING',         'Windows-1251'); // DB encoding. This value can not be changed.

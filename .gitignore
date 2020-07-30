@@ -34,3 +34,4 @@ phpunit.phar
 # vagrant runtime
 /.vagrant
 /css/sass/.sass-cache/
+/include/system/db_settings.php

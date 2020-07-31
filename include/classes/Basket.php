@@ -476,7 +476,7 @@ class Basket {
         $images_params = SystemComponent::prepareImagesParams(getValueFromDB(IMAGES_PARAMS_TABLE, 'aliases', 'WHERE `module`="catalog"'));
         if (strlen($id)>0) {
             $idx  = self::parseIdKey($id, $id);      
-            // ôîðìèðîâàíèå ðîäèòåëüñêîãî ýëåìåíòà êîìïëåêòà
+            // Ñ„Ð¾Ñ€Ð¼Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ñ€Ð¾Ð´Ð¸Ñ‚ÐµÐ»ÑŒÑÐºÐ¾Ð³Ð¾ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð° ÐºÐ¾Ð¼Ð¿Ð»ÐµÐºÑ‚Ð°
             $query = 'SELECT c.* FROM `'.CATALOG_TABLE.'` c WHERE c.`id`='.$id.' LIMIT 1';
             $DB->Query($query);
             $item = $DB->fetchAssoc();

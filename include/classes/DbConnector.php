@@ -239,11 +239,11 @@ class DbConnector extends SystemComponent {
                     if($ln_sync){
                         foreach( parent::getAcceptLangsKeys() as $ln ){
                             $query = ($ln==$lang) ? $this->query : str_replace($table, replaceLang($ln, $table), $this->query);
-                            $this->result = mysql_query($query) or die('<br />ERROR in Langs Synchronize INSERT: '.mysql_error().'<br />Таблица: '.$table.'<br/>SQL: '.$query);
+                            $this->result = mysql_query($query) or die('<br />ERROR in Langs Synchronize INSERT: '.mysql_error().'<br />РўР°Р±Р»РёС†Р°: '.$table.'<br/>SQL: '.$query);
                             if($ln==$lang && $this->result){ $insert_id = intval(mysql_insert_id()); }
                          }
                     } else {
-                        $this->result = mysql_query($this->query) or die('<br />Ошибка: '.mysql_error().'<br />Таблица: '.$table.'<br/>SQL: '.$this->query);
+                        $this->result = mysql_query($this->query) or die('<br />РћС€РёР±РєР°: '.mysql_error().'<br />РўР°Р±Р»РёС†Р°: '.$table.'<br/>SQL: '.$this->query);
                         $insert_id = intval(mysql_insert_id());
                     }
                     if($this->result && !$insert_id) return true;
@@ -256,9 +256,9 @@ class DbConnector extends SystemComponent {
                     if($ln_sync){
                         foreach( parent::getAcceptLangsKeys() as $ln ){
                             $query = ($ln==$lang) ? $this->query : str_replace($table, replaceLang($ln, $table), $this->query);
-                            $this->result = mysql_query($query) or die('<br />ERROR in Langs Synchronize UPDATE: '.mysql_error().'<br />Таблица: '.$table.'<br/>SQL: '.$query);
+                            $this->result = mysql_query($query) or die('<br />ERROR in Langs Synchronize UPDATE: '.mysql_error().'<br />РўР°Р±Р»РёС†Р°: '.$table.'<br/>SQL: '.$query);
                         }
-                    } else $this->result = mysql_query($this->query) or die('<br />Ошибка: '.mysql_error().'<br />Таблица: '.$table.'<br/>SQL: '.$this->query);
+                    } else $this->result = mysql_query($this->query) or die('<br />РћС€РёР±РєР°: '.mysql_error().'<br />РўР°Р±Р»РёС†Р°: '.$table.'<br/>SQL: '.$this->query);
                     if($this->result) return true;
                 } else { $this->query = ''; $this->result = false; }
                 break;

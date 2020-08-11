@@ -81,7 +81,7 @@ and open the template in the editor.
                 }
             }
             &:after {
-                content: "распечатать";
+                content: "СЂР°СЃРїРµС‡Р°С‚Р°С‚СЊ";
                 @include breakpoint(479){
                     content: none;
                     display: none;
@@ -138,7 +138,7 @@ and open the template in the editor.
                     font-weight: 400;
                     &:after {
                         font-size: 1.4rem;
-                        content: "грн.";
+                        content: "РіСЂРЅ.";
                     }
                 }
                 small {
@@ -157,7 +157,7 @@ and open the template in the editor.
             line-height: 1rem;
             &:after {
                 font-size: 1.6rem;
-                content: "грн.";
+                content: "РіСЂРЅ.";
             }
         }
     }

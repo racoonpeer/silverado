@@ -149,7 +149,7 @@ and open the template in the editor.
                 bottom: 1px;
                 background-color: $dark-peach;
                 color: $white;
-                content: "смотреть";
+                content: "СЃРјРѕС‚СЂРµС‚СЊ";
             }
             &:after {
                 display: block;
@@ -160,7 +160,7 @@ and open the template in the editor.
                 bottom: 1px;
                 background-color: $dark-peach;
                 color: $white;
-                content: "смотреть";
+                content: "СЃРјРѕС‚СЂРµС‚СЊ";
                 @include transform(scale(0, 0));
                 @include transition(all 200ms ease);
             }

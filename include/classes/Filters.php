@@ -144,7 +144,7 @@ class Filters {
         $query  = "SELECT f.* FROM `".FILTERS_TABLE."` f "
                 . "LEFT JOIN `".CATEGORY_FILTERS_TABLE."` cf ON(cf.`fid`=f.`id` AND cf.`type`=1) "
                 . "WHERE f.`id`>0 ".(!empty($this->arCatsIDX) ? " AND cf.`cid` IN (".implode(',', $this->arCatsIDX).") " : "").($this->UrlWL->getFilters()->getFilterType() ? " AND f.`tid`=".$this->UrlWL->getFilters()->getFilterType() : "")." "
-                . "GROUP BY f.`id` "
+//                . "GROUP BY f.`id` "
                 . "ORDER BY cf.`order`";
 //        $join  .= 'LEFT JOIN `'.CATEGORY_FILTERS_TABLE.'` cff ON(cff.`fid` = f.`id` AND cff.`type`=2) ';
         $result = mysql_query($query);

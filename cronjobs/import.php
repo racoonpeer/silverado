@@ -48,20 +48,20 @@ $arSpreadSheets = array(
     "Q3YSxi5UEtzUBy5mxL93eqxcsH7WlbF7fOk3RHZ58Vp9q34PtfCE-xV-RHKTaK_i9kZoUoZbUTiemk", // Silverado
 );
 $pColNames = array(
-    "Артикул"      => "pcode",
-    "Название"     => "title",
-    "Цена Продажа" => "price",
-    "Цена Акция"   => "cprice"
+    "РђСЂС‚РёРєСѓР»"      => "pcode",
+    "РќР°Р·РІР°РЅРёРµ"     => "title",
+    "Р¦РµРЅР° РџСЂРѕРґР°Р¶Р°" => "price",
+    "Р¦РµРЅР° РђРєС†РёСЏ"   => "cprice"
 );
 // Read data from Google sheets
 foreach ($arSpreadSheets as $spreadID) {
     $spreadURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1v{$spreadID}/pub?output=xlsx";
     $spreadSourceData = file_get_contents($spreadURL);
-    if (!$spreadSourceData) $Validator->addError("Ошибка чтения файла-источника!");
+    if (!$spreadSourceData) $Validator->addError("РћС€РёР±РєР° С‡С‚РµРЅРёСЏ С„Р°Р№Р»Р°-РёСЃС‚РѕС‡РЅРёРєР°!");
     else {
         $fpath = $files_path.$spreadID.".xlsx";
         $fput  = file_put_contents($fpath, $spreadSourceData);
-        if (!file_exists($fpath)) $Validator->addError("Ошибка записи файла-источника!");
+        if (!file_exists($fpath)) $Validator->addError("РћС€РёР±РєР° Р·Р°РїРёСЃРё С„Р°Р№Р»Р°-РёСЃС‚РѕС‡РЅРёРєР°!");
         else {
             $PHPExcel = PHPExcel_IOFactory::load($fpath);
             $numSheets = $PHPExcel->getSheetCount();
@@ -201,7 +201,7 @@ if (!empty($items)) {
         $item["active"]   = $itemID ? (int)getValueFromDB(CATALOG_TABLE, "`active`", "WHERE `id`='{$itemID}'", "act") : 0;
         $item["created"]  = date("Y-m-d H:i:s");
         if (!$itemID and empty($item["cid"])) $item["cid"] = CATALOG_ROOT_ID;
-        $result           = $DB->postToDB($item, CATALOG_TABLE, $whereOptions, $arUnusedKeys, $query_type, true);
+        $result           = $DB->postToDB($item, CATALOG_TABLE, $whereOptions, $arUnusedKeys, $query_type, false);
         if ($result) {
             $affected++;
             if (is_int($result)) $itemID = $result;
@@ -259,7 +259,8 @@ if (!empty($items)) {
                                 "pid" => $itemID,
                                 "aid" => $aid,
                                 "value" => $valueID,
-                                "alias" => PHPHelper::makeAttributeAlias($val)
+                                "alias" => PHPHelper::makeAttributeAlias($val),
+                                'created' => date('Y-m-d H:i:s')
                             );
                             $exists = $DB->postToDB($arPost, PRODUCT_ATTRIBUTE_TABLE);
                         }
@@ -273,7 +274,7 @@ if (!empty($items)) {
     SetPrimaryOptionsValues();
 }
 
-print("Обновлено {$affected} записей");
+print("РћР±РЅРѕРІР»РµРЅРѕ {$affected} Р·Р°РїРёСЃРµР№");
 
 function SetPrimaryOptionsValues() {
     $query  = "SELECT po.*, GROUP_CONCAT(pov.`id`) AS `idx` FROM `".PRODUCT_OPTIONS_TABLE."` po "

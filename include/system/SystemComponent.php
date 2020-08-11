@@ -22,7 +22,7 @@ class SystemComponent
      */
     public static function initDBSettings()
     {
-        return require_once dirname(__FILE__) . DS . 'db_settings.php';
+        return include dirname(__FILE__) . DS . 'db_settings.php';
     }
 
     /**

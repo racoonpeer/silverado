@@ -18,11 +18,11 @@ function sys_verifications($debug=false){
 function checkWLCMS($debug=false){
     $arCookie = SystemComponent::getTestCookie();
     $arrPath  = array(
-        "backup"             => "Эта папка должна иметь разрешение ".WLCMS_WRITABLE_CHMOD.". Вложенный файл dumper.cfg.php нужно удалить!",
-        "temp".DS."tpl_c"    => "Эта папка должна быть пуста и должна иметь разрешение ".WLCMS_WRITABLE_CHMOD,
-        "temp".DS."cache"    => "Эта папка должна быть пуста и должна иметь разрешение ".WLCMS_WRITABLE_CHMOD,
-        UPLOAD_DIR           => "Эта папка и все вложенные файлы (кроме файла: index.html) должны иметь разрешение ".WLCMS_WRITABLE_CHMOD,
-        MAIN_CATEGORIES_DIR  => "Эта папка и все вложенные файлы (кроме файла index.html) должны иметь разрешение ".WLCMS_WRITABLE_CHMOD
+        "backup"             => "Р­С‚Р° РїР°РїРєР° РґРѕР»Р¶РЅР° РёРјРµС‚СЊ СЂР°Р·СЂРµС€РµРЅРёРµ ".WLCMS_WRITABLE_CHMOD.". Р’Р»РѕР¶РµРЅРЅС‹Р№ С„Р°Р№Р» dumper.cfg.php РЅСѓР¶РЅРѕ СѓРґР°Р»РёС‚СЊ!",
+        "temp".DS."tpl_c"    => "Р­С‚Р° РїР°РїРєР° РґРѕР»Р¶РЅР° Р±С‹С‚СЊ РїСѓСЃС‚Р° Рё РґРѕР»Р¶РЅР° РёРјРµС‚СЊ СЂР°Р·СЂРµС€РµРЅРёРµ ".WLCMS_WRITABLE_CHMOD,
+        "temp".DS."cache"    => "Р­С‚Р° РїР°РїРєР° РґРѕР»Р¶РЅР° Р±С‹С‚СЊ РїСѓСЃС‚Р° Рё РґРѕР»Р¶РЅР° РёРјРµС‚СЊ СЂР°Р·СЂРµС€РµРЅРёРµ ".WLCMS_WRITABLE_CHMOD,
+        UPLOAD_DIR           => "Р­С‚Р° РїР°РїРєР° Рё РІСЃРµ РІР»РѕР¶РµРЅРЅС‹Рµ С„Р°Р№Р»С‹ (РєСЂРѕРјРµ С„Р°Р№Р»Р°: index.html) РґРѕР»Р¶РЅС‹ РёРјРµС‚СЊ СЂР°Р·СЂРµС€РµРЅРёРµ ".WLCMS_WRITABLE_CHMOD,
+        MAIN_CATEGORIES_DIR  => "Р­С‚Р° РїР°РїРєР° Рё РІСЃРµ РІР»РѕР¶РµРЅРЅС‹Рµ С„Р°Р№Р»С‹ (РєСЂРѕРјРµ С„Р°Р№Р»Р° index.html) РґРѕР»Р¶РЅС‹ РёРјРµС‚СЊ СЂР°Р·СЂРµС€РµРЅРёРµ ".WLCMS_WRITABLE_CHMOD
     );    
     
     if($debug || !SystemComponent::checkTestCookie($arCookie)){
@@ -52,10 +52,10 @@ function checkDBConnection(){
             $this->arDBSettings = parent::getDBSettings();
             if(!empty($this->arDBSettings)){
                 $this->dblink = @mysql_connect(
-                                    $this->arDBSettings['dbhost'],
-                                    $this->arDBSettings['dbusername'],
-                                    $this->arDBSettings['dbpassword']
-                                );
+                    $this->arDBSettings['dbhost'],
+                    $this->arDBSettings['dbusername'],
+                    $this->arDBSettings['dbpassword']
+                );
             }
             if($this->dblink){
                 $this->isConnected = true;
@@ -84,11 +84,11 @@ function checkDBConnection(){
     
     $testObj = new TestDbConnector;
     if(!$testObj->isConnected())
-        return array("<font color='red'>Ошибка соединения с базой данных! Проверьте правильность данных хоста, пользователя, пароля и имени базы данных в конфигурационном файле!</font>");
+        return array("<font color='red'>РћС€РёР±РєР° СЃРѕРµРґРёРЅРµРЅРёСЏ СЃ Р±Р°Р·РѕР№ РґР°РЅРЅС‹С…! РџСЂРѕРІРµСЂСЊС‚Рµ РїСЂР°РІРёР»СЊРЅРѕСЃС‚СЊ РґР°РЅРЅС‹С… С…РѕСЃС‚Р°, РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ, РїР°СЂРѕР»СЏ Рё РёРјРµРЅРё Р±Р°Р·С‹ РґР°РЅРЅС‹С… РІ РєРѕРЅС„РёРіСѓСЂР°С†РёРѕРЅРЅРѕРј С„Р°Р№Р»Рµ!</font>");
     if(!$testObj->isDBSelected())
-        return array("<font color='red'>Ошибка выбора базы данных! Проверьте правильность имени базы данных в конфигурационном файле!</font>");
+        return array("<font color='red'>РћС€РёР±РєР° РІС‹Р±РѕСЂР° Р±Р°Р·С‹ РґР°РЅРЅС‹С…! РџСЂРѕРІРµСЂСЊС‚Рµ РїСЂР°РІРёР»СЊРЅРѕСЃС‚СЊ РёРјРµРЅРё Р±Р°Р·С‹ РґР°РЅРЅС‹С… РІ РєРѕРЅС„РёРіСѓСЂР°С†РёРѕРЅРЅРѕРј С„Р°Р№Р»Рµ!</font>");
     if(strpos($_SERVER['REQUEST_URI'], TestDbConnector::DUMPER_FILENAME)===false && !$testObj->isTablesExist())
-        return array("<font color='red'>Ошибка! Проверьте наличие таблиц в базе данных! Вы можете восстановить базу данных пройдя по <a href=\"/".TestDbConnector::DUMPER_FILENAME."\">ссылке</a>.</font>");
+        return array("<font color='red'>РћС€РёР±РєР°! РџСЂРѕРІРµСЂСЊС‚Рµ РЅР°Р»РёС‡РёРµ С‚Р°Р±Р»РёС† РІ Р±Р°Р·Рµ РґР°РЅРЅС‹С…! Р’С‹ РјРѕР¶РµС‚Рµ РІРѕСЃСЃС‚Р°РЅРѕРІРёС‚СЊ Р±Р°Р·Сѓ РґР°РЅРЅС‹С… РїСЂРѕР№РґСЏ РїРѕ <a href=\"/".TestDbConnector::DUMPER_FILENAME."\">СЃСЃС‹Р»РєРµ</a>.</font>");
     return array();
 }
 
@@ -104,7 +104,7 @@ function checkChmod($arrPath){
                         if(file_exists($path.DS.$dumper_cfg)) {
                             funcWithAccessLevelMode('chmod', $path.DS.$dumper_cfg, WLCMS_WRITABLE_CHMOD);
                             if(!is_writable($path.DS.$dumper_cfg))
-                                $arErrors[] = "<font color='red'>Удалите файл по пути [".$path.DS.$dumper_cfg."]</font>";
+                                $arErrors[] = "<font color='red'>РЈРґР°Р»РёС‚Рµ С„Р°Р№Р» РїРѕ РїСѓС‚Рё [".$path.DS.$dumper_cfg."]</font>";
                         }
                     } elseif(strpos($path, 'temp') !== false && (strpos($path, 'tpl_c') !== false || strpos($path, 'cache') !== false)){
                         $hndl = opendir($path);
@@ -120,9 +120,9 @@ function checkChmod($arrPath){
                     }
                 }
                 if(!is_writable($path))
-                    $arErrors[] = "<font color='red'>Путь [$path] - не доступен на запись. Выставте разрешение ".WLCMS_WRITABLE_CHMOD."</font>";
+                    $arErrors[] = "<font color='red'>РџСѓС‚СЊ [$path] - РЅРµ РґРѕСЃС‚СѓРїРµРЅ РЅР° Р·Р°РїРёСЃСЊ. Р’С‹СЃС‚Р°РІС‚Рµ СЂР°Р·СЂРµС€РµРЅРёРµ ".WLCMS_WRITABLE_CHMOD."</font>";
                 
-            } else $arErrors[] = "<font color='red'>Путь от корня [$path] - НЕ СУЩЕСТВУЕТ. </font>";            
+            } else $arErrors[] = "<font color='red'>РџСѓС‚СЊ РѕС‚ РєРѕСЂРЅСЏ [$path] - РќР• РЎРЈР©Р•РЎРўР’РЈР•Рў. </font>";            
         }     
     }
     return $arErrors;

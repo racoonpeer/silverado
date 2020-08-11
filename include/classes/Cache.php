@@ -404,7 +404,6 @@ class CMemCache extends CCache {
      */
     public function __construct($keyPrefix=null) {
         parent::__construct($keyPrefix);
-        $this->useMemcached = getenv("IS_MAC");
         $servers = $this->getServers();
         $cache = $this->getMemCache();
         if (count($servers)) {

@@ -45,7 +45,7 @@ $IS_AJAX    = UrlWL::isAjaxRequest();
 
 # ##############################################################################
 // ////////////////// OPERATION GLOBAL VARIABLE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-// »ÌËˆË‡ÎËÁËÛÂÏ Ó·‡·ÓÚ˜ËÍ URL 
+// –ò–Ω–∏—Ü–∏–∞–ª–∏–∑–∏—Ä—É–µ–º –æ–±—Ä–∞–±–æ—Ç—á–∏–∫ URL 
 $UrlWL->init($DB);
 // Initialize Current Category ID
 $catid  = $UrlWL->getCategoryId();
@@ -185,16 +185,16 @@ if($arCategory['id'] != UrlWL::ERROR_CATID) {
     setZoneToSession();
 } else if(!headers_sent()) {
     header('HTTP/1.0 404 Not Found');
-    header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");// ‰‡Ú‡ ‚ ÔÓ¯ÎÓÏ
+    header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");// –¥–∞—Ç–∞ –≤ –ø—Ä–æ—à–ª–æ–º
     header("Last-Modified: " . gmdate("D, d M Y H(idea)(worry)") . " GMT");
-     // ‚ÒÂ„‰‡ ÏÓ‰ËÙËˆËÛÂÚÒˇ
+     // –≤—Å–µ–≥–¥–∞ –º–æ–¥–∏—Ñ–∏—Ü–∏—Ä—É–µ—Ç—Å—è
     header("Cache-Control: no-store, no-cache, must-revalidate");// HTTP/1.1
     header("Cache-Control: post-check=0, pre-check=0", false);
     header("Pragma: no-cache");// HTTP/1.0
 }
 // INCLUDE USER AUTHENTICATION FILE
 if (file_exists("include".DS.getAuthFileName().".php")) include("include".DS.getAuthFileName().".php");
-else die("‘‡ÈÎ ‡ÛÚÂÌÚËÙËÍ‡ˆËË ÌÂ‚ÓÁÏÓÊÌÓ ÔÓ‰ÍÎ˛˜ËÚ¸. œÓ‚Â¸ÚÂ Ì‡ÎË˜ËÂ Ù‡ÈÎ‡, ÔÛÚË Ë Ô‡‚ËÎ¸ÌÓÒÚ¸ Â„Ó ÔÓ‰ÍÎ˛˜ÂÌËˇ!");
+else die("–§–∞–π–ª –∞—É—Ç–µ–Ω—Ç–∏—Ñ–∏–∫–∞—Ü–∏–∏ –Ω–µ–≤–æ–∑–º–æ–∂–Ω–æ –ø–æ–¥–∫–ª—é—á–∏—Ç—å. –ü—Ä–æ–≤–µ—Ä—å—Ç–µ –Ω–∞–ª–∏—á–∏–µ —Ñ–∞–π–ª–∞, –ø—É—Ç–∏ –∏ –ø—Ä–∞–≤–∏–ª—å–Ω–æ—Å—Ç—å –µ–≥–æ –ø–æ–¥–∫–ª—é—á–µ–Ω–∏—è!");
 // Check User can Accsess to this page
 if (!$arCategory['access'] and !$arrPageData['auth']){
     $ajax
@@ -258,16 +258,16 @@ $catalogMenu = getMenu(6, $arrModules['catalog']['id']);
 ################################################################################
 // ///////////// ADDITIONAL DYNAMIC PARAMS TO SMARTY FLASH \\\\\\\\\\\\\\\\\\\\\
 // Menus: Main, Top, User, Bottom, etc.    getMenu($type, $pid, $incLevels)
-$smarty->assign('mainMenu',             $mainMenu); // $type = 1 :  √Î‡‚ÌÓÂ ÏÂÌ˛
-//$smarty->assign('subMenu',              getMenu(1, GetRootId($catid))); // $type = 1 :  √Î‡‚ÌÓÂ ÏÂÌ˛. œÓ‰ÏÂÌ˛
-//$smarty->assign('topMenu',              getMenu(2)); // $type = 2 :  ¬ÂıÌÂÂ ÏÂÌ˛
-//$smarty->assign('leftMenu',             getMenu(3)); // $type = 3 :  ÃÂÌ˛ ÒÎÂ‚ÓÈ ÒÚÓÓÌ˚
-//$smarty->assign('rightMenu',            getMenu(5)); // $type = 5 :  ÃÂÌ˛ ÒÔ‡‚ÓÈ ÒÚÓÓÌ˚ 
-$smarty->assign('catalogMenu',          $catalogMenu); // $type = 6 :  ÃÂÌ˛ Í‡Ú‡ÎÓ„‡
-$smarty->assign('bottomMenu',           $catalogMenu); // $type = 4 :  ÕËÊÌÂÂ ÏÂÌ˛ !IMPORTENT in this case this menu used us type 1
-//$smarty->assign('userMenu',             getMenu(7)); // $type = 7 :  ÃÂÌ˛ ÔÓÎ¸ÁÓ‚‡ÚÂÎˇ
-//$smarty->assign('systemMenu',           getMenu(8)); // $type = 8 :  —ËÒÚÂÏÌÓÂ ÏÂÌ˛
-//$smarty->assign('otherMenu',            getMenu(9)); // $type = 9 :  ƒÛ„ÓÂ ÏÂÌ˛
+$smarty->assign('mainMenu',             $mainMenu); // $type = 1 :  –ì–ª–∞–≤–Ω–æ–µ –º–µ–Ω—é
+//$smarty->assign('subMenu',              getMenu(1, GetRootId($catid))); // $type = 1 :  –ì–ª–∞–≤–Ω–æ–µ –º–µ–Ω—é. –ü–æ–¥–º–µ–Ω—é
+//$smarty->assign('topMenu',              getMenu(2)); // $type = 2 :  –í–µ—Ä—Ö–Ω–µ–µ –º–µ–Ω—é
+//$smarty->assign('leftMenu',             getMenu(3)); // $type = 3 :  –ú–µ–Ω—é —Å–ª–µ–≤–æ–π —Å—Ç–æ—Ä–æ–Ω—ã
+//$smarty->assign('rightMenu',            getMenu(5)); // $type = 5 :  –ú–µ–Ω—é —Å–ø—Ä–∞–≤–æ–π —Å—Ç–æ—Ä–æ–Ω—ã 
+$smarty->assign('catalogMenu',          $catalogMenu); // $type = 6 :  –ú–µ–Ω—é –∫–∞—Ç–∞–ª–æ–≥–∞
+$smarty->assign('bottomMenu',           $catalogMenu); // $type = 4 :  –ù–∏–∂–Ω–µ–µ –º–µ–Ω—é !IMPORTENT in this case this menu used us type 1
+//$smarty->assign('userMenu',             getMenu(7)); // $type = 7 :  –ú–µ–Ω—é –ø–æ–ª—å–∑–æ–≤–∞—Ç–µ–ª—è
+//$smarty->assign('systemMenu',           getMenu(8)); // $type = 8 :  –°–∏—Å—Ç–µ–º–Ω–æ–µ –º–µ–Ω—é
+//$smarty->assign('otherMenu',            getMenu(9)); // $type = 9 :  –î—Ä—É–≥–æ–µ –º–µ–Ω—é
 
 // \\\\\\\\\\\ END ADDITIONAL DYNAMIC PARAMS TO SMARTY FLASH ///////////////////
 ################################################################################

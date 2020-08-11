@@ -115,25 +115,25 @@ $item_title = $itemID ? getValueFromDB(CATALOG_TABLE, 'title', 'WHERE `id`='.$it
 if($task=='reorderItems' AND !empty($_POST) AND isset($_POST['submit_order'])) {
     if($hasAccess) {
         if(!empty($_POST['arOrder'])){
-            $result = reorderItems($_POST['arOrder'], 'order', 'id', CATALOG_TABLE, array('action'=>ActionsLog::ACTION_EDIT, 'comment'=>'Изменена сортировка', 'lang'=>$lang, 'module'=>$arrPageData['module']));
+            $result = reorderItems($_POST['arOrder'], 'order', 'id', CATALOG_TABLE, array('action'=>ActionsLog::ACTION_EDIT, 'comment'=>'РР·РјРµРЅРµРЅР° СЃРѕСЂС‚РёСЂРѕРІРєР°', 'lang'=>$lang, 'module'=>$arrPageData['module']));
             if($result===true) {
-                setSessionMessage('Новая сортировка елементов успешно сохранена!');
+                setSessionMessage('РќРѕРІР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР° РµР»РµРјРµРЅС‚РѕРІ СѓСЃРїРµС€РЅРѕ СЃРѕС…СЂР°РЅРµРЅР°!');
             } elseif($result) {
                 setSessionErrors($result);
             }
         }
         if(!empty($_POST['arShortcutsOrder'])) {
-            $result = reorderItems($_POST['arShortcutsOrder'], 'order', 'id', SHORTCUTS_TABLE, array('action'=>ActionsLog::ACTION_EDIT, 'comment'=>'Изменена сортировка', 'lang'=>$lang, 'module'=>$arrPageData['module']));
+            $result = reorderItems($_POST['arShortcutsOrder'], 'order', 'id', SHORTCUTS_TABLE, array('action'=>ActionsLog::ACTION_EDIT, 'comment'=>'РР·РјРµРЅРµРЅР° СЃРѕСЂС‚РёСЂРѕРІРєР°', 'lang'=>$lang, 'module'=>$arrPageData['module']));
             if($result===true) {
-                setSessionMessage('Новая сортировка елементов успешно сохранена!');
+                setSessionMessage('РќРѕРІР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР° РµР»РµРјРµРЅС‚РѕРІ СѓСЃРїРµС€РЅРѕ СЃРѕС…СЂР°РЅРµРЅР°!');
             } elseif($result) {
                 setSessionErrors($result);
             }
         }
         if(!empty($_POST['arPrices'])) {
-            $result = updateItems(array('price'=>$_POST['arPrices']), $_POST['arPrices'], 'id', CATALOG_TABLE, array('action'=>ActionsLog::ACTION_EDIT, 'comment'=>'Изменена цена', 'lang'=>$lang, 'module'=>$arrPageData['module']));
+            $result = updateItems(array('price'=>$_POST['arPrices']), $_POST['arPrices'], 'id', CATALOG_TABLE, array('action'=>ActionsLog::ACTION_EDIT, 'comment'=>'РР·РјРµРЅРµРЅР° С†РµРЅР°', 'lang'=>$lang, 'module'=>$arrPageData['module']));
             if($result===true) {
-                setSessionMessage('Новые цены сохранены!'); 
+                setSessionMessage('РќРѕРІС‹Рµ С†РµРЅС‹ СЃРѕС…СЂР°РЅРµРЅС‹!'); 
             } elseif($result) {
                 setSessionErrors($result);
             }
@@ -158,11 +158,11 @@ elseif ($task=='reorderItems' AND (!empty($_POST['arItems']) OR !empty($_POST['a
                 foreach($arShortcuts as $itemID => $val) {
                     $object = getItemRow(SHORTCUTS_TABLE.' st LEFT JOIN '.CATALOG_TABLE.' ct ON st.`pid`=ct.`id`', 'st.*, ct.`title`', 'WHERE st.`id`='.$itemID);
                     $result = deleteRecords(SHORTCUTS_TABLE, 'WHERE `id`='.$itemID);
-                    if(!$result)  setSessionErrors('Данные не удалось удалить. Возможная причина - <p>MySQL Error Delete: '.mysql_errno().'</b> Error:'.mysql_error().'</p>');
-                    else ActionsLog::getInstance()->save(ActionsLog::ACTION_DELETE, 'Удален ярлык товара "'.$object['title'].'"', $lang, 'Ярлык товара "'.$object['title'].'"', 0, $object['module']);  
+                    if(!$result)  setSessionErrors('Р”Р°РЅРЅС‹Рµ РЅРµ СѓРґР°Р»РѕСЃСЊ СѓРґР°Р»РёС‚СЊ. Р’РѕР·РјРѕР¶РЅР°СЏ РїСЂРёС‡РёРЅР° - <p>MySQL Error Delete: '.mysql_errno().'</b> Error:'.mysql_error().'</p>');
+                    else ActionsLog::getInstance()->save(ActionsLog::ACTION_DELETE, 'РЈРґР°Р»РµРЅ СЏСЂР»С‹Рє С‚РѕРІР°СЂР° "'.$object['title'].'"', $lang, 'РЇСЂР»С‹Рє С‚РѕРІР°СЂР° "'.$object['title'].'"', 0, $object['module']);  
                 } 
             }
-            setSessionMessage('Товары успешно удалены!');
+            setSessionMessage('РўРѕРІР°СЂС‹ СѓСЃРїРµС€РЅРѕ СѓРґР°Р»РµРЅС‹!');
         } elseif ($_POST['allitems']=='publish' OR $_POST['allitems']=='unpublish') {
             if ($_POST['allitems']=='unpublish') {
                 if (!empty($arItems)){
@@ -177,15 +177,15 @@ elseif ($task=='reorderItems' AND (!empty($_POST['arItems']) OR !empty($_POST['a
                 }
             }
             if (!empty($arItems)) {
-                $result = updateItems(array('active'=>$arItems), $arItems, 'id', CATALOG_TABLE, array('action'=>ActionsLog::ACTION_EDIT, 'comment'=>'Изменена публикация на '.($_POST['allitems']=='publish' ? '"Опубликовано"' : '"Неопубликовано"'), 'lang'=>$lang, 'module'=>$arrPageData['module']));
-                if($result === true) setSessionMessage('Новое состояние успешно сохранено!');
-                elseif($result === false) setSessionMessage('Не нуждается в сохранении!');
+                $result = updateItems(array('active'=>$arItems), $arItems, 'id', CATALOG_TABLE, array('action'=>ActionsLog::ACTION_EDIT, 'comment'=>'РР·РјРµРЅРµРЅР° РїСѓР±Р»РёРєР°С†РёСЏ РЅР° '.($_POST['allitems']=='publish' ? '"РћРїСѓР±Р»РёРєРѕРІР°РЅРѕ"' : '"РќРµРѕРїСѓР±Р»РёРєРѕРІР°РЅРѕ"'), 'lang'=>$lang, 'module'=>$arrPageData['module']));
+                if($result === true) setSessionMessage('РќРѕРІРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ СѓСЃРїРµС€РЅРѕ СЃРѕС…СЂР°РЅРµРЅРѕ!');
+                elseif($result === false) setSessionMessage('РќРµ РЅСѓР¶РґР°РµС‚СЃСЏ РІ СЃРѕС…СЂР°РЅРµРЅРёРё!');
                 else  setSessionErrors($result);
             }
             if (!empty($arShortcuts)) {
-                $result = updateItems(array('active'=>$arShortcuts), $arShortcuts, 'id', SHORTCUTS_TABLE, array('action'=>ActionsLog::ACTION_EDIT, 'comment'=>'Изменена публикация ярлыка на '.($_POST['allitems']=='publish' ? '"Опубликовано"' : '"Неопубликовано"'), 'lang'=>$lang, 'module'=>'shortcuts'));
-                if($result === true) setSessionMessage('Новое состояние успешно сохранено!');
-                elseif($result === false) setSessionMessage('Не нуждается в сохранении!');
+                $result = updateItems(array('active'=>$arShortcuts), $arShortcuts, 'id', SHORTCUTS_TABLE, array('action'=>ActionsLog::ACTION_EDIT, 'comment'=>'РР·РјРµРЅРµРЅР° РїСѓР±Р»РёРєР°С†РёСЏ СЏСЂР»С‹РєР° РЅР° '.($_POST['allitems']=='publish' ? '"РћРїСѓР±Р»РёРєРѕРІР°РЅРѕ"' : '"РќРµРѕРїСѓР±Р»РёРєРѕРІР°РЅРѕ"'), 'lang'=>$lang, 'module'=>'shortcuts'));
+                if($result === true) setSessionMessage('РќРѕРІРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ СѓСЃРїРµС€РЅРѕ СЃРѕС…СЂР°РЅРµРЅРѕ!');
+                elseif($result === false) setSessionMessage('РќРµ РЅСѓР¶РґР°РµС‚СЃСЏ РІ СЃРѕС…СЂР°РЅРµРЅРёРё!');
                 else  setSessionErrors($result);
             }
         }
@@ -198,7 +198,7 @@ elseif ($task=='reorderItems' AND (!empty($_POST['arItems']) OR !empty($_POST['a
 elseif ($itemID AND $task=='deleteItem') {
     if ($hasAccess) {
         $result = PHPHelper::deleteProduct($itemID, $arrPageData['files_path'], $arrPageData['catalogfiles_path']);
-        if (!$result) setSessionErrors('Данные не удалось удалить. Возможная причина - <p>MySQL Error Delete: '.mysql_errno().'</b> Error:'.mysql_error().'</p>');
+        if (!$result) setSessionErrors('Р”Р°РЅРЅС‹Рµ РЅРµ СѓРґР°Р»РѕСЃСЊ СѓРґР°Р»РёС‚СЊ. Р’РѕР·РјРѕР¶РЅР°СЏ РїСЂРёС‡РёРЅР° - <p>MySQL Error Delete: '.mysql_errno().'</b> Error:'.mysql_error().'</p>');
         Redirect($arrPageData['current_url']);
     } else {
         $arrPageData['errors'][] = $UserAccess->getAccessError(); 
@@ -209,10 +209,10 @@ elseif ($itemID AND $task=='publishItem' AND isset($_GET['status'])) {
     if ($hasAccess) {
         $result = updateRecords(CATALOG_TABLE, "`active`='{$_GET['status']}'", 'WHERE `id`='.$itemID);
         if ($result===false) {
-            setSessionErrors('Новое состояние <font color="red">НЕ было сохранено</font>! Error Update: '. mysql_error());
+            setSessionErrors('РќРѕРІРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ <font color="red">РќР• Р±С‹Р»Рѕ СЃРѕС…СЂР°РЅРµРЅРѕ</font>! Error Update: '. mysql_error());
         } elseif($result) {
-            setSessionMessage('Новое состояние успешно сохранено!');
-            ActionsLog::getInstance()->save(ActionsLog::ACTION_PUBLICATION, 'Изменена публикация страницы на "'.($_GET['status']==1 ? 'Опубликована' : 'Неопубликована' ).'"', $lang, $item_title, $itemID, $arrPageData['module']);
+            setSessionMessage('РќРѕРІРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ СѓСЃРїРµС€РЅРѕ СЃРѕС…СЂР°РЅРµРЅРѕ!');
+            ActionsLog::getInstance()->save(ActionsLog::ACTION_PUBLICATION, 'РР·РјРµРЅРµРЅР° РїСѓР±Р»РёРєР°С†РёСЏ СЃС‚СЂР°РЅРёС†С‹ РЅР° "'.($_GET['status']==1 ? 'РћРїСѓР±Р»РёРєРѕРІР°РЅР°' : 'РќРµРѕРїСѓР±Р»РёРєРѕРІР°РЅР°' ).'"', $lang, $item_title, $itemID, $arrPageData['module']);
         }
         Redirect($arrPageData['current_url']);
     } else {
@@ -222,7 +222,7 @@ elseif ($itemID AND $task=='publishItem' AND isset($_GET['status'])) {
 //Copy item
 elseif ($copyID AND $task=='addItem'){
     if ($hasAccess) {
-        $arrPageData['messages'][] = 'Запись успешно скопирована!';
+        $arrPageData['messages'][] = 'Р—Р°РїРёСЃСЊ СѓСЃРїРµС€РЅРѕ СЃРєРѕРїРёСЂРѕРІР°РЅР°!';
     } else {
         $arrPageData['errors'][] = $UserAccess->getAccessError(); 
     }
@@ -233,10 +233,10 @@ elseif (!empty($_POST) AND ($task=='addItem' OR $task=='editItem')) {
         $arUnusedKeys = array('id');
         $query_type   = $itemID ? 'update'            : 'insert';
         $conditions   = $itemID ? 'WHERE `id`='.$itemID : '';
-        $Validator->validateGeneral($_POST['title'], 'Введите название товара!!!');
-        $Validator->validateGeneral($_POST['pcode'], 'Введите артикул товара!!!');
+        $Validator->validateGeneral($_POST['title'], 'Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ С‚РѕРІР°СЂР°!!!');
+        $Validator->validateGeneral($_POST['pcode'], 'Р’РІРµРґРёС‚Рµ Р°СЂС‚РёРєСѓР» С‚РѕРІР°СЂР°!!!');
         if ($Validator->foundErrors()) {
-            $arrPageData['errors'][] = "<font color='#990033'>Пожалуйста, введите правильное значение :  </font>".$Validator->getListedErrors();
+            $arrPageData['errors'][] = "<font color='#990033'>РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РІРІРµРґРёС‚Рµ РїСЂР°РІРёР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ :  </font>".$Validator->getListedErrors();
         } else {
             // SEO path manipulation
             $_POST['seo_path'] = $UrlWL->strToUniqueUrl($DB, (empty($_POST['seo_path']) ? "{$_POST['title']}-{$_POST['pcode']}" : $_POST['seo_path']), $module, CATALOG_TABLE, $itemID, empty($itemID));
@@ -257,12 +257,12 @@ elseif (!empty($_POST) AND ($task=='addItem' OR $task=='editItem')) {
                     $item_title = getValueFromDB(CATALOG_TABLE, 'title', 'WHERE `id`='.$itemID);
                     if ($task=='addItem'){
                         foreach(SystemComponent::getAcceptLangs() as $key => $arLang)
-                            ActionsLog::getInstance()->save(ActionsLog::ACTION_CREATE, 'Создано "'.$item_title.'"', $key, $item_title, $itemID, $arrPageData['module']);
+                            ActionsLog::getInstance()->save(ActionsLog::ACTION_CREATE, 'РЎРѕР·РґР°РЅРѕ "'.$item_title.'"', $key, $item_title, $itemID, $arrPageData['module']);
                     } else {
-                         ActionsLog::getInstance()->save(ActionsLog::ACTION_EDIT, 'Отредактировано "'.$item_title.'"', $lang, $item_title, $itemID, $arrPageData['module']);
+                         ActionsLog::getInstance()->save(ActionsLog::ACTION_EDIT, 'РћС‚СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРѕ "'.$item_title.'"', $lang, $item_title, $itemID, $arrPageData['module']);
                     }  
                 } 
-                setSessionMessage('Запись успешно сохранена!');
+                setSessionMessage('Р—Р°РїРёСЃСЊ СѓСЃРїРµС€РЅРѕ СЃРѕС…СЂР°РЅРµРЅР°!');
                 // operation with product attributes
                 deleteRecords(PRODUCT_ATTRIBUTE_TABLE, 'WHERE `pid`='.(int)$itemID);
                 if (!empty($arPostData['attributes'])) {
@@ -359,7 +359,7 @@ elseif (!empty($_POST) AND ($task=='addItem' OR $task=='editItem')) {
                     }
                 } Redirect($arrPageData['current_url'].(isset($_POST['submit_add']) ? '&task=addItem' : ((isset($_POST['submit_apply']) AND $itemID) ? '&task=editItem&itemID='.$itemID : '')) );
             } else {
-                $arrPageData['errors'][] = 'Запись <font color="red">НЕ была сохранена</font>!';
+                $arrPageData['errors'][] = 'Р—Р°РїРёСЃСЊ <font color="red">РќР• Р±С‹Р»Р° СЃРѕС…СЂР°РЅРµРЅР°</font>!';
                 unlinkFile($arPostData['filename'], $arrPageData['files_path']);            
             }
         }

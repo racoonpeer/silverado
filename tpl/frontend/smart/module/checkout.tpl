@@ -3,15 +3,15 @@
         <div class="c-left">
             <form action="" method="POST" class="orderForm" id="orderForm">
                 <div class="form-wizard" id="wizard">
-                    <h3>РљРѕРЅС‚Р°РєС‚РЅР°СЏ РёРЅС„РѕСЂРјР°С†РёСЏ</h3>
+                    <h3>Контактная информация</h3>
                     <fieldset>
                         <div class="f-print">
-                            <p class="uc">РёРЅС„РѕСЂРјР°С†РёСЏ</p>
-                            <p>Рѕ РїРѕРєСѓРїР°С‚РµР»Рµ</p>
+                            <p class="uc">информация</p>
+                            <p>о покупателе</p>
                         </div>
                         <div class="f-body">
                             <div class="f-row">
-                                <input type="text" class="input-m required <{if isset($arrPageData.errors.firstname)}>error<{/if}>" name="firstname" value="<{if isset($item.firstname)}><{$item.firstname}><{/if}>" placeholder="Р¤РРћ"/>
+                                <input type="text" class="input-m required <{if isset($arrPageData.errors.firstname)}>error<{/if}>" name="firstname" value="<{if isset($item.firstname)}><{$item.firstname}><{/if}>" placeholder="ФИО"/>
                             </div>
                             <div class="f-row">
                                 <div class="f-column">
@@ -22,11 +22,11 @@
                                 </div>
                             </div>
                             <div class="f-row">
-                                <textarea name="descr" placeholder="РљРѕРјРјРµРЅС‚Р°СЂРёР№ Рє Р·Р°РєР°Р·Сѓ" rows="4"></textarea>
+                                <textarea name="descr" placeholder="Комментарий к заказу" rows="4"></textarea>
                             </div>
                         </div>
                     </fieldset>
-                    <h3>Р”РѕСЃС‚Р°РІРєР°</h3>
+                    <h3>Доставка</h3>
                     <fieldset>
                         <div class="f-print">
                             <p class="uc"><span data-source="firstname"></span> <span data-source="surname"></span></p>
@@ -60,21 +60,21 @@
                             <hr/>
                             <div class="f-row">
                                 <input type="checkbox" name="recepient" id="recepient" class="hidden" value="1"/>
-                                <label class="checkbox" for="recepient">РџРѕР»СѓС‡Р°С‚РµР»СЊ РЅРµ СЏ</label>
+                                <label class="checkbox" for="recepient">Получатель не я</label>
                             </div>
                             <div class="f-row hidden nomargin">
                                 <div class="f-column">
-                                    <input type="text" class="input-m required <{if isset($arrPageData.errors.ext_firstname)}>error<{/if}>" name="ext_firstname" id="ext_firstname" value="<{if isset($item.ext_firstname)}><{$item.ext_firstname}><{/if}>" placeholder="РРјСЏ"/>
+                                    <input type="text" class="input-m required <{if isset($arrPageData.errors.ext_firstname)}>error<{/if}>" name="ext_firstname" id="ext_firstname" value="<{if isset($item.ext_firstname)}><{$item.ext_firstname}><{/if}>" placeholder="Имя"/>
                                 </div>
                                 <div class="f-column">
-                                    <input type="text" class="input-m required <{if isset($arrPageData.errors.ext_surname)}>error<{/if}>" name="ext_surname" id="ext_surname" value="<{if isset($item.ext_surname)}><{$item.ext_surname}><{/if}>" placeholder="Р¤Р°РјРёР»РёСЏ"/>
+                                    <input type="text" class="input-m required <{if isset($arrPageData.errors.ext_surname)}>error<{/if}>" name="ext_surname" id="ext_surname" value="<{if isset($item.ext_surname)}><{$item.ext_surname}><{/if}>" placeholder="Фамилия"/>
                                 </div>
-                                <div class="f-hint hint-user">РЈРєР°Р¶РёС‚Рµ РёРјСЏ Рё С„Р°РјРёР»РёСЋ РїРѕР»СѓС‡Р°С‚РµР»СЏ, РµСЃР»Рё Р·Р°РєР°Р· Р±СѓРґРµС‚Рµ РїРѕР»СѓС‡Р°С‚СЊ РЅРµ РІС‹ Р»РёС‡РЅРѕ<br/>
-                                Р’РЅРёРјР°РЅРёРµ! РџСЂРё РїРѕР»СѓС‡РµРЅРёРё Р·Р°РєР°Р·Р° РЅРµРѕР±С…РѕРґРёРјРѕ РїСЂРµРґСЊСЏРІРёС‚СЊ РїР°СЃРїРѕСЂС‚</div>
+                                <div class="f-hint hint-user">Укажите имя и фамилию получателя, если заказ будете получать не вы лично<br/>
+                                Внимание! При получении заказа необходимо предьявить паспорт</div>
                             </div>
                         </div>
                     </fieldset>
-                    <h3>РћРїР»Р°С‚Р°</h3>
+                    <h3>Оплата</h3>
                     <fieldset>
                         <div class="f-print">
                             <p class="uc"><span data-source="firstname"></span> <span data-source="surname"></span></p>
@@ -93,12 +93,12 @@
                             </div>
                             <hr/>
                             <div class="f-row">
-                                <div class="f-hint hint-box <{if isset($item.payment) AND $item.payment!=Checkout::CASH_PAYMENT_ID}>hidden<{/if}>" data-toggle-id="payment_<{Checkout::CASH_PAYMENT_ID}>">Р’С‹ РѕРїР»Р°С‡РёРІР°РµС‚Рµ Р·Р°РєР°Р· РїСЂРё РїРѕР»СѓС‡РµРЅРёРё 
-                                РѕСЃРјРѕС‚СЂРµРІ Рё РїСЂРѕРІРµСЂРёРІ С‚РѕРІР°СЂ РЅР° СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРµ РІР°С€РµРјСѓ Р·Р°РєР°Р·Сѓ, РѕС‚СЃСѓС‚СЃС‚РІРёРµ Р±СЂР°РєР° Рё РїРѕРІСЂРµР¶РґРµРЅРёР№.<br/>
-                                РџРѕРґСЂРѕР±РЅРµРµ Рѕ <a href="<{include file="core/href.tpl" arCategory=$arrModules.refund}>" target="_blank">РІРѕР·РІСЂР°С‚Рµ Рё РѕР±РјРµРЅРµ С‚РѕРІР°СЂР°</a></div>
-                                <div class="f-hint hint-card <{if !isset($item.payment) OR (isset($item.payment) AND $item.payment!=Checkout::LP_PAYMENT_ID)}>hidden<{/if}>" data-toggle-id="payment_<{Checkout::LP_PAYMENT_ID}>">Р’С‹ РѕРїР»Р°С‡РёРІР°РµС‚Рµ РїРѕСЃР»Рµ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ Р·Р°РєР°Р·Р° РІ С‚РµР»РµС„РѕРЅРЅРѕРј СЂРµР¶РёРјРµ<br/>
-                                РїСЂРµРґРІР°СЂРёС‚РµР»СЊРЅРѕ СЃРѕРіР»Р°СЃРѕРІР°РІ СЃ РјРµРЅРµРґР¶РµСЂРѕРј СЃСЂРѕРєРё РґРѕСЃС‚Р°РІРєРё С‚РѕРІР°СЂР°.<br/>
-                                РџРѕРґСЂРѕР±РЅРµРµ Рѕ <a href="<{include file="core/href.tpl" arCategory=$arrModules.delivery}>" target="_blank">СЃРїРѕСЃРѕР±Р°С… РѕРїР»Р°С‚С‹ Р·Р°РєР°Р·Р°</a></div>
+                                <div class="f-hint hint-box <{if isset($item.payment) AND $item.payment!=Checkout::CASH_PAYMENT_ID}>hidden<{/if}>" data-toggle-id="payment_<{Checkout::CASH_PAYMENT_ID}>">Вы оплачиваете заказ при получении 
+                                осмотрев и проверив товар на соответствие вашему заказу, отсутствие брака и повреждений.<br/>
+                                Подробнее о <a href="<{include file="core/href.tpl" arCategory=$arrModules.refund}>" target="_blank">возврате и обмене товара</a></div>
+                                <div class="f-hint hint-card <{if !isset($item.payment) OR (isset($item.payment) AND $item.payment!=Checkout::LP_PAYMENT_ID)}>hidden<{/if}>" data-toggle-id="payment_<{Checkout::LP_PAYMENT_ID}>">Вы оплачиваете после подтверждения заказа в телефонном режиме<br/>
+                                предварительно согласовав с менеджером сроки доставки товара.<br/>
+                                Подробнее о <a href="<{include file="core/href.tpl" arCategory=$arrModules.delivery}>" target="_blank">способах оплаты заказа</a></div>
                             </div>
                         </div>
                     </fieldset>
@@ -107,7 +107,7 @@
         </div>
         <div class="c-right">
             <div class="pre-order">
-                <h3>Р’Р°С€ Р·Р°РєР°Р·
+                <h3>Ваш заказ
                     <a href="#" onclick="return Basket.open();" class="edit-order"></a>
                 </h3>
                 <{include file="ajax/minibasket.tpl"}>

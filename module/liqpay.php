@@ -25,16 +25,16 @@ if ($itemID and $action=="result") {
 elseif ($itemID and $item=getSimpleItemRow($itemID, ORDERS_TABLE)) {
     $item["seo_path"] = UrlWL::ORDER_SEOPREFIX.$itemID;
     if ($item["payment_status"]>0) {
-        $arrPageData["errors"][] = "Çàêàç ¹{$itemID} óæå îïëà÷åí! Ïîâòîğíàÿ îïëàòà íåâîçìîæíà";
+        $arrPageData["errors"][] = "Ğ—Ğ°ĞºĞ°Ğ· â„–{$itemID} ÑƒĞ¶Ğµ Ğ¾Ğ¿Ğ»Ğ°Ñ‡ĞµĞ½! ĞŸĞ¾Ğ²Ñ‚Ğ¾Ñ€Ğ½Ğ°Ñ Ğ¾Ğ¿Ğ»Ğ°Ñ‚Ğ° Ğ½ĞµĞ²Ğ¾Ğ·Ğ¼Ğ¾Ğ¶Ğ½Ğ°";
         Redirect("/");
     }
-    $arrPageData['result_url'] = WLCMS_HTTP_HOST.$UrlWL->buildItemUrl($arCategory, $item, "action=result"); // äëÿ ïåğåàäğåñàöèè ïîêóïàòåëÿ
-    $arrPageData['server_url'] = $arrPageData['result_url']; // äëÿ îòâåòà ñåğâåğà liqPay (ïğèåì è îáğàáîòêà îòâåòà âûïîëíÿåòñÿ â ôîíîâîì ğåæèìå)
+    $arrPageData['result_url'] = WLCMS_HTTP_HOST.$UrlWL->buildItemUrl($arCategory, $item, "action=result"); // Ğ´Ğ»Ñ Ğ¿ĞµÑ€ĞµĞ°Ğ´Ñ€ĞµÑĞ°Ñ†Ğ¸Ğ¸ Ğ¿Ğ¾ĞºÑƒĞ¿Ğ°Ñ‚ĞµĞ»Ñ
+    $arrPageData['server_url'] = $arrPageData['result_url']; // Ğ´Ğ»Ñ Ğ¾Ñ‚Ğ²ĞµÑ‚Ğ° ÑĞµÑ€Ğ²ĞµÑ€Ğ° liqPay (Ğ¿Ñ€Ğ¸ĞµĞ¼ Ğ¸ Ğ¾Ğ±Ñ€Ğ°Ğ±Ğ¾Ñ‚ĞºĞ° Ğ¾Ñ‚Ğ²ĞµÑ‚Ğ° Ğ²Ñ‹Ğ¿Ğ¾Ğ»Ğ½ÑĞµÑ‚ÑÑ Ğ² Ñ„Ğ¾Ğ½Ğ¾Ğ²Ğ¾Ğ¼ Ñ€ĞµĞ¶Ğ¸Ğ¼Ğµ)
     $data = array(
         'version'     => '3',
         'amount'      => ceil($item["price"]),
         'currency'    => 'UAH',
-        'description' => "Èíòåğíåò-ìàãàçèí SILVERADO: çàêàç ¹{$itemID} îò {$item["firstname"]} {$item["surname"]}, ".$HTMLHelper->RuDateFormat($item["created"]),
+        'description' => "Ğ˜Ğ½Ñ‚ĞµÑ€Ğ½ĞµÑ‚-Ğ¼Ğ°Ğ³Ğ°Ğ·Ğ¸Ğ½ SILVERADO: Ğ·Ğ°ĞºĞ°Ğ· â„–{$itemID} Ğ¾Ñ‚ {$item["firstname"]} {$item["surname"]}, ".$HTMLHelper->RuDateFormat($item["created"]),
         'order_id'    => $itemID,
         'server_url'  => $arrPageData['server_url'],
         'result_url'  => $arrPageData['result_url'],

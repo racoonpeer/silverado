@@ -77,7 +77,7 @@ foreach ($arSpreadSheets as $spreadID) {
                     if ($key==1) {
                         foreach($row->getCellIterator() as $i=>$cell) {
                             if ($i > $cols) break;
-                            $cellText = !empty($cell) ? trim(PHPHelper::mb_dataConv($cell->getValue())) : '';
+                            $cellText = !empty($cell) ? trim($cell->getValue()) : '';
                             // Search in attributes firstly
                             $exists = getItemRow(ATTRIBUTES_TABLE, "*", "WHERE `colname`='{$cellText}'");
                             if (!empty($exists)) {
@@ -104,13 +104,13 @@ foreach ($arSpreadSheets as $spreadID) {
                         $item["attributes"] = array();
                         foreach($row->getCellIterator() as $i=>$cell) {
                             if ($i > $cols) break;
-                            $cellText = !empty($cell) ? trim(PHPHelper::mb_dataConv($cell->getValue())) : '';
+                            $cellText = !empty($cell) ? trim($cell->getValue()) : '';
                             // Fill product columns
                             if (array_key_exists($i, $columnStack)) {
                                 $colname = $columnStack[$i];
-                                if ($colname=="pcode") $cellText = mb_strtoupper($cellText, WLCMS_SYSTEM_ENCODING);
+                                if ($colname=="pcode") $cellText = strtoupper($cellText);
                                 elseif ($colname=="price" or $colname=="cprice") $cellText = (float)$cell->getValue();
-                                elseif ($columnStack[$i]=="title") $cellText = mb_ucfirst($cellText, WLCMS_SYSTEM_ENCODING);
+                                elseif ($columnStack[$i]=="title") $cellText = ucfirst($cellText);
                                 $item[$colname] = $cellText;
                             }
                             // Fill options

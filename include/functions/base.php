@@ -1271,7 +1271,7 @@ function getSimpleItemRow($id, $table, $colname = 'id')
 function getItemRow($tablenames, $selectcols, $conditions = '')
 {
     $query = "SELECT {$selectcols} FROM {$tablenames} " . ((!empty($conditions)) ? $conditions : '') . ' LIMIT 1';
-    $result = mysql_query($query);
+    $result = mysql_query($query) or die(mysql_error());
     return mysql_num_rows($result) ? mysql_fetch_assoc($result) : array();
 }
 

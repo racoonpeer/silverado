@@ -45,13 +45,13 @@ function CCheckout(){
                     return self.form.valid();
                 },
                 labels: {
-                    cancel: "РћС‚РјРµРЅР°",
+                    cancel: "Отмена",
                     current: "current step:",
                     pagination: "Pagination",
-                    finish: "РћС„РѕСЂРјРёС‚СЊ Р·Р°РєР°Р·",
-                    next: "Р”Р°Р»РµРµ",
-                    previous: "РќР°Р·Р°Рґ",
-                    loading: "РџРѕРґРѕР¶РґРёС‚Рµ ..."
+                    finish: "Оформить заказ",
+                    next: "Далее",
+                    previous: "Назад",
+                    loading: "Подождите ..."
                 },
                 onFinishing: function (event, currentIndex) {
                     self.form.validate().settings.ignore = ":disabled,:hidden";
@@ -100,7 +100,7 @@ function CCheckout(){
             var self = this;
             // City & address
             self.form.find('#city').select2({
-                placeholder: 'Р“РѕСЂРѕРґ',
+                placeholder: 'Город',
                 ajax: {
                     url: window.location.href,
                     dataType: 'json',
@@ -118,7 +118,7 @@ function CCheckout(){
                 }
             });
             self.form.find('#address').select2({
-                placeholder: 'РђРґСЂРµСЃ',
+                placeholder: 'Адрес',
                 disabled: true
             });
             self.setUpAddress();
